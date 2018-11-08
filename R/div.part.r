@@ -11,7 +11,7 @@ if (qvalue==1) {qvalue=0.99999}
 if(missing(hierarchy)) warning("Assuming a two-level hierarchy: 1) sample, 2) total dataset")
 if(is.null(dim(hierarchy)) == TRUE) stop("The hierarchy table is not a matrix")
 if(dim(hierarchy)[2] < 2) stop("The hierarchy table contains less than 2 columns")
-if(missing(hierarchy)) { hierarchy= c())}
+if(missing(hierarchy)) { hierarchy= c()}
 if(missing(weight)) { weight= rep(1/ncol(otutable),ncol(otutable))}
 
 #Function for 2-level hierarchy

@@ -27,5 +27,5 @@ For functions div.part and phylodiv.part
 | ...  | ...   |...  |
 | SampleN  | GroupN   |SubgroupN  |
 
-*Sample names and OTU table row names must match
-*Groups and subgroups must be nested
+* Sample names and OTU table row names must match
+* Groups and subgroups must be nested

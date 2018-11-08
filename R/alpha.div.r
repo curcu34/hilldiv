@@ -1,5 +1,6 @@
 alpha.div <- function(x,w,q){
 #Quality-check
+try(if(exists("x") == FALSE) stop("OTU table does not exist"))
 try(if(dim(x)[1] < 2) stop("The OTU table only less than 2 OTUs"))
 try(if(dim(x)[2] < 2) stop("The OTU table contains less than 2 samples"))
     

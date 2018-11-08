@@ -19,7 +19,7 @@ N <- ncol(otutable)
 homogeneity <- ((1/beta) - 1/N)/(1-1/N)
 overlap <-((1/beta)^(1-qvalue) - (1/N)^(1-qvalue)) / (1 - (1/N)^(1-qvalue))
 turnover <- (beta - 1)/(N-1)
-results <- list("Sample size" = N, "Alpha diversity" = alpha, "Gamma diversity" = gamma, "Beta diversity" = gamma, "Homogeneity" = homogeneity, "Overlap" = overlap, "Turnover" = turnover)
+results <- list("Sample_size" = N, "Alpha_diversity" = alpha, "Gamma_diversity" = gamma, "Beta_diversity" = beta, "Homogeneity" = homogeneity, "Overlap" = overlap, "Turnover" = turnover)
 return(results)
 }
   

@@ -1,4 +1,9 @@
 alpha.div <- function(x,w,q){
+#Quality-check
+try(if(dim(x)[1] < 2) stop("The OTU table only contains 1 OTU"))
+try(if(dim(x)[2] < 2) stop("The OTU table only contains 1 sample"))
+    
+#Function    
 if (q==1) {q=0.99999} # change q to the limit of the unity (0.99999) if q=1
 pi <- as.data.frame(x[apply(x, 1, function(z) !all(z==0)),]) #remove OTUs without abundances (=all-zero rows) 
 pi.w <- sweep(pi,2,w,"*") #apply weights 

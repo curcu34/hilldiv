@@ -12,12 +12,12 @@ if(missing(hierarchy)) warning("Assuming a two-level hierarchy: 1) sample, 2) to
 
 #Function for 2-level hierarchy
 if(missing(hierarchy)){
-alpha <- DiverHill::alpha.div(otutable)
-gamma <- DiverHill::gamma.div(otutable)
+alpha <- DiverHill::alpha.div(otutable,qvalue)
+gamma <- DiverHill::gamma.div(otutable,qvalue)
 beta <- gamma/alpha
 N <- ncol(otutable)
 homogeneity <- ((1/beta) - 1/N)/(1-1/N)
-overlap <-((1/beta)^(1-q) - (1/N)^(1-q)) / (1 - (1/N)^(1-q))
+overlap <-((1/beta)^(1-qvalue) - (1/N)^(1-qvalue)) / (1 - (1/N)^(1-qvalue))
 turnover <- (beta - 1)/(N-1)
 results <- list("Sample size" = N, "Alpha diversity" = alpha, "Gamma diversity" = gamma, "Beta diversity" = gamma, "Homogeneity" = homogeneity, "Overlap" = overlap, "Turnover" = turnover)
 return(results)

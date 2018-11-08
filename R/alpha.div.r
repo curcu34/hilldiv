@@ -1,7 +1,7 @@
-alpha.div <- function(otutable,weight,qvalue){
+alpha.div <- function(otutable,qvalue,weight){
     
 #Quality-check
-if (missing(otutable)) stop("OTU table is missing.")    
+if(missing(otutable)) stop("OTU table is missing")    
 if(dim(otutable)[1] < 2) stop("The OTU table only less than 2 OTUs")
 if(dim(otutable)[2] < 2) stop("The OTU table contains less than 2 samples")
 if(missing(weight)) {weight= rep(1/ncol(otutable),ncol(otutable))}

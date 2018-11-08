@@ -23,6 +23,7 @@ RoxygenNote: 6.1.0.9000
 Collate: 
     'alpha.div.r'
     'alpha.phylodiv.r'
+    'div.part.r'
     'gamma.div.r'
     'gamma.phylodiv.r'
     'true.div.r'

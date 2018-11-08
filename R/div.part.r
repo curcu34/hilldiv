@@ -29,5 +29,17 @@ if(ncol(hierarchy) == 2){
 results <- c("Allright")
 return(results)
 }
+  
+#Function for 4-level hierarchy
+if(ncol(hierarchy) == 3){
+
+results <- c("Allright")
+return(results)
+} 
+  
+#Error if more hierarchical levels
+if(ncol(hierarchy) > 3){
+stop("The maximum number of hierarchical levels allowed is 4")
+} 
 
 }

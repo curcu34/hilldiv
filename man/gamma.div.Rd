@@ -1,6 +1,6 @@
 
-\name{gamma.phylodiv}
-\alias{gamma.phylodiv}
-\title{Gamma phylodiversity}
+\name{gamma.div}
+\alias{gamma.div}
+\title{Gamma diversity}
 \usage{}
 \arguments{}

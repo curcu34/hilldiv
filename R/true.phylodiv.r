@@ -10,9 +10,9 @@ if(identical(sort(names(vector)),sort(tree$tip.label)) == FALSE) stop("OTU names
 
 #Function
 if(qvalue==1){qvalue=0.99999}
-Li <- t$edge.length #Get branch lengths
-ltips <- sapply(t$edge[, 2], function(node) geiger::tips(t, node)) #Sum relative abundances per lineage
-ai <- unlist(lapply(ltips, function(TipVector) sum(x[TipVector]))) #Sum relative abundances per lineage
+Li <- tree$edge.length #Get branch lengths
+ltips <- sapply(tree$edge[, 2], function(node) geiger::tips(tree, node)) #Sum relative abundances per lineage
+ai <- unlist(lapply(ltips, function(TipVector) sum(vector[TipVector]))) #Sum relative abundances per lineage
 T <- sum(Li * ai) #Get total tree depth
 Li <- Li[ai != 0] #Remove zeros
 ai <- ai[ai != 0] #Remove zeros

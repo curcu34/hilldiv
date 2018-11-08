@@ -2,7 +2,7 @@ alpha.div <- function(otutable,qvalue,weight){
     
 #Quality-check and warnings
 if(missing(otutable)) stop("OTU table is missing")
-if(is.null(dim(otutable) == TRUE) stop("The OTU table is not a matrix")
+if(is.null(dim(otutable) == TRUE)) stop("The OTU table is not a matrix")
 if(dim(otutable)[1] < 2) stop("The OTU table only less than 2 OTUs")
 if(dim(otutable)[2] < 2) stop("The OTU table contains less than 2 samples")
 if(missing(weight)) warning("Assuming equal weights")

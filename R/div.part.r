@@ -52,7 +52,7 @@ homogeneity_2 <- ((1/beta_2) - 1/N2)/(1-1/N2)
 overlap_2 <-((1/beta_2)^(1-qvalue) - (1/N2)^(1-qvalue)) / (1 - (1/N2)^(1-qvalue))
 turnover_2 <- (beta_2 - 1)/(N2-1)
   
-results <- c("Allright")
+results <- list("L1_size" = N1, "L2_size" = N2, "L1_diversity" = L1_div, "L2_diversity" = L2_div, "L3_diversity" = L3_div, "Beta_diversity_L1-2" = beta_1, "Beta_diversity_L2-3" = beta_2,  "Homogeneity_L1-2" = homogeneity_1, "Homogeneity_L2-3" = homogeneity_2,"Overlap_L1-2" = overlap_1, "Overlap_L2-3" = overlap_2,"Turnover_L1-2" = turnover_1, "Turnover_L2-3" = turnover_2)
 return(results)
 }
   

@@ -1,9 +1,9 @@
 DiverHill is a R package for the analysis of diversity based on Hill numbers
 
 ## Functions
-### alpha.div / alpha.phylodiv
+#### alpha.div / alpha.phylodiv
 For 
-### gamma.div / gamma.phylodiv
+#### gamma.div / gamma.phylodiv
 For 
 
 ## Input data formats

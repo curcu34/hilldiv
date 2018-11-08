@@ -29,3 +29,5 @@ if(ncol(hierarchy) == 2){
 results <- c("Allright")
 return(results)
 }
+
+}

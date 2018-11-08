@@ -1,22 +1,21 @@
-true.phylodiv <- function(x,q,t){
-if(q==1){q=0.99999}
+true.phylodiv <- function(vector,qvalue,tree){
+  
+#Quality-check and warnings
+if(missing(vector)) stop("Vector is missing")
+if(sum(vector) != 1) stop("The vector does not sum up to 1")
+if(missing(qvalue)) stop("q value is missing")
+if(qvalue < 0) stop("q value needs to be possitive (equal or higher than zero)")
+if(missing(tree)) stop("Tree is missing")
+if(identical(sort(rownames(otutable)),sort(tree$tip.label)) == FALSE) stop("OTU names in the vector and tree do not match")
 
-#Get branch lengths
-Li <- t$edge.length
-
-#Sum relative abundances per lineage
-ltips <- sapply(t$edge[, 2], function(node) geiger::tips(t, node))
-ai <- unlist(lapply(ltips, function(TipVector) sum(x[TipVector])))
-
-#Get total tree depth
-T <- sum(Li * ai)
-
-#Eliminate zeros
-Li <- Li[ai != 0]
-ai <- ai[ai != 0]
-
-#Compute phylodiversity
-phylodiv <- sum(Li/T * ai^q)^(1/(1-q))
-
-return(phylodiv)
+#Function
+if(qvalue==1){qvalue=0.99999}
+Li <- t$edge.length #Get branch lengths
+ltips <- sapply(t$edge[, 2], function(node) geiger::tips(t, node)) #Sum relative abundances per lineage
+ai <- unlist(lapply(ltips, function(TipVector) sum(x[TipVector]))) #Sum relative abundances per lineage
+T <- sum(Li * ai) #Get total tree depth
+Li <- Li[ai != 0] #Remove zeros
+ai <- ai[ai != 0] #Remove zeros
+phylodiv <- sum(Li/T * ai^qvalue)^(1/(1-qvalue)) #Compute phylodiversity
+return(phylodiv) #Return value
 }

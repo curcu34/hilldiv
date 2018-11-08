@@ -21,9 +21,9 @@ Imports:
 Encoding: UTF-8
 RoxygenNote: 6.1.0.9000
 Collate: 
-    'alpha.div.r'
-    'alpha.phylodiv.r'
-    'gamma.div.r'
-    'gamma.phylodiv.r'
-    'true.div.r'
-    'true.phylodiv.r'
+    'R/alpha.div.r'
+    'R/alpha.phylodiv.r'
+    'R/gamma.div.r'
+    'R/gamma.phylodiv.r'
+    'R/true.div.r'
+    'R/true.phylodiv.r'

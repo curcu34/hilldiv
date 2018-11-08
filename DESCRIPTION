@@ -1,0 +1,29 @@
+Package: DiverHill
+Title: DiverHill
+Version: 1.0.1
+Authors@R: 
+    c(person(given = "Antton",
+             family = "Alberdi",
+             role = c("aut", "cre"),
+             email = "antton.alberdi@snm.ku.dk",
+             comment = c(ORCID = "0000-0002-2875-6446")))
+Maintainer: Antton Alberdi <antton.alberdi@snm.ku.dk>
+Description: Tools for diversity analyses based on Hill numbers.
+License: CC-by-sa
+LazyData: true
+URL: https://github.com/anttonalberdi/DiverHill
+Depends:
+    R (>= 3.1.0)
+Suggests:
+Imports:
+    ggplot2,
+    utils
+Encoding: UTF-8
+RoxygenNote: 6.1.0.9000
+Collate: 
+    'alpha.div.r'
+    'alpha.phylodiv.r'
+    'gamma.div.r'
+    'gamma.phylodiv.r'
+    'true.div.r'
+    'true.phylodiv.r'

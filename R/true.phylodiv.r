@@ -6,7 +6,7 @@ if(sum(vector) != 1) stop("The vector does not sum up to 1")
 if(missing(qvalue)) stop("q value is missing")
 if(qvalue < 0) stop("q value needs to be possitive (equal or higher than zero)")
 if(missing(tree)) stop("Tree is missing")
-if(identical(sort(rownames(otutable)),sort(tree$tip.label)) == FALSE) stop("OTU names in the vector and tree do not match")
+if(identical(sort(names(vector)),sort(tree$tip.label)) == FALSE) stop("OTU names in the vector and tree do not match")
 
 #Function
 if(qvalue==1){qvalue=0.99999}

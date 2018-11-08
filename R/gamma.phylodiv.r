@@ -14,7 +14,7 @@ if(missing(weight)) warning("Assuming equal weights")
   
 #Function
 if (qvalue==1) {qvalue=0.99999}
-x <- as.data.frame(otutable)
+otutable <- as.data.frame(otutable)
 wj <- weight
 N <- ncol(otutable)
 Li <- tree$edge.length

@@ -1,5 +1,9 @@
 DiverHill is a R package for the analysis of diversity based on Hill numbers
 
+## Input data formats
+
+### OTU table
+
 |       | Sample1 | Sample2 |Sample3  |SampleN
 | ------------- | ------------- | ------------- | ------------- |------------- |
 | OTU1  | 0.604   |0.543    |0.204    |...

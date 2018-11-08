@@ -23,8 +23,9 @@ results <- list("Sample_size" = N, "Alpha_diversity" = alpha, "Gamma_diversity" 
 return(results)
 }
   
-#Function for >2-level hierarchy
+#Function for 3-level hierarchy
+if(ncol(hierarchy) == 2){
 
-  
-  
+results <- c("Allright")
+return(results)
 }

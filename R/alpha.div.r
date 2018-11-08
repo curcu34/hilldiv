@@ -5,10 +5,10 @@ if(missing(otutable)) stop("OTU table is missing")
 if(is.null(dim(otutable)) == TRUE) stop("The OTU table is not a matrix")
 if(dim(otutable)[1] < 2) stop("The OTU table only less than 2 OTUs")
 if(dim(otutable)[2] < 2) stop("The OTU table contains less than 2 samples")
-if(missing(weight)) warning("Assuming equal weights")
-if(missing(weight)) { weight= rep(1/ncol(otutable),ncol(otutable))}
 if(missing(qvalue)) stop("q value is missing")
-
+if(missing(weight)) { weight= rep(1/ncol(otutable),ncol(otutable))}
+if(missing(weight)) warning("Assuming equal weights")
+    
 #Function    
 if (qvalue==1) {qvalue=0.99999} # change q to the limit of the unity (0.99999) if q=1
 pi <- as.data.frame(otutable[apply(otutable, 1, function(z) !all(z==0)),]) #remove OTUs without abundances (=all-zero rows) 

@@ -1,1 +1,7 @@
 
+export(alpha.div)
+export(alpha.phylodiv)
+export(gamma.div)
+export(gamma.phylodiv)
+export(true.div)
+export(true.phylodiv)

@@ -15,6 +15,7 @@ For functions true.div, true.phylodiv, alpha.div, alpha.phylodiv, gamma.div, gam
 The sum of relative abundances of all samples must be 1. Check that by using colSums(otutable)
 
 ### Hierarchy table
+For functions div.part and phylodiv.part
 
 | Sample | Group |Subgroup  |
 | ------------- | ------------- |------------- |
@@ -25,3 +26,6 @@ The sum of relative abundances of all samples must be 1. Check that by using col
 | Sample5  | Group3   |Subgroup4  |
 | ...  | ...   |...  |
 | SampleN  | GroupN   |SubgroupN  |
+
+-Sample names and OTU table row names must match
+-Groups and subgroups must be nested

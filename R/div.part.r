@@ -25,6 +25,8 @@ return(results)
   
 #Function for 3-level hierarchy
 if(ncol(hierarchy) == 2){
+hierarchy[,1] <- as.character(hierarchy[,1])
+hierarchy[,2] <- as.character(hierarchy[,2])
 if(identical(sort(colnames(otutable)),sort(hierarchy[,1])) == FALSE) stop("OTU names in the OTU table and the hierarchy table do not match")
 colnames(hierarchy) <- c("L1","L2")
   

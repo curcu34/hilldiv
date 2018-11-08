@@ -1,7 +1,7 @@
 alpha.div <- function(x,w,q){
 #Quality-check
-try(if(dim(x)[1] < 2) stop("The OTU table only contains 1 OTU"))
-try(if(dim(x)[2] < 2) stop("The OTU table only contains 1 sample"))
+try(if(dim(x)[1] < 2) stop("The OTU table only less than 2 OTUs"))
+try(if(dim(x)[2] < 2) stop("The OTU table contains less than 2 samples"))
     
 #Function    
 if (q==1) {q=0.99999} # change q to the limit of the unity (0.99999) if q=1

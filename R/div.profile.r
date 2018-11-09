@@ -22,8 +22,8 @@ if(is.null(dim(abund)) == TRUE){
 #If input data is an OTU table
 if(is.null(dim(abund)) == FALSE){
     
-    if(dim(otutable)[1] < 2) stop("The OTU table only less than 2 OTUs")
-    if(dim(otutable)[2] < 2) stop("The OTU table contains less than 2 samples")
+    if(dim(abund)[1] < 2) stop("The OTU table only less than 2 OTUs")
+    if(dim(abund)[2] < 2) stop("The OTU table contains less than 2 samples")
     
     profile <- c()
     for (o in order){

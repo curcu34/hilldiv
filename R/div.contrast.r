@@ -17,6 +17,8 @@ if(chart == "boxplot"){
 getPalette = colorRampPalette(brewer.pal(length(unique(div.values.groups$Group)), "Paired"))
 plot <- ggplot(div.values.groups, aes(x=Group, y=Value, colour=Group)) + 
   geom_boxplot() +
+  xlab("Effective number of OTUs") + ylab("Groups") +
+  theme_minimal() +
   coord_flip()
 print(plot)
 }
@@ -24,6 +26,8 @@ if(chart == "jitter"){
 getPalette = colorRampPalette(brewer.pal(length(unique(div.values.groups$Group)), "Paired"))
 plot <- ggplot(div.values.groups, aes(x=Group, y=Value, colour=Group)) + 
   geom_jitter(width = 0.1) +
+  xlab("Effective number of OTUs") + ylab("Groups") +
+  theme_minimal() +
   coord_flip()
 print(plot)
 }  

@@ -38,7 +38,7 @@ pair.dis(otu.table,1,measure=c("homogeneity","overlap"))
 
 #### div.profile() / phylodiv.profile() - chart
 (Phylo)Diversity profiles of individual samples or groups of samples.
-
+![alt text](https://github.com/anttonalberdi/DiverHill/blob/master/figures/div.profile.multiple.png)
 ## Input data formats
 
 ### OTU table

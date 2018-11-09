@@ -12,10 +12,11 @@ if(is.null(dim(abund)) == TRUE){
     profile <- c(profile,div.value)
     }
     profile.melted <- as.data.frame(cbind(order,profile))
-    ggplot(profile.melted , aes(x = order, y = profile)) +
+    plot <- ggplot(profile.melted , aes(x = order, y = profile)) +
            geom_line() + 
            xlab("Order of diversity") + ylab("Effective number of OTUs") +
            theme_minimal()
+    print(plot)
 }
   
 #If input data is an OTU table
@@ -34,12 +35,12 @@ if(is.null(dim(abund)) == FALSE){
     colnames(profile.melted) <- c("Order","Sample","Value")
     
     getPalette = colorRampPalette(brewer.pal(ncol(abund), "Paired"))
-    ggplot(profile.melted , aes(x = Order, y = Value, group=Sample, colour=Sample)) +
+    plot <- ggplot(profile.melted , aes(x = Order, y = Value, group=Sample, colour=Sample)) +
         geom_line() + 
         xlab("Order of diversity") + ylab("Effective number of OTUs") +
         scale_colour_manual(values = getPalette(ncol(abund))) + 
         theme_minimal()
-    
+    print(plot)
 }
 
 }

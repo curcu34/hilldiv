@@ -28,9 +28,17 @@ if(is.null(dim(abund)) == FALSE){
     
     profile <- c()
     for (o in order){
-    div.value <- true.div(abund,o)
-    profile <- c(profile,div.value)
+    div.values <- true.div(abund,o)
+    profile <- rbind(profile,div.values)
     }    
+    rownames(profile) <- order
+    profile.melted <- melt(profile)
+    colnames(profile.melted) <- c("Order","Sample","Value")
+    
+    ggplot(profile.melted , aes(x = Order, y = Value, group=Sample, colour=Sample)) +
+        geom_line() + 
+        xlab("Order of diversity") + ylab("Effective number of OTUs") +
+        theme_minimal()
     
 }
 

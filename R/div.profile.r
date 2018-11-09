@@ -2,8 +2,6 @@ div.profile <- function(abund,order){
     
 #Quality-check and warnings
 if(missing(abund)) stop("The abundance data is missing")
-if(missing(qvalue)) stop("q value is missing")
-if(qvalue < 0) stop("q value needs to be possitive (equal or higher than zero)")
 if(missing(order)) { order= seq(from = 0, to = 5, by = (0.1))}
 
 #If input data is a vector

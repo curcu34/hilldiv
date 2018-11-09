@@ -1,7 +1,7 @@
 DiverHill is a R package for the analysis of diversity based on Hill numbers
 
-## Functions
-#### true.div() / true.phylodiv()
+# Functions
+### true.div() / true.phylodiv()
 True (phylo)diversity computation of individual samples from vectors (1 sample) or OTU tables (multiple samples).
 ````R
 #EXAMPLES#
@@ -17,16 +17,16 @@ true.div(otu.table[,c(1:3)],qvalue=1)
 9.145646 8.686439 7.884177 
 ````
 
-#### alpha.div() / alpha.phylodiv()
+### alpha.div() / alpha.phylodiv()
 Alpha (phylo)diversity of a dataset (OTU table) with multiple samples.
 
-#### gamma.div() / gamma.phylodiv()
+### gamma.div() / gamma.phylodiv()
 Gamma (phylo)diversity of a dataset (OTU table) with multiple samples.
 
-#### div.part() / phylodiv.part()
+### div.part() / phylodiv.part()
 (Phylo)Diversity partitioning of a dataset (OTU table) with multiple samples and hierarchical levels (2, 3 or 4 levels; e.g. sample > population > species > overall).
 
-####  pair.dis()
+###  pair.dis()
 Pairwise dissimilarity measurement yielding true beta diversity, homogeneity, overlap and turnover values.
 ````R
 #EXAMPLES#
@@ -36,7 +36,7 @@ pair.dis(otu.table,1,measure="overlap")
 pair.dis(otu.table,1,measure=c("homogeneity","overlap"))
 ````
 
-#### div.profile() / phylodiv.profile() - chart
+### div.profile() / phylodiv.profile() - chart
 (Phylo)Diversity profiles of individual samples or groups of samples.
 ````R
 #EXAMPLES#
@@ -47,9 +47,9 @@ div.profile(otu.table[,c(1:5)])
 <img align=left src="https://github.com/anttonalberdi/DiverHill/blob/master/figures/div.profile.one.png" width="350" title="One sample">
 <img src="https://github.com/anttonalberdi/DiverHill/blob/master/figures/div.profile.multiple.png" width="350" title="Multiple samples">
 
-## Input data formats
+# Input data formats
 
-### OTU table
+## OTU table
 For functions true.div, true.phylodiv, alpha.div, alpha.phylodiv, gamma.div, gamma.phylodiv, div.part, phylodiv.part...
 
 |       | Sample1 | Sample2 |Sample3  |SampleN  |
@@ -61,7 +61,7 @@ For functions true.div, true.phylodiv, alpha.div, alpha.phylodiv, gamma.div, gam
 
 The sum of relative abundances of all samples must be 1. Check that by using colSums(otutable)
 
-### Hierarchy table
+## Hierarchy table
 For functions div.part and phylodiv.part
 
 | Sample | Group |Subgroup  |

@@ -35,9 +35,11 @@ if(is.null(dim(abund)) == FALSE){
     profile.melted <- melt(profile)
     colnames(profile.melted) <- c("Order","Sample","Value")
     
+    getPalette = colorRampPalette(brewer.pal(ncol(abund), "Paired"))
     ggplot(profile.melted , aes(x = Order, y = Value, group=Sample, colour=Sample)) +
         geom_line() + 
         xlab("Order of diversity") + ylab("Effective number of OTUs") +
+        scale_colour_manual(values = getPalette(ncol(abund))) + 
         theme_minimal()
     
 }

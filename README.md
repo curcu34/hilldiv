@@ -3,6 +3,14 @@ DiverHill is a R package for the analysis of diversity based on Hill numbers
 ## Functions
 #### true.div() / true.phylodiv()
 True (phylo)diversity computation of individual samples from vectors or OTU tables.
+````R
+#EXAMPLES#
+true.div(vector,0)
+true.div(otu.table,1)
+true.div(otu.table,qvalue=1)
+true.phylodiv(otu.table,1,tree)
+true.phylodiv(otu.table,qvalue=1,tree=tree)
+````
 
 #### alpha.div() / alpha.phylodiv()
 Alpha (phylo)diversity of a dataset (OTU table) with multiple samples.

@@ -17,7 +17,6 @@ Depends:
 Suggests:
 Imports:
     ggplot2,
-    utils
     RColorBrewer
 Encoding: UTF-8
 RoxygenNote: 6.1.0.9000

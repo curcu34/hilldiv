@@ -21,17 +21,23 @@ L1_beta <- matrix(rep(NA,length(L1)^2), nrow = length(L1), ncol = length(L1))
 colnames(L1_beta) <- L1
 rownames(L1_beta) <- L1
 
+if('homogeneity' %in% measure){
 L1_homogeneity <- matrix(rep(NA,length(L1)^2), nrow = length(L1), ncol = length(L1))
 colnames(L1_homogeneity) <- L1
 rownames(L1_homogeneity) <- L1
+}
 
+if('overlap' %in% measure){
 L1_overlap <- matrix(rep(NA,length(L1)^2), nrow = length(L1), ncol = length(L1))
 colnames(L1_overlap) <- L1
 rownames(L1_overlap) <- L1
+}
 
+if('turnover' %in% measure){
 L1_turnover <- matrix(rep(NA,length(L1)^2), nrow = length(L1), ncol = length(L1))
 colnames(L1_turnover) <- L1
 rownames(L1_turnover) <- L1
+}
 
 for (x in L1){
 for (y in L1){
@@ -41,16 +47,26 @@ alpha <- alpha.div(combination,qvalue)
 gamma <- gamma.div(combination,qvalue)
 beta <- gamma/alpha
 L1_beta[x,y] <- beta
+results <- list("Beta" = L1_beta)
+
+if('homogeneity' %in% measure){
 homogeneity <- ((1/beta) - 1/N)/(1-1/N)
 L1_homogeneity[x,y] <- homogeneity
+results[["Homogeneity"]] <- L1_homogeneity}
+
+if('overlap' %in% measure){
 overlap <-((1/beta)^(1-qvalue) - (1/N)^(1-qvalue)) / (1 - (1/N)^(1-qvalue))
 L1_overlap[x,y] <- overlap
+results[["Overlap"]] <- L1_overlap}
+
+if('turnover' %in% measure){
 turnover <- (beta - 1)/(N-1)
 L1_turnover[x,y] <- turnover
+results[["Turnover"]] <- L1_turnover}
 }
 }
 }
-results <- list("Beta" = L1_beta, "Homogeneity" = L1_homogeneity, "Overlap" = L1_overlap, "Turnover" = L1_turnover)
+
 return(results)
 }
 

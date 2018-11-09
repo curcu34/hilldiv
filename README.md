@@ -15,7 +15,7 @@ Gamma (phylo)diversity of a dataset (OTU table) with multiple samples.
 
 ####  pair.dis()
 Pairwise dissimilarity measurement yielding true beta diversity, homogeneity, overlap and turnover values.
-````ruby
+````R
 pair.dis(otu.table,0)
 pair.dis(otu.table,qvalue=1)
 pair.dis(otu.table,1,measure="overlap")

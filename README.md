@@ -16,6 +16,15 @@ true.div(otu.table[,c(1:3)],qvalue=1)
     TUL1     TUL2     TUL3 
 9.145646 8.686439 7.884177 
 ````
+### div.contrast()
+Diversity comparison between two or multiple groups of samples. The function outputs both a statistical test and a chart.
+````R
+#EXAMPLES#
+div.contrast(otu.table,1,hierarchy.table)
+div.contrast(otu.table,0,hierarchy.table,chart="NULL") #only statistical test
+div.contrast(otu.table,1,hierarchy.table,chart="boxplot") #default option
+div.contrast(otu.table,2,hierarchy.table,chart="jitter") #plot jitter plot instead of boxplot
+````
 
 ### alpha.div() / alpha.phylodiv()
 Alpha (phylo)diversity of a dataset (OTU table) with multiple samples.

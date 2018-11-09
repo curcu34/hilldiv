@@ -1,4 +1,4 @@
-pair.dis <- function(otutable,qvalue,hierarchy){
+pair.dis <- function(otutable,qvalue,hierarchy,measure){
 
 #Quality-check and warnings
 if(missing(otutable)) stop("OTU table is missing")
@@ -9,6 +9,7 @@ if(missing(qvalue)) stop("q value is missing")
 if(qvalue < 0) stop("q value needs to be possitive (equal or higher than zero)")
 if (qvalue==1) {qvalue=0.99999}
 if(missing(hierarchy)) warning("Assuming no hierarchy")
+if(missing(measure)) { measure= c("homogeneity","overlap","turnover")}
 
 ##Function for no hierarchy
 if(missing(hierarchy)){

@@ -13,6 +13,9 @@ Gamma (phylo)diversity of a dataset (OTU table) with multiple samples.
 #### div.part() / phylodiv.part()
 (Phylo)Diversity partitioning of a dataset (OTU table) with multiple samples and hierarchical levels (2, 3 or 4 levels; e.g. sample > population > species > overall).
 
+#### pair.dis()
+Pairwise dissimilarity measurement yielding true beta diversity, homogeneity, overlap and turnover values.
+
 #### div.profile() / phylodiv.profile() - chart
 (Phylo)Diversity profiles of individual samples or groups of samples.
 

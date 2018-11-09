@@ -46,6 +46,7 @@ div.profile(otu.table[,c(1:5)])
 
 <img align=left src="https://github.com/anttonalberdi/DiverHill/blob/master/figures/div.profile.one.png" width="350" title="One sample">
 <img src="https://github.com/anttonalberdi/DiverHill/blob/master/figures/div.profile.multiple.png" width="350" title="Multiple samples">
+
 ## Input data formats
 
 ### OTU table

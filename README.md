@@ -10,6 +10,11 @@ true.div(otu.table,1)
 true.div(otu.table,qvalue=1)
 true.phylodiv(otu.table,1,tree)
 true.phylodiv(otu.table,qvalue=1,tree=tree)
+true.div(otu.table[,1],qvalue=1)
+9.145646
+true.div(otu.table[,c(1:3)],qvalue=1)
+    TUL1     TUL2     TUL3 
+9.145646 8.686439 7.884177 
 ````
 
 #### alpha.div() / alpha.phylodiv()

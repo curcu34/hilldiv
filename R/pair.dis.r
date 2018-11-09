@@ -117,7 +117,7 @@ alpha <- alpha.div(combination,qvalue)
 gamma <- gamma.div(combination,qvalue)
 beta <- gamma/alpha
 L2_beta[x,y] <- beta
-results[["Beta_L2"]] <- L2_beta}
+results[["Beta_L2"]] <- L2_beta
 
 if('homogeneity' %in% measure){
 homogeneity <- ((1/beta) - 1/N)/(1-1/N)
@@ -136,7 +136,6 @@ results[["Turnover_L2"]] <- L2_turnover}
 }
 }
 }
-  
   
 }
   

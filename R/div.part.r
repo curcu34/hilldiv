@@ -1,4 +1,4 @@
-div.part <- function(otutable,qvalue,hierarchy) {
+div.part <- function(otutable,qvalue,hierarchy,measure) {
   
 #Quality-check and warnings
 if(missing(otutable)) stop("OTU table is missing")

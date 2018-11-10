@@ -8,7 +8,7 @@ To install **hilldiv** in your R environment, you need to 1) install devtools, 2
 4) library(hilldiv)
 
 # Functions
-### true.div()
+### hill.div()
 True (phylo)diversity computation of individual samples from vectors (one sample) or OTU tables (multiple samples). Using the tree argument yields phylodiversity values. Note that if using a tree the tip labels and the 'names' (vectors) or 'rownames' (matrices) need to be identical. Note that if the number of OTUs and samples is high, computing phylodiversities might require considerable time. 
 
 |Argument|Feature|Type|Notes|

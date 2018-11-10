@@ -30,6 +30,17 @@ hill.div(otu.table[,c(1:3)],qvalue=1)
     TUL1     TUL2     TUL3 
 9.145646 8.686439 7.884177 
 ````
+### div.profile() - chart
+(Phylo)Diversity profiles of individual samples or groups of samples.
+````R
+#EXAMPLES#
+div.profile(otu.table[,1])
+div.profile(otu.table[,c(1:5)])
+````
+
+<img align=left src="https://github.com/anttonalberdi/DiverHill/blob/master/figures/div.profile.one.png" width="350" title="One sample">
+<img src="https://github.com/anttonalberdi/DiverHill/blob/master/figures/div.profile.multiple.png" width="350" title="Multiple samples">
+
 ### div.comp.test()
 Diversity comparison between two or multiple groups of samples. If the tree argument is used the test compares phylodiversity values. Note that if the number of OTUs and samples is high, computing phylodiversities might require considerable time. 
 
@@ -87,17 +98,6 @@ pair.dis(otu.table,1,measure="overlap")
 pair.dis(otu.table,1,measure=c("homogeneity","overlap"))
 pair.dis(otu.table,1,measure=c("homogeneity","overlap"),hierarchy.table[,c(1:2)])
 ````
-
-### div.profile() - chart
-(Phylo)Diversity profiles of individual samples or groups of samples.
-````R
-#EXAMPLES#
-div.profile(otu.table[,1])
-div.profile(otu.table[,c(1:5)])
-````
-
-<img align=left src="https://github.com/anttonalberdi/DiverHill/blob/master/figures/div.profile.one.png" width="350" title="One sample">
-<img src="https://github.com/anttonalberdi/DiverHill/blob/master/figures/div.profile.multiple.png" width="350" title="Multiple samples">
 
 # Input data formats
 

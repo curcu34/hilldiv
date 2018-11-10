@@ -1,4 +1,4 @@
-div.part <- function(otutable,qvalue,hierarchy) {
+div.part <- function(otutable,qvalue,hierarchy,tree) {
   
 #Quality-check and warnings
 if(missing(otutable)) stop("OTU table is missing")
@@ -12,8 +12,13 @@ if(missing(hierarchy)) warning("Assuming a two-level hierarchy: 1) sample, 2) to
 
 #Function for 2-level hierarchy
 if(missing(hierarchy)){
-alpha <- DiverHill::alpha.div(otutable,qvalue)
-gamma <- DiverHill::gamma.div(otutable,qvalue)
+if(missing(tree)){
+  alpha <- DiverHill::alpha.div(otutable,qvalue)
+  gamma <- DiverHill::gamma.div(otutable,qvalue)
+  }else{
+  alpha <- DiverHill::alpha.div(otutable,qvalue,tree)
+  gamma <- DiverHill::gamma.div(otutable,qvalue,tree)
+}
 beta <- gamma/alpha
 N <- ncol(otutable)
 homogeneity <- ((1/beta) - 1/N)/(1-1/N)
@@ -29,10 +34,13 @@ hierarchy[,1] <- as.character(hierarchy[,1])
 hierarchy[,2] <- as.character(hierarchy[,2])
 if(identical(sort(colnames(otutable)),sort(hierarchy[,1])) == FALSE) stop("OTU names in the OTU table and the hierarchy table do not match")
 colnames(hierarchy) <- c("L1","L2")
-  
-L1_div <- DiverHill::alpha.div(otutable,qvalue)
-L3_div <- DiverHill::gamma.div(otutable,qvalue)
-
+if(missing(tree)){  
+  L1_div <- DiverHill::alpha.div(otutable,qvalue)
+  L3_div <- DiverHill::gamma.div(otutable,qvalue)
+  }else{
+  L1_div <- DiverHill::alpha.div(otutable,qvalue,tree)
+  L3_div <- DiverHill::gamma.div(otutable,qvalue,tree)
+}
 otutable.L2 <- merge(t(otutable),hierarchy, by.x="row.names",by.y="L1")
 rownames(otutable.L2) <- otutable.L2[,1]
 otutable.L2 <- otutable.L2[,-1]

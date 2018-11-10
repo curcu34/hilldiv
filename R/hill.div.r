@@ -40,7 +40,7 @@ if(missing(tree)){
     if(sum(abund) != "1") stop("The abundance data does not sum up to 1")
     Li <- tree$edge.length #Get branch lengths
     ltips <- sapply(tree$edge[, 2], function(node) geiger::tips(tree, node)) #Sum relative abundances per lineage
-    ai <- unlist(lapply(ltips, function(TipVector) sum(vector[TipVector]))) #Sum relative abundances per lineage
+    ai <- unlist(lapply(ltips, function(TipVector) sum(abund[TipVector]))) #Sum relative abundances per lineage
     T <- sum(Li * ai) #Get total tree depth
     Li <- Li[ai != 0] #Remove zeros
     ai <- ai[ai != 0] #Remove zeros

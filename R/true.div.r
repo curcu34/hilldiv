@@ -10,7 +10,7 @@ if(qvalue < 0) stop("q value needs to be possitive (equal or higher than zero)")
 if(missing(tree)){
     #If input data is a vector
     if(is.null(dim(abund)) == TRUE){
-    if(sum(abund) != 1) stop("The abundance data does not sum up to 1")
+    if(sum(abund) != "1") stop("The abundance data does not sum up to 1")
     pi <- abund[abund!=0] 
     div <- sum(pi^qvalue)^(1/(1-qvalue))
     return(div) 
@@ -32,12 +32,12 @@ if(missing(tree)){
     }
 #Phylodiversity
 }else{
-    if(class(tree) != "Phylo") stop("Tree needs to be an object of class Phylo")  
+    if(class(tree) != "phylo") stop("Tree needs to be an object of class Phylo")  
       
     #If input data is a vector
     if(is.null(dim(abund)) == TRUE){
     if(identical(sort(names(abund)),sort(tree$tip.label)) == FALSE) stop("OTU names in the OTU table and tree do not match")  
-    if(sum(abund) != 1) stop("The abundance data does not sum up to 1")
+    if(sum(abund) != "1") stop("The abundance data does not sum up to 1")
     Li <- tree$edge.length #Get branch lengths
     ltips <- sapply(tree$edge[, 2], function(node) geiger::tips(tree, node)) #Sum relative abundances per lineage
     ai <- unlist(lapply(ltips, function(TipVector) sum(vector[TipVector]))) #Sum relative abundances per lineage

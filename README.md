@@ -19,14 +19,14 @@ True (phylo)diversity computation of individual samples from vectors (one sample
     
 ````R
 #EXAMPLES#
-true.div(vector,0)
-true.div(otu.table,1)
-true.div(otu.table,qvalue=1)
-true.div(otu.table,1,tree)
-true.div(otu.table,qvalue=1,tree=tree)
-true.div(otu.table[,1],qvalue=1)
+hill.div(vector,0)
+hill.div(otu.table,1)
+hill.div(otu.table,qvalue=1)
+hill.div(otu.table,1,tree)
+hill.div(otu.table,qvalue=1,tree=tree)
+hill.div(otu.table[,1],qvalue=1)
 9.145646
-true.div(otu.table[,c(1:3)],qvalue=1)
+hill.div(otu.table[,c(1:3)],qvalue=1)
     TUL1     TUL2     TUL3 
 9.145646 8.686439 7.884177 
 ````

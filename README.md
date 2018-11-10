@@ -6,7 +6,7 @@ True (phylo)diversity computation of individual samples from vectors (one sample
 
 |Argument|Feature|Type|Notes|
 | ------------- | ------------- | ------------- |------------- |
-| **abund**  | Mandatory  |vector,matrix,data.frame| A vector or a matrix |
+| **abund**  | Mandatory  |vector,matrix,data.frame| A vector or a matrix (rows as OTUs)|
 | **q.value**  | Mandatory |>0 |Possitive number, can contain decimals   |
 | **tree**   | Optional  |phylo   |Phylogenetic tree of class phylo   |
     
@@ -25,6 +25,13 @@ true.div(otu.table[,c(1:3)],qvalue=1)
 ````
 ### div.comp.test()
 Diversity comparison between two or multiple groups of samples. If the tree argument is used the test compares phylodiversity values. 
+
+|Argument|Feature|Type|Notes|
+| ------------- | ------------- | ------------- |------------- |
+| **abund**  | Mandatory  |vector,matrix,data.frame| A vector or a matrix (rows as OTUs) |
+| **q.value**  | Mandatory |>0 |Possitive number, can contain decimals   |
+| **hierarchy.table**  | Mandatory |matrix,data.frame |First column containing sample names, second group names  |
+| **tree**   | Optional  |phylo   |Phylogenetic tree of class phylo   |
 ````R
 #EXAMPLES#
 div.contrast(otu.table,1,hierarchy.table)

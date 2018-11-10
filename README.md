@@ -1,29 +1,35 @@
 DiverHill is a R package for the analysis of diversity based on Hill numbers
 
 # Functions
-### true.div() / true.phylodiv()
-True (phylo)diversity computation of individual samples from vectors (one sample) or OTU tables (multiple samples).
+### true.div()
+True (phylo)diversity computation of individual samples from vectors (one sample) or OTU tables (multiple samples). Using the tree argument yields phylodiversity values. 
 ````R
 #EXAMPLES#
 true.div(vector,0)
 true.div(otu.table,1)
 true.div(otu.table,qvalue=1)
-true.phylodiv(otu.table,1,tree)
-true.phylodiv(otu.table,qvalue=1,tree=tree)
+true.div(otu.table,1,tree)
+true.div(otu.table,qvalue=1,tree=tree)
 true.div(otu.table[,1],qvalue=1)
 9.145646
 true.div(otu.table[,c(1:3)],qvalue=1)
     TUL1     TUL2     TUL3 
 9.145646 8.686439 7.884177 
 ````
-### div.contrast()
-Diversity comparison between two or multiple groups of samples. The function outputs both a statistical test and a chart.
+### div.comp.test()
+Diversity comparison between two or multiple groups of samples. If the tree argument is used the test compares phylodiversity values. 
 ````R
 #EXAMPLES#
 div.contrast(otu.table,1,hierarchy.table)
-div.contrast(otu.table,0,hierarchy.table,chart="NULL") #only statistical test
-div.contrast(otu.table,1,hierarchy.table,chart="boxplot") #default option
-div.contrast(otu.table,2,hierarchy.table,chart="jitter") #plot jitter plot instead of boxplot
+div.contrast(otu.table,1,hierarchy.table,tree)
+````
+### div.comp.plot()
+Visual comparison between the diversity levels of two or multiple groups of samples. The chart argument enables selecting between boxplot and jitter plot.
+````R
+#EXAMPLES#
+div.comp.plot(otu.table,1,hierarchy.table)
+div.comp.plot(otu.table,1,hierarchy.table,chart="boxplot") #default option
+div.comp.plot(otu.table,2,hierarchy.table,chart="jitter") #plot jitter plot instead of boxplot
 ````
 
 ### alpha.div() / alpha.phylodiv()

@@ -1,4 +1,4 @@
-DiverHill is a R package for the analysis of diversity based on Hill numbers
+**diverhill** is a R package for the analysis of diversity based on Hill numbers.
 
 # Functions
 ### true.div()

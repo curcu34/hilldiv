@@ -2,7 +2,7 @@ DiverHill is a R package for the analysis of diversity based on Hill numbers
 
 # Functions
 ### true.div()
-True (phylo)diversity computation of individual samples from vectors (one sample) or OTU tables (multiple samples). Using the tree argument yields phylodiversity values. Note that if using a tree the tip labels and the 'names' (vectors) or 'rownames' (matrices) need to be identical.
+True (phylo)diversity computation of individual samples from vectors (one sample) or OTU tables (multiple samples). Using the tree argument yields phylodiversity values. Note that if using a tree the tip labels and the 'names' (vectors) or 'rownames' (matrices) need to be identical. Note that if the number of OTUs and samples is high, computing phylodiversities might require considerable time. 
 
 |Argument|Feature|Type|Notes|
 | ------------- | ------------- | ------------- |------------- |
@@ -24,7 +24,7 @@ true.div(otu.table[,c(1:3)],qvalue=1)
 9.145646 8.686439 7.884177 
 ````
 ### div.comp.test()
-Diversity comparison between two or multiple groups of samples. If the tree argument is used the test compares phylodiversity values. 
+Diversity comparison between two or multiple groups of samples. If the tree argument is used the test compares phylodiversity values. Note that if the number of OTUs and samples is high, computing phylodiversities might require considerable time. 
 
 |Argument|Feature|Type|Notes|
 | ------------- | ------------- | ------------- |------------- |

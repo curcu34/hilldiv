@@ -1,4 +1,4 @@
-alpha.div <- function(otutable,qvalue,weight){
+alpha.div <- function(otutable,qvalue,weight,tree){
     
 #Quality-check and warnings
 if(missing(otutable)) stop("OTU table is missing")

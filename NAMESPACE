@@ -1,6 +1,7 @@
 
 export(alpha.div)
 export(alpha.phylodiv)
+export(div.contrast)
 export(div.part)
 export(div.profile)
 export(gamma.div)

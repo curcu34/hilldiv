@@ -28,6 +28,7 @@ if(missing(tree)){
     div <- sum(pi^qvalue)^(1/(1-qvalue))
     names(div) <- s
     sample.vector <- c(sample.vector,div)
+    return(sample.vector) 
     }
       
 #Phylodiversity
@@ -63,11 +64,12 @@ if(missing(tree)){
     phylodiv <- sum(Li/T * ai^qvalue)^(1/(1-qvalue)) #Compute phylodiversity
     names(phylodiv) <- s
     sample.vector <- c(sample.vector,phylodiv)
+    return(sample.vector) 
     }      
          
 }
-       
-return(sample.vector) 
+}
+                        
 }
   
 }

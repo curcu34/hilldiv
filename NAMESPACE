@@ -1,6 +1,5 @@
-
+export(hill.div)
 export(alpha.div)
-export(alpha.phylodiv)
 export(div.comp.plot)
 export(div.comp.test)
 export(div.part)
@@ -8,4 +7,3 @@ export(div.profile)
 export(gamma.div)
 export(gamma.phylodiv)
 export(pair.dis)
-export(true.div)

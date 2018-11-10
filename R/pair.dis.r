@@ -1,4 +1,4 @@
-pair.dis <- function(otutable,qvalue,measure,hierarchy){
+pair.dis <- function(otutable,qvalue,hierarchy,measure){
 
 #Quality-check and warnings
 if(missing(otutable)) stop("OTU table is missing")

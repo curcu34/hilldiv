@@ -10,7 +10,7 @@
 }
 \details{Alpha diversity of a system from a matrix (OTU table) containing multiple samples.}
 \examples{
-alpha.div(otutable=otu.table,qvalue=1)
+alpha.div(otutable=otu.table,qvalue=1,weight=weight.vector)
 alpha.div(otutable=otu.table,qvalue=1,tree=tree)
-alpha.div(otu.table,1,tree)
+alpha.div(otu.table,1,eight.vector,tree)
 }

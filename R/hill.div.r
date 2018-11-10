@@ -1,4 +1,4 @@
-true.div <- function(abund,qvalue,tree){ 
+hill.div <- function(abund,qvalue,tree){ 
   
 #Quality-check and warnings
 if(missing(abund)) stop("Abundance data is missing")

@@ -1,17 +1,18 @@
-div.profile <- function(abund,order,tree){
+div.profile <- function(abund,tree,order,values){
     
 #Quality-check and warnings
 if(missing(abund)) stop("The abundance data is missing")
 if(missing(order)) { order= seq(from = 0, to = 5, by = (0.1))}
+if(missing(values)) { values= "FALSE"}
 
 #If input data is a vector
 if(is.null(dim(abund)) == TRUE){
     profile <- c()
     for (o in order){
     if(missing(tree)){ 
-        div.value <- hill.div(abund,o)
+        div.value <- hilldiv::hill.div(abund,o)
         }else{
-        div.value <- hill.div(abund,o,tree)
+        div.value <- hilldiv::hill.div(abund,o,tree)
     }
     profile <- c(profile,div.value)
     }
@@ -21,6 +22,9 @@ if(is.null(dim(abund)) == TRUE){
            xlab("Order of diversity") + ylab("Effective number of OTUs") +
            theme_minimal()
     print(plot)
+    if(values == "TRUE"){
+    return(profile)
+    }
 }
   
 #If input data is an OTU table
@@ -32,9 +36,9 @@ if(is.null(dim(abund)) == FALSE){
     profile <- c()
     for (o in order){
         if(missing(tree)){ 
-        div.values <- hill.div(abund,o)
+        div.values <- hilldiv::hill.div(abund,o)
         }else{
-        div.values <- hill.div(abund,o,tree)
+        div.values <- hilldiv::hill.div(abund,o,tree)
     }
     profile <- rbind(profile,div.values)
     }    
@@ -49,6 +53,9 @@ if(is.null(dim(abund)) == FALSE){
         scale_colour_manual(values = getPalette(ncol(abund))) + 
         theme_minimal()
     print(plot)
+    if(values == "TRUE"){
+    return(profile)
+    }
 }
 
 }

@@ -32,12 +32,4 @@ plot <- ggplot(div.values.groups, aes(x=Group, y=Value, colour=Group)) +
 print(plot)
 }  
   
-
-#Statistical test
-if(length(unique(div.values.groups$Group)) == 2){
-test <- wilcox.test(Value ~ Group, data = div.values.groups)
-}else{
-test <- kruskal.test(Value ~ Group, data = div.values.groups)
-}
-return(test)
 }

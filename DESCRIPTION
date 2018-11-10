@@ -1,5 +1,5 @@
-Package: DiverHill
-Title: DiverHill
+Package: hilldiv
+Title: hilldiv
 Version: 1.0.1
 Authors@R: 
     c(person(given = "Antton",
@@ -11,7 +11,7 @@ Maintainer: Antton Alberdi <antton.alberdi@snm.ku.dk>
 Description: Tools for diversity analyses based on Hill numbers.
 License: CC-by-sa
 LazyData: true
-URL: https://github.com/anttonalberdi/DiverHill
+URL: https://github.com/anttonalberdi/hilldiv
 Depends:
     R (>= 3.1.0),
     ggplot2,

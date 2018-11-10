@@ -37,7 +37,7 @@ Diversity comparison between two or multiple groups of samples. If the tree argu
 div.contrast(otu.table,1,hierarchy.table)
 div.contrast(otu.table,1,hierarchy.table,tree)
 ````
-### div.comp.plot()
+### div.comp.plot() - chart
 Visual comparison between the diversity levels of two or multiple groups of samples. The chart argument enables selecting between boxplot and jitter plot.
 
 |Argument|Feature|Type|Notes|
@@ -51,17 +51,17 @@ Visual comparison between the diversity levels of two or multiple groups of samp
 ````R
 #EXAMPLES#
 div.comp.plot(otu.table,1,hierarchy.table)
-div.comp.plot(otu.table,1,hierarchy.table,chart="boxplot") #default option
-div.comp.plot(otu.table,2,hierarchy.table,chart="jitter") #plot jitter plot instead of boxplot
+div.comp.plot(otu.table,1,hierarchy.table,chart="boxplot")
+div.comp.plot(otu.table,2,hierarchy.table,tree,chart="jitter") 
 ````
 
-### alpha.div() / alpha.phylodiv()
+### alpha.div()
 Alpha (phylo)diversity of a dataset (OTU table) with multiple samples.
 
-### gamma.div() / gamma.phylodiv()
+### gamma.div()
 Gamma (phylo)diversity of a dataset (OTU table) with multiple samples.
 
-### div.part() / phylodiv.part()
+### div.part()
 (Phylo)Diversity partitioning of a dataset (OTU table) with multiple samples and hierarchical levels (2, 3 or 4 levels; e.g. sample > population > species > overall).
 ````R
 #EXAMPLES#
@@ -81,7 +81,7 @@ pair.dis(otu.table,1,measure=c("homogeneity","overlap"))
 pair.dis(otu.table,1,measure=c("homogeneity","overlap"),hierarchy.table[,c(1:2)])
 ````
 
-### div.profile() / phylodiv.profile() - chart
+### div.profile() - chart
 (Phylo)Diversity profiles of individual samples or groups of samples.
 ````R
 #EXAMPLES#

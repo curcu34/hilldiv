@@ -39,6 +39,15 @@ div.contrast(otu.table,1,hierarchy.table,tree)
 ````
 ### div.comp.plot()
 Visual comparison between the diversity levels of two or multiple groups of samples. The chart argument enables selecting between boxplot and jitter plot.
+
+|Argument|Feature|Type|Notes|
+| ------------- | ------------- | ------------- |------------- |
+| **abund**  | Mandatory  |vector,matrix,data.frame| A vector or a matrix (rows as OTUs) |
+| **q.value**  | Mandatory |>0 |Possitive number, can contain decimals   |
+| **hierarchy.table**  | Mandatory |matrix,data.frame |First column containing sample names, second group names  |
+| **tree**   | Optional  |phylo   |Phylogenetic tree of class phylo   |
+| **chart**   | Optional  |character   |Either "boxplot" or "jitter"   |
+
 ````R
 #EXAMPLES#
 div.comp.plot(otu.table,1,hierarchy.table)

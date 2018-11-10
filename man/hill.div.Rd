@@ -1,6 +1,6 @@
 
-\name{true.div}
-\alias{true.div}
+\name{hill.div}
+\alias{hill.div}
 \title{True diversity}
 \description{Compute true diversities of individual samples from a vector of relative abundances or a matrix (OTU table) containing multiple samples. If a tree is provided, the computed true diversities consider the phylogenetic relations between OTUs.}
 \usage{true.div(abund,qvalue,tree)}

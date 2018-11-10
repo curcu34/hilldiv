@@ -9,9 +9,9 @@ if(is.null(dim(abund)) == TRUE){
     profile <- c()
     for (o in order){
     if(missing(tree)){ 
-        div.value <- true.div(abund,o)
+        div.value <- hill.div(abund,o)
         }else{
-        div.value <- true.div(abund,o,tree)
+        div.value <- hill.div(abund,o,tree)
     }
     profile <- c(profile,div.value)
     }
@@ -32,9 +32,9 @@ if(is.null(dim(abund)) == FALSE){
     profile <- c()
     for (o in order){
         if(missing(tree)){ 
-        div.values <- true.div(abund,o)
+        div.values <- hill.div(abund,o)
         }else{
-        div.values <- true.div(abund,o,tree)
+        div.values <- hill.div(abund,o,tree)
     }
     profile <- rbind(profile,div.values)
     }    

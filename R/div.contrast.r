@@ -8,7 +8,7 @@ if(qvalue < 0) stop("q value needs to be possitive (equal or higher than zero)")
 if(missing(hierarchy)) stop("Hierarchy table is necessary to contrast groups of samples")
 if(missing(chart)) {chart="boxplot"}
 
-div.values <- true.div(otu.table.norm,qvalue)
+div.values <- true.div(otu.table,qvalue)
 div.values.groups <- merge(t(t(div.values)),hierarchy,by.x="row.names",by.y="Sample")
 colnames(div.values.groups) <- c("Sample","Value","Group")
 

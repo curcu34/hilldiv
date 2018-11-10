@@ -6,7 +6,9 @@ True (phylo)diversity computation of individual samples from vectors (one sample
 Arguments:
 
 **otu.table**    Compulsory
+
 **q.value**      Compulsory
+
 **tree**         Optional
 
 ````R

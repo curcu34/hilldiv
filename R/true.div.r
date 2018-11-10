@@ -55,6 +55,7 @@ if(missing(tree)){
     sample.vector <- c()
     for (s in samples){
         vector <- abund[,s]
+        names(vector) <- rownames(abund)
         Li <- tree$edge.length #Get branch lengths
         ltips <- sapply(tree$edge[, 2], function(node) geiger::tips(tree, node)) #Sum relative abundances per lineage
         ai <- unlist(lapply(ltips, function(TipVector) sum(vector[TipVector]))) #Sum relative abundances per lineage

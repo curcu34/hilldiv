@@ -36,7 +36,7 @@ if(missing(tree)){
       
     #If input data is a vector
     if(is.null(dim(abund)) == TRUE){
-    if(identical(sort(names(abund)),sort(tree$tip.label)) == FALSE) stop("OTU names in the OTU table and tree do not match")  
+    if(identical(sort(names(abund)),sort(tree$tip.label)) == FALSE) stop("OTU names in the vector and tree do not match")  
     if(sum(abund) != "1") stop("The abundance data does not sum up to 1")
     Li <- tree$edge.length #Get branch lengths
     ltips <- sapply(tree$edge[, 2], function(node) geiger::tips(tree, node)) #Sum relative abundances per lineage

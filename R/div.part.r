@@ -48,8 +48,11 @@ otutable.L2 <- aggregate(otutable.L2[,-ncol(otutable.L2)], by=list(otutable.L2[,
 rownames(otutable.L2) <- otutable.L2[,1]
 otutable.L2 <- otutable.L2[,-1]
 otutable.L2 <- t(sweep(otutable.L2, 1, rowSums(otutable.L2), FUN="/"))
-L2_div <- DiverHill::alpha.div(otutable.L2,qvalue)
-
+if(missing(tree)){ 
+  L2_div <- hilldiv::alpha.div(otutable.L2,qvalue)
+  }else{
+  L2_div <- hilldiv::alpha.div(otutable.L2,qvalue,tree)
+}
 beta_1 <- L2_div/L1_div
 N1 <- ncol(otutable)
 homogeneity_1 <- ((1/beta_1) - 1/N1)/(1-1/N1)

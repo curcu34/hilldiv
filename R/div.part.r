@@ -13,11 +13,11 @@ if(missing(hierarchy)) warning("Assuming a two-level hierarchy: 1) sample, 2) to
 #Function for 2-level hierarchy
 if(missing(hierarchy)){
 if(missing(tree)){
-  alpha <- DiverHill::alpha.div(otutable,qvalue)
-  gamma <- DiverHill::gamma.div(otutable,qvalue)
+  alpha <- hilldiv::alpha.div(otutable,qvalue)
+  gamma <- hilldiv::gamma.div(otutable,qvalue)
   }else{
-  alpha <- DiverHill::alpha.div(otutable,qvalue,tree)
-  gamma <- DiverHill::gamma.div(otutable,qvalue,tree)
+  alpha <- hilldiv::alpha.div(otutable,qvalue,tree)
+  gamma <- hilldiv::gamma.div(otutable,qvalue,tree)
 }
 beta <- gamma/alpha
 N <- ncol(otutable)
@@ -35,11 +35,11 @@ hierarchy[,2] <- as.character(hierarchy[,2])
 if(identical(sort(colnames(otutable)),sort(hierarchy[,1])) == FALSE) stop("OTU names in the OTU table and the hierarchy table do not match")
 colnames(hierarchy) <- c("L1","L2")
 if(missing(tree)){  
-  L1_div <- DiverHill::alpha.div(otutable,qvalue)
-  L3_div <- DiverHill::gamma.div(otutable,qvalue)
+  L1_div <- hilldiv::alpha.div(otutable,qvalue)
+  L3_div <- hilldiv::gamma.div(otutable,qvalue)
   }else{
-  L1_div <- DiverHill::alpha.div(otutable,qvalue,tree)
-  L3_div <- DiverHill::gamma.div(otutable,qvalue,tree)
+  L1_div <- hilldiv::alpha.div(otutable,qvalue,tree)
+  L3_div <- hilldiv::gamma.div(otutable,qvalue,tree)
 }
 otutable.L2 <- merge(t(otutable),hierarchy, by.x="row.names",by.y="L1")
 rownames(otutable.L2) <- otutable.L2[,1]

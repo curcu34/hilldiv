@@ -22,14 +22,14 @@ if(missing(tree)){
 
     sample.vector <- c()
     for (s in samples){
-    vector <- abund[,s]
-    pi <- vector[vector!=0] 
-    div <- sum(pi^qvalue)^(1/(1-qvalue))
-    names(div) <- s
-    sample.vector <- c(sample.vector,div)
+      vector <- abund[,s]
+      pi <- vector[vector!=0] 
+      div <- sum(pi^qvalue)^(1/(1-qvalue))
+      names(div) <- s
+      sample.vector <- c(sample.vector,div)
+    }
     return(sample.vector) 
     }
-      
 #Phylodiversity
 }else{
     if(class(tree) != "Phylo") stop("Tree needs to be an object of class Phylo")  
@@ -49,29 +49,25 @@ if(missing(tree)){
     }
 
     #If input data is an OTU table
-    if(is.null(dim(abund)) == FALSE){
-          
+    if(is.null(dim(abund)) == FALSE){    
     if(identical(sort(rownames(abund)),sort(tree$tip.label)) == FALSE) stop("OTU names in the OTU table and tree do not match")  
     samples <- colnames(abund)
-
     sample.vector <- c()
     for (s in samples){
-    vector <- abund[,s]
-    Li <- tree$edge.length #Get branch lengths
-    ltips <- sapply(tree$edge[, 2], function(node) geiger::tips(tree, node)) #Sum relative abundances per lineage
-    ai <- unlist(lapply(ltips, function(TipVector) sum(vector[TipVector]))) #Sum relative abundances per lineage
-    T <- sum(Li * ai) #Get total tree depth
-    Li <- Li[ai != 0] #Remove zeros
-    ai <- ai[ai != 0] #Remove zeros
-    phylodiv <- sum(Li/T * ai^qvalue)^(1/(1-qvalue)) #Compute phylodiversity
-    names(phylodiv) <- s
-    sample.vector <- c(sample.vector,phylodiv)
+        vector <- abund[,s]
+        Li <- tree$edge.length #Get branch lengths
+        ltips <- sapply(tree$edge[, 2], function(node) geiger::tips(tree, node)) #Sum relative abundances per lineage
+        ai <- unlist(lapply(ltips, function(TipVector) sum(vector[TipVector]))) #Sum relative abundances per lineage
+        T <- sum(Li * ai) #Get total tree depth
+        Li <- Li[ai != 0] #Remove zeros
+        ai <- ai[ai != 0] #Remove zeros
+        phylodiv <- sum(Li/T * ai^qvalue)^(1/(1-qvalue)) #Compute phylodiversity
+        names(phylodiv) <- s
+        sample.vector <- c(sample.vector,phylodiv)
+        }      
     return(sample.vector) 
-    }      
-         
-}
-}
-                        
+    }
+                       
 }
   
 }

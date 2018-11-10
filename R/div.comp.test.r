@@ -11,7 +11,7 @@ if(missing(tree)){
 div.values <- true.div(otutable,qvalue)
 }else{
 div.values <- true.div(otutable,qvalue,tree)
-if(class(tree) != "Phylo") stop("Tree needs to be an object of class Phylo")  
+if(class(tree) != "phylo") stop("Tree needs to be an object of class Phylo")  
 if(identical(sort(rownames(otutable)),sort(tree$tip.label)) == FALSE) stop("OTU names in the OTU table and tree do not match")
 }
 div.values.groups <- merge(t(t(div.values)),hierarchy,by.x="row.names",by.y="Sample")

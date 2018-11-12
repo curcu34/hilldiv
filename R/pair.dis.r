@@ -85,7 +85,7 @@ otutable.L2 <- t(sweep(otutable.L2, 1, rowSums(otutable.L2), FUN="/"))
 
 #Create L2 matrices
 L2 <- sort(colnames(otutable.L2))
-N <- length(L2)
+N <- 2
 
 L2_beta <- matrix(rep(NA,length(L2)^2), nrow = length(L2), ncol = length(L2))
 colnames(L2_beta) <- L2

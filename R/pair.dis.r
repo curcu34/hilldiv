@@ -13,7 +13,7 @@ if(missing(hierarchy)) warning("Assuming no hierarchy")
 
 #Create matrices
 L1 <- sort(colnames(otutable))
-N <- length(L1)
+N <- 2
 
 L1_beta <- matrix(rep(NA,length(L1)^2), nrow = length(L1), ncol = length(L1))
 colnames(L1_beta) <- L1

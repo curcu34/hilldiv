@@ -13,19 +13,16 @@ if(missing(hierarchy)) warning("Assuming a two-level hierarchy: 1) sample, 2) to
 #Function for 2-level hierarchy
 if(missing(hierarchy)){
 if(missing(tree)){
-  alpha <- hilldiv::alpha.div(otutable,qvalue)
-  gamma <- hilldiv::gamma.div(otutable,qvalue)
+  L1_div <- hilldiv::alpha.div(otutable,qvalue)
+  L2_div <- hilldiv::gamma.div(otutable,qvalue)
   }else{
-  alpha <- hilldiv::alpha.div(otutable,qvalue,tree)
-  gamma <- hilldiv::gamma.div(otutable,qvalue,tree)
+  L1_div <- hilldiv::alpha.div(otutable,qvalue,tree)
+  L2_div <- hilldiv::gamma.div(otutable,qvalue,tree)
 }
-beta <- gamma/alpha
-N <- ncol(otutable)
-homogeneity <- ((1/beta) - 1/N)/(1-1/N)
-overlap <-((1/beta)^(1-qvalue) - (1/N)^(1-qvalue)) / (1 - (1/N)^(1-qvalue))
-turnover <- (beta - 1)/(N-1)
-results <- list("Sample_size" = N, "Alpha_diversity" = alpha, "Gamma_diversity" = gamma, "Beta_diversity" = beta, "Homogeneity" = homogeneity, "Overlap" = overlap, "Turnover" = turnover)
-return(results)
+beta <- L2_div/L1_div
+part.table <- as.data.frame(rbind(cbind("Sample",L1_div),cbind("Overall",L2_div)))
+part.table[,1] <- factor(part.table[,1], levels=c("Overall","Sample"))
+hier.n <- 2
 }
   
 #Function for 3-level hierarchy
@@ -33,6 +30,7 @@ if(ncol(hierarchy) == 2){
 hierarchy[,1] <- as.character(hierarchy[,1])
 hierarchy[,2] <- as.character(hierarchy[,2])
 if(identical(sort(colnames(otutable)),sort(hierarchy[,1])) == FALSE) stop("OTU names in the OTU table and the hierarchy table do not match")
+hierarchy.names <- colnames(hierarchy)
 colnames(hierarchy) <- c("L1","L2")
 if(missing(tree)){  
   L1_div <- hilldiv::alpha.div(otutable,qvalue)
@@ -54,26 +52,16 @@ if(missing(tree)){
   L2_div <- hilldiv::alpha.div(otutable.L2,qvalue,tree)
 }
 beta_1 <- L2_div/L1_div
-N1 <- ncol(otutable)
-homogeneity_1 <- ((1/beta_1) - 1/N1)/(1-1/N1)
-overlap_1 <-((1/beta_1)^(1-qvalue) - (1/N1)^(1-qvalue)) / (1 - (1/N1)^(1-qvalue))
-turnover_1 <- (beta_1 - 1)/(N1-1)
-  
 beta_2 <- L3_div/L2_div
-N2 <- ncol(otutable.L2)
-homogeneity_2 <- ((1/beta_2) - 1/N2)/(1-1/N2)
-overlap_2 <-((1/beta_2)^(1-qvalue) - (1/N2)^(1-qvalue)) / (1 - (1/N2)^(1-qvalue))
-turnover_2 <- (beta_2 - 1)/(N2-1)
-  
-results <- list("L1_size" = N1, "L2_size" = N2, "L1_diversity" = L1_div, "L2_diversity" = L2_div, "L3_diversity" = L3_div, "Beta_diversity_L1_2" = beta_1, "Beta_diversity_L2_3" = beta_2,  "Homogeneity_L1_2" = homogeneity_1, "Homogeneity_L2_3" = homogeneity_2,"Overlap_L1_2" = overlap_1, "Overlap_L2_3" = overlap_2,"Turnover_L1_2" = turnover_1, "Turnover_L2_3" = turnover_2)
-return(results)
+part.table <- as.data.frame(rbind(cbind(hierarchy.names[1],L1_div),cbind(hierarchy.names[2],L2_div),cbind("Overall",L3_div)))
+part.table[,1] <- factor(part.table[,1], levels=c("Overall",hierarchy.names[2],hierarchy.names[1]))
+hier.n <- 3
 }
   
 #Function for 4-level hierarchy
 if(ncol(hierarchy) == 3){
 
-results <- list("L1_size" = N1, "L2_size" = N2, "L1_diversity" = L1_div, "L2_diversity" = L2_div, "L3_diversity" = L3_div, "Beta_diversity_L1-2" = beta_1, "Beta_diversity_L2-3" = beta_2,  "Homogeneity_L1-2" = homogeneity_1, "Homogeneity_L2-3" = homogeneity_2,"Overlap_L1-2" = overlap_1, "Overlap_L2-3" = overlap_2,"Turnover_L1-2" = turnover_1, "Turnover_L2-3" = turnover_2)
-return(results)
+
 } 
   
 #Error if more hierarchical levels
@@ -81,4 +69,20 @@ if(ncol(hierarchy) > 3){
 stop("The maximum number of hierarchical levels allowed is 4")
 } 
 
+#Prepare table and plot
+part.table[,2] <- as.numeric(as.character(part.table[,2]))
+colnames(part.table) <- c("Level","Value")
+getPalette = colorRampPalette(brewer.pal(hier.n, "Paired"))
+if(missing(tree)){  
+  xlabel <- "Effective number of OTUs"
+  }else{
+  xlabel <- "Effective number of lineages"
+}
+plot <- ggplot(part.table, aes(y = Value, x = Level, fill=Level)) + 
+	geom_bar(stat = "identity") +
+	ylab(xlabel) + xlab("Hierarchical levels") +
+	scale_fill_manual( values = getPalette(hier.n) )+
+	theme_minimal() +
+	coord_flip()
+print(plot)
 }

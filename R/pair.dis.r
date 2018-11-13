@@ -39,27 +39,27 @@ rownames(L1_turnover) <- L1
 
 for (x in L1){
 for (y in L1){
-if(is.na(L1_beta[y,x])){ #to avoid repeating mirror operations
-combination <- otutable[,c(x,y)]
+if(is.na(L1_beta[x,y])){ #to avoid repeating mirror operations
+combination <- otutable[,c(y,x)]
 alpha <- alpha.div(combination,qvalue)
 gamma <- gamma.div(combination,qvalue)
 beta <- gamma/alpha
-L1_beta[x,y] <- beta
+L1_beta[y,x] <- beta
 results <- list("Beta" = L1_beta)
 
 if('homogeneity' %in% measure){
 homogeneity <- ((1/beta) - 1/N)/(1-1/N)
-L1_homogeneity[x,y] <- homogeneity
+L1_homogeneity[y,x] <- homogeneity
 results[["Homogeneity"]] <- L1_homogeneity}
 
 if('overlap' %in% measure){
 overlap <-((1/beta)^(1-qvalue) - (1/N)^(1-qvalue)) / (1 - (1/N)^(1-qvalue))
-L1_overlap[x,y] <- overlap
+L1_overlap[y,x] <- overlap
 results[["Overlap"]] <- L1_overlap}
 
 if('turnover' %in% measure){
 turnover <- (beta - 1)/(N-1)
-L1_turnover[x,y] <- turnover
+L1_turnover[y,x] <- turnover
 results[["Turnover"]] <- L1_turnover}
 }
 }
@@ -111,27 +111,27 @@ rownames(L2_turnover) <- L2
 
 for (x in L2){
 for (y in L2){
-if(is.na(L2_beta[y,x])){ #to avoid repeating mirror operations
-combination <- otutable.L2[,c(x,y)]
+if(is.na(L2_beta[x,y])){ #to avoid repeating mirror operations
+combination <- otutable.L2[,c(y,x)]
 alpha <- alpha.div(combination,qvalue)
 gamma <- gamma.div(combination,qvalue)
 beta <- gamma/alpha
-L2_beta[x,y] <- beta
+L2_beta[y,x] <- beta
 results[["Beta_L2"]] <- L2_beta
 
 if('homogeneity' %in% measure){
 homogeneity <- ((1/beta) - 1/N)/(1-1/N)
-L2_homogeneity[x,y] <- homogeneity
+L2_homogeneity[y,x] <- homogeneity
 results[["Homogeneity_L2"]] <- L2_homogeneity}
 
 if('overlap' %in% measure){
 overlap <-((1/beta)^(1-qvalue) - (1/N)^(1-qvalue)) / (1 - (1/N)^(1-qvalue))
-L2_overlap[x,y] <- overlap
+L2_overlap[y,x] <- overlap
 results[["Overlap_L2"]] <- L2_overlap}
 
 if('turnover' %in% measure){
 turnover <- (beta - 1)/(N-1)
-L2_turnover[x,y] <- turnover
+L2_turnover[y,x] <- turnover
 results[["Turnover_L2"]] <- L2_turnover}
 }
 }
@@ -142,6 +142,3 @@ results[["Turnover_L2"]] <- L2_turnover}
 return(results)
 
 }
-
-
-

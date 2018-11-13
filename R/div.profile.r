@@ -1,4 +1,4 @@
-div.profile <- function(abund,tree,order,values){
+div.profile <- function(abund,tree,order,values,hierarchy){
     
 #Quality-check and warnings
 if(missing(abund)) stop("The abundance data is missing")
@@ -32,7 +32,7 @@ if(is.null(dim(abund)) == FALSE){
     
     if(dim(abund)[1] < 2) stop("The OTU table only less than 2 OTUs")
     if(dim(abund)[2] < 2) stop("The OTU table contains less than 2 samples")
-    
+        
     profile <- c()
     for (o in order){
         if(missing(tree)){ 
@@ -45,17 +45,27 @@ if(is.null(dim(abund)) == FALSE){
     rownames(profile) <- order
     profile.melted <- melt(profile)
     colnames(profile.melted) <- c("Order","Sample","Value")
-    
     getPalette = colorRampPalette(brewer.pal(ncol(abund), "Paired"))
+
+    if(hasArg(hierarchy) == TRUE){
+    colnames(hierarchy) <- c("Sample","Group")
+    profile.melted2 <- merge(profile.melted,hierarchy,by="Sample")
+    profile.melted_mean <- aggregate(profile.melted2[,"Value"],by=list(profile.melted2[,"Group"],FUN=mean)
+    profile.melted_sterr <- aggregate(profile.melted2[,"Value"],by=list(profile.melted2[,"Group"],FUN=sd)#change for standard error
+    #add plot info
+    }else    
     plot <- ggplot(profile.melted , aes(x = Order, y = Value, group=Sample, colour=Sample)) +
         geom_line() + 
         xlab("Order of diversity") + ylab("Effective number of OTUs") +
         scale_colour_manual(values = getPalette(ncol(abund))) + 
         theme_minimal()
+    }
     print(plot)
     if(values == "TRUE"){
     return(profile)
     }
+                                     
+    
 }
 
 }

@@ -1,6 +1,7 @@
 export(hill.div)
 export(div.profile)
 export(div.part)
+export(div.part.plot)
 export(alpha.div)
 export(gamma.div)
 export(div.comp.plot)

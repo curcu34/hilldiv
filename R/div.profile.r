@@ -52,8 +52,8 @@ if(is.null(dim(abund)) == FALSE){
     profile.melted2 <- merge(profile.melted,hierarchy,by="Sample")
     profile.melted_mean <- aggregate(profile.melted2[,"Value"],by=list(profile.melted2[,"Group"],FUN=mean)
     profile.melted_sterr <- aggregate(profile.melted2[,"Value"],by=list(profile.melted2[,"Group"],FUN=sd)#change for standard error
-    #add plot info
-    }else    
+    #add plot code with mean+stderr
+    }else{    
     plot <- ggplot(profile.melted , aes(x = Order, y = Value, group=Sample, colour=Sample)) +
         geom_line() + 
         xlab("Order of diversity") + ylab("Effective number of OTUs") +

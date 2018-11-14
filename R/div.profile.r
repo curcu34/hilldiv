@@ -1,10 +1,11 @@
-div.profile <- function(abund,tree,order,values,hierarchy){
+div.profile <- function(abund,tree,order,values,hierarchy,level){
     
 #Quality-check and warnings
 if(missing(abund)) stop("The abundance data is missing")
 if(missing(order)) {order= seq(from = 0, to = 5, by = (0.1))}
 if(missing(values)) {values= "FALSE"}
-    
+if(missing(level)) {level= "gamma"}
+
 #If input data is a vector
 if(is.null(dim(abund)) == TRUE){
     profile <- c()
@@ -34,19 +35,20 @@ if(is.null(dim(abund)) == FALSE){
     if(dim(abund)[2] < 2) stop("The OTU table contains less than 2 samples")
         
     profile <- c()
-    for (o in order){
-        if(missing(tree)){ 
-        div.values <- hilldiv::hill.div(abund,o)
-        }else{
-        div.values <- hilldiv::hill.div(abund,o,tree)
-    }
-    profile <- rbind(profile,div.values)
-    }    
-    rownames(profile) <- order
-    profile.melted <- melt(profile)
-    colnames(profile.melted) <- c("Order","Sample","Value")
-   
     if(missing(hierarchy)){
+        for (o in order){
+            if(missing(tree)){ 
+            div.values <- hilldiv::hill.div(abund,o)
+            }else{
+            div.values <- hilldiv::hill.div(abund,o,tree)
+            }
+        profile <- rbind(profile,div.values)
+        }
+        rownames(profile) <- order
+        profile.melted <- as.data.frame(melt(profile))
+        colnames(profile.melted) <- c("Order","Sample","Value")
+        profile.melted[,1] <- as.numeric(as.character(profile.melted[,1]))
+        profile.melted[,3] <- as.numeric(as.character(profile.melted[,3]))
         getPalette = colorRampPalette(brewer.pal(ncol(abund), "Paired"))
         plot <- ggplot(profile.melted , aes(x = Order, y = Value, group=Sample, colour=Sample)) +
         geom_line() + 
@@ -54,24 +56,46 @@ if(is.null(dim(abund)) == FALSE){
         scale_colour_manual(values = getPalette(ncol(abund))) + 
         theme_minimal()
         print(plot)
-    }else{    
+        
+    }else{
     colnames(hierarchy) <- c("Sample","Group")
-    profile.melted2 <- merge(profile.melted,hierarchy,by="Sample")
-    profile.melted_mean <- aggregate(profile.melted2[,"Value"],by=list(profile.melted2[,c("Group")],profile.melted2[,c("Order")]),FUN=mean)
-    std.err <- function(x) sd(x)/sqrt(length(x))
-    profile.melted_sterr <- aggregate(profile.melted2[,"Value"],by=list(profile.melted2[,c("Group")],profile.melted2[,c("Order")]),FUN=std.err)
-    profile.melted <- cbind(profile.melted_mean,profile.melted_sterr[,3])
-    colnames(profile.melted) <- c("Group","Order","Mean","Stderr")
-      getPalette = colorRampPalette(brewer.pal(length(unique(profile.melted$Group)), "Paired"))
-      plot <- ggplot(profile.melted , aes(x = Order, y = Mean, group=Group, colour=Group)) +
-        geom_line() + 
-        geom_ribbon(aes(ymin = Mean - Stderr, ymax = Mean + Stderr, fill=Group), alpha = 0.05, colour=NA) +
-        xlab("Order of diversity") + ylab("Effective number of OTUs") +
-        scale_fill_manual(values = getPalette(length(unique(profile.melted$Group)))) + 
-        scale_colour_manual(values = getPalette(length(unique(profile.melted$Group)))) + 
-        theme_minimal()
-        print(plot)
+    groups <- sort(unique(hierarchy$Group))   
+        for (g in groups){
+            samples <- as.character(hierarchy[which(hierarchy$Group == g),1])
+            abund.subset <- abund[,samples]
+            abund.subset <- as.data.frame(abund.subset[apply(abund.subset, 1, function(z) !all(z==0)),])
+            if(!missing(tree)){                                       
+            missing.otus <- setdiff(tree$tip.label,rownames(abund.subset))
+            tree.subset <- drop.tip(tree,missing.otus)
+            }
+                 for (o in order){
+                        if(missing(tree)){ 
+                            if(level == "gamma"){div.value <- hilldiv::gamma.div(abund.subset,o)}
+                            if(level == "alpha"){div.value <- hilldiv::alpha.div(abund.subset,o)}
+                        }else{
+                            if(level == "gamma"){div.value <- hilldiv::gamma.div(abund.subset,o,tree.subset)}
+                            if(level == "alpha"){div.value <- hilldiv::alpha.div(abund.subset,o,tree.subset)}
+                        }
+                 profile <- rbind(profile,cbind(g,div.value))
+                 }    
+          }
+                                                             
+    profile <- as.data.frame(cbind(profile,rep(order,length(groups))))
+    profile[,2] <- as.numeric(as.character(profile[,2]))
+    profile[,3] <- as.numeric(as.character(profile[,3]))
+    colnames(profile) <- c("Group","Value","Order")
+    getPalette = colorRampPalette(brewer.pal(length(groups), "Paired"))
+    plot <- ggplot(profile , aes(x = Order, y = Value, group=Group, colour=Group)) +
+    geom_line() + 
+    xlab("Order of diversity") + ylab("Effective number of OTUs") +
+    scale_colour_manual(values = getPalette(length(groups))) + 
+    theme_minimal()
+    print(plot)
+                                                                                                                     
     }
+                                                     
+
+  
     
     if(values == "TRUE"){
     return(profile)

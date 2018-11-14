@@ -45,9 +45,16 @@ if(is.null(dim(abund)) == FALSE){
     rownames(profile) <- order
     profile.melted <- melt(profile)
     colnames(profile.melted) <- c("Order","Sample","Value")
-    getPalette = colorRampPalette(brewer.pal(ncol(abund), "Paired"))
-
-    if(hasArg(hierarchy) == TRUE){
+   
+    if(missing(hierarchy)){
+        getPalette = colorRampPalette(brewer.pal(ncol(abund), "Paired"))
+        plot <- ggplot(profile.melted , aes(x = Order, y = Value, group=Sample, colour=Sample)) +
+        geom_line() + 
+        xlab("Order of diversity") + ylab("Effective number of OTUs") +
+        scale_colour_manual(values = getPalette(ncol(abund))) + 
+        theme_minimal()
+        print(plot)
+    }else{    
     colnames(hierarchy) <- c("Sample","Group")
     profile.melted2 <- merge(profile.melted,hierarchy,by="Sample")
     profile.melted_mean <- aggregate(profile.melted2[,"Value"],by=list(profile.melted2[,c("Group")],profile.melted2[,c("Order")]),FUN=mean)
@@ -55,21 +62,17 @@ if(is.null(dim(abund)) == FALSE){
     profile.melted_sterr <- aggregate(profile.melted2[,"Value"],by=list(profile.melted2[,c("Group")],profile.melted2[,c("Order")]),FUN=std.err)
     profile.melted <- cbind(profile.melted_mean,profile.melted_sterr[,3])
     colnames(profile.melted) <- c("Group","Order","Mean","Stderr")
+      getPalette = colorRampPalette(brewer.pal(length(unique(profile.melted$Group)), "Paired"))
       plot <- ggplot(profile.melted , aes(x = Order, y = Mean, group=Group, colour=Group)) +
         geom_line() + 
-        geom_ribbon(aes(ymin = Mean - Stderr, ymax = Mean + Stderr, fill=Group), alpha = 0.2, colour=NA) +
+        geom_ribbon(aes(ymin = Mean - Stderr, ymax = Mean + Stderr, fill=Group), alpha = 0.05, colour=NA) +
         xlab("Order of diversity") + ylab("Effective number of OTUs") +
-        scale_fill_manual(values = getPalette(ncol(abund))) + 
-        scale_colour_manual(values = getPalette(ncol(abund))) + 
+        scale_fill_manual(values = getPalette(length(unique(profile.melted$Group)))) + 
+        scale_colour_manual(values = getPalette(length(unique(profile.melted$Group)))) + 
         theme_minimal()
-    }else{    
-    plot <- ggplot(profile.melted , aes(x = Order, y = Value, group=Sample, colour=Sample)) +
-        geom_line() + 
-        xlab("Order of diversity") + ylab("Effective number of OTUs") +
-        scale_colour_manual(values = getPalette(ncol(abund))) + 
-        theme_minimal()
+        print(plot)
     }
-    print(plot)
+    
     if(values == "TRUE"){
     return(profile)
     }

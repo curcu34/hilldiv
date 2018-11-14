@@ -92,7 +92,7 @@ if(is.null(dim(abund)) == FALSE){
     plot <- ggplot(profile , aes(x = Order, y = Value, group=Group, colour=Group)) +
     geom_line() + 
     xlab("Order of diversity") + 
-    ylab(if(log == "TRUE"){"Effective number of OTUs (log-transformed)" }else{"Effective number of OTUs"}) +
+    ylab(if((log == "TRUE") & missing(tree)){"Effective number of OTUs (log-transformed)"}else if((log == "TRUE") & !missing(tree)){"Effective number of lineages (log-transformed)"}else if((log == "FALSE") & !missing(tree)){"Effective number of lineages"}else{"Effective number of OTUs"}) +
     scale_colour_manual(values = getPalette(length(groups))) + 
     theme_minimal()
     print(plot)

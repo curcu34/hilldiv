@@ -1,10 +1,11 @@
-div.profile <- function(abund,tree,order,values,hierarchy,level){
+div.profile <- function(abund,tree,order,values,hierarchy,level,log){
     
 #Quality-check and warnings
 if(missing(abund)) stop("The abundance data is missing")
 if(missing(order)) {order= seq(from = 0, to = 5, by = (0.1))}
 if(missing(values)) {values= "FALSE"}
 if(missing(level)) {level= "gamma"}
+if(missing(log)) {log= "FALSE"}
 
 #If input data is a vector
 if(is.null(dim(abund)) == TRUE){
@@ -49,10 +50,12 @@ if(is.null(dim(abund)) == FALSE){
         colnames(profile.melted) <- c("Order","Sample","Value")
         profile.melted[,1] <- as.numeric(as.character(profile.melted[,1]))
         profile.melted[,3] <- as.numeric(as.character(profile.melted[,3]))
+        if(log == "TRUE"){profile.melted[,3] <- log(profile.melted[,3])}
         getPalette = colorRampPalette(brewer.pal(ncol(abund), "Paired"))
         plot <- ggplot(profile.melted , aes(x = Order, y = Value, group=Sample, colour=Sample)) +
         geom_line() + 
-        xlab("Order of diversity") + ylab("Effective number of OTUs") +
+        xlab("Order of diversity") + 
+        ylab(if(log == "TRUE"){"Effective number of OTUs (log-transformed)" }else{"Effective number of OTUs"}) +
         scale_colour_manual(values = getPalette(ncol(abund))) + 
         theme_minimal()
         print(plot)
@@ -84,10 +87,12 @@ if(is.null(dim(abund)) == FALSE){
     profile[,2] <- as.numeric(as.character(profile[,2]))
     profile[,3] <- as.numeric(as.character(profile[,3]))
     colnames(profile) <- c("Group","Value","Order")
+    if(log == "TRUE"){profile[,2] <- log(profile[,2])}
     getPalette = colorRampPalette(brewer.pal(length(groups), "Paired"))
     plot <- ggplot(profile , aes(x = Order, y = Value, group=Group, colour=Group)) +
     geom_line() + 
-    xlab("Order of diversity") + ylab("Effective number of OTUs") +
+    xlab("Order of diversity") + 
+    ylab(if(log == "TRUE"){"Effective number of OTUs (log-transformed)" }else{"Effective number of OTUs"}) +
     scale_colour_manual(values = getPalette(length(groups))) + 
     theme_minimal()
     print(plot)

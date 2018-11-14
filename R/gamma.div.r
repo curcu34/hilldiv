@@ -20,7 +20,9 @@ if(missing(tree)){
 }else{
     #Non-neutral
     if(identical(sort(rownames(otutable)),sort(tree$tip.label)) == FALSE) stop("OTU names in the OTU table and tree do not match")
-    otutable <- as.data.frame(otutable)
+    otutable <- as.data.frame(otutable[apply(otutable, 1, function(z) !all(z==0)),]) #remove OTUs without abundances (=all-zero rows) 
+    missing.otus <- setdiff(tree$tip.label,rownames(otutable))
+    tree <- drop.tip(tree,missing.otus)
     wj <- weight
     N <- ncol(otutable)
     Li <- tree$edge.length

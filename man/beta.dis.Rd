@@ -1,5 +1,5 @@
-\name{hill.dis}
-\alias{hill.dis}
+\name{beta.dis}
+\alias{beta.dis}
 \title{(Dis)similarity measures derived from Hill number beta diversities}
 \usage{}
 \arguments{}

@@ -10,7 +10,12 @@ if (missing(type)) {type="dissimilarity"}
 
 #Sørensen-type species-overlap (CqN, 1-CqN)
 if (metric == "C"){
-if (type == "dissimilarity"){ }
+CqN <- ((1/beta)^(1-qvalue) - (1/N)^(1-qvalue)) / (1 - (1/N)^(1-qvalue))
+return(CqN)
+if (type == "dissimilarity"){
+1_CqN <- 1 - CqN
+return(1_CqN)
+}
 }
 
 #Jaccard-type species-overlap (UqN, 1-UqN)
@@ -20,7 +25,12 @@ if (type == "dissimilarity"){ }
 
 #Sørensen-type turnover (VqN, 1-VqN)
 if (metric == "V"){
-if (type == "dissimilarity"){ }
+VqN <-  (beta - 1)/(N-1)
+return(VqN)
+if (type == "similarity"){ 
+1_VqN <- 1 - VqN
+return(1_VqN)
+}
 } 
   
 #Jaccard-type turnover (SqN, 1-SqN)

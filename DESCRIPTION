@@ -31,6 +31,7 @@ Collate:
     'div.comp.test.r'
     'div.part.r'
     'div.part.plot.r'
+    'beta.dis.r'
     'div.profile.r'
     'gamma.div.r'
     'pair.dis.r'

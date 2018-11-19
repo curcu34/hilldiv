@@ -13,8 +13,8 @@ if (metric == "C"){
 CqN <- ((1/beta)^(1-qvalue) - (1/N)^(1-qvalue)) / (1 - (1/N)^(1-qvalue))
 return(CqN)
 if (type == "dissimilarity"){
-1_CqN <- 1 - CqN
-return(1_CqN)
+rCqN <- 1 - CqN
+return(rCqN)
 }
 }
 
@@ -28,8 +28,8 @@ if (metric == "V"){
 VqN <-  (beta - 1)/(N-1)
 return(VqN)
 if (type == "similarity"){ 
-1_VqN <- 1 - VqN
-return(1_VqN)
+rVqN <- 1 - VqN
+return(rVqN)
 }
 } 
   

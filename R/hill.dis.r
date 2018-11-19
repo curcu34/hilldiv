@@ -8,7 +8,7 @@ if(missing(N)) stop("The number of samples or groups (N) is missing")
 if (missing(metric)) {metric="C"}
 if (missing(type)) {type="dissimilarity"}
 
-#Sørensen-type species-overlap (CqN, 1-CqN)
+#Sørensen-type overlap (CqN, 1-CqN)
 if (metric == "C"){
 CqN <- ((1/beta)^(qvalue-1) - (1/N)^(qvalue-1)) / (1 - (1/N)^(qvalue-1))
 return(CqN)
@@ -18,7 +18,7 @@ return(rCqN)
 }
 }
 
-#Jaccard-type species-overlap (UqN, 1-UqN)
+#Jaccard-type overlap (UqN, 1-UqN)
 if (metric == "U"){
 UqN <- ((1/beta)^(1-qvalue) - (1/N)^(1-qvalue)) / (1 - (1/N)^(1-qvalue))
 return(UqN)

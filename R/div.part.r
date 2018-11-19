@@ -41,6 +41,7 @@ return(results)
 
 ###########
 #Function for 3-level hierarchy
+#Samples are weighed to give the same weight to the L2 groups.
 ###########
 
 #Pre-processing
@@ -59,7 +60,7 @@ rownames(otutable.L2) <- otutable.L2[,1]
 otutable.L2 <- otutable.L2[,-1]
 otutable.L2 <- t(sweep(otutable.L2, 1, rowSums(otutable.L2), FUN="/"))
 
-#L1 weights
+#Compute L1 weights
 weights.L1 <- rep(1,ncol(otutable))/rep(ncol(otutable.L2),ncol(otutable))/rep(table(hierarchy[,2]), table(hierarchy[,2]))
 
 #L1 and L3 diversities

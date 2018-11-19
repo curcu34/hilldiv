@@ -50,15 +50,6 @@ hierarchy[,2] <- as.character(hierarchy[,2])
 if(identical(sort(colnames(otutable)),sort(hierarchy[,1])) == FALSE) stop("OTU names in the OTU table and the hierarchy table do not match")
 colnames(hierarchy) <- c("L1","L2")
 
-#L1 and L3 diversities
-if(missing(tree)){  
-  L1_div <- hilldiv::alpha.div(otutable,qvalue)
-  L3_div <- hilldiv::gamma.div(otutable,qvalue)
-  }else{
-  L1_div <- hilldiv::alpha.div(otutable,qvalue,tree)
-  L3_div <- hilldiv::gamma.div(otutable,qvalue,tree)
-}
-
 #L2 data processing
 otutable.L2 <- merge(t(otutable),hierarchy, by.x="row.names",by.y="L1")
 rownames(otutable.L2) <- otutable.L2[,1]
@@ -67,13 +58,24 @@ otutable.L2 <- aggregate(otutable.L2[,-ncol(otutable.L2)], by=list(otutable.L2[,
 rownames(otutable.L2) <- otutable.L2[,1]
 otutable.L2 <- otutable.L2[,-1]
 otutable.L2 <- t(sweep(otutable.L2, 1, rowSums(otutable.L2), FUN="/"))
-weights <- table(hierarchy[,2])/sum(table(hierarchy[,2]))
+
+#L1 weights
+weights.L1 <- rep(1,ncol(otutable))/rep(ncol(otutable.L2),ncol(otutable))/rep(table(hierarchy[,2]), table(hierarchy[,2]))
+
+#L1 and L3 diversities
+if(missing(tree)){  
+  L1_div <- hilldiv::alpha.div(otutable,qvalue,weight=weights.L1)
+  L3_div <- hilldiv::gamma.div(otutable,qvalue)
+  }else{
+  L1_div <- hilldiv::alpha.div(otutable,qvalue,tree,weight=weights.L1)
+  L3_div <- hilldiv::gamma.div(otutable,qvalue,tree)
+}
 
 #L2 diversity
 if(missing(tree)){ 
-  L2_div <- hilldiv::alpha.div(otutable.L2,qvalue,weight=weights)
+  L2_div <- hilldiv::alpha.div(otutable.L2,qvalue)
   }else{
-  L2_div <- hilldiv::alpha.div(otutable.L2,qvalue,tree,weight=weights)
+  L2_div <- hilldiv::alpha.div(otutable.L2,qvalue,tree)
 }
 
 #L1-L2, beta and sample size

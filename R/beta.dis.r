@@ -1,4 +1,4 @@
-hill.dis <- function(beta,qvalue,N,metric,type){ 
+beta.dis <- function(beta,qvalue,N,metric,type){ 
   
 #Quality-check and warnings
 if(missing(beta)) stop("Beta diversity value is missing")

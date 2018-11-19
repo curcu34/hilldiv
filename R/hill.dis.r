@@ -35,7 +35,12 @@ return(rVqN)
   
 #Jaccard-type turnover (SqN, 1-SqN)
 if (metric == "S"){
-if (type == "dissimilarity"){ }
+SqN <- ((1/beta) - 1/N)/(1-1/N)
+return(SqN)
+if (type == "dissimilarity"){
+rSqN <- 1 - SqN
+return(rSqN)
+}
 } 
   
 }

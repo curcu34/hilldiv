@@ -35,7 +35,7 @@ if(missing(tree)){
         L <- matrix(rep(Li, N), ncol = N)
         wm <-  matrix(rep(wj, length(Li)), ncol = N,byrow=TRUE)
         i <-  which(aij > 0)
-        phylodiv <- sum(L[i] * (aij[i]*wm[i]/T)^qvalue)^(1/(1 - qvalue))/N
+        phylodiv <- sum(L[i] * (aij[i]*wm[i]/T)^qvalue)^(1/(1 - qvalue))/(N*T)
         return(phylodiv)
 }
                                    

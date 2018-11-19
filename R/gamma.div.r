@@ -33,7 +33,7 @@ if(missing(tree)){
     T <- sum(sweep(aij.wj, 1, Li, "*"))
     L <- matrix(rep(Li, N), ncol = N)
     wm <-  matrix(rep(wj, length(Li)), ncol = N, byrow=TRUE)
-    phylodiv <- sum(Li * (ai/T)^qvalue)^(1/(1 - qvalue))
+    phylodiv <- (sum(Li * (ai/T)^qvalue)^(1/(1 - qvalue)))/T
     return(phylodiv)
 }
 }

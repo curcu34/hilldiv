@@ -21,10 +21,14 @@ if(missing(tree)){
 }
 beta <- gamma/alpha
 N <- ncol(otutable)
-homogeneity <- ((1/beta) - 1/N)/(1-1/N)
-overlap <-((1/beta)^(1-qvalue) - (1/N)^(1-qvalue)) / (1 - (1/N)^(1-qvalue))
-turnover <- (beta - 1)/(N-1)
-results <- list("Sample_size" = N, "Alpha_diversity" = alpha, "Gamma_diversity" = gamma, "Beta_diversity" = beta, "Homogeneity" = homogeneity, "Overlap" = overlap, "Turnover" = turnover)
+
+#Dissimilarity measures
+disC <- hilldiv::hill.dis(beta=beta,qvalue=qvalue,N=N,metric="C",type="dissimilarity")
+disU <- hilldiv::hill.dis(beta=beta,qvalue=qvalue,N=N,metric="U",type="dissimilarity")
+disV <- hilldiv::hill.dis(beta=beta,qvalue=qvalue,N=N,metric="V",type="dissimilarity")
+disS <- hilldiv::hill.dis(beta=beta,qvalue=qvalue,N=N,metric="S",type="dissimilarity")
+  
+results <- list("Sample_size" = N, "Alpha_diversity" = alpha, "Gamma_diversity" = gamma, "1-CqN" = disC, "1-UqN" = disU, "VqN" = disV, "1-SqN" = disS)
 return(results)
 }
   

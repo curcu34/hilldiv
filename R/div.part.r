@@ -23,12 +23,12 @@ beta <- gamma/alpha
 N <- ncol(otutable)
 
 #Dissimilarity measures
-disC <- hilldiv::hill.dis(beta=beta,qvalue=qvalue,N=N,metric="C",type="dissimilarity")
-disU <- hilldiv::hill.dis(beta=beta,qvalue=qvalue,N=N,metric="U",type="dissimilarity")
-disV <- hilldiv::hill.dis(beta=beta,qvalue=qvalue,N=N,metric="V",type="dissimilarity")
-disS <- hilldiv::hill.dis(beta=beta,qvalue=qvalue,N=N,metric="S",type="dissimilarity")
+disC <- hilldiv::beta.dis(beta=beta,qvalue=qvalue,N=N,metric="C",type="dissimilarity")
+disU <- hilldiv::beta.dis(beta=beta,qvalue=qvalue,N=N,metric="U",type="dissimilarity")
+disV <- hilldiv::beta.dis(beta=beta,qvalue=qvalue,N=N,metric="V",type="dissimilarity")
+disS <- hilldiv::beta.dis(beta=beta,qvalue=qvalue,N=N,metric="S",type="dissimilarity")
   
-results <- list("Sample_size" = N, "Alpha_diversity" = alpha, "Gamma_diversity" = gamma, "1-CqN" = disC, "1-UqN" = disU, "VqN" = disV, "1-SqN" = disS)
+results <- list("Sample_size" = N, "Alpha_diversity" = alpha, "Gamma_diversity" = gamma, "1_CqN" = disC, "1_UqN" = disU, "VqN" = disV, "1_SqN" = disS)
 return(results)
 }
   
@@ -59,30 +59,30 @@ if(missing(tree)){
 }
 beta_1 <- L2_div/L1_div
 N1 <- ncol(otutable)
-homogeneity_1 <- ((1/beta_1) - 1/N1)/(1-1/N1)
-overlap_1 <-((1/beta_1)^(1-qvalue) - (1/N1)^(1-qvalue)) / (1 - (1/N1)^(1-qvalue))
-turnover_1 <- (beta_1 - 1)/(N1-1)
+disC_1 <- hilldiv::beta.dis(beta=beta_1,qvalue=qvalue,N=N1,metric="C",type="dissimilarity")
+disU_1 <- hilldiv::beta.dis(beta=beta_1,qvalue=qvalue,N=N1,metric="U",type="dissimilarity")
+disV_1 <- hilldiv::beta.dis(beta=beta_1,qvalue=qvalue,N=N1,metric="V",type="dissimilarity")
+disS_1 <- hilldiv::beta.dis(beta=beta_1,qvalue=qvalue,N=N1,metric="S",type="dissimilarity")
   
 beta_2 <- L3_div/L2_div
 N2 <- ncol(otutable.L2)
-homogeneity_2 <- ((1/beta_2) - 1/N2)/(1-1/N2)
-overlap_2 <-((1/beta_2)^(1-qvalue) - (1/N2)^(1-qvalue)) / (1 - (1/N2)^(1-qvalue))
-turnover_2 <- (beta_2 - 1)/(N2-1)
+disC_2 <- hilldiv::beta.dis(beta=beta_2,qvalue=qvalue,N=N2,metric="C",type="dissimilarity")
+disU_2 <- hilldiv::beta.dis(beta=beta_2,qvalue=qvalue,N=N2,metric="U",type="dissimilarity")
+disV_2 <- hilldiv::beta.dis(beta=beta_2,qvalue=qvalue,N=N2,metric="V",type="dissimilarity")
+disS_2 <- hilldiv::beta.dis(beta=beta_2,qvalue=qvalue,N=N2,metric="S",type="dissimilarity")
   
-results <- list("L1_size" = N1, "L2_size" = N2, "L1_diversity" = L1_div, "L2_diversity" = L2_div, "L3_diversity" = L3_div, "Beta_diversity_L1_2" = beta_1, "Beta_diversity_L2_3" = beta_2,  "Homogeneity_L1_2" = homogeneity_1, "Homogeneity_L2_3" = homogeneity_2,"Overlap_L1_2" = overlap_1, "Overlap_L2_3" = overlap_2,"Turnover_L1_2" = turnover_1, "Turnover_L2_3" = turnover_2)
+results <- list("L1_size" = N1, "L2_size" = N2, "L1_diversity" = L1_div, "L2_diversity" = L2_div, "L3_diversity" = L3_div, "Beta_diversity_L1_2" = beta_1, "Beta_diversity_L2_3" = beta_2,  "1_CqN_L1_L2" = disC_1, "1_UqN_L1_L2" = disU_1,"VqN_L1_L2" = disV_1, "1_SqN_L1_L2" = disS_1, "1_CqN_L2_L3" = disC_2, "1_UqN_L2_L3" = disU_2,"VqN_L2_L3" = disV_2, "1_SqN_L2_L3" = disS_2)
 return(results)
 }
   
 #Function for 4-level hierarchy
 if(ncol(hierarchy) == 3){
-
-results <- list("L1_size" = N1, "L2_size" = N2, "L1_diversity" = L1_div, "L2_diversity" = L2_div, "L3_diversity" = L3_div, "Beta_diversity_L1-2" = beta_1, "Beta_diversity_L2-3" = beta_2,  "Homogeneity_L1-2" = homogeneity_1, "Homogeneity_L2-3" = homogeneity_2,"Overlap_L1-2" = overlap_1, "Overlap_L2-3" = overlap_2,"Turnover_L1-2" = turnover_1, "Turnover_L2-3" = turnover_2)
-return(results)
+stop("The maximum number of hierarchical levels allowed is 3")
 } 
   
 #Error if more hierarchical levels
 if(ncol(hierarchy) > 3){
-stop("The maximum number of hierarchical levels allowed is 4")
+stop("The maximum number of hierarchical levels allowed is 3")
 } 
 
 }

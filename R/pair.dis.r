@@ -53,7 +53,7 @@ combination <- otutable[,c(y,x)]
 
 if(identical(combination[,1],combination[,2]) == TRUE){
     beta <- NA
-}else
+}else{
     if(missing(tree)){
     alpha <- hilldiv::alpha.div(combination,qvalue)
     gamma <- hilldiv::gamma.div(combination,qvalue)
@@ -150,7 +150,7 @@ combination <- otutable.L2[,c(y,x)]
   
 if(identical(combination[,1],combination[,2]) == TRUE){
     beta <- NA
-}else
+}else{
     if(missing(tree)){
     alpha <- hilldiv::alpha.div(combination,qvalue)
     gamma <- hilldiv::gamma.div(combination,qvalue)

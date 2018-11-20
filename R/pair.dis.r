@@ -14,7 +14,6 @@ if(missing(hierarchy)) warning("Assuming no hierarchy")
 
 #Create matrices
 L1 <- sort(colnames(otutable))
-N <- 2
   
 L1_beta <- matrix(rep(NA,length(L1)^2), nrow = length(L1), ncol = length(L1))
 colnames(L1_beta) <- L1
@@ -68,22 +67,22 @@ L1_beta[y,x] <- beta
 results <- list("L1_Beta" = L1_beta)
   
 if('C' %in% measure){
-disC <- hilldiv::beta.dis(beta=beta,qvalue=qvalue,N=N,metric="C",type="dissimilarity")
+disC <- hilldiv::beta.dis(beta=beta,qvalue=qvalue,N=2,metric="C",type="dissimilarity")
 L1_CqN[y,x] <- disC
 results[["L1_CqN"]] <- L1_CqN}
   
 if('U' %in% measure){
-disU <- hilldiv::beta.dis(beta=beta,qvalue=qvalue,N=N,metric="U",type="dissimilarity")
+disU <- hilldiv::beta.dis(beta=beta,qvalue=qvalue,N=2,metric="U",type="dissimilarity")
 L1_UqN[y,x] <- disU
 results[["L1_UqN"]] <- L1_UqN}
 
 if('V' %in% measure){
-disV <- hilldiv::beta.dis(beta=beta,qvalue=qvalue,N=N,metric="V",type="dissimilarity")
+disV <- hilldiv::beta.dis(beta=beta,qvalue=qvalue,N=2,metric="V",type="dissimilarity")
 L1_VqN[y,x] <- disV
 results[["L1_VqN"]] <- L1_VqN}
 
 if('S' %in% measure){
-disS <- hilldiv::beta.dis(beta=beta,qvalue=qvalue,N=N,metric="S",type="dissimilarity")
+disS <- hilldiv::beta.dis(beta=beta,qvalue=qvalue,N=2,metric="S",type="dissimilarity")
 L1_SqN[y,x] <- disS
 results[["L1_SqN"]] <- L1_SqN}
   
@@ -111,7 +110,6 @@ otutable.L2 <- t(sweep(otutable.L2, 1, rowSums(otutable.L2), FUN="/"))
 
 #Create L2 matrices
 L2 <- sort(colnames(otutable.L2))
-N <- 2
 
 L2_beta <- matrix(rep(NA,length(L2)^2), nrow = length(L2), ncol = length(L2))
 colnames(L2_beta) <- L2
@@ -165,22 +163,22 @@ L2_beta[y,x] <- beta
 results[["L2_Beta"]] <- L2_beta
 
 if('C' %in% measure){
-disC <- hilldiv::beta.dis(beta=beta,qvalue=qvalue,N=N,metric="C",type="dissimilarity")
+disC <- hilldiv::beta.dis(beta=beta,qvalue=qvalue,N=2,metric="C",type="dissimilarity")
 L2_CqN[y,x] <- disC
 results[["L2_CqN"]] <- L2_CqN}
   
 if('U' %in% measure){
-disU <- hilldiv::beta.dis(beta=beta,qvalue=qvalue,N=N,metric="U",type="dissimilarity")
+disU <- hilldiv::beta.dis(beta=beta,qvalue=qvalue,N=2,metric="U",type="dissimilarity")
 L2_UqN[y,x] <- disU
 results[["L2_UqN"]] <- L2_UqN}
 
 if('V' %in% measure){
-disV <- hilldiv::beta.dis(beta=beta,qvalue=qvalue,N=N,metric="V",type="dissimilarity")
+disV <- hilldiv::beta.dis(beta=beta,qvalue=qvalue,N=2,metric="V",type="dissimilarity")
 L2_VqN[y,x] <- disV
 results[["L2_VqN"]] <- L2_VqN}
 
 if('S' %in% measure){
-disS <- hilldiv::beta.dis(beta=beta,qvalue=qvalue,N=N,metric="S",type="dissimilarity")
+disS <- hilldiv::beta.dis(beta=beta,qvalue=qvalue,N=2,metric="S",type="dissimilarity")
 L2_SqN[y,x] <- disS
 results[["L2_SqN"]] <- L2_SqN}
  

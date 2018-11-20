@@ -57,23 +57,23 @@ results <- list("Beta" = L1_beta)
   
 if('C' %in% measure){
 disC <- hilldiv::beta.dis(beta=beta,qvalue=qvalue,N=N,metric="C",type="dissimilarity")
-L1_disC[y,x] <- disC
-results[["1_CqN"]] <- L1_disC}
+L1_CqN[y,x] <- disC
+results[["1_CqN"]] <- L1_CqN}
   
 if('U' %in% measure){
 disU <- hilldiv::beta.dis(beta=beta,qvalue=qvalue,N=N,metric="U",type="dissimilarity")
-L1_disU[y,x] <- disU
-results[["1_UqN"]] <- L1_disU}
+L1_UqN[y,x] <- disU
+results[["1_UqN"]] <- L1_UqN}
 
 if('V' %in% measure){
 disV <- hilldiv::beta.dis(beta=beta,qvalue=qvalue,N=N,metric="V",type="dissimilarity")
-L1_disV[y,x] <- disV
-results[["1_VqN"]] <- L1_disV}
+L1_VqN[y,x] <- disV
+results[["1_VqN"]] <- L1_VqN}
 
 if('S' %in% measure){
 disS <- hilldiv::beta.dis(beta=beta,qvalue=qvalue,N=N,metric="S",type="dissimilarity")
-L1_disS[y,x] <- disS
-results[["1_SqN"]] <- L1_disS}
+L1_SqN[y,x] <- disS
+results[["1_SqN"]] <- L1_SqN}
   
 }
 }
@@ -143,23 +143,23 @@ results[["Beta_L2"]] <- L2_beta
 
 if('C' %in% measure){
 disC <- hilldiv::beta.dis(beta=beta,qvalue=qvalue,N=N,metric="C",type="dissimilarity")
-L2_disC[y,x] <- disC
-results[["1_CqN"]] <- L2_disC}
+L2_CqN[y,x] <- disC
+results[["1_CqN"]] <- L2_CqN}
   
 if('U' %in% measure){
 disU <- hilldiv::beta.dis(beta=beta,qvalue=qvalue,N=N,metric="U",type="dissimilarity")
-L2_disU[y,x] <- disU
-results[["1_UqN"]] <- L2_disU}
+L2_UqN[y,x] <- disU
+results[["1_UqN"]] <- L2_UqN}
 
 if('V' %in% measure){
 disV <- hilldiv::beta.dis(beta=beta,qvalue=qvalue,N=N,metric="V",type="dissimilarity")
-L2_disV[y,x] <- disV
-results[["1_VqN"]] <- L2_disV}
+L2_VqN[y,x] <- disV
+results[["1_VqN"]] <- L2_VqN}
 
 if('S' %in% measure){
 disS <- hilldiv::beta.dis(beta=beta,qvalue=qvalue,N=N,metric="S",type="dissimilarity")
-L2_disS[y,x] <- disS
-results[["1_SqN"]] <- L2_disS}
+L2_SqN[y,x] <- disS
+results[["1_SqN"]] <- L2_SqN}
  
 }
 }

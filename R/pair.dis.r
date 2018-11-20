@@ -14,29 +14,37 @@ if(missing(hierarchy)) warning("Assuming no hierarchy")
 #Create matrices
 L1 <- sort(colnames(otutable))
 N <- 2
-
+  
 L1_beta <- matrix(rep(NA,length(L1)^2), nrow = length(L1), ncol = length(L1))
 colnames(L1_beta) <- L1
 rownames(L1_beta) <- L1
 
-if('homogeneity' %in% measure){
-L1_homogeneity <- matrix(rep(NA,length(L1)^2), nrow = length(L1), ncol = length(L1))
-colnames(L1_homogeneity) <- L1
-rownames(L1_homogeneity) <- L1
+if('C' %in% measure){
+L1_CqN <- matrix(rep(NA,length(L1)^2), nrow = length(L1), ncol = length(L1))
+colnames(L1_CqN) <- L1
+rownames(L1_CqN) <- L1
 }
 
-if('overlap' %in% measure){
-L1_overlap <- matrix(rep(NA,length(L1)^2), nrow = length(L1), ncol = length(L1))
-colnames(L1_overlap) <- L1
-rownames(L1_overlap) <- L1
+if('U' %in% measure){
+L1_UqN <- matrix(rep(NA,length(L1)^2), nrow = length(L1), ncol = length(L1))
+colnames(L1_UqN) <- L1
+rownames(L1_UqN) <- L1
 }
 
-if('turnover' %in% measure){
-L1_turnover <- matrix(rep(NA,length(L1)^2), nrow = length(L1), ncol = length(L1))
-colnames(L1_turnover) <- L1
-rownames(L1_turnover) <- L1
+if('V' %in% measure){
+L1_VqN <- matrix(rep(NA,length(L1)^2), nrow = length(L1), ncol = length(L1))
+colnames(L1_VqN) <- L1
+rownames(L1_VqN) <- L1
 }
 
+if('S' %in% measure){
+L1_SqN <- matrix(rep(NA,length(L1)^2), nrow = length(L1), ncol = length(L1))
+colnames(L1_SqN) <- L1
+rownames(L1_SqN) <- L1
+}
+
+#Fill matrices  
+  
 for (x in L1){
 for (y in L1){
 if(is.na(L1_beta[x,y])){ #to avoid repeating mirror operations
@@ -97,23 +105,31 @@ L2_beta <- matrix(rep(NA,length(L2)^2), nrow = length(L2), ncol = length(L2))
 colnames(L2_beta) <- L2
 rownames(L2_beta) <- L2
 
-if('homogeneity' %in% measure){
-L2_homogeneity <- matrix(rep(NA,length(L2)^2), nrow = length(L2), ncol = length(L2))
-colnames(L2_homogeneity) <- L2
-rownames(L2_homogeneity) <- L2
+if('C' %in% measure){
+L2_CqN <- matrix(rep(NA,length(L2)^2), nrow = length(L2), ncol = length(L2))
+colnames(L2_CqN) <- L2
+rownames(L2_CqN) <- L2
 }
 
-if('overlap' %in% measure){
-L2_overlap <- matrix(rep(NA,length(L2)^2), nrow = length(L2), ncol = length(L2))
-colnames(L2_overlap) <- L2
-rownames(L2_overlap) <- L2
+if('U' %in% measure){
+L2_UqN <- matrix(rep(NA,length(L2)^2), nrow = length(L2), ncol = length(L2))
+colnames(L2_UqN) <- L2
+rownames(L2_UqN) <- L2
 }
 
-if('turnover' %in% measure){
-L2_turnover <- matrix(rep(NA,length(L2)^2), nrow = length(L2), ncol = length(L2))
-colnames(L2_turnover) <- L2
-rownames(L2_turnover) <- L2
+if('V' %in% measure){
+L2_VqN <- matrix(rep(NA,length(L2)^2), nrow = length(L2), ncol = length(L2))
+colnames(L2_VqN) <- L2
+rownames(L2_VqN) <- L2
 }
+
+if('S' %in% measure){
+L2_SqN <- matrix(rep(NA,length(L2)^2), nrow = length(L2), ncol = length(L2))
+colnames(L2_SqN) <- L2
+rownames(L2_SqN) <- L2
+}
+  
+#Fill L2 matrices
 
 for (x in L2){
 for (y in L2){
@@ -125,20 +141,26 @@ beta <- gamma/alpha
 L2_beta[y,x] <- beta
 results[["Beta_L2"]] <- L2_beta
 
-if('homogeneity' %in% measure){
-homogeneity <- ((1/beta) - 1/N)/(1-1/N)
-L2_homogeneity[y,x] <- homogeneity
-results[["Homogeneity_L2"]] <- L2_homogeneity}
+if('C' %in% measure){
+disC <- hilldiv::beta.dis(beta=beta,qvalue=qvalue,N=N,metric="C",type="dissimilarity")
+L2_disC[y,x] <- disC
+results[["1_CqN"]] <- L2_disC}
+  
+if('U' %in% measure){
+disU <- hilldiv::beta.dis(beta=beta,qvalue=qvalue,N=N,metric="U",type="dissimilarity")
+L2_disU[y,x] <- disU
+results[["1_UqN"]] <- L2_disU}
 
-if('overlap' %in% measure){
-overlap <-((1/beta)^(1-qvalue) - (1/N)^(1-qvalue)) / (1 - (1/N)^(1-qvalue))
-L2_overlap[y,x] <- overlap
-results[["Overlap_L2"]] <- L2_overlap}
+if('V' %in% measure){
+disV <- hilldiv::beta.dis(beta=beta,qvalue=qvalue,N=N,metric="V",type="dissimilarity")
+L2_disV[y,x] <- disV
+results[["1_VqN"]] <- L2_disV}
 
-if('turnover' %in% measure){
-turnover <- (beta - 1)/(N-1)
-L2_turnover[y,x] <- turnover
-results[["Turnover_L2"]] <- L2_turnover}
+if('S' %in% measure){
+disS <- hilldiv::beta.dis(beta=beta,qvalue=qvalue,N=N,metric="S",type="dissimilarity")
+L2_disS[y,x] <- disS
+results[["1_SqN"]] <- L2_disS}
+ 
 }
 }
 }

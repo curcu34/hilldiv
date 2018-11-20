@@ -49,8 +49,8 @@ for (x in L1){
 for (y in L1){
 if(is.na(L1_beta[x,y])){ #to avoid repeating mirror operations
 combination <- otutable[,c(y,x)]
-alpha <- alpha.div(combination,qvalue)
-gamma <- gamma.div(combination,qvalue)
+alpha <- hilldiv::alpha.div(combination,qvalue)
+gamma <- hilldiv::gamma.div(combination,qvalue)
 beta <- gamma/alpha
 L1_beta[y,x] <- beta
 results <- list("Beta" = L1_beta)
@@ -135,8 +135,8 @@ for (x in L2){
 for (y in L2){
 if(is.na(L2_beta[x,y])){ #to avoid repeating mirror operations
 combination <- otutable.L2[,c(y,x)]
-alpha <- alpha.div(combination,qvalue)
-gamma <- gamma.div(combination,qvalue)
+alpha <- hilldiv::alpha.div(combination,qvalue)
+gamma <- hilldiv::gamma.div(combination,qvalue)
 beta <- gamma/alpha
 L2_beta[y,x] <- beta
 results[["Beta_L2"]] <- L2_beta

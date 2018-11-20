@@ -1,3 +1,3 @@
-pair.dis.heatmap <- function(otutable,qvalue,hierarchy,measure){
-#Show beta, hetero, overlap, turnover... show hierachy organisation as tree.
+pair.dis.heatmap <- function(matrix,hierarchy){
+matrix.dist <- as.dist(matrix)
 }

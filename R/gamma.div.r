@@ -20,6 +20,7 @@ if(missing(tree)){
 }else{
     #Non-neutral
     if(identical(sort(rownames(otutable)),sort(tree$tip.label)) == FALSE) stop("OTU names in the OTU table and tree do not match")
+    otutable <- as.data.frame(otutable)
     wj <- weight
     N <- ncol(otutable)
     Li <- tree$edge.length

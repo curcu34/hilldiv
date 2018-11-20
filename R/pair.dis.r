@@ -1,4 +1,4 @@
-pair.dis <- function(otutable,qvalue,hierarchy,measure){
+pair.dis <- function(otutable,qvalue,tree,hierarchy,measure){
 
 #Quality-check and warnings
 if(missing(otutable)) stop("OTU table is missing")
@@ -50,8 +50,13 @@ for (x in L1){
 for (y in L1){
 if(is.na(L1_beta[x,y])){ #to avoid repeating mirror operations
 combination <- otutable[,c(y,x)]
+if(missing(tree)){
 alpha <- hilldiv::alpha.div(combination,qvalue)
 gamma <- hilldiv::gamma.div(combination,qvalue)
+}else{
+alpha <- hilldiv::alpha.div(combination,qvalue,tree)
+gamma <- hilldiv::gamma.div(combination,qvalue,tree)
+}
 beta <- gamma/alpha
 L1_beta[y,x] <- beta
 results <- list("Beta" = L1_beta)
@@ -136,8 +141,13 @@ for (x in L2){
 for (y in L2){
 if(is.na(L2_beta[x,y])){ #to avoid repeating mirror operations
 combination <- otutable.L2[,c(y,x)]
+if(missing(tree)){
 alpha <- hilldiv::alpha.div(combination,qvalue)
 gamma <- hilldiv::gamma.div(combination,qvalue)
+}else{
+alpha <- hilldiv::alpha.div(combination,qvalue,tree)
+gamma <- hilldiv::gamma.div(combination,qvalue,tree)
+}
 beta <- gamma/alpha
 L2_beta[y,x] <- beta
 results[["Beta_L2"]] <- L2_beta

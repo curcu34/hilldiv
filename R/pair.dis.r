@@ -188,8 +188,6 @@ results[["1_SqN"]] <- L2_SqN}
 }
 }
   
-}
-  
 return(results)
 
 }

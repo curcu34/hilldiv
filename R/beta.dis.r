@@ -28,17 +28,17 @@ UqN <- ((1/beta)^(1-qvalue) - (1/N)^(1-qvalue)) / (1 - (1/N)^(1-qvalue))
 return(UqN)
 }
 
-#Sørensen-type turnover (VqN, 1-VqN)
+#Sørensen-type turnover-complement (VqN, 1-VqN)
 if (metric == "V"){
-VqN <-  (beta - 1)/(N-1)
-  if (type == "similarity"){ 
+VqN <-  (N - beta)/(N-1)
+  if (type == "dissimilarity"){ 
   rVqN <- 1 - VqN
   return(rVqN)
   }
 return(VqN)
 } 
   
-#Jaccard-type turnover (SqN, 1-SqN)
+#Jaccard-type turnover-complement (SqN, 1-SqN)
 if (metric == "S"){
 SqN <- ((1/beta) - 1/N)/(1-1/N)
   if (type == "dissimilarity"){

@@ -8,7 +8,7 @@ if(dim(otutable)[2] < 2) stop("The OTU table contains less than 2 samples")
 if(missing(qvalue)) stop("q value is missing")
 if(qvalue < 0) stop("q value needs to be possitive (equal or higher than zero)")
 if (qvalue==1) {qvalue=0.99999}
-if(missing(measure)) { measure= c("homogeneity","overlap","turnover")}
+if(missing(measure)) { measure= c("C","U","V","S")}
 if(missing(hierarchy)) warning("Assuming no hierarchy")
 
 #Create matrices
@@ -46,21 +46,27 @@ gamma <- gamma.div(combination,qvalue)
 beta <- gamma/alpha
 L1_beta[y,x] <- beta
 results <- list("Beta" = L1_beta)
+  
+if('C' %in% measure){
+disC <- hilldiv::beta.dis(beta=beta,qvalue=qvalue,N=N,metric="C",type="dissimilarity")
+L1_disC[y,x] <- disC
+results[["1_CqN"]] <- L1_disC}
+  
+if('U' %in% measure){
+disU <- hilldiv::beta.dis(beta=beta,qvalue=qvalue,N=N,metric="U",type="dissimilarity")
+L1_disU[y,x] <- disU
+results[["1_UqN"]] <- L1_disU}
 
-if('homogeneity' %in% measure){
-homogeneity <- ((1/beta) - 1/N)/(1-1/N)
-L1_homogeneity[y,x] <- homogeneity
-results[["Homogeneity"]] <- L1_homogeneity}
+if('V' %in% measure){
+disV <- hilldiv::beta.dis(beta=beta,qvalue=qvalue,N=N,metric="V",type="dissimilarity")
+L1_disV[y,x] <- disV
+results[["1_VqN"]] <- L1_disV}
 
-if('overlap' %in% measure){
-overlap <-((1/beta)^(1-qvalue) - (1/N)^(1-qvalue)) / (1 - (1/N)^(1-qvalue))
-L1_overlap[y,x] <- overlap
-results[["Overlap"]] <- L1_overlap}
-
-if('turnover' %in% measure){
-turnover <- (beta - 1)/(N-1)
-L1_turnover[y,x] <- turnover
-results[["Turnover"]] <- L1_turnover}
+if('S' %in% measure){
+disS <- hilldiv::beta.dis(beta=beta,qvalue=qvalue,N=N,metric="S",type="dissimilarity")
+L1_disS[y,x] <- disS
+results[["1_SqN"]] <- L1_disS}
+  
 }
 }
 }

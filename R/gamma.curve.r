@@ -3,7 +3,13 @@ gamma.curve <- function(otutable,qvalue,tree,steps,iter,summary){
 if(missing(steps)){steps=100}
 if(missing(iter)){iter=50}
 if(missing(summary)){summary=FALSE}
-  
+
+#################################
+# IF HIERARCHY IS NOT SPECIFIED #
+#################################
+
+if(missing(hierarchy) == TRUE){
+	
 matrix <- c()
 for (i in 1:iter){#open iteration
   vector <- c()
@@ -52,5 +58,17 @@ print(curve.plot)
 if(summary == TRUE){
 return(summary.table)
 }
+
+}#close no-hierarchy function
+
+#############################
+# IF HIERARCHY IS SPECIFIED #
+#############################		
+		
+if(missing(hierarchy) == FALSE){
+
+	
+	
+}#close hierarchy function
                 
 }#close function

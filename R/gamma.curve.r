@@ -1,5 +1,7 @@
 gamma.curve <- function(otutable,qvalue,tree,steps,iter,summary){
-
+	
+if(missing(steps)){steps=100}
+if(missing(iter)){iter=50}
 if(missing(summary)){summary=FALSE}
   
 matrix <- c()

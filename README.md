@@ -116,15 +116,15 @@ The sum of relative abundances of all samples must be 1. Check that by using col
 ## Hierarchy table
 For functions div.part and phylodiv.part
 
-| Sample | Group |Subgroup  |
+| Sample | Group |Supergroup  |
 | ------------- | ------------- |------------- |
-| Sample1  | Group1   |Subgroup1  |
-| Sample2  | Group1   |Subgroup2  |
-| Sample3  | Group1   |Subgroup2  |
-| Sample4  | Group2   |Subgroup3  |
-| Sample5  | Group3   |Subgroup4  |
+| Sample1  | Group1   |Supergroup1  |
+| Sample2  | Group1   |Supergroup1  |
+| Sample3  | Group2   |Supergroup2  |
+| Sample4  | Group2   |Supergroup2  |
+| Sample5  | Group3   |Supergroup2  |
 | ...  | ...   |...  |
-| SampleN  | GroupN   |SubgroupN  |
+| SampleN  | GroupN   |SpergroupN  |
 
 * Sample names and OTU table row names must match
-* Groups and subgroups must be nested
+* Groups and supergroups must be nested (all samples in a group must be included in the same supergroup)

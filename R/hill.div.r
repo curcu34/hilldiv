@@ -18,8 +18,8 @@ if(missing(tree)){
 
     #If input data is an OTU table
     if(is.null(dim(abund)) == FALSE){
+    if(sum(colSums(otutable)) != ncol(otutable)) {otutable <- tss(otutable)}
     samples <- colnames(abund)
-
     sample.vector <- c()
     for (s in samples){
       vector <- abund[,s]
@@ -37,7 +37,7 @@ if(missing(tree)){
     #If input data is a vector
     if(is.null(dim(abund)) == TRUE){
     if(identical(sort(names(abund)),sort(tree$tip.label)) == FALSE) stop("OTU names in the vector and tree do not match")  
-    if(sum(abund) != "1") stop("The abundance data does not sum up to 1")
+    if(sum(abund) != "1") {abund <- tss(abund)}
     Li <- tree$edge.length #Get branch lengths
     ltips <- sapply(tree$edge[, 2], function(node) geiger::tips(tree, node)) #Sum relative abundances per lineage
     ai <- unlist(lapply(ltips, function(TipVector) sum(abund[TipVector]))) #Sum relative abundances per lineage
@@ -51,6 +51,7 @@ if(missing(tree)){
     #If input data is an OTU table
     if(is.null(dim(abund)) == FALSE){    
     if(identical(sort(rownames(abund)),sort(tree$tip.label)) == FALSE) stop("OTU names in the OTU table and tree do not match")  
+    if(sum(colSums(otutable)) != ncol(otutable)) {otutable <- tss(otutable)}
     samples <- colnames(abund)
     sample.vector <- c()
     for (s in samples){

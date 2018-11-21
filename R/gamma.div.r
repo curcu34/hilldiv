@@ -30,6 +30,8 @@ if(missing(tree)){
     ai <- rowSums(aij.wj)
     T <- sum(sweep(aij.wj, 1, Li, "*"))
     L <- matrix(rep(Li, N), ncol = N)
+    Li <- Li[ai != 0] #Remove zeros
+    ai <- ai[ai != 0] #Remove zeros
     wm <-  matrix(rep(wj, length(Li)), ncol = N, byrow=TRUE)
     phylodiv <- (sum(Li * (ai/T)^qvalue)^(1/(1 - qvalue)))/T
     return(phylodiv)

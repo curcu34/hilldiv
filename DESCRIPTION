@@ -34,6 +34,7 @@ Collate:
     'beta.dis.r'
     'div.profile.r'
     'gamma.div.r'
+    'gamma.curve.r'
     'pair.dis.r'
     'pair.dis.heatmap.r'
     'tss.r'

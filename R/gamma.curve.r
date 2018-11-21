@@ -3,6 +3,7 @@ gamma.curve <- function(otutable,qvalue,tree,hierarchy,steps,iter,summary){
 if(missing(steps)){steps=100}
 if(missing(iter)){iter=50}
 if(missing(summary)){summary=FALSE}
+if(ncol(hierarchy) > 2) stop("The hierachy table can only contain 2 columns (samples and groups)")
 
 #################################
 # IF HIERARCHY IS NOT SPECIFIED #

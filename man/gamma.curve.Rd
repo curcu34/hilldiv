@@ -10,6 +10,7 @@
   \item{steps}{ Percentage | Percentage of samples to be used to draw the curve. '100' means rarefaction values will be generated for all sample sizes from 0 to actual sample size, e.g. 1,2,3... '50' means rarefaction values will be generated every two steps (50% of possible sample sizes) from 0 to actual sample size, e.g. 1,3,5... steps=100}
   \item{iter}{ Integer | The number of iterations to create the gamma curve. The higher the number, the lower is the standard error and the smoother is the curve. iter=50}
   \item{summary}{ Logical (TRUE/FALSE) | If 'TRUE' the summary data used to generate the gamma curve is also printed. }
+}
 \details{The gamma curves show the cummulative diversity across samples.}
 \examples{
 gamma.curve(otutable=otu.table,qvalue=1,tree=otu.tree,hierarchy=hierarchy.table,steps=25,iter=10,summary="TRUE")

@@ -10,7 +10,7 @@ if(qvalue < 0) stop("q value needs to be possitive (equal or higher than zero)")
 if(missing(tree)){
     #If input data is a vector
     if(is.null(dim(abund)) == TRUE){
-    if(sum(abund) != "1") stop("The abundance data does not sum up to 1")
+    if(sum(abund) != "1") {abund <- tss(abund)}
     pi <- abund[abund!=0] 
     div <- sum(pi^qvalue)^(1/(1-qvalue))
     return(div) 

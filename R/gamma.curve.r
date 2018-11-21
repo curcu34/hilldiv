@@ -3,7 +3,6 @@ gamma.curve <- function(otutable,qvalue,tree,hierarchy,steps,iter,summary){
 if(missing(steps)){steps=100}
 if(missing(iter)){iter=50}
 if(missing(summary)){summary=FALSE}
-if(ncol(hierarchy) > 2) stop("The hierachy table can only contain 2 columns (samples and groups)")
 
 #################################
 # IF HIERARCHY IS NOT SPECIFIED #
@@ -69,7 +68,8 @@ return(summary.table)
 # IF HIERARCHY IS SPECIFIED #
 #############################		
 		
-if(ncol(hierarchy) == 2){
+if(!missing(hierarchy) == TRUE){
+if(ncol(hierarchy) > 2) stop("The hierachy table can only contain 2 columns (samples and groups)")
 
 #Define step vector	
 max.steps <- max(table(hierarchy[,2]))
@@ -84,12 +84,14 @@ groups <- as.character(unique(hierarchy[,2]))
 #Loop across steps, groups and number of iterations	
 matrix <- c()
 for (g in groups){#open group
-samples <- hierarchy[which(hierarchy[,2] == g),1]
+samples <- as.character(hierarchy[which(hierarchy[,2] == g),1])
 otutable.group <- otutable[,samples]
     for (i in 1:iter){#open iteration
 	  vector <- c()
 	  for (s in step.vector){#open steps
-	      subset <- sample(max.steps, s, replace = FALSE)
+		if(s > ncol(otutable.group)){#if sample size is smaller  
+		value <- NA}else{
+	      subset <- sample(ncol(otutable.group), s, replace = FALSE)
 	      otutable.subset <- otutable.group[,subset]
 	      if(is.null(dim(otutable.subset)) == TRUE){#If 1 sample, calculate Hill number
 		  names(otutable.subset) <- rownames(otutable)
@@ -104,6 +106,7 @@ otutable.group <- otutable[,samples]
 			  }else{
 			  value <- hilldiv::gamma.div(otutable.subset,qvalue=qvalue,tree=tree)
 			  }
+		      }
 		}
 	    vector <- c(vector,value)
 	    }#close steps

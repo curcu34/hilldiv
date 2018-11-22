@@ -33,7 +33,8 @@ if(missing(tree)){
 #Phylodiversity
 }else{
     if(class(tree) != "phylo") stop("Tree needs to be an object of class Phylo")  
-      
+    if(ape::is.ultrametric(tree) == FALSE) stop("Tree needs to be ultrametric")  
+
     #If input data is a vector
     if(is.null(dim(abund)) == TRUE){
     if(identical(sort(names(abund)),sort(tree$tip.label)) == FALSE) stop("OTU names in the vector and tree do not match")  

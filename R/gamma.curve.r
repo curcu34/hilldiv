@@ -53,7 +53,6 @@ summary.table[,c(1:3)] <- apply(summary.table[,c(1:3)], 2, function(x) as.numeri
 curve.plot <- ggplot(summary.table, aes(x = step.vector, y = mean)) +
        geom_line() +
        geom_ribbon(aes(ymin = mean - stderr, ymax = mean + stderr), alpha = 0.2) +
-       scale_x_continuous(breaks = seq(1, max.steps,10)) +
        xlab("Sample size") + 
        ylab(if(missing(tree)){"Effective number of OTUs"}else{"Effective number of lineages"}) +
        theme_minimal()
@@ -137,7 +136,6 @@ curve.plot <- ggplot(summary.table, aes(x = step, y = mean, group=Group)) +
        geom_ribbon(aes(ymin = mean - stderr, ymax = mean + stderr, fill=Group), alpha = 0.2) +
        xlab("Sample size") + 
        ylab(if(missing(tree)){"Effective number of OTUs"}else{"Effective number of lineages"}) +
-      #scale_x_continuous(breaks = seq(1, max.steps,10)) +
        scale_colour_manual(values = getPalette(length(groups))) + 
        scale_fill_manual(values = getPalette(length(groups))) + 
        theme_minimal()

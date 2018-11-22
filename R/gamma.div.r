@@ -15,7 +15,7 @@ if(missing(tree)){
     #Neutral
     pi <- as.data.frame(otutable[apply(otutable, 1, function(z) !all(z==0)),]) #remove OTUs without abundances (=all-zero rows) 
     pi.w <- sweep(pi,2,weight,"*") #apply weights 
-    div <- sum(rowSums(pi.w)^qvalue)^(1/(1-qvalue)) #apply alpha diversity formula
+    div <- sum(rowSums(pi.w)^qvalue)^(1/(1-qvalue)) #apply gamma diversity formula
     return(div) #print the result
 }else{
     #Non-neutral

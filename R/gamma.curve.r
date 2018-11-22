@@ -50,7 +50,7 @@ summary.table <- as.data.frame(cbind(step.vector,mean,stderr))
 summary.table[,c(1:3)] <- apply(summary.table[,c(1:3)], 2, function(x) as.numeric(as.character(x)))
 
 #Generate curve plot
-curve.plot <- ggplot(summary.table, aes(x = step.vector, y = mean)) +
+curve.plot <- ggplot(summary.table, aes(x = step.vector, y = mean), na.rm=TRUE) +
        geom_line() +
        geom_ribbon(aes(ymin = mean - stderr, ymax = mean + stderr), alpha = 0.2) +
        xlab("Sample size") + 
@@ -131,7 +131,7 @@ colnames(summary.table) <- c("Group","step","mean","stderr")
 
 #Generate curve plot
 getPalette = colorRampPalette(brewer.pal(length(groups), "Paired"))
-curve.plot <- ggplot(summary.table, aes(x = step, y = mean, group=Group)) +
+curve.plot <- ggplot(summary.table, aes(x = step, y = mean, group=Group), na.rm=TRUE) +
        geom_line(aes(colour=Group)) +
        geom_ribbon(aes(ymin = mean - stderr, ymax = mean + stderr, fill=Group), alpha = 0.2) +
        xlab("Sample size") + 

@@ -137,7 +137,7 @@ curve.plot <- ggplot(summary.table, aes(x = step, y = mean, group=Group)) +
        geom_ribbon(aes(ymin = mean - stderr, ymax = mean + stderr, fill=Group), alpha = 0.2) +
        xlab("Sample size") + 
        ylab(if(missing(tree)){"Effective number of OTUs"}else{"Effective number of lineages"}) +
-       scale_x_continuous(breaks = seq(1, max.steps,10)) +
+      #scale_x_continuous(breaks = seq(1, max.steps,10)) +
        scale_colour_manual(values = getPalette(length(groups))) + 
        scale_fill_manual(values = getPalette(length(groups))) + 
        theme_minimal()

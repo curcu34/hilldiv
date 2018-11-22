@@ -47,7 +47,7 @@ matrix <- rbind(matrix,vector)
 mean <- apply(matrix, 2, mean)
 stderr <- apply(matrix, 2, function(x) sd(x)/sqrt(length(x))) 
 summary.table <- as.data.frame(cbind(step.vector,mean,stderr))
-summary.table[,c(1:3)] <- = apply(summary.table[,c(1:3)], 2, function(x) as.numeric(as.character(x)))
+summary.table[,c(1:3)] <- apply(summary.table[,c(1:3)], 2, function(x) as.numeric(as.character(x)))
 
 #Generate curve plot
 curve.plot <- ggplot(summary.table, aes(x = step.vector, y = mean)) +
@@ -127,7 +127,7 @@ mean.melt <- melt(mean)
 stderr <- aggregate(matrix[,-1],by=list(matrix[,1]),function(x) sd(x)/sqrt(length(x)))
 stderr.melt <- melt(stderr)
 summary.table <- cbind(mean.melt,stderr.melt[,3])
-summary.table[,c(2:4)] <- = apply(summary.table[,c(2:4)], 2, function(x) as.numeric(as.character(x)))
+summary.table[,c(2:4)] <- apply(summary.table[,c(2:4)], 2, function(x) as.numeric(as.character(x)))
 colnames(summary.table) <- c("Group","step","mean","stderr")		    
 
 #Generate curve plot

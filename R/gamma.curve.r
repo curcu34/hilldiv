@@ -16,6 +16,9 @@ selected.steps <- max.steps * steps / 100
 interval <- max.steps/selected.steps
 step.vector <- seq(from = 1, to = max.steps, by = interval)
 if(step.vector[length(step.vector)] != max.steps){ step.vector <- c(step.vector,max.steps)} #Add last number if is not included	
+if(!missing(tree)){ 
+if(ape::is.ultrametric(tree) == FALSE) stop("Tree needs to be ultrametric")  
+}
 
 #Loop across steps and number of iterations	
 matrix <- c()

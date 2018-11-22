@@ -16,12 +16,14 @@ Depends:
     R (>= 3.1.0),
     ggplot2,
     RColorBrewer,
-    data.table
+    data.table,
+    ape
 Suggests:
 Imports:
     ggplot2,
     RColorBrewer,
-    data.table
+    data.table,
+    ape
 Encoding: UTF-8
 RoxygenNote: 6.1.0.9000
 Collate: 

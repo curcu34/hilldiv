@@ -35,7 +35,7 @@ disV <- hilldiv::beta.dis(beta=beta,qvalue=qvalue,N=N,metric="V",type="dissimila
 disS <- hilldiv::beta.dis(beta=beta,qvalue=qvalue,N=N,metric="S",type="dissimilarity")
 
 #Return values
-results <- list("Sample_size" = N, "L1_diversity" = L1_div, "L2_diversity" = L2_div, "Beta_diversity" = beta, "1_CqN" = disC, "1_UqN" = disU, "VqN" = disV, "1_SqN" = disS)
+results <- list("Sample_size" = N, "L1_diversity" = L1_div, "L2_diversity" = L2_div, "Beta_diversity" = beta, "1_CqN" = disC, "1_UqN" = disU, "1_VqN" = disV, "1_SqN" = disS)
 return(results)
 }
 

@@ -17,13 +17,15 @@ Depends:
     ggplot2,
     RColorBrewer,
     data.table,
-    ape
+    ape,
+    ade4
 Suggests:
 Imports:
     ggplot2,
     RColorBrewer,
     data.table,
-    ape
+    ape,
+    ade4
 Encoding: UTF-8
 RoxygenNote: 6.1.0.9000
 Collate: 
@@ -39,4 +41,5 @@ Collate:
     'gamma.curve.r'
     'pair.dis.r'
     'pair.dis.heatmap.r'
+    'phylo.to.phylog.r'
     'tss.r'

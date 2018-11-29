@@ -9,7 +9,6 @@ if(sum(colSums(otutable)) != ncol(otutable)) {otutable <- tss(otutable)}
 if(missing(qvalue)) stop("q value is missing")
 if(qvalue < 0) stop("q value needs to be possitive (equal or higher than zero)")
 if (qvalue==1) {qvalue=0.99999}
-if(missing(hierarchy)) warning("Assuming a two-level hierarchy: 1) sample, 2) total dataset")
 
 ###########
 #Function for 2-level hierarchy

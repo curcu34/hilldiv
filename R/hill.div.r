@@ -52,7 +52,7 @@ if(missing(tree)){
     #If input data is an OTU table
     if(is.null(dim(abund)) == FALSE){    
     if(identical(sort(rownames(abund)),sort(tree$tip.label)) == FALSE) stop("OTU names in the OTU table and tree do not match")  
-    if(sum(colSums(otutable)) != ncol(otutable)) {otutable <- tss(otutable)}
+    if(sum(colSums(abund)) != ncol(abund)) {abund <- tss(abund)}
     samples <- colnames(abund)
     sample.vector <- c()
     for (s in samples){

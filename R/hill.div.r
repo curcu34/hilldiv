@@ -19,6 +19,7 @@ if(missing(tree)){
     #If input data is an OTU table
     if(is.null(dim(abund)) == FALSE){
     if(sum(colSums(abund)) != ncol(abund)) {abund <- tss(abund)}
+    if(is.null(colnames(abund)) == TRUE){colnames(abund) <- seq(1:ncol(abund))}
     samples <- colnames(abund)
     sample.vector <- c()
     for (s in samples){

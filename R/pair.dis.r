@@ -10,7 +10,6 @@ if(missing(qvalue)) stop("q value is missing")
 if(qvalue < 0) stop("q value needs to be possitive (equal or higher than zero)")
 if (qvalue==1) {qvalue=0.99999}
 if(missing(measure)) { measure= c("C","U","V","S")}
-if(missing(hierarchy)) warning("Assuming no hierarchy")
 
 #Create matrices
 L1 <- sort(colnames(otutable))
@@ -91,7 +90,7 @@ results[["L1_SqN"]] <- L1_SqN}
 }
 
 #If hierarchy specified, also do:
-if(ncol(hierarchy) == 2){
+if(!missing(hierarchy) == TRUE){
 
 #Check hierarchy file
 hierarchy[,1] <- as.character(hierarchy[,1])

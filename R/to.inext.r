@@ -21,8 +21,7 @@ groups <- sort(unique(hierarchy$Group))
 results <- list()
 for (g in groups){
 	samples <- as.character(hierarchy[which(hierarchy$Group == g),1])
-	otutable.subset <- otutable[,samples]
-	otutable.subset <- as.data.frame(otutable.subset[apply(otutable.subset, 1, function(z) !all(z==0)),])
+	otutable.subset <- as.data.frame(otutable[,samples])
 	if(type == "incidence_raw"){
 	otutable.subset[otutable.subset != 0] <- 1}
 	list.subset <- otutable.subset						       

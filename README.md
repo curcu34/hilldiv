@@ -8,6 +8,7 @@ To install **hilldiv** in your R environment, you need to 1) install devtools, 2
 4) library(hilldiv)
 
 # Functions
+## Diversity measurement and visualisation
 ### hill.div()
 True (phylo)diversity computation of individual samples from vectors (one sample) or OTU tables (multiple samples). Using the tree argument yields phylodiversity values. Note that if using a tree the tip labels and the 'names' (vectors) or 'rownames' (matrices) need to be identical. Note that if the number of OTUs and samples is high, computing phylodiversities might require considerable time. 
 
@@ -41,6 +42,7 @@ div.profile(otu.table[,c(1:5)])
 <img align=left src="https://github.com/anttonalberdi/DiverHill/blob/master/figures/div.profile.one.png" width="350" title="One sample">
 <img src="https://github.com/anttonalberdi/DiverHill/blob/master/figures/div.profile.multiple.png" width="350" title="Multiple samples">
 
+## Diversity comparison
 ### div.comp.test()
 Diversity comparison between two or multiple groups of samples. If the tree argument is used the test compares phylodiversity values. Note that if the number of OTUs and samples is high, computing phylodiversities might require considerable time. 
 
@@ -72,10 +74,11 @@ div.comp.plot(otu.table,1,hierarchy.table)
 div.comp.plot(otu.table,1,hierarchy.table,chart="boxplot")
 div.comp.plot(otu.table,2,hierarchy.table,tree,chart="jitter") 
 ````
-
+## Diversity estimation from incomplete data sets
 ### hill.intext()
 Interpolation and extrapolation of OTU table diversities based on Hill numbers. Wrapper of iNEXT and iNextPD. 
 
+## Diversity partitioning
 ### alpha.div()
 Alpha (phylo)diversity of a dataset (OTU table) with multiple samples.
 
@@ -91,6 +94,7 @@ div.part(otu.table,0,hierarchy.table)
 div.part(otu.table,qvalue=0,hierarchy=hierarchy.table)
 ````
 
+## Dissimilarity measurement and visualisation
 ###  pair.dis()
 Pairwise dissimilarity measurement yielding true beta diversity, homogeneity, overlap and turnover values.
 ````R

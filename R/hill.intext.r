@@ -1,5 +1,7 @@
 hill.intext <- function(otutable,qvalue,hierarchy,tree){
 
+#qvalue can only be 0, 1 or 2
+
 #Generate lists
 if(!missing(hierarchy)){
 lists <- to.inext(otutable,hierarchy)
@@ -10,14 +12,17 @@ maxsize <- ncol(otutable)
 }
 
 
+seq(1,maxsize,round(maxsize/20))
+
 #Run iNEXT/iNextPD
 if(!missing(tree)){
-sp.inext <- iNEXT(lists, q=qvalue, datatype="incidence_freq",size=maxsize*3)
+sp.inext <- iNEXT(lists, q=qvalue, datatype="incidence_freq",size=seq(1,maxsize*3,round(maxsize*3/20)))
 }else{
 if(class(tree) != "phylog"){tree.phylog <- phylo.to.phylog(tree)}
 sp.inext <- iNextPD(lists, q=qvalue, datatype="incidence_freq",phy=tree.phylog)
 }
 
+#Extract data from iNEXT object
 table <- c()
 for(subsystem in c(1:length(lists))){
 row <- cbind(rep(names(sp.inext$iNextEst[subsystem]),nrow((sp.inext$iNextEst[[subsystem]]))),sp.inext$iNextEst[[subsystem]][,1],sp.inext$iNextEst[[subsystem]][,4])

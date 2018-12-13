@@ -75,9 +75,11 @@ if(is.null(dim(abund)) == FALSE){
                         if(missing(tree)){ 
                             if(level == "gamma"){div.value <- hilldiv::gamma.div(abund.subset,o)}
                             if(level == "alpha"){div.value <- hilldiv::alpha.div(abund.subset,o)}
+                            if(level == "incidence"){div.value <- hilldiv::hill.div(rowSums(abund.subset != 0)/sum(rowSums(abund.subset != 0)),o)}
                         }else{
                             if(level == "gamma"){div.value <- hilldiv::gamma.div(abund.subset,o,tree.subset)}
                             if(level == "alpha"){div.value <- hilldiv::alpha.div(abund.subset,o,tree.subset)}
+                            if(level == "incidence"){div.value <- hilldiv::hill.div(rowSums(abund.subset != 0)/sum(rowSums(abund.subset != 0)),o,tree.subset)}
                         }
                  profile <- rbind(profile,cbind(g,div.value))
                  }    

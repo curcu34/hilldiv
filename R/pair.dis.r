@@ -11,6 +11,65 @@ if(qvalue < 0) stop("q value needs to be possitive (equal or higher than zero)")
 if (qvalue==1) {qvalue=0.99999}
 if(missing(measure)) { measure= c("C","U","V","S")}
 
+#Declare fast alpha and gamma phylodiversities (without ltips, as it is the same for all combinations)
+
+alpha.div.fast <- function(otutable,qvalue,tree,weight){
+if(missing(otutable)) stop("OTU table is missing")
+if(is.null(dim(otutable)) == TRUE) stop("The OTU table is not a matrix")
+if(dim(otutable)[1] < 2) stop("The OTU table only less than 2 OTUs")
+if(dim(otutable)[2] < 2) stop("The OTU table contains less than 2 samples")
+if(missing(qvalue)) stop("q value is missing")
+if(qvalue < 0) stop("q value needs to be possitive (equal or higher than zero)")
+if(missing(weight)) { weight= rep(1/ncol(otutable),ncol(otutable))}
+if(missing(weight)) warning("Assuming equal weights")
+
+if(identical(sort(rownames(otutable)),sort(tree$tip.label)) == FALSE) stop("OTU names in the OTU table and tree do not match")
+if(ape::is.ultrametric(tree) == FALSE) stop("Tree needs to be ultrametric")  
+if (qvalue==1) {qvalue=0.99999}
+otutable <- as.data.frame(otutable)
+wj <- weight
+N <- ncol(otutable)
+Li <- tree$edge.length
+aij <- matrix(unlist(lapply(ltips, function(TipVector) colSums(otutable[TipVector,]))), ncol = N, byrow = TRUE)
+aij.wj <- sweep(aij, 2, wj, "*")
+T <- sum(sweep(aij.wj, 1, Li, "*"))
+L <- matrix(rep(Li, N), ncol = N)
+wm <-  matrix(rep(wj, length(Li)), ncol = N,byrow=TRUE)
+i <-  which(aij > 0)
+phylodiv <- sum(L[i] * (aij[i]*wm[i]/T)^qvalue)^(1/(1 - qvalue))/(N*T)
+return(phylodiv)
+}
+
+gamma.div.fast <- function(otutable,qvalue,tree,weight){
+if(missing(otutable)) stop("OTU table is missing")
+if(is.null(dim(otutable)) == TRUE) stop("The OTU table is not a matrix")
+if(dim(otutable)[1] < 2) stop("The OTU table only less than 2 OTUs")
+if(dim(otutable)[2] < 2) stop("The OTU table contains less than 2 samples")
+if(sum(colSums(otutable)) != ncol(otutable)) {otutable <- tss(otutable)}
+if(missing(qvalue)) stop("q value is missing")
+if(qvalue < 0) stop("q value needs to be possitive (equal or higher than zero)")
+if (qvalue==1) {qvalue=0.99999} # change q to the limit of the unity (0.99999) if q=1
+if(missing(weight)) { weight= rep(1/ncol(otutable),ncol(otutable))}
+if(missing(weight)) warning("Assuming equal weights")
+
+if(ape::is.ultrametric(tree) == FALSE) stop("Tree needs to be ultrametric")  
+if(identical(sort(rownames(otutable)),sort(tree$tip.label)) == FALSE) stop("OTU names in the OTU table and tree do not match")
+otutable <- as.data.frame(otutable)
+wj <- weight
+N <- ncol(otutable)
+Li <- tree$edge.length
+aij <- matrix(unlist(lapply(ltips, function(TipVector) colSums(otutable[TipVector,]))), ncol = N, byrow = TRUE)
+aij.wj <- sweep(aij, 2, wj, "*")
+ai <- rowSums(aij.wj)
+T <- sum(sweep(aij.wj, 1, Li, "*"))
+L <- matrix(rep(Li, N), ncol = N)
+Li <- Li[ai != 0] #Remove zeros
+ai <- ai[ai != 0] #Remove zeros
+wm <-  matrix(rep(wj, length(Li)), ncol = N, byrow=TRUE)
+phylodiv <- (sum(Li * (ai/T)^qvalue)^(1/(1 - qvalue)))/T
+return(phylodiv)
+}
+
 #Create matrices
 L1 <- sort(colnames(otutable))
   
@@ -42,6 +101,11 @@ colnames(L1_SqN) <- L1
 rownames(L1_SqN) <- L1
 }
 
+#Generate ltips
+if(!missing(tree)){
+ltips <- sapply(tree$edge[, 2], function(node) geiger::tips(tree, node))
+}
+
 #Fill matrices  
   
 for (x in L1){
@@ -56,8 +120,8 @@ if(identical(combination[,1],combination[,2]) == TRUE){
     alpha <- hilldiv::alpha.div(combination,qvalue)
     gamma <- hilldiv::gamma.div(combination,qvalue)
     }else{
-    alpha <- hilldiv::alpha.div(combination,qvalue,tree)
-    gamma <- hilldiv::gamma.div(combination,qvalue,tree)
+    alpha <- alpha.div.fast(combination,qvalue,tree)
+    gamma <- gamma.div.fast(combination,qvalue,tree)
     }
     beta <- gamma/alpha
 }
@@ -152,8 +216,8 @@ if(identical(combination[,1],combination[,2]) == TRUE){
     alpha <- hilldiv::alpha.div(combination,qvalue)
     gamma <- hilldiv::gamma.div(combination,qvalue)
     }else{
-    alpha <- hilldiv::alpha.div(combination,qvalue,tree)
-    gamma <- hilldiv::gamma.div(combination,qvalue,tree)
+    alpha <- alpha.div.fast(combination,qvalue,tree)
+    gamma <- alpha.div.fast(combination,qvalue,tree)
     }
     beta <- gamma/alpha
 }

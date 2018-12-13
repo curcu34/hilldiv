@@ -6,7 +6,7 @@ if(missing(type)){type="incidence_raw"}
 if(missing(hierarchy)){
 if(type == "incidence_raw"){
 result <- otutable
-result[result != 0] <- 1
+result[result != 0] <- 1}
 if(type == "incidence_freq"){
 result <- c(ncol(otutable),rev(sort(rowSums(otutable != 0))))}
 result <- result[result > 0]

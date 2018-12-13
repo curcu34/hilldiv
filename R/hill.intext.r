@@ -19,7 +19,7 @@ if(!missing(tree)){
 sp.inext <- iNEXT(lists, q=qvalue, datatype="incidence_freq",size=seq(1,maxsize*3,round(maxsize*3/20)))
 }else{
 if(class(tree) != "phylog"){tree.phylog <- phylo.to.phylog(tree)}
-sp.inext <- iNextPD(lists, q=qvalue, datatype="incidence_freq",phy=tree.phylog)
+sp.inext <- iNextPD(lists, q=qvalue, datatype="incidence_freq",phy=tree.phylog,size=seq(1,maxsize*3,round(maxsize*3/20)))
 }
 
 #Extract data from iNEXT object

@@ -73,6 +73,9 @@ div.comp.plot(otu.table,1,hierarchy.table,chart="boxplot")
 div.comp.plot(otu.table,2,hierarchy.table,tree,chart="jitter") 
 ````
 
+### hill.intext()
+Interpolation and extrapolation of OTU table diversities based on Hill numbers. Wrapper of iNEXT and iNextPD. 
+
 ### alpha.div()
 Alpha (phylo)diversity of a dataset (OTU table) with multiple samples.
 

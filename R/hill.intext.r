@@ -1,6 +1,7 @@
 hill.intext <- function(otutable,qvalue,hierarchy,tree){
 
 #qvalue can only be 0, 1 or 2
+#Need to specify observed value
 
 #Generate lists
 if(!missing(hierarchy)){
@@ -10,9 +11,6 @@ maxsize <- max(table(hierarchy[,2]))
 lists <- to.inext(otutable)
 maxsize <- ncol(otutable)
 }
-
-
-seq(1,maxsize,round(maxsize/20))
 
 #Run iNEXT/iNextPD
 if(!missing(tree)){

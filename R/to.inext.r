@@ -5,8 +5,8 @@ if(missing(type)){type="incidence_raw"}
 #Without hierarchy (single list)
 if(missing(hierarchy)){
 if(type == "incidence_raw"){
-otutable[which(otutable != 0)] <- 1
-result <- otutable}
+result <- otutable
+result[result != 0] <- 1
 if(type == "incidence_freq"){
 result <- c(ncol(otutable),rev(sort(rowSums(otutable != 0))))}
 result <- result[result > 0]
@@ -24,7 +24,8 @@ for (g in groups){
 	otutable.subset <- otutable[,samples]
 	otutable.subset <- as.data.frame(otutable.subset[apply(otutable.subset, 1, function(z) !all(z==0)),])
 	if(type == "incidence_raw"){
-	otutable.subset[which(otutable.subset != 0)] <- 1}
+	otutable.subset[otutable.subset != 0] <- 1}
+	list.subset <- otutable.subset						       
 	if(type == "incidence_freq"){
 	list.subset <- c(ncol(otutable.subset),rev(sort(rowSums(otutable.subset != 0))))}
 	results[[g]] <- list.subset

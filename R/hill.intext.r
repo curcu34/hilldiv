@@ -3,7 +3,7 @@ hill.intext <- function(otutable,qvalue,hierarchy,tree,output,size){
 if((qvalue != 0) & (qvalue != 1) & (qvalue != 2))  stop("The order of diversity (q) must to be 0, 1 or 2.")
 if(!missing(output)){output="diversity")
 #output: diversity, completeness, report
-if(!missing(size)){size=seq(1,maxsize*3,round(maxsize*3/40)))
+if(!missing(size)){size=seq(1,maxsize*3,round(maxsize*3/20)))
 
  
 #Generate lists
@@ -14,8 +14,11 @@ maxsize <- max(table(hierarchy[,2]))
 lists <- to.inext(otutable)
 maxsize <- ncol(otutable)
 }
-
-#NEUTRAL DIVERSITY
+                   
+#############################
+# NEUTRAL DIVERSITY (iNEXT) #
+#############################
+                   
 if(!missing(tree)){
   
 #Run iNEXT
@@ -75,7 +78,10 @@ print(plot)
 }
   
 }else{
-#PHYLOGENETIC DIVERSITY
+ 
+####################################
+# PHYLOGENETIC DIVERSITY (iNextPD) #
+####################################
   
 if(class(tree) != "phylog"){tree.phylog <- phylo.to.phylog(tree)}
 #Run iNextPD
@@ -84,13 +90,14 @@ sp.inextpd <- iNextPD(lists, q=qvalue, datatype="incidence_raw",phy=tree.phylog,
 #Extract data from iNextPD object
 table <- c()
 for(subsystem in c(1:length(lists))){
-row <- cbind(rep(names(sp.inextpd$iNextPDEst[subsystem]),nrow((sp.inextpd$iNextPDEst[[subsystem]]))),sp.inextpd$iNextPDEst[[subsystem]][,1],sp.inextpd$iNextPDEst[[subsystem]][,2],sp.inextpd$iNextPDEst[[subsystem]][,4])
+row <- cbind(rep(names(sp.inextpd$iNextPDEst[subsystem]),nrow((sp.inextpd$iNextPDEst[[subsystem]]))),sp.inextpd$iNextPDEst[[subsystem]][,1],sp.inextpd$iNextPDEst[[subsystem]][,2],sp.inextpd$iNextPDEst[[subsystem]][,4],sp.inextpd$iNextPDEst[[subsystem]][,5])
 table <- rbind(table,row)
 }
 melted.inextpd <- as.data.frame(table)
 melted.inextpd[,2] <- as.numeric(as.character(melted.inextpd[,2]))
 melted.inextpd[,4] <- as.numeric(as.character(melted.inextpd[,4]))
-colnames(melted.inextpd) <- c("Subsystem","Size","Method","Diversity")
+melted.inextpd[,5] <- as.numeric(as.character(melted.inextpd[,5]))
+colnames(melted.inextpd) <- c("Subsystem","Size","Method","Diversity","Completeness")
 
 #Plot diversity
 if (output="diversity"){

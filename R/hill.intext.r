@@ -162,7 +162,7 @@ if(missing(size)){size=seq(1,maxsize*2,round(maxsize*2/20))}
 if(missing(tree)){  
 
 #Run iNext
-sp.inext <- iNEXT(otutable, q=qvalue, datatype="abundance", size=size
+sp.inext <- iNEXT(otutable, q=qvalue, datatype="abundance", size=size)
                   
 #Return iNEXT object
 if(output == "report"){

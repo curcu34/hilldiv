@@ -55,7 +55,12 @@ colnames(melted.inext) <- c("Subsystem","Size","Method","Diversity","Div_min","D
 
 #Plot diversity
 if (output == "diversity"){
-getPalette = colorRampPalette(brewer.pal(length(lists), "Paired"))
+
+if(missing(colour)){
+getPalette <- colorRampPalette(brewer.pal(length(lists), "Paired"))
+colour <- getPalette(length(lists))
+}
+  
 plot <- ggplot() +
 geom_line(data = melted.inext[which(melted.inext$Method == "interpolated"),], aes(x = Size, y = Diversity, colour=Subsystem)) +
 geom_line(data = melted.inext[which(melted.inext$Method == "extrapolated"),], aes(x = Size, y = Diversity, colour=Subsystem), linetype=2) + 
@@ -63,8 +68,8 @@ geom_point(data = melted.inext[which(melted.inext$Method == "observed"),],aes(x 
 geom_ribbon(data = melted.inext,aes(x = Size, ymin = Div_min, ymax = Div_max, group=Subsystem, fill=Subsystem), alpha = 0.05) +
 xlab("Sample size") + 
 ylab("Diversity") +
-scale_colour_manual(if(!missing(colour)){values = colour}else{values = getPalette(length(lists))}) + 
-scale_fill_manual(if(!missing(colour)){values = colour}else{values = getPalette(length(lists))}) + 
+scale_colour_manual(values = colour) + 
+scale_fill_manual(values = colour) + 
 theme_minimal()
 print(plot)
 }

@@ -83,9 +83,9 @@ print(plot)
 # PHYLOGENETIC DIVERSITY (iNextPD) #
 ####################################
   
-if(class(tree) != "phylog"){tree.phylog <- phylo.to.phylog(tree)}
+if(class(tree) != "phylog"){tree <- phylo.to.phylog(tree)}
 #Run iNextPD
-sp.inextpd <- iNextPD(lists, q=qvalue, datatype="incidence_raw",phy=tree.phylog,labels=rownames(otutable),size=seq(1,maxsize*3,round(maxsize*3/20)))
+sp.inextpd <- iNextPD(lists, q=qvalue, datatype="incidence_raw",phy=tree,labels=rownames(otutable),size=seq(1,maxsize*3,round(maxsize*3/20)))
 
 if (output == "report"){
 return(sp.inextpd)

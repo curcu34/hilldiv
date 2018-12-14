@@ -25,8 +25,8 @@ if(!missing(tree)){
 sp.inext <- iNEXT(lists, q=qvalue, datatype="incidence_raw",size=size)
 
 #Return iNEXT object
-if (output="report"){
-return(report)
+if (output == "report"){
+return(sp.inext)
 }
   
 #Extract data from iNEXT object
@@ -46,7 +46,7 @@ melted.inext[,9] <- as.numeric(as.character(melted.inext[,9]))
 colnames(melted.inext) <- c("Subsystem","Size","Method","Diversity","Div_min","Div_max","Completeness","Com_min","Com_max")
 
 #Plot diversity
-if (output="diversity"){
+if (output == "diversity"){
 getPalette = colorRampPalette(brewer.pal(length(lists), "Paired"))
 plot <- ggplot() +
 geom_line(data = melted.inext[which(melted.inext$Method == "interpolated"),], aes(x = Size, y = Diversity, colour=Subsystem)) +
@@ -62,7 +62,7 @@ print(plot)
 }
  
 #Plot completeness
-if (output="completeness"){
+if (output == "completeness"){
 getPalette = colorRampPalette(brewer.pal(length(lists), "Paired"))
 plot <- ggplot() +
 geom_line(data = melted.inext[which(melted.inext$Method == "interpolated"),], aes(x = Size, y = Completeness, colour=Subsystem)) +
@@ -86,6 +86,10 @@ print(plot)
 if(class(tree) != "phylog"){tree.phylog <- phylo.to.phylog(tree)}
 #Run iNextPD
 sp.inextpd <- iNextPD(lists, q=qvalue, datatype="incidence_raw",phy=tree.phylog,size=seq(1,maxsize*3,round(maxsize*3/20)))
+
+if (output == "report"){
+return(sp.inextpd)
+} 
   
 #Extract data from iNextPD object
 table <- c()
@@ -100,7 +104,7 @@ melted.inextpd[,5] <- as.numeric(as.character(melted.inextpd[,5]))
 colnames(melted.inextpd) <- c("Subsystem","Size","Method","Diversity","Completeness")
 
 #Plot diversity
-if (output="diversity"){
+if (output == "diversity"){
 getPalette = colorRampPalette(brewer.pal(length(lists), "Paired"))
 plot <- ggplot() +
 geom_line(data = melted.inextpd[which(melted.inextpd$Method == "interpolated"),], aes(x = Size, y = Diversity, colour=Subsystem)) +
@@ -115,7 +119,7 @@ print(plot)
 }
  
 #Plot completeness
-if (output="completeness"){
+if (output == "completeness"){
 getPalette = colorRampPalette(brewer.pal(length(lists), "Paired"))
 plot <- ggplot() +
 geom_line(data = melted.inextpd[which(melted.inextpd$Method == "interpolated"),], aes(x = Size, y = Completeness, colour=Subsystem)) +

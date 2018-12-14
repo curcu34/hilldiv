@@ -18,14 +18,18 @@ Depends:
     RColorBrewer,
     data.table,
     ape,
-    ade4
+    ade4,
+    iNEXT,
+    iNextPD
 Suggests:
 Imports:
     ggplot2,
     RColorBrewer,
     data.table,
     ape,
-    ade4
+    ade4,
+    iNEXT,
+    iNextPD
 Encoding: UTF-8
 RoxygenNote: 6.1.0.9000
 Collate: 

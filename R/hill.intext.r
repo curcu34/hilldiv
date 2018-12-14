@@ -2,7 +2,7 @@ hill.intext <- function(otutable,qvalue,hierarchy,tree,type,output,colour,size){
 
 if((qvalue != 0) & (qvalue != 1) & (qvalue != 2))  stop("The order of diversity (q) must to be 0, 1 or 2.")
 if(missing(output)){output="diversity"}
-if(missing(type)){output="incidence"}
+if(missing(type)){type="incidence"}
   
 #############################  
 #############################

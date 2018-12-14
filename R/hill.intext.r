@@ -93,8 +93,9 @@ print(plot)
   
 if(class(tree) != "phylog"){tree <- phylo.to.phylog(tree)}
 #Run iNextPD
-sp.inextpd <- iNextPD(lists, q=qvalue, datatype="incidence_raw",phy=tree,labels=rownames(otutable),size=seq(1,maxsize*3,round(maxsize*3/20)))
+sp.inextpd <- iNextPD(lists, q=qvalue, datatype="incidence_raw",phy=tree,labels=rownames(otutable),size=size)
 
+#Return iNextPD object
 if (output == "report"){
 return(sp.inextpd)
 } 
@@ -154,8 +155,38 @@ if(type == "abundance"){
 maxsize=max(colSums(otutable))  
 if(missing(size)){size=seq(1,maxsize*2,round(maxsize*2/20))}
 
-sp.inext <- iNEXT(otutable, q=qvalue, datatype="abundance", size=size)
+#############################
+# NEUTRAL DIVERSITY (iNEXT) #
+#############################
+                   
+if(missing(tree)){  
 
+#Run iNext
+sp.inext <- iNEXT(otutable, q=qvalue, datatype="abundance", size=size
+                  
+#Return iNEXT object
+if (output == "report"){
+return(sp.inext)
+}
+  
+}else{
+####################################
+# PHYLOGENETIC DIVERSITY (iNextPD) #
+####################################
+
+if(class(tree) != "phylog"){tree <- phylo.to.phylog(tree)}
+  
+#Run iNextPD
+sp.inextpd <- iNextPD(lists, q=qvalue, datatype="abundance",phy=tree,labels=rownames(otutable),size=size)
+
+#Return iNextPD object
+if (output == "report"){
+return(sp.inextpd)
+} 
+  
+  
+}
+  
   
 }
 }

@@ -1,6 +1,6 @@
 \name{to.inext}
 \alias{to.inext}
-\title{Transform OTU table to iNext 'incidence_raw' format}
+\title{Transform OTU table to iNext/iNextPD formats}
 \usage{}
 \arguments{}
 \examples{

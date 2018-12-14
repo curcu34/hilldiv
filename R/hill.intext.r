@@ -63,8 +63,8 @@ geom_point(data = melted.inext[which(melted.inext$Method == "observed"),],aes(x 
 geom_ribbon(data = melted.inext,aes(x = Size, ymin = Div_min, ymax = Div_max, group=Subsystem, fill=Subsystem), alpha = 0.05) +
 xlab("Sample size") + 
 ylab("Diversity") +
-scale_colour_manual((if(!missing(colour)){values = colour}else{values = getPalette(length(lists))}) + 
-scale_fill_manual((if(!missing(colour)){values = colour}else{values = getPalette(length(lists))}) + 
+scale_colour_manual(if(!missing(colour)){values = colour}else{values = getPalette(length(lists))}) + 
+scale_fill_manual(if(!missing(colour)){values = colour}else{values = getPalette(length(lists))}) + 
 theme_minimal()
 print(plot)
 }
@@ -80,7 +80,7 @@ geom_ribbon(data = melted.inext,aes(x = Size, ymin = Com_min, ymax = Com_max, gr
 xlab("Sample size") + 
 ylab("Completeness") +
 scale_colour_manual(if(!missing(colour)){values = colour}else{values = getPalette(length(lists))}) + 
-scale_fill_manual((if(!missing(colour)){values = colour}else{values = getPalette(length(lists))}) + 
+scale_fill_manual(if(!missing(colour)){values = colour}else{values = getPalette(length(lists))}) + 
 theme_minimal()
 print(plot)
 }
@@ -121,8 +121,8 @@ geom_line(data = melted.inextpd[which(melted.inextpd$Method == "extrapolated"),]
 geom_point(data = melted.inextpd[which(melted.inextpd$Method == "observed"),],aes(x = Size, y = Diversity, colour=Subsystem)) +
 xlab("Sample size") + 
 ylab("Diversity") +
-scale_colour_manual((if(!missing(colour)){values = colour}else{values = getPalette(length(lists))}) + 
-scale_fill_manual((if(!missing(colour)){values = colour}else{values = getPalette(length(lists))}) + 
+scale_colour_manual(if(!missing(colour)){values = colour}else{values = getPalette(length(lists))}) + 
+scale_fill_manual(if(!missing(colour)){values = colour}else{values = getPalette(length(lists))}) + 
 theme_minimal()
 print(plot)
 }
@@ -136,8 +136,8 @@ geom_line(data = melted.inextpd[which(melted.inextpd$Method == "extrapolated"),]
 geom_point(data = melted.inextpd[which(melted.inextpd$Method == "observed"),],aes(x = Size, y = Completeness, colour=Subsystem)) +
 xlab("Sample size") + 
 ylab("Completeness") +
-scale_colour_manual((if(!missing(colour)){values = colour}else{values = getPalette(length(lists))}) + 
-scale_fill_manual((if(!missing(colour)){values = colour}else{values = getPalette(length(lists))}) + 
+scale_colour_manual(if(!missing(colour)){values = colour}else{values = getPalette(length(lists))}) + 
+scale_fill_manual(if(!missing(colour)){values = colour}else{values = getPalette(length(lists))}) + 
 theme_minimal()
 print(plot)
 }

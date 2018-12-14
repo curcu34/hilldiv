@@ -13,7 +13,7 @@ maxsize <- ncol(otutable)
 }
 
 #Calculate size
-if(!missing(size)){size=seq(1,maxsize*3,round(maxsize*3/20)))
+if(!missing(size)){size=seq(1,maxsize*3,round(maxsize*3/20))}
                    
 #############################
 # NEUTRAL DIVERSITY (iNEXT) #

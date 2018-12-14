@@ -1,8 +1,16 @@
-hill.intext <- function(otutable,qvalue,hierarchy,tree,output,size){
+hill.intext <- function(otutable,qvalue,hierarchy,tree,type,output,size){
 
 if((qvalue != 0) & (qvalue != 1) & (qvalue != 2))  stop("The order of diversity (q) must to be 0, 1 or 2.")
 if(missing(output)){output="diversity"}
-                     
+if(missing(type)){output="incidence"}
+  
+#############################  
+#############################
+       # INCIDENCE  #
+#############################
+#############################
+if(type == "incidence"){
+
 #Generate lists
 if(!missing(hierarchy)){
 lists <- to.inext(otutable,hierarchy)
@@ -133,7 +141,21 @@ theme_minimal()
 print(plot)
 }
   
+}
+}
+  
+#############################  
+#############################
+       # ABUNDANCE  #
+#############################
+#############################
+if(type == "abundance"){
+  
+maxsize=max(colSums(otutable))  
+if(missing(size)){size=seq(1,maxsize*2,round(maxsize*2/20))}
+
+sp.inext <- iNEXT(otutable, q=qvalue, datatype="abundance", size=size)
+
   
 }
-
 }

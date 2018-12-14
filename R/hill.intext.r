@@ -70,7 +70,7 @@ print(plot)
 }
  
 #Plot completeness
-if (output == "completeness"){
+if(output == "completeness"){
 getPalette = colorRampPalette(brewer.pal(length(lists), "Paired"))
 plot <- ggplot() +
 geom_line(data = melted.inext[which(melted.inext$Method == "interpolated"),], aes(x = Size, y = Completeness, colour=Subsystem)) +
@@ -96,7 +96,7 @@ if(class(tree) != "phylog"){tree <- phylo.to.phylog(tree)}
 sp.inextpd <- iNextPD(lists, q=qvalue, datatype="incidence_raw",phy=tree,labels=rownames(otutable),size=size)
 
 #Return iNextPD object
-if (output == "report"){
+if(output == "report"){
 return(sp.inextpd)
 } 
   
@@ -128,7 +128,7 @@ print(plot)
 }
  
 #Plot completeness
-if (output == "completeness"){
+if(output == "completeness"){
 getPalette = colorRampPalette(brewer.pal(length(lists), "Paired"))
 plot <- ggplot() +
 geom_line(data = melted.inextpd[which(melted.inextpd$Method == "interpolated"),], aes(x = Size, y = Completeness, colour=Subsystem)) +
@@ -165,7 +165,7 @@ if(missing(tree)){
 sp.inext <- iNEXT(otutable, q=qvalue, datatype="abundance", size=size
                   
 #Return iNEXT object
-if (output == "report"){
+if(output == "report"){
 return(sp.inext)
 }
   
@@ -180,7 +180,7 @@ if(class(tree) != "phylog"){tree <- phylo.to.phylog(tree)}
 sp.inextpd <- iNextPD(lists, q=qvalue, datatype="abundance",phy=tree,labels=rownames(otutable),size=size)
 
 #Return iNextPD object
-if (output == "report"){
+if(output == "report"){
 return(sp.inextpd)
 } 
   

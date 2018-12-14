@@ -22,7 +22,7 @@ if(!missing(size)){size=seq(1,maxsize*3,round(maxsize*3/20))}
 if(missing(tree)){
   
 #Run iNEXT
-sp.inext <- iNEXT(lists, q=qvalue, datatype="incidence_raw",size=size)
+sp.inext <- iNEXT(lists, q=qvalue, datatype="incidence_raw", size=size)
 
 #Return iNEXT object
 if (output == "report"){

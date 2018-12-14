@@ -2,10 +2,7 @@ hill.intext <- function(otutable,qvalue,hierarchy,tree,output,size){
 
 if((qvalue != 0) & (qvalue != 1) & (qvalue != 2))  stop("The order of diversity (q) must to be 0, 1 or 2.")
 if(!missing(output)){output="diversity")
-#output: diversity, completeness, report
-if(!missing(size)){size=seq(1,maxsize*3,round(maxsize*3/20)))
-
- 
+                     
 #Generate lists
 if(!missing(hierarchy)){
 lists <- to.inext(otutable,hierarchy)
@@ -14,6 +11,9 @@ maxsize <- max(table(hierarchy[,2]))
 lists <- to.inext(otutable)
 maxsize <- ncol(otutable)
 }
+
+#Calculate size
+if(!missing(size)){size=seq(1,maxsize*3,round(maxsize*3/20)))
                    
 #############################
 # NEUTRAL DIVERSITY (iNEXT) #

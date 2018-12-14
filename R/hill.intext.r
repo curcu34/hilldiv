@@ -16,7 +16,7 @@ maxsize <- ncol(otutable)
 if(!missing(tree)){
   
 #Run iNEXT
-sp.inext <- iNEXT(lists, q=qvalue, datatype="incidence_freq",size=seq(1,maxsize*3,round(maxsize*3/20)))
+sp.inext <- iNEXT(lists, q=qvalue, datatype="incidence_raw",size=seq(1,maxsize*3,round(maxsize*3/20)))
 
 #Extract data from iNEXT object
 table <- c()
@@ -50,7 +50,7 @@ print(plot)
   
 if(class(tree) != "phylog"){tree.phylog <- phylo.to.phylog(tree)}
 #Run iNextPD
-sp.inextpd <- iNextPD(lists, q=qvalue, datatype="incidence_freq",phy=tree.phylog,size=seq(1,maxsize*3,round(maxsize*3/20)))
+sp.inextpd <- iNextPD(lists, q=qvalue, datatype="incidence_raw",phy=tree.phylog,size=seq(1,maxsize*3,round(maxsize*3/20)))
   
 #Extract data from iNextPD object
 table <- c()

@@ -1,8 +1,8 @@
-hill.intext <- function(otutable,qvalue,hierarchy,tree){
+hill.intext <- function(otutable,qvalue,hierarchy,tree,output){
 
-#qvalue can only be 0, 1 or 2
-#Also add completeness plot
-
+if((qvalue =! 0) | (qvalue =! 1) | qvalue =! 2))  stop("The order of diversity (q) must to be 0, 1 or 2.")
+if(!missing(output)){output="diversity")
+ 
 #Generate lists
 if(!missing(hierarchy)){
 lists <- to.inext(otutable,hierarchy)
@@ -18,6 +18,10 @@ if(!missing(tree)){
 #Run iNEXT
 sp.inext <- iNEXT(lists, q=qvalue, datatype="incidence_raw",size=seq(1,maxsize*3,round(maxsize*3/20)))
 
+if (output="report"){
+return(report)
+}
+  
 #Extract data from iNEXT object
 table <- c()
 for(subsystem in c(1:length(lists))){
@@ -31,7 +35,8 @@ melted.inext[,5] <- as.numeric(as.character(melted.inext[,5]))
 melted.inext[,6] <- as.numeric(as.character(melted.inext[,6]))
 colnames(melted.inext) <- c("Subsystem","Size","Method","Diversity","Min","Max")
 
-#Plot
+#Plot diversity
+if (output="diversity"){
 getPalette = colorRampPalette(brewer.pal(length(lists), "Paired"))
 plot <- ggplot() +
 geom_line(data = melted.inext[which(melted.inext$Method == "interpolated"),], aes(x = Size, y = Diversity, colour=Subsystem)) +
@@ -44,6 +49,7 @@ scale_colour_manual(values = getPalette(length(lists))) +
 scale_fill_manual(values = getPalette(length(lists))) + 
 theme_minimal()
 print(plot)
+}
   
 }else{
 #PHYLOGENETIC DIVERSITY
@@ -63,7 +69,8 @@ melted.inextpd[,2] <- as.numeric(as.character(melted.inextpd[,2]))
 melted.inextpd[,4] <- as.numeric(as.character(melted.inextpd[,4]))
 colnames(melted.inextpd) <- c("Subsystem","Size","Method","Diversity")
 
-#Plot
+#Plot diversity
+if (output="diversity"){
 getPalette = colorRampPalette(brewer.pal(length(lists), "Paired"))
 plot <- ggplot() +
 geom_line(data = melted.inextpd[which(melted.inextpd$Method == "interpolated"),], aes(x = Size, y = Diversity, colour=Subsystem)) +
@@ -75,6 +82,8 @@ scale_colour_manual(values = getPalette(length(lists))) +
 scale_fill_manual(values = getPalette(length(lists))) + 
 theme_minimal()
 print(plot)
+}
+  
   
 }
 

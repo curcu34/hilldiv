@@ -43,5 +43,5 @@ Collate:
     'pair.dis.r'
     'pair.dis.heatmap.r'
     'phylo.to.phylog.r'
-    'to.inext'
+    'to.inext.r'
     'tss.r'

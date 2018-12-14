@@ -10,6 +10,13 @@ result[result != 0] <- 1}
 if(type == "incidence_freq"){
 result <- c(ncol(otutable),rev(sort(rowSums(otutable != 0))))
 result <- result[result > 0]}
+if(type == "abundance"){
+results <- list()
+for (s in c(1:ncol(otutable))){
+	sample <- rev(sort(otutable[,s]))
+	sample <- sample[sample >0]
+	results[[colnames(otutable)[s]]] <- sample
+}	
 return(result)
 }
 

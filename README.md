@@ -8,6 +8,7 @@ library(devtools)
 install_github("anttonalberdi/hilldiv")
 library(hilldiv)
 ````
+If not installed, it will automatically install the following dependencies: ggplot2, RColorBrewer, data.table, ape, ade4, iNEXT, iNextPD.
 
 # Functions
 ## Diversity measurement and visualisation

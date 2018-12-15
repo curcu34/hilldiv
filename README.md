@@ -11,6 +11,13 @@ library(hilldiv)
 If not installed, it will automatically install the following dependencies: ggplot2, RColorBrewer, data.table, ape, ade4, iNEXT, iNextPD.
 
 # Applications and functions
+## Data
+All the different applications and functions are reproduced with the data included in this package. 
+````R
+data(otu.table)
+data(hierarchy.table)
+data(phylo.tree)
+````
 ## Diversity measurement and visualisation
 ### hill.div()
 Neutral or phylogenetic Hill number computation of individual samples from a vector (one sample) or an OTU table (multiple samples). Including the tree argument yields phylodiversity values. Note that if using a tree the tip labels and the 'names' (vectors) or 'rownames' (matrices) need to be identical. Note that if the number of OTUs and samples is high, computing phylodiversities might require considerable time. If the vector or the OTU table columns do not sum to 1, the data is TSS-normalised.

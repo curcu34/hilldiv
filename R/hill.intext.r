@@ -63,7 +63,7 @@ colour <- getPalette(length(lists))
   
 plot <- ggplot() +
 geom_line(data = melted.inext[which(melted.inext$Method %in% c("interpolated","observed")),], aes(x = Size, y = Diversity, colour=Subsystem)) +
-geom_line(data = melted.inext[which(melted.inext$Method == "extrapolated"),], aes(x = Size, y = Diversity, colour=Subsystem), linetype=2) + 
+geom_line(data = melted.inext[which(melted.inext$Method  %in% c("extrapolated","observed")),], aes(x = Size, y = Diversity, colour=Subsystem), linetype=2) + 
 geom_point(data = melted.inext[which(melted.inext$Method == "observed"),],aes(x = Size, y = Diversity, colour=Subsystem)) +
 geom_ribbon(data = melted.inext,aes(x = Size, ymin = Div_min, ymax = Div_max, group=Subsystem, fill=Subsystem), alpha = 0.05) +
 xlab("Sample size") + 
@@ -83,8 +83,8 @@ colour <- getPalette(length(lists))
 }
   
 plot <- ggplot() +
-geom_line(data = melted.inext[which(melted.inext$Method == "interpolated"),], aes(x = Size, y = Completeness, colour=Subsystem)) +
-geom_line(data = melted.inext[which(melted.inext$Method == "extrapolated"),], aes(x = Size, y = Completeness, colour=Subsystem), linetype=2) + 
+geom_line(data = melted.inext[which(melted.inext$Method %in% c("interpolated","observed")),], aes(x = Size, y = Diversity, colour=Subsystem)) +
+geom_line(data = melted.inext[which(melted.inext$Method  %in% c("extrapolated","observed")),], aes(x = Size, y = Diversity, colour=Subsystem), linetype=2) + 
 geom_point(data = melted.inext[which(melted.inext$Method == "observed"),],aes(x = Size, y = Completeness, colour=Subsystem)) +
 geom_ribbon(data = melted.inext,aes(x = Size, ymin = Com_min, ymax = Com_max, group=Subsystem, fill=Subsystem), alpha = 0.05) +
 xlab("Sample size") + 
@@ -131,8 +131,8 @@ colour <- getPalette(length(lists))
 }  
   
 plot <- ggplot() +
-geom_line(data = melted.inextpd[which(melted.inextpd$Method == "interpolated"),], aes(x = Size, y = Diversity, colour=Subsystem)) +
-geom_line(data = melted.inextpd[which(melted.inextpd$Method == "extrapolated"),], aes(x = Size, y = Diversity, colour=Subsystem), linetype=2) + 
+geom_line(data = melted.inext[which(melted.inext$Method %in% c("interpolated","observed")),], aes(x = Size, y = Diversity, colour=Subsystem)) +
+geom_line(data = melted.inext[which(melted.inext$Method  %in% c("extrapolated","observed")),], aes(x = Size, y = Diversity, colour=Subsystem), linetype=2) + 
 geom_point(data = melted.inextpd[which(melted.inextpd$Method == "observed"),],aes(x = Size, y = Diversity, colour=Subsystem)) +
 xlab("Sample size") + 
 ylab("Diversity") +
@@ -151,8 +151,8 @@ colour <- getPalette(length(lists))
 } 
   
 plot <- ggplot() +
-geom_line(data = melted.inextpd[which(melted.inextpd$Method == "interpolated"),], aes(x = Size, y = Completeness, colour=Subsystem)) +
-geom_line(data = melted.inextpd[which(melted.inextpd$Method == "extrapolated"),], aes(x = Size, y = Completeness, colour=Subsystem), linetype=2) + 
+geom_line(data = melted.inext[which(melted.inext$Method %in% c("interpolated","observed")),], aes(x = Size, y = Diversity, colour=Subsystem)) +
+geom_line(data = melted.inext[which(melted.inext$Method  %in% c("extrapolated","observed")),], aes(x = Size, y = Diversity, colour=Subsystem), linetype=2) + 
 geom_point(data = melted.inextpd[which(melted.inextpd$Method == "observed"),],aes(x = Size, y = Completeness, colour=Subsystem)) +
 xlab("Sample size") + 
 ylab("Completeness") +

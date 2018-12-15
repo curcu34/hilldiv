@@ -13,7 +13,7 @@ If not installed, it will automatically install the following dependencies: ggpl
 # Applications and functions
 ## Diversity measurement and visualisation
 ### hill.div()
-True (phylo)diversity computation of individual samples from vectors (one sample) or OTU tables (multiple samples). Using the tree argument yields phylodiversity values. Note that if using a tree the tip labels and the 'names' (vectors) or 'rownames' (matrices) need to be identical. Note that if the number of OTUs and samples is high, computing phylodiversities might require considerable time. 
+Neutral or phylogenetic Hill number computation of individual samples from a vector (one sample) or an OTU table (multiple samples). Including the tree argument yields phylodiversity values. Note that if using a tree the tip labels and the 'names' (vectors) or 'rownames' (matrices) need to be identical. Note that if the number of OTUs and samples is high, computing phylodiversities might require considerable time. If the vector or the OTU table columns do not sum to 1, the data is TSS-normalised.
 
 |Argument|Feature|Type|Notes|
 | ------------- | ------------- | ------------- |------------- |

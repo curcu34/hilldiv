@@ -17,6 +17,8 @@ All the different applications and functions are reproduced with the data includ
 data(otu.table)
 data(hierarchy.table)
 data(phylo.tree)
+#Create single-sample vector
+otu.vector <- otu.table[,1]
 ````
 ## Diversity measurement and visualisation
 ### hill.div()

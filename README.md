@@ -32,11 +32,11 @@ Neutral or phylogenetic Hill number computation of individual samples from a vec
     
 ````R
 #EXAMPLES#
-hill.div(vector,0)
+hill.div(otu.vector,0)
 hill.div(otu.table,1)
-hill.div(otu.table,qvalue=1)
+hill.div(otu.table,qvalue=2)
 hill.div(otu.table,1,tree)
-hill.div(otu.table,qvalue=1,tree=tree)
+hill.div(otu.table,qvalue=2,tree=phylo.tree)
 hill.div(otu.table[,1],qvalue=1)
 9.145646
 hill.div(otu.table[,c(1:3)],qvalue=1)

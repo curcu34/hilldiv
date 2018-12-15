@@ -117,6 +117,16 @@ pair.dis(otu.table,1,measure="overlap")
 pair.dis(otu.table,1,measure=c("homogeneity","overlap"))
 pair.dis(otu.table,1,measure=c("homogeneity","overlap"),hierarchy.table[,c(1:2)])
 ````
+## Auxiliary functions
+###  tss()
+````R
+````
+###  to.inext()
+````R
+````
+###  phylo.to.phylog()
+````R
+````
 
 # Input data formats
 

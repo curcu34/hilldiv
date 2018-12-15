@@ -62,7 +62,7 @@ colour <- getPalette(length(lists))
 }
   
 plot <- ggplot() +
-geom_line(data = melted.inext[which(melted.inext$Method == "interpolated"),], aes(x = Size, y = Diversity, colour=Subsystem)) +
+geom_line(data = melted.inext[which((melted.inext$Method == "interpolated") || (melted.inext$Method == "observed")),], aes(x = Size, y = Diversity, colour=Subsystem)) +
 geom_line(data = melted.inext[which(melted.inext$Method == "extrapolated"),], aes(x = Size, y = Diversity, colour=Subsystem), linetype=2) + 
 geom_point(data = melted.inext[which(melted.inext$Method == "observed"),],aes(x = Size, y = Diversity, colour=Subsystem)) +
 geom_ribbon(data = melted.inext,aes(x = Size, ymin = Div_min, ymax = Div_max, group=Subsystem, fill=Subsystem), alpha = 0.05) +

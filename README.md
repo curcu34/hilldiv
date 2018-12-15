@@ -2,10 +2,12 @@
 # Installation
 To install **hilldiv** in your R environment, you need to 1) install devtools, 2) load devtools library, 3) install **hilldiv** using devtools and 4) finally load **hilldiv** library to your environment.
 
-1) install.packages("devtools")
-2) library(devtools)
-3) install_github("anttonalberdi/hilldiv")
-4) library(hilldiv)
+````R
+install.packages("devtools")
+library(devtools)
+install_github("anttonalberdi/hilldiv")
+library(hilldiv)
+````
 
 # Functions
 ## Diversity measurement and visualisation

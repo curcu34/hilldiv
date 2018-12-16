@@ -5,10 +5,19 @@ if(missing(beta)) stop("Beta diversity value or div.part output object is missin
 if(class(beta) == "numeric"){input="beta"}
 if(class(beta) == "list"){
 input="list"
-if(names(beta[1]) != "Order_diversity") stop("The input object is not valid")
-qvalue <- beta[[2]]
-N <- beta[[3]]
-beta <- beta[[6]]
+if(names(beta[2]) != "Order_diversity") stop("The input object is not valid")
+  if(beta[[1]] == 2){
+    qvalue <- beta[[2]]
+    N <- beta[[3]]
+    beta <- beta[[6]]
+  }
+  if(beta[[1]] == 3){
+    qvalue <- beta[[2]]
+    N1 <- beta[[3]]
+    N2 <- beta[[4]]
+    beta1 <- beta[[8]]
+    beta2 <- beta[[9]]
+  }
 }
   
 #Quality-check and warnings
@@ -18,6 +27,8 @@ if(missing(N)) stop("The number of samples or groups (N) is missing")
 if (missing(metric)) {metric="C"}
 if (missing(type)) {type="dissimilarity"}
 
+###### MULTIPLE HIERARCHIES NEED TO BE ADDED - 2018/12/16  
+  
 #Sørensen-type overlap (CqN, 1-CqN)
 if (metric == "C"){
 CqN <- ((1/beta)^(qvalue-1) - (1/N)^(qvalue-1)) / (1 - (1/N)^(qvalue-1))

@@ -35,6 +35,7 @@ N <- ncol(otutable)
 #disS <- hilldiv::beta.dis(beta=beta,qvalue=qvalue,N=N,metric="S",type="dissimilarity")
 
 #Return values
+if (qvalue==0.99999) {qvalue=1}
 results <- list("Order_diversity" = qvalue,"Sample_size" = N, "L1_diversity" = L1_div, "L2_diversity" = L2_div, "Beta_diversity" = beta)
 return(results)
 }

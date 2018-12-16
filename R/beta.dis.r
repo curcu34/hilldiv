@@ -6,9 +6,9 @@ if(class(beta) == "numeric"){input="beta"}
 if(class(beta) == "list"){
 input="list"
 if(names(beta[1]) != "Order_diversity") stop("The input object is not valid")
-qvalue <- beta[[1]]
-N <- beta[[2]]
-beta <- beta[[5]]
+qvalue <- beta[[2]]
+N <- beta[[3]]
+beta <- beta[[6]]
 }
   
 #Quality-check and warnings

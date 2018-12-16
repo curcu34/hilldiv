@@ -1,4 +1,5 @@
-**hilldiv** is an R package for the analysis of diversity based on Hill numbers.
+**hilldiv** is an R package for the analysis of diversity based on Hill numbers. Note that hilldiv is still in **beta** development phase.
+
 # Installation
 To install **hilldiv** in your R environment, you need to 1) install devtools, 2) load devtools library, 3) install **hilldiv** using devtools and 4) finally load **hilldiv** library to your environment.
 

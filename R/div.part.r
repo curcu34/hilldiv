@@ -29,13 +29,13 @@ beta <- L2_div/L1_div
 N <- ncol(otutable)
 
 #Dissimilarity measures
-disC <- hilldiv::beta.dis(beta=beta,qvalue=qvalue,N=N,metric="C",type="dissimilarity")
-disU <- hilldiv::beta.dis(beta=beta,qvalue=qvalue,N=N,metric="U",type="dissimilarity")
-disV <- hilldiv::beta.dis(beta=beta,qvalue=qvalue,N=N,metric="V",type="dissimilarity")
-disS <- hilldiv::beta.dis(beta=beta,qvalue=qvalue,N=N,metric="S",type="dissimilarity")
+#disC <- hilldiv::beta.dis(beta=beta,qvalue=qvalue,N=N,metric="C",type="dissimilarity")
+#disU <- hilldiv::beta.dis(beta=beta,qvalue=qvalue,N=N,metric="U",type="dissimilarity")
+#disV <- hilldiv::beta.dis(beta=beta,qvalue=qvalue,N=N,metric="V",type="dissimilarity")
+#disS <- hilldiv::beta.dis(beta=beta,qvalue=qvalue,N=N,metric="S",type="dissimilarity")
 
 #Return values
-results <- list("Sample_size" = N, "L1_diversity" = L1_div, "L2_diversity" = L2_div, "Beta_diversity" = beta, "1_CqN" = disC, "1_UqN" = disU, "1_VqN" = disV, "1_SqN" = disS)
+results <- list("Order_diversity" = qvalue,"Sample_size" = N, "L1_diversity" = L1_div, "L2_diversity" = L2_div, "Beta_diversity" = beta)
 return(results)
 }
 
@@ -84,20 +84,20 @@ beta_1 <- L2_div/L1_div
 N1 <- ncol(otutable)
   
 #L1-L2, Dissimilarities
-disC_1 <- hilldiv::beta.dis(beta=beta_1,qvalue=qvalue,N=N1,metric="C",type="dissimilarity")
-disU_1 <- hilldiv::beta.dis(beta=beta_1,qvalue=qvalue,N=N1,metric="U",type="dissimilarity")
-disV_1 <- hilldiv::beta.dis(beta=beta_1,qvalue=qvalue,N=N1,metric="V",type="dissimilarity")
-disS_1 <- hilldiv::beta.dis(beta=beta_1,qvalue=qvalue,N=N1,metric="S",type="dissimilarity")
+#disC_1 <- hilldiv::beta.dis(beta=beta_1,qvalue=qvalue,N=N1,metric="C",type="dissimilarity")
+#disU_1 <- hilldiv::beta.dis(beta=beta_1,qvalue=qvalue,N=N1,metric="U",type="dissimilarity")
+#disV_1 <- hilldiv::beta.dis(beta=beta_1,qvalue=qvalue,N=N1,metric="V",type="dissimilarity")
+#disS_1 <- hilldiv::beta.dis(beta=beta_1,qvalue=qvalue,N=N1,metric="S",type="dissimilarity")
 
 #L2-L3, beta and sample size
 beta_2 <- L3_div/L2_div
 N2 <- ncol(otutable.L2)
 
 #L2-L3, Dissimilarities
-disC_2 <- hilldiv::beta.dis(beta=beta_2,qvalue=qvalue,N=N2,metric="C",type="dissimilarity")
-disU_2 <- hilldiv::beta.dis(beta=beta_2,qvalue=qvalue,N=N2,metric="U",type="dissimilarity")
-disV_2 <- hilldiv::beta.dis(beta=beta_2,qvalue=qvalue,N=N2,metric="V",type="dissimilarity")
-disS_2 <- hilldiv::beta.dis(beta=beta_2,qvalue=qvalue,N=N2,metric="S",type="dissimilarity")
+#disC_2 <- hilldiv::beta.dis(beta=beta_2,qvalue=qvalue,N=N2,metric="C",type="dissimilarity")
+#disU_2 <- hilldiv::beta.dis(beta=beta_2,qvalue=qvalue,N=N2,metric="U",type="dissimilarity")
+#disV_2 <- hilldiv::beta.dis(beta=beta_2,qvalue=qvalue,N=N2,metric="V",type="dissimilarity")
+#disS_2 <- hilldiv::beta.dis(beta=beta_2,qvalue=qvalue,N=N2,metric="S",type="dissimilarity")
 
 #Return values
 results <- list("L1_size" = N1, "L2_size" = N2, "L1_diversity" = L1_div, "L2_diversity" = L2_div, "L3_diversity" = L3_div, "Beta_diversity_L1_2" = beta_1, "Beta_diversity_L2_3" = beta_2,  "1_CqN_L1_L2" = disC_1, "1_UqN_L1_L2" = disU_1,"VqN_L1_L2" = disV_1, "1_SqN_L1_L2" = disS_1, "1_CqN_L2_L3" = disC_2, "1_UqN_L2_L3" = disU_2,"VqN_L2_L3" = disV_2, "1_SqN_L2_L3" = disS_2)

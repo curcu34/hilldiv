@@ -19,9 +19,9 @@ data(bat.diet.otutable)
 data(bat.diet.hierarchy)
 data(bat.diet.tree)
 #Create simple objects
-otu.table <- bat.diet.otu.table
-otu.vector <- bat.diet.otu.table[,1]
-hierarchy <- bat.diet.hierarchy
+otu.table <- bat.diet.otutable
+otu.vector <- bat.diet.otutable[,1]
+hierarchy.table <- bat.diet.hierarchy
 tree <- bat.diet.tree
 ````
 ## Diversity measurement and visualisation
@@ -117,8 +117,8 @@ Pairwise dissimilarity measurement yielding true beta diversity, homogeneity, ov
 #EXAMPLES#
 pair.dis(otu.table,0)
 pair.dis(otu.table,qvalue=1)
-pair.dis(otu.table,1,measure="overlap")
-pair.dis(otu.table,1,measure=c("homogeneity","overlap"))
+pair.dis(otu.table,1,measure="C")
+pair.dis(otu.table,1,hierarchy=hierarchy.table,measure=c("C","S"))
 pair.dis(otu.table,1,measure=c("homogeneity","overlap"),hierarchy.table[,c(1:2)])
 ````
 ## Auxiliary functions

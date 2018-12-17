@@ -15,7 +15,7 @@ If not installed, it will automatically install the following dependencies: ggpl
 ## Data
 All the different applications and functions are reproduced with the data included in this package. 
 ````R
-data(bat.diet.otu.table)
+data(bat.diet.otutable)
 data(bat.diet.hierarchy)
 data(bat.diet.tree)
 #Create simple objects

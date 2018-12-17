@@ -15,11 +15,14 @@ If not installed, it will automatically install the following dependencies: ggpl
 ## Data
 All the different applications and functions are reproduced with the data included in this package. 
 ````R
-data(otu.table)
-data(hierarchy.table)
-data(phylo.tree)
-#Create single-sample vector
-otu.vector <- otu.table[,1]
+data(bat.diet.otu.table)
+data(bat.diet.hierarchy)
+data(bat.diet.tree)
+#Create simple objects
+otu.table <- bat.diet.otu.table
+otu.vector <- bat.diet.otu.table[,1]
+hierarchy <- bat.diet.hierarchy
+tree <- bat.diet.tree
 ````
 ## Diversity measurement and visualisation
 ### hill.div()

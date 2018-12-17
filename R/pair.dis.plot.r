@@ -20,4 +20,7 @@ ggplot() +
 	scale_shape_manual(values=16) +
 	theme(panel.background = element_rect(fill = 'white', colour = 'grey'))
 }
+if(type == "heatmap"){
+#Heatmap plot
+}
 }

@@ -19,6 +19,7 @@ Depends:
     data.table,
     ape,
     ade4,
+    vegan,
     iNEXT,
     iNextPD
 Suggests:
@@ -28,6 +29,7 @@ Imports:
     data.table,
     ape,
     ade4,
+    vegan,
     iNEXT,
     iNextPD
 Encoding: UTF-8

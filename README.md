@@ -124,12 +124,17 @@ pair.dis(otu.table,1,measure="C",tree=tree,hierarchy.table)
 ## Auxiliary functions
 ###  tss()
 ````R
+#EXAMPLES#
+tss(otu.table)
+tss(otu.vector)
 ````
 ###  to.inext()
 ````R
+to.inext(otu.table)
 ````
 ###  phylo.to.phylog()
 ````R
+phylo.to.phylog(tree)
 ````
 
 # Input data formats

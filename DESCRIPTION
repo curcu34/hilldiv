@@ -45,7 +45,7 @@ Collate:
     'hill.intext.r'
     'gamma.curve.r'
     'pair.dis.r'
-    'pair.dis.heatmap.r'
+    'pair.dis.plot.r'
     'phylo.to.phylog.r'
     'to.inext.r'
     'tss.r'

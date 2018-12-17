@@ -1,4 +1,4 @@
-div.comp.plot <- function(otutable,qvalue,hierarchy,tree,chart){ 
+div.test.plot <- function(otutable,qvalue,hierarchy,tree,chart){ 
 if(missing(otutable)) stop("OTU table is missing")
 if(is.null(dim(otutable)) == TRUE) stop("The OTU table is not a matrix")
 if(dim(otutable)[1] < 2) stop("The OTU table only less than 2 OTUs")

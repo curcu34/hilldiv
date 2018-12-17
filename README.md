@@ -119,7 +119,7 @@ pair.dis(otu.table,0)
 pair.dis(otu.table,qvalue=1)
 pair.dis(otu.table,1,measure="C")
 pair.dis(otu.table,1,hierarchy=hierarchy.table,measure=c("C","S"))
-pair.dis(otu.table,1,measure=c("homogeneity","overlap"),hierarchy.table[,c(1:2)])
+pair.dis(otu.table,1,measure="C",tree=tree,hierarchy.table)
 ````
 ## Auxiliary functions
 ###  tss()

@@ -37,8 +37,8 @@ RoxygenNote: 6.1.0.9000
 Collate: 
     'hill.div.r'
     'alpha.div.r'
+    'div.test.r'
     'div.comp.plot.r'
-    'div.comp.test.r'
     'div.part.r'
     'div.part.plot.r'
     'beta.dis.r'

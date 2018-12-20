@@ -33,19 +33,19 @@ if(type == "qgraph"){
 #qgraph plot
 normal <- 1-as.matrix(distance)
 forced <- (normal - min(normal,na.rm=TRUE))/(max(normal,na.rm=TRUE)-min(normal,na.rm=TRUE))
-if(magnify == FALSE){
+if(magnify != TRUE){
 	if(level == 1){
-	qgraph.plot <- qgraph(as.dist(normal), layout = "circular", posCol = "grey", vsize=6, groups=unique(sample.species[,2]), color = colours, borders=FALSE)
+	qgraph.plot <- qgraph(as.dist(normal), layout = "circular", posCol = "grey", vsize=6, groups=sample.species[,2], color = colours, borders=FALSE)
 	}
 	if(level == 2){
-	qgraph.plot <- qgraph(as.dist(normal), layout = "circular", posCol = "grey", vsize=6, groups=sample.species[,2], color = colours, borders=FALSE)
+	qgraph.plot <- qgraph(as.dist(normal), layout = "circular", posCol = "grey", vsize=6, groups=unique(sample.species[,2]), color = colours, borders=FALSE)
 	}
 }else{
 	if(level == 1){
-	qgraph.plot <- qgraph(as.dist(forced), layout = "circular", posCol = "grey", vsize=6, groups=unique(sample.species[,2]), color = colours, borders=FALSE)
+	qgraph.plot <- qgraph(as.dist(forced), layout = "circular", posCol = "grey", vsize=6, groups=sample.species[,2], color = colours, borders=FALSE)
 	}
 	if(level == 2){
-	qgraph.plot <- qgraph(as.dist(forced), layout = "circular", posCol = "grey", vsize=6, groups=sample.species[,2], color = colours, borders=FALSE)
+	qgraph.plot <- qgraph(as.dist(forced), layout = "circular", posCol = "grey", vsize=6, groups=unique(sample.species[,2]), color = colours, borders=FALSE)
 	}
 }
 print(qgraph.plot)

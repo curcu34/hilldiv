@@ -21,7 +21,8 @@ Depends:
     ade4,
     vegan,
     iNEXT,
-    iNextPD
+    iNextPD,
+    qgraph
 Suggests:
 Imports:
     ggplot2,
@@ -31,7 +32,8 @@ Imports:
     ade4,
     vegan,
     iNEXT,
-    iNextPD
+    iNextPD,
+    qgraph
 Encoding: UTF-8
 RoxygenNote: 6.1.0.9000
 Collate: 

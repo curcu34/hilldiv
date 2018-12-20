@@ -73,6 +73,11 @@ phylodiv <- (sum(Li * (ai/T)^qvalue)^(1/(1 - qvalue)))/T
 return(phylodiv)
 }
                             
+#Generate ltips
+if(!missing(tree)){
+ltips <- sapply(tree$edge[, 2], function(node) geiger::tips(tree, node))
+}
+                            
 #####  
 #  First herarchical level
 ##### 
@@ -108,11 +113,6 @@ if('S' %in% measure){
 L1_SqN <- matrix(rep(NA,length(L1)^2), nrow = length(L1), ncol = length(L1))
 colnames(L1_SqN) <- L1
 rownames(L1_SqN) <- L1
-}
-
-#Generate ltips
-if(!missing(tree)){
-ltips <- sapply(tree$edge[, 2], function(node) geiger::tips(tree, node))
 }
 
 #Fill matrices  

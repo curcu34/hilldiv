@@ -1,10 +1,16 @@
-pair.dis.plot <- function(distance,hierarchy,type,colour){
+pair.dis.plot <- function(distance,hierarchy,type,level,colour){
 
 if(missing(type)){type = "NMDS"}	
+if(missing(level)){level = "1"}	
 	
 values.NMDS<-metaMDS(as.dist(distance), k = 2, trymax = 400)
+if(level == 1){
 NMDS=data.frame(x=values.NMDS$point[,1],y=values.NMDS$point[,2],Sample=as.factor(hierarchy[,1]),Group=as.factor(hierarchy[,2]))
-
+}
+if(level == 2){	
+NMDS=data.frame(x=values.NMDS$point[,1],y=values.NMDS$point[,2],Group=as.factor(unique(hierarchy[,2])))
+}
+	
 #Declare colours
 	
 if(missing(colour) || (length(colour) != length(unique(hierarchy[,2])))){

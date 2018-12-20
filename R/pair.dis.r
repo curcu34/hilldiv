@@ -227,7 +227,7 @@ if(identical(combination[,1],combination[,2]) == TRUE){
     gamma <- hilldiv::gamma.div(combination,qvalue)
     }else{
     alpha <- alpha.div.fast(combination,qvalue,tree)
-    gamma <- alpha.div.fast(combination,qvalue,tree)
+    gamma <- gamma.div.fast(combination,qvalue,tree)
     }
     beta <- gamma/alpha
 }

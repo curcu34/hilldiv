@@ -11,9 +11,8 @@ if(qvalue < 0) stop("q value needs to be possitive (equal or higher than zero)")
 if (qvalue==1) {qvalue=0.99999}
 if(!missing(hierarchy)) {
 if(missing(level)) {level= c(1:ncol(hierarchy))}
-}else{
-level=1
 }
+if(missing(hierarchy)) {level=1} 
 if(missing(measure)) { measure= c("C","U","V","S")}
 
 #Declare fast alpha and gamma phylodiversities (without ltips, as it is the same for all combinations)

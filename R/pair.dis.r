@@ -236,7 +236,7 @@ L2_beta[y,x] <- beta
 if(exists("results")){
 results[["L2_Beta"]] <- L2_beta
 }else{
-results <- list("L2_Beta" = L2_Beta)
+results <- list("L2_Beta" = L2_beta)
 }  
 
 if('C' %in% measure){

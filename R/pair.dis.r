@@ -234,7 +234,7 @@ if(identical(combination[,1],combination[,2]) == TRUE){
 }
   
 L2_beta[y,x] <- beta
-if(exists("results"){
+if(exists("results")){
 results[["L2_Beta"]] <- L2_beta
 }else{
 results <- list("L2_Beta" = L2_Beta)

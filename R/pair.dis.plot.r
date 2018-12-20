@@ -20,11 +20,12 @@ colour <- getPalette(length(unique(hierarchy[,2])))
 
 if(type == "NMDS"){
 #NMDS plot
-ggplot() + 
+nmds.plot <- ggplot() + 
 	geom_point(data = NMDS, aes(x=x, y=y, colour=Group), size = 2, alpha = 0.5) +
 	scale_colour_manual(values = colour) +
 	scale_shape_manual(values=16) +
 	theme(panel.background = element_rect(fill = 'white', colour = 'grey'))
+print(nmds.plot)
 }
 if(type == "heatmap"){
 #Heatmap plot

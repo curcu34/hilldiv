@@ -1,4 +1,4 @@
-pair.dis <- function(otutable,qvalue,tree,hierarchy,measure){
+pair.dis <- function(otutable,qvalue,tree,hierarchy,level,measure){
 
 #Quality-check and warnings
 if(missing(otutable)) stop("OTU table is missing")
@@ -9,6 +9,11 @@ if(sum(colSums(otutable)) != ncol(otutable)) {otutable <- tss(otutable)}
 if(missing(qvalue)) stop("q value is missing")
 if(qvalue < 0) stop("q value needs to be possitive (equal or higher than zero)")
 if (qvalue==1) {qvalue=0.99999}
+if(!missing(hierarchy){
+if(missing(level)){level= c(1:ncol(hierarchy))}
+}else{
+level=1
+}
 if(missing(measure)) { measure= c("C","U","V","S")}
 
 #Declare fast alpha and gamma phylodiversities (without ltips, as it is the same for all combinations)
@@ -50,8 +55,7 @@ if(missing(qvalue)) stop("q value is missing")
 if(qvalue < 0) stop("q value needs to be possitive (equal or higher than zero)")
 if (qvalue==1) {qvalue=0.99999} # change q to the limit of the unity (0.99999) if q=1
 if(missing(weight)) { weight= rep(1/ncol(otutable),ncol(otutable))}
-if(missing(weight)) warning("Assuming equal weights")
-
+if(missing(weight)) warning("Assuming equal weights")  
 if(ape::is.ultrametric(tree) == FALSE) stop("Tree needs to be ultrametric")  
 if(identical(sort(rownames(otutable)),sort(tree$tip.label)) == FALSE) stop("OTU names in the OTU table and tree do not match")
 otutable <- as.data.frame(otutable)
@@ -69,7 +73,13 @@ wm <-  matrix(rep(wj, length(Li)), ncol = N, byrow=TRUE)
 phylodiv <- (sum(Li * (ai/T)^qvalue)^(1/(1 - qvalue)))/T
 return(phylodiv)
 }
-
+                            
+#####  
+#  First herarchical level
+##### 
+                            
+if("1" %in% level){  
+                            
 #Create matrices
 L1 <- sort(colnames(otutable))
   
@@ -152,9 +162,10 @@ results[["L1_SqN"]] <- L1_SqN}
 }
 }
 }
-
+}
+                
 #If hierarchy specified, also do:
-if(!missing(hierarchy) == TRUE){
+if("2" %in% level){
 
 #Check hierarchy file
 hierarchy[,1] <- as.character(hierarchy[,1])

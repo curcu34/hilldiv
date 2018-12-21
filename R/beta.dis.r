@@ -24,7 +24,7 @@ if(names(beta[3]) != "Order_diversity") stop("The input object is not valid")
 if(missing(qvalue)) stop("The order of diversity (q) is missing")
 if (qvalue==1) {qvalue=0.99999}
 if(missing(N)) stop("The number of samples or groups (N) is missing")
-if (missing(metric)) {metric="C"}
+if (missing(metric)) {metric="U"}
 if (missing(type)) {type="dissimilarity"}
 
 ###### MULTIPLE HIERARCHIES NEED TO BE ADDED - 2018/12/16  

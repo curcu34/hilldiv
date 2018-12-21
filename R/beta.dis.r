@@ -31,7 +31,7 @@ if (missing(type)) {type="dissimilarity"}
   
 #Sørensen-type overlap (CqN, 1-CqN)
 if (metric == "C"){
-CqN <- ((1/beta)^(qvalue-1) - (1/N)^(qvalue-1)) / (1 - (1/N)^(qvalue-1))
+CqN <- CqN(beta,qvalue,N)
   if (type == "dissimilarity"){
   rCqN <- 1 - CqN
   return(rCqN)
@@ -41,7 +41,7 @@ return(CqN)
 
 #Jaccard-type overlap (UqN, 1-UqN)
 if (metric == "U"){
-UqN <- ((1/beta)^(1-qvalue) - (1/N)^(1-qvalue)) / (1 - (1/N)^(1-qvalue))
+UqN <- UqN(beta,qvalue,N)
   if (type == "dissimilarity"){
   rUqN <- 1 - UqN
   return(rUqN)
@@ -51,7 +51,7 @@ return(UqN)
 
 #Sørensen-type turnover-complement (VqN, 1-VqN)
 if (metric == "V"){
-VqN <-  (N - beta)/(N-1)
+VqN <- VqN(beta,N)
   if (type == "dissimilarity"){ 
   rVqN <- 1 - VqN
   return(rVqN)
@@ -61,7 +61,7 @@ return(VqN)
   
 #Jaccard-type turnover-complement (SqN, 1-SqN)
 if (metric == "S"){
-SqN <- ((1/beta) - 1/N)/(1-1/N)
+SqN <- SqN(beta,N)
   if (type == "dissimilarity"){
   rSqN <- 1 - SqN
   return(rSqN)

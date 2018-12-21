@@ -55,12 +55,26 @@ if (metric == "C"){
 
 #Jaccard-type overlap (UqN, 1-UqN)
 if (metric == "U"){
-UqN <- UqN(beta,qvalue,N)
+  if(exists("N1")){
+  UqN1 <- UqN(beta1,qvalue,N1)
+  UqN2 <- UqN(beta2,qvalue,N2)
+  mUqN <- list(UqN1,UqN2)
+  if (type == "dissimilarity"){
+    rUqN1 <- 1 - UqN1
+    rUqN2 <- 1 - UqN2
+    mrUqN <- list(rUqN1,rUqN2)
+    return(mrUqN)
+  }
+  return(mUqN)  
+  }else{
+  UqN <- UqN(beta,qvalue,N)
   if (type == "dissimilarity"){
   rUqN <- 1 - UqN
   return(rUqN)
   }
-return(UqN)
+  return(UqN)
+}
+  
 }
 
 #Sørensen-type turnover-complement (VqN, 1-VqN)

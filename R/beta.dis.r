@@ -11,7 +11,7 @@ if(names(beta[3]) != "Order_diversity") stop("The input object is not valid")
     N <- beta[[4]]
     beta <- beta[[7]]
   }
-  if(beta[[1]] == 3){
+  if((beta[[1]] == 3) || (beta[[2]] == "incidence")){
     qvalue <- beta[[3]]
     N1 <- beta[[4]]
     N2 <- beta[[5]]

@@ -23,7 +23,7 @@ if(names(beta[3]) != "Order_diversity") stop("The input object is not valid")
 #Quality-check and warnings
 if(missing(qvalue)) stop("The order of diversity (q) is missing")
 if (qvalue==1) {qvalue=0.99999}
-if(missing(N)) stop("The number of samples or groups (N) is missing")
+if(missing(N) && missing(N1)) stop("The number of samples or groups (N) is missing")
 if (missing(metric)) {metric="U"}
 if (missing(type)) {type="dissimilarity"}
 

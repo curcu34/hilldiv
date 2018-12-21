@@ -27,7 +27,7 @@ if(missing(N)) stop("The number of samples or groups (N) is missing")
 if (missing(metric)) {metric="U"}
 if (missing(type)) {type="dissimilarity"}
 
-###### MULTIPLE HIERARCHIES NEED TO BE ADDED - 2018/12/16  
+###### MULTIPLE HIERARCHIES NEED TO BE ADDED, and similarity functions updated - 2018/12/21  
   
 #Sørensen-type overlap (CqN, 1-CqN)
 if (metric == "C"){

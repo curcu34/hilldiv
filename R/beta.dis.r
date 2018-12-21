@@ -31,7 +31,7 @@ if (missing(type)) {type="dissimilarity"}
   
 #Sørensen-type overlap (CqN, 1-CqN)
 if (metric == "C"){
-  if(exists(N1)){
+  if(exists("N1")){
   CqN1 <- CqN(beta1,qvalue,N1)
   CqN2 <- CqN(beta2,qvalue,N2)
   mCqN <- list(CqN1,CqN2)

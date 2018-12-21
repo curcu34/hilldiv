@@ -7,5 +7,4 @@ tss <- function(abund){
   if(is.null(dim(abund)) == FALSE){
   abund.norm <- sweep(abund, 2, colSums(abund), FUN="/")
   }
-  return(abund.norm)
-}
+  return(abund.norm)}

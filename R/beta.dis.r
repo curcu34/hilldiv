@@ -31,12 +31,26 @@ if (missing(type)) {type="dissimilarity"}
   
 #Sørensen-type overlap (CqN, 1-CqN)
 if (metric == "C"){
-CqN <- CqN(beta,qvalue,N)
+  if(exists(N1)){
+  CqN1 <- CqN(beta1,qvalue,N1)
+  CqN2 <- CqN(beta2,qvalue,N2)
+  mCqN <- list(CqN1,CqN2)
+  if (type == "dissimilarity"){
+    rCqN1 <- 1 - CqN1
+    rCqN2 <- 1 - CqN2
+    mrCqN <- list(rCqN1,rCqN2)
+    return(mrCqN)
+  }
+  return(mCqN)  
+  }else{
+  CqN <- CqN(beta,qvalue,N)
   if (type == "dissimilarity"){
   rCqN <- 1 - CqN
   return(rCqN)
   }
-return(CqN)
+  return(CqN)
+}
+  
 }
 
 #Jaccard-type overlap (UqN, 1-UqN)

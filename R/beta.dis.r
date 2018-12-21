@@ -79,22 +79,48 @@ if (metric == "U"){
 
 #Sørensen-type turnover-complement (VqN, 1-VqN)
 if (metric == "V"){
-VqN <- VqN(beta,N)
-  if (type == "dissimilarity"){ 
+  if(exists("N1")){
+  VqN1 <- VqN(beta1,N1)
+  VqN2 <- VqN(beta2,N2)
+  mVqN <- list(VqN1,VqN2)
+  if (type == "dissimilarity"){
+    rVqN1 <- 1 - VqN1
+    rVqN2 <- 1 - VqN2
+    mrVqN <- list(rVqN1,rVqN2)
+    return(mrVqN)
+  }
+  return(mVqN)  
+  }else{
+  VqN <- VqN(beta,N)
+  if (type == "dissimilarity"){
   rVqN <- 1 - VqN
   return(rVqN)
   }
-return(VqN)
+  return(VqN)
+}
+
 } 
   
 #Jaccard-type turnover-complement (SqN, 1-SqN)
 if (metric == "S"){
-SqN <- SqN(beta,N)
+  if(exists("N1")){
+  SqN1 <- SqN(beta1,N1)
+  SqN2 <- SqN(beta2,N2)
+  mSqN <- list(SqN1,SqN2)
+  if (type == "dissimilarity"){
+    rSqN1 <- 1 - SqN1
+    rSqN2 <- 1 - SqN2
+    mrSqN <- list(rSqN1,rSqN2)
+    return(mrSqN)
+  }
+  return(mSqN)  
+  }else{
+  SqN <- SqN(beta,N)
   if (type == "dissimilarity"){
   rSqN <- 1 - SqN
   return(rSqN)
   }
-return(SqN)
-} 
+  return(SqN)
+}
   
 }

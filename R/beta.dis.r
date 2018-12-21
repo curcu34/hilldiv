@@ -6,7 +6,7 @@ if(class(beta) == "numeric"){input="beta"}
 if(class(beta) == "list"){
 input="list"
 if(names(beta[3]) != "Order_diversity") stop("The input object is not valid")
-  if(beta[[1]] == 2){
+  if((beta[[1]] == 2) && (beta[[2]] == "abundance")){
     qvalue <- beta[[3]]
     N <- beta[[4]]
     beta <- beta[[7]]

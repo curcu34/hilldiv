@@ -7,16 +7,16 @@ if(class(beta) == "list"){
 input="list"
 if(names(beta[2]) != "Order_diversity") stop("The input object is not valid")
   if(beta[[1]] == 2){
-    qvalue <- beta[[2]]
-    N <- beta[[3]]
-    beta <- beta[[6]]
+    qvalue <- beta[[3]]
+    N <- beta[[4]]
+    beta <- beta[[7]]
   }
   if(beta[[1]] == 3){
-    qvalue <- beta[[2]]
-    N1 <- beta[[3]]
-    N2 <- beta[[4]]
-    beta1 <- beta[[8]]
-    beta2 <- beta[[9]]
+    qvalue <- beta[[3]]
+    N1 <- beta[[4]]
+    N2 <- beta[[5]]
+    beta1 <- beta[[9]]
+    beta2 <- beta[[10]]
   }
 }
   

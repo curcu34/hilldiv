@@ -5,7 +5,7 @@ if(missing(beta)) stop("Beta diversity value or div.part output object is missin
 if(class(beta) == "numeric"){input="beta"}
 if(class(beta) == "list"){
 input="list"
-if(names(beta[2]) != "Order_diversity") stop("The input object is not valid")
+if(names(beta[3]) != "Order_diversity") stop("The input object is not valid")
   if(beta[[1]] == 2){
     qvalue <- beta[[3]]
     N <- beta[[4]]

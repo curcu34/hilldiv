@@ -1,4 +1,4 @@
-norm <- function(abund){
+tss <- function(abund){
   #If input data is a vector
   if(is.null(dim(abund)) == "TRUE"){ 
   abund.norm <- abund/sum(abund)}

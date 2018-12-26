@@ -1,5 +1,5 @@
-\name{tss}
-\alias{tss}
+\name{norm}
+\alias{norm}
 \title{Total sum scaling normalisation}
 \usage{}
 \arguments{}

@@ -13,7 +13,7 @@ if(names(beta[3]) != "Order_diversity") stop("The input object is not valid")
   }
   if(beta[[1]] == 3){
     qvalue <- beta[[3]]
-    N1 <- beta[[4]]
+    N1 <- beta[[4]]/beta[[5]]
     N2 <- beta[[5]]
     beta1 <- beta[[9]]
     beta2 <- beta[[10]]

@@ -55,5 +55,5 @@ Collate:
     'pair.dis.r'
     'pair.dis.plot.r'
     'phylo.to.phylog.r'
-    'to.inext.r'
     'tss.r'
+    'to.inext.r'

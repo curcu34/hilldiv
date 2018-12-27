@@ -91,7 +91,7 @@ if(type == "abundance"){
   results <- list("Hierarchical_levels" = 3,"Type" = type,"Order_diversity" = qvalue, "L1_Sample_size" = N1, "L2_Sample_size" = N2, "L1_diversity" = L1_div, "L2_diversity" = L2_div, "L3_diversity" = L3_div, "Beta_diversity_L1_2" = beta_1, "Beta_diversity_L2_3" = beta_2)
   return(results)
   
-}else{
+}else if(type == "incidence"){
 #####  
 # Incidence-based
 #####
@@ -126,7 +126,15 @@ if(type == "abundance"){
   results <- list("Hierarchical_levels" = 2,"Type" = type,"Order_diversity" = qvalue,"Sample_size" = N, "L2_diversity" = L2_div, "L3_diversity" = L3_div, "Beta_diversity" = beta)
   return(results)
                            
-} 
+}else if(type == "estimate"){
+#####  
+# Incidence-estimation
+#####
+
+
+}else{
+stop("The type of diversity partition provided is incorrect.")
+}
 }
 
 ###########

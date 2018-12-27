@@ -172,7 +172,6 @@ if(missing(tree)){
 }else{
 stop("The type of diversity partition provided is incorrect.")
 }
-}
 
 ###########
 #Function for 4-level hierarchy

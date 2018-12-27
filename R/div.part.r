@@ -155,7 +155,7 @@ if(missing(tree)){
   if(qvalue == 0){L2_div <- mean(estPD(otutable.inext.L2,labels=rownames(otutable),phy=tree.phylog,q=0,datatype="incidence_raw", se=FALSE, conf=0.95)[,2])}
   if(qvalue == 1){L2_div <- exp(mean(log(estPD(otutable.inext.L2,labels=rownames(otutable),phy=tree.phylog,q=1,datatype="incidence_raw", se=FALSE, conf=0.95)[,2])))}
   if(qvalue == 2){
-    L2_div.raw <- estPD(otutable.inext.L2,labels=rownames(otutable),phy=tree.phylog,q=2,datatype="incidence_raw", se=FALSE, conf=0.95)[,2]}
+    L2_div.raw <- estPD(otutable.inext.L2,labels=rownames(otutable),phy=tree.phylog,q=2,datatype="incidence_raw", se=FALSE, conf=0.95)[,2]
     L2_div.raw2 <- mean(-(1-L2_div.raw)/L2_div.raw)
     L2_div <- 1/(1-L2_div.raw2)}
   #Gamma diversity  

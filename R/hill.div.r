@@ -52,6 +52,7 @@ if(missing(tree)){
 
     #If input data is a vector
     if(is.null(dim(abund)) == TRUE){
+    if(type == "incidence") stop("Incidence-based analysis requires an OTU table with multiple samples")
     if(identical(sort(names(abund)),sort(tree$tip.label)) == FALSE) stop("OTU names in the vector and tree do not match")  
     if(sum(abund) != "1") {abund <- tss(abund)}
     Li <- tree$edge.length #Get branch lengths
@@ -67,23 +68,41 @@ if(missing(tree)){
     #If input data is an OTU table
     if(is.null(dim(abund)) == FALSE){    
     if(identical(sort(rownames(abund)),sort(tree$tip.label)) == FALSE) stop("OTU names in the OTU table and tree do not match")  
-    if(sum(colSums(abund)) != ncol(abund)) {abund <- tss(abund)}
-    samples <- colnames(abund)
-    sample.vector <- c()
-    for (s in samples){
-        vector <- abund[,s]
-        names(vector) <- rownames(abund)
-        Li <- tree$edge.length #Get branch lengths
-        ltips <- sapply(tree$edge[, 2], function(node) geiger::tips(tree, node)) #Sum relative abundances per lineage
-        ai <- unlist(lapply(ltips, function(TipVector) sum(vector[TipVector]))) #Sum relative abundances per lineage
-        T <- sum(Li * ai) #Get total tree depth
-        Li <- Li[ai != 0] #Remove zeros
-        ai <- ai[ai != 0] #Remove zeros
-        phylodiv <- sum(Li/T * ai^qvalue)^(1/(1-qvalue)) #Compute phylodiversity
-        names(phylodiv) <- s
-        sample.vector <- c(sample.vector,phylodiv)
-        }      
-    return(sample.vector) 
+    if(type == "abundance"){
+      #Abundance-based  
+      if(sum(colSums(abund)) != ncol(abund)) {abund <- tss(abund)}
+      samples <- colnames(abund)
+      sample.vector <- c()
+      for (s in samples){
+          vector <- abund[,s]
+          names(vector) <- rownames(abund)
+         Li <- tree$edge.length #Get branch lengths
+         ltips <- sapply(tree$edge[, 2], function(node) geiger::tips(tree, node)) #Sum relative abundances per lineage
+          ai <- unlist(lapply(ltips, function(TipVector) sum(vector[TipVector]))) #Sum relative abundances per lineage
+          T <- sum(Li * ai) #Get total tree depth
+          Li <- Li[ai != 0] #Remove zeros
+          ai <- ai[ai != 0] #Remove zeros
+          phylodiv <- sum(Li/T * ai^qvalue)^(1/(1-qvalue)) #Compute phylodiversity
+          names(phylodiv) <- s
+          sample.vector <- c(sample.vector,phylodiv)
+          }      
+     return(sample.vector) 
+    }else if(type == "incidence"){
+    #Incidence-based  
+    pi <- tss(rowSums(abund != 0))
+    Li <- tree$edge.length #Get branch lengths
+    ltips <- sapply(tree$edge[, 2], function(node) geiger::tips(tree, node)) #Sum relative abundances per lineage
+    ai <- unlist(lapply(ltips, function(TipVector) sum(pi[TipVector]))) #Sum relative abundances per lineage
+    T <- sum(Li * ai) #Get total tree depth
+    Li <- Li[ai != 0] #Remove zeros
+    ai <- ai[ai != 0] #Remove zeros
+    phylodiv <- sum(Li/T * ai^qvalue)^(1/(1-qvalue)) #Compute phylodiversity
+    return(phylodiv)
+    }else{
+    stop("The provided type of analysis is incorrect")
+    }
+    
+                              
     }
                        
 }

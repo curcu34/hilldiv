@@ -1,7 +1,6 @@
 export(hill.div)
 export(div.profile)
 export(div.part)
-export(div.part.est)
 export(div.part.plot)
 export(beta.dis)
 export(UqN)

@@ -145,7 +145,7 @@ if(missing(tree)){
   if(qvalue == 1){L2_est.div <- exp(mean(ChaoEntropy(otutable.inext.L2,datatype="incidence_raw", transform=FALSE, conf=0.95)[,2]))}
   if(qvalue == 2){L2_est.div <- 1/(1-mean(EstSimpson(otutable.inext.L2,datatype="incidence_raw", transform=FALSE, conf=0.95)[,2]))}
   #Gamma diversity  
-  if(qvalue == 0){L3_est.div <- ChaoSpecies(otutable.inext.L3,datatype="incidence_raw", conf=0.95)[,2])}
+  if(qvalue == 0){L3_est.div <- ChaoSpecies(otutable.inext.L3,datatype="incidence_raw", conf=0.95)[,2]}
   if(qvalue == 1){L3_est.div <- ChaoEntropy(otutable.inext.L3,datatype="incidence_raw", transform=TRUE, conf=0.95)[,2]}
   if(qvalue == 2){L3_est.div <- EstSimpson(otutable.inext.L3,datatype="incidence_raw", transform=TRUE, conf=0.95)[,2]}
 

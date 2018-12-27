@@ -132,7 +132,30 @@ if(type == "abundance"){
 #####  
 # Incidence-estimation
 #####
+  
+if((qvalue != 0) & (qvalue != 1) & (qvalue != 2))  stop("For estimated diversity partitioning the order of diversity (q) must to be 0, 1 or 2.")
 
+#Transform to iNEXT/iNextPD format  
+otutable.inext.L2 <- to.inext(otutable,hierarchy=sample.species,type="incidence_raw")
+otutable.inext.L3 <- to.inext(otutable,type="incidence_raw")
+
+if(missing(tree)){  
+  #Alpha diversity
+  if(qvalue == 0){L2_est.div <- mean(ChaoSpecies(otutable.inext.L2,datatype="incidence_raw", conf=0.95)[,2])}
+  if(qvalue == 1){L2_est.div <- exp(mean(ChaoEntropy(otutable.inext.L2,datatype="incidence_raw", transform=FALSE, conf=0.95)[,2]))}
+  if(qvalue == 2){L2_est.div <- 1/(1-mean(EstSimpson(otutable.inext.L2,datatype="incidence_raw", transform=FALSE, conf=0.95)[,2]))}
+  #Gamma diversity  
+  if(qvalue == 0){L3_est.div <- ChaoSpecies(otutable.inext.L3,datatype="incidence_raw", conf=0.95)[,2])}
+  if(qvalue == 1){L3_est.div <- ChaoEntropy(otutable.inext.L3,datatype="incidence_raw", transform=TRUE, conf=0.95)[,2]}
+  if(qvalue == 2){L3_est.div <- EstSimpson(otutable.inext.L3,datatype="incidence_raw", transform=TRUE, conf=0.95)[,2]}
+  #L2-L3, beta and sample size
+  beta_2 <- L3_est.div/L2_est.div
+  N2 <- length(otutable.inext.L2)
+}else{
+  tree.phylog <- phylo.to.phylog(tree)
+  L2_est.div <- estPD(otutable.inext.L2,labels=rownames(otutable),phy=tree.phylog,q=qvalue,datatype="incidence_raw", se=FALSE, conf=0.95)
+  L3_est.div <- estPD(otutable.inext.L3,labels=rownames(otutable),phy=tree.phylog,q=qvalue,datatype="incidence_raw", se=FALSE, conf=0.95)
+}
 
 }else{
 stop("The type of diversity partition provided is incorrect.")

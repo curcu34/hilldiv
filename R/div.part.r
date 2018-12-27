@@ -159,7 +159,7 @@ if(missing(tree)){
     L2_div.raw2 <- mean(-(1-L2_div.raw)/L2_div.raw)
     L2_div <- 1/(1-L2_div.raw2)}
   #Gamma diversity  
-    L3_div <- estPD(otutable.inext.L3,labels=rownames(otutable),phy=tree.phylog,q=qvalue,datatype="incidence_raw", se=FALSE, conf=0.95)
+    L3_div <- estPD(otutable.inext.L3,labels=rownames(otutable),phy=tree.phylog,q=qvalue,datatype="incidence_raw", se=FALSE, conf=0.95)[,2]
   }
   #L2-L3, beta and sample size
   beta <- L3_div/L2_div

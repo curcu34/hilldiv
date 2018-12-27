@@ -148,15 +148,27 @@ if(missing(tree)){
   if(qvalue == 0){L3_est.div <- ChaoSpecies(otutable.inext.L3,datatype="incidence_raw", conf=0.95)[,2])}
   if(qvalue == 1){L3_est.div <- ChaoEntropy(otutable.inext.L3,datatype="incidence_raw", transform=TRUE, conf=0.95)[,2]}
   if(qvalue == 2){L3_est.div <- EstSimpson(otutable.inext.L3,datatype="incidence_raw", transform=TRUE, conf=0.95)[,2]}
-  #L2-L3, beta and sample size
-  beta_2 <- L3_est.div/L2_est.div
-  N2 <- length(otutable.inext.L2)
+
 }else{
   tree.phylog <- phylo.to.phylog(tree)
-  L2_est.div <- estPD(otutable.inext.L2,labels=rownames(otutable),phy=tree.phylog,q=qvalue,datatype="incidence_raw", se=FALSE, conf=0.95)
-  L3_est.div <- estPD(otutable.inext.L3,labels=rownames(otutable),phy=tree.phylog,q=qvalue,datatype="incidence_raw", se=FALSE, conf=0.95)
-}
-
+  #Alpha diversity
+  if(qvalue == 0){L2_est.div <- mean(estPD(otutable.inext.L2,labels=rownames(otutable),phy=tree.phylog,q=0,datatype="incidence_raw", se=FALSE, conf=0.95)[,2])}
+  if(qvalue == 1){L2_est.div <- exp(mean(log(estPD(otutable.inext.L2,labels=rownames(otutable),phy=tree.phylog,q=1,datatype="incidence_raw", se=FALSE, conf=0.95)[,2])))}
+  if(qvalue == 2){
+    L2_est.div.raw <- estPD(otutable.inext.L2,labels=rownames(otutable),phy=tree.phylog,q=2,datatype="incidence_raw", se=FALSE, conf=0.95)[,2]}
+    L2_est.div.raw2 <- mean(-(1-L2_est.div.raw)/L2_est.div.raw)
+    L2_est.div <- 1/(1-L2_est.div.raw2)}
+  #Gamma diversity  
+    L3_est.div <- estPD(otutable.inext.L3,labels=rownames(otutable),phy=tree.phylog,q=qvalue,datatype="incidence_raw", se=FALSE, conf=0.95)
+  }
+  #L2-L3, beta and sample size
+  beta <- L3_est.div/L2_est.div
+  N <- length(otutable.inext.L2)
+  
+  #Return values
+  results <- list("Hierarchical_levels" = 2,"Type" = type,"Order_diversity" = qvalue,"Sample_size" = N, "L2_diversity" = L2_div, "L3_diversity" = L3_div, "Beta_diversity" = beta)
+  return(results)
+                                             
 }else{
 stop("The type of diversity partition provided is incorrect.")
 }

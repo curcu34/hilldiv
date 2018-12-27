@@ -132,7 +132,7 @@ if(type == "abundance"){
 #####  
 # Incidence-estimation
 #####
-  
+if(qvalue==0.99999) {qvalue=1}
 if((qvalue != 0) & (qvalue != 1) & (qvalue != 2))  stop("For estimated diversity partitioning the order of diversity (q) must to be 0, 1 or 2.")
 
 #Transform to iNEXT/iNextPD format  

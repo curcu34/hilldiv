@@ -141,13 +141,13 @@ otutable.inext.L3 <- to.inext(otutable,type="incidence_raw")
 
 if(missing(tree)){  
   #Alpha diversity
-  if(qvalue == 0){L2_div <- mean(ChaoSpecies(otutable.inext.L2,datatype="incidence_raw", conf=0.95)[,1])}
-  if(qvalue == 1){L2_div <- exp(mean(ChaoEntropy(otutable.inext.L2,datatype="incidence_raw", transform=FALSE, conf=0.95)[,1]))}
-  if(qvalue == 2){L2_div <- 1/(1-mean(EstSimpson(otutable.inext.L2,datatype="incidence_raw", transform=FALSE, conf=0.95)[,1]))}
+  if(qvalue == 0){L2_div <- mean(ChaoSpecies(otutable.inext.L2,datatype="incidence_raw", conf=0.95)[,2])}
+  if(qvalue == 1){L2_div <- exp(mean(ChaoEntropy(otutable.inext.L2,datatype="incidence_raw", transform=FALSE, conf=0.95)[,2]))}
+  if(qvalue == 2){L2_div <- 1/(1-mean(EstSimpson(otutable.inext.L2,datatype="incidence_raw", transform=FALSE, conf=0.95)[,2]))}
   #Gamma diversity  
-  if(qvalue == 0){L3_div <- ChaoSpecies(otutable.inext.L3,datatype="incidence_raw", conf=0.95)[,1]}
-  if(qvalue == 1){L3_div <- ChaoEntropy(otutable.inext.L3,datatype="incidence_raw", transform=TRUE, conf=0.95)[,1]}
-  if(qvalue == 2){L3_div <- EstSimpson(otutable.inext.L3,datatype="incidence_raw", transform=TRUE, conf=0.95)[,1]}
+  if(qvalue == 0){L3_div <- ChaoSpecies(otutable.inext.L3,datatype="incidence_raw", conf=0.95)[,2]}
+  if(qvalue == 1){L3_div <- ChaoEntropy(otutable.inext.L3,datatype="incidence_raw", transform=TRUE, conf=0.95)[,2]}
+  if(qvalue == 2){L3_div <- EstSimpson(otutable.inext.L3,datatype="incidence_raw", transform=TRUE, conf=0.95)[,2]}
 
   }else{
   tree.phylog <- phylo.to.phylog(tree)

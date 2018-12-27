@@ -21,7 +21,8 @@ if(missing(tree)){
     #If input data is an OTU table
     if(is.null(dim(abund)) == FALSE){
     if(type == "abundance"){
-      if(sum(colSums(abund)) != ncol(abund)) {abund <- tss(abund)}
+    #Abundance-based  
+     if(sum(colSums(abund)) != ncol(abund)) {abund <- tss(abund)}
      if(is.null(colnames(abund)) == TRUE){colnames(abund) <- seq(1:ncol(abund))}
      samples <- colnames(abund)
      sample.vector <- c()
@@ -34,6 +35,7 @@ if(missing(tree)){
       }
       return(sample.vector) 
     }else if(type == "incidence"){
+    #Incidence-based  
     pi <- tss(rowSums(abund != 0))
     pi <- pi[pi!=0] 
     div <- sum(pi^qvalue)^(1/(1-qvalue))

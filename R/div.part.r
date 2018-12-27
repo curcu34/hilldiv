@@ -19,6 +19,8 @@ if(type == "incidence"){
 
 #L1 and L2 diversities
 if(missing(hierarchy)){
+if(type == "incidence") stop("Diversity partitioning based on incidence data requires a hierarchy table")
+if(type == "estimate") stop("Estimated diversity partitioning based on incidence data requires a hierarchy table")
 if(missing(tree)){
   L1_div <- hilldiv::alpha.div(otutable,qvalue)
   L2_div <- hilldiv::gamma.div(otutable,qvalue)

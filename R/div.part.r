@@ -149,7 +149,7 @@ if(missing(tree)){
   if(qvalue == 1){L3_div <- ChaoEntropy(otutable.inext.L3,datatype="incidence_raw", transform=TRUE, conf=0.95)[,2]}
   if(qvalue == 2){L3_div <- EstSimpson(otutable.inext.L3,datatype="incidence_raw", transform=TRUE, conf=0.95)[,2]}
 
-}else{
+  }else{
   tree.phylog <- phylo.to.phylog(tree)
   #Alpha diversity
   if(qvalue == 0){L2_div <- mean(estPD(otutable.inext.L2,labels=rownames(otutable),phy=tree.phylog,q=0,datatype="incidence_raw", se=FALSE, conf=0.95)[,2])}
@@ -172,7 +172,7 @@ if(missing(tree)){
 }else{
 stop("The type of diversity partition provided is incorrect.")
 }
-
+}
 ###########
 #Function for 4-level hierarchy
 ###########

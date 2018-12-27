@@ -5,7 +5,7 @@ if(missing(abund)) stop("Abundance data is missing")
 if(missing(qvalue)) stop("q value is missing")
 if(qvalue==1){qvalue=0.99999} 
 if(qvalue < 0) stop("q value needs to be possitive (equal or higher than zero)")
-if(missing(type)){type == "abundance"}
+if(missing(type)){type="abundance"}
   
 #Diversity
 if(missing(tree)){

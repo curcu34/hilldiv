@@ -8,7 +8,6 @@ if(dim(otutable)[2] < 2) stop("The OTU table contains less than 2 samples")
 if(missing(qvalue)) stop("q value is missing")
 if(qvalue < 0) stop("q value needs to be possitive (equal or higher than zero)")
 if(missing(weight)) { weight= rep(1/ncol(otutable),ncol(otutable))}
-if(missing(weight)) warning("Assuming equal weights")
 
 #Neutral  
 if(missing(tree)){ 

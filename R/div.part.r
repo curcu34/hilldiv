@@ -151,7 +151,7 @@ if(missing(tree)){
   }else{
   if(class(tree) == "phylo"){tree.phylog <- phylo.to.phylog(tree)}
   if(class(tree) == "phylog"){tree.phylog <- tree}
-  #Alpha diversity
+  #Alpha diversity !!!!!(need to divide by T to obtain effective number of lineages)!!!!
   if(qvalue == 0){L2_div <- mean(iNextPD::estPD(otutable.inext.L2,labels=rownames(otutable),phy=tree.phylog,q=0,datatype="incidence_raw", se=FALSE, conf=0.95)[,2])}
   if(qvalue == 1){L2_div <- exp(mean(log(iNextPD::estPD(otutable.inext.L2,labels=rownames(otutable),phy=tree.phylog,q=1,datatype="incidence_raw", se=FALSE, conf=0.95)[,2])))}
   if(qvalue == 2){

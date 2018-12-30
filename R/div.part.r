@@ -149,17 +149,18 @@ if(missing(tree)){
   if(qvalue == 1){L3_div <- iNEXT::ChaoEntropy(otutable.inext.L3,datatype="incidence_raw", transform=TRUE, conf=0.95)[,2]}
   if(qvalue == 2){L3_div <- iNEXT::EstSimpson(otutable.inext.L3,datatype="incidence_raw", transform=TRUE, conf=0.95)[,2]}
   }else{
-  if(class(tree) == "phylo"){tree.phylog <- phylo.to.phylog(tree)}
-  if(class(tree) == "phylog"){tree.phylog <- tree}
+  stop("Incidence-estimation cannot be used with phylogenetic data")
+  #if(class(tree) == "phylo"){tree.phylog <- phylo.to.phylog(tree)}
+  #if(class(tree) == "phylog"){tree.phylog <- tree}
   #Alpha diversity !!!!!(need to divide by T to obtain effective number of lineages)!!!!
-  if(qvalue == 0){L2_div <- mean(iNextPD::estPD(otutable.inext.L2,labels=rownames(otutable),phy=tree.phylog,q=0,datatype="incidence_raw", se=FALSE, conf=0.95)[,2])}
-  if(qvalue == 1){L2_div <- exp(mean(log(iNextPD::estPD(otutable.inext.L2,labels=rownames(otutable),phy=tree.phylog,q=1,datatype="incidence_raw", se=FALSE, conf=0.95)[,2])))}
-  if(qvalue == 2){
-    L2_div.raw <- iNextPD::estPD(otutable.inext.L2,labels=rownames(otutable),phy=tree.phylog,q=2,datatype="incidence_raw", se=FALSE, conf=0.95)[,2]
-    L2_div.raw2 <- mean(-(1-L2_div.raw)/L2_div.raw)
-    L2_div <- 1/(1-L2_div.raw2)}
+  #if(qvalue == 0){L2_div <- mean(iNextPD::estPD(otutable.inext.L2,labels=rownames(otutable),phy=tree.phylog,q=0,datatype="incidence_raw", se=FALSE, conf=0.95)[,2])}
+  #if(qvalue == 1){L2_div <- exp(mean(log(iNextPD::estPD(otutable.inext.L2,labels=rownames(otutable),phy=tree.phylog,q=1,datatype="incidence_raw", se=FALSE, conf=0.95)[,2])))}
+  #if(qvalue == 2){
+  #  L2_div.raw <- iNextPD::estPD(otutable.inext.L2,labels=rownames(otutable),phy=tree.phylog,q=2,datatype="incidence_raw", se=FALSE, conf=0.95)[,2]
+  #  L2_div.raw2 <- mean(-(1-L2_div.raw)/L2_div.raw)
+  #  L2_div <- 1/(1-L2_div.raw2)}
   #Gamma diversity  
-    L3_div <- iNextPD::estPD(otutable.inext.L3,labels=rownames(otutable),phy=tree.phylog,q=qvalue,datatype="incidence_raw", se=FALSE, conf=0.95)[,2]
+  #  L3_div <- iNextPD::estPD(otutable.inext.L3,labels=rownames(otutable),phy=tree.phylog,q=qvalue,datatype="incidence_raw", se=FALSE, conf=0.95)[,2]
   }
   #L2-L3, beta and sample size
   beta <- L3_div/L2_div

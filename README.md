@@ -2,7 +2,9 @@
 
 The statistical framework developed around Hill numbers encompasses many of the most broadly employed diversity (e.g. richness, Shannon index, Simpson index), phylogenetic diversity (e.g. Faith’s PD, Allen’s H, Rao’s quadratic entropy) and dissimilarity (e.g. Sørensen index, Unifrac distances) metrics. This enables the most common analyses of diversity to be performed while grounded in a single statistical framework. 
 
-Note that hilldiv is still in **BETA** development phase.
+```diff
+- Note that hilldiv is still in **BETA** development phase.
+```
 
 * Installation
 * Applications and functions

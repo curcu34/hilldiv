@@ -41,7 +41,7 @@ Neutral or phylogenetic Hill number computation from a vector object (one sample
 |Argument| |Notes|
 | ------------- | ------------- | ------------- |
 | **abund**  | M |A vector or a matrix/data.frame indicating the relative abundances of one or multiple samples, respectively. If a matrix/data.frame is provided, columns refer to samples and rows to OTUs.|
-| **q.value**  | M |A positive number (>=0). It can be an integer or contain decimals.|
+| **qvalue**  | M |A positive number (>=0). It can be an integer or contain decimals.|
 | **tree**   | O  |An ultrametic tree of class 'phylo'. The tip labels must match the names of the vector values (if one sample) or matrix rows (if multiple samples).|
 | **type**   | O  |Either "abundance" for abundance-based Hill number computation or "incidence" for incidence-based Hill number computation. In the latter case, the abund object needs to be a matrix/data.frame, as incidence-based Hill number computation requires multiple samples. Default: type="abundance".|
 
@@ -54,6 +54,7 @@ hill.div(otu.table,qvalue=2)
 hill.div(otu.table,1,tree)
 hill.div(otu.table,1,tree,type="incidence")
 hill.div(otu.table,qvalue=2,tree=tree)
+
 #EXAMPLES#
 hill.div(otu.table[,1],qvalue=1)
 9.145646
@@ -62,15 +63,30 @@ hill.div(otu.table[,c(1:3)],qvalue=1)
 9.145646 8.686439 7.884177 
 ````
 ### div.profile() - chart
-(Phylo)Diversity profiles of individual samples or groups of samples.
+(Phylo)Diversity profiles of individual samples or groups of samples. Diversity profiles show the relation between the order of diversity (q-value) and the respective Hill numbers, thus providing information about the richness and evenness of a sample at a glance.
+
+|Argument| |Notes|
+| ------------- | ------------- | ------------- |
+| **abund**  | M |A vector or a matrix/data.frame indicating the relative abundances of one or multiple samples, respectively. If a matrix/data.frame is provided, columns refer to samples and rows to OTUs.|
+| **qvalues**  | O |A vector of sequential orders of diversity (usually from 0 to 5). Default: order=seq(from = 0, to = 5, by = (0.1))|
+| **tree**   | O  |An ultrametic tree of class 'phylo'. The tip labels must match the names of the vector values (if one sample) or matrix rows (if multiple samples).|
+| **hierarchy**   | O  |A 2-column matrix in which the first column lists the sample names while the second lists the groups. Including an hierarchy table enables outputting the sample Hill numbers averaged per group (level="alpha") or the overall Hill numbers of the groups (level="gamma").|
+| **level**   | O  |Only meaningful if a hierachy table is provided. If 'alpha', alpha diversity (*averaged* per-sample diversity) of the groups is plotted instead of gamma (overall) diversity. Defauly: level="gamma"|
+| **log**   | O  |Logical: whether Hill numbers are transformed to the logarithmic scale, which is useful when there are large differences between q values (e.g. sharp drop from q=0 to q=1), which might complicate visualization. Default: log="FALSE"|
+| **values**   | O  | Logical: whether the diversity profiles values are outputted as a table object. Default: type="FALSE".|
+
 ````R
-#EXAMPLES#
+#USAGE#
 div.profile(otu.table[,1])
 div.profile(otu.table[,c(1:5)])
-````
+div.profile(otu.table[,c(1:5)],tree=tree)
+div.profile(otu.table,tree=tree,hierarchy=hierarchy.table,level="alpha")
 
+#EXAMPLES
 <img align=left src="https://github.com/anttonalberdi/DiverHill/blob/master/figures/div.profile.one.png" width="350" title="One sample">
 <img src="https://github.com/anttonalberdi/DiverHill/blob/master/figures/div.profile.multiple.png" width="350" title="Multiple samples">
+````
+
 
 ## Diversity comparison
 ### div.comp.test()

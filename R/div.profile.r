@@ -1,8 +1,8 @@
-div.profile <- function(abund,tree,order,values,hierarchy,level,log){
+div.profile <- function(abund,qvalues,tree,values,hierarchy,level,log){
     
 #Quality-check and warnings
 if(missing(abund)) stop("The abundance data is missing")
-if(missing(order)) {order= seq(from = 0, to = 5, by = (0.1))}
+if(missing(qvalues)) {qvalues= seq(from = 0, to = 5, by = (0.1))}
 if(missing(values)) {values= "FALSE"}
 if(missing(level)) {level= "gamma"}
 if(missing(log)) {log= "FALSE"}
@@ -10,7 +10,7 @@ if(missing(log)) {log= "FALSE"}
 #If input data is a vector
 if(is.null(dim(abund)) == TRUE){
     profile <- c()
-    for (o in order){
+    for (o in qvalues){
     if(missing(tree)){ 
         div.value <- hilldiv::hill.div(abund,o)
         }else{
@@ -18,8 +18,9 @@ if(is.null(dim(abund)) == TRUE){
     }
     profile <- c(profile,div.value)
     }
-    profile.melted <- as.data.frame(cbind(order,profile))
-    plot <- ggplot(profile.melted , aes(x = order, y = profile)) +
+    profile.melted <- as.data.frame(cbind(qvalues,profile))
+    colnames(profile.melted) <- c("Order","Profile")
+    plot <- ggplot(profile.melted , aes(x = Order, y = Profile)) +
            geom_line() + 
            xlab("Order of diversity") + ylab("Effective number of OTUs") +
            theme_minimal()
@@ -37,7 +38,7 @@ if(is.null(dim(abund)) == FALSE){
         
     profile <- c()
     if(missing(hierarchy)){
-        for (o in order){
+        for (o in qvalues){
             if(missing(tree)){ 
             div.values <- hilldiv::hill.div(abund,o)
             }else{
@@ -45,7 +46,7 @@ if(is.null(dim(abund)) == FALSE){
             }
         profile <- rbind(profile,div.values)
         }
-        rownames(profile) <- order
+        rownames(profile) <- qvalues
         profile.melted <- as.data.frame(melt(profile))
         colnames(profile.melted) <- c("Order","Sample","Value")
         profile.melted[,1] <- as.numeric(as.character(profile.melted[,1]))

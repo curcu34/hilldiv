@@ -47,12 +47,14 @@ Neutral or phylogenetic Hill number computation from a vector object (one sample
 
 *M=mandatory; O=optional*
 ````R
-#EXAMPLES#
+#USAGE#
 hill.div(otu.vector,0)
 hill.div(otu.table,1)
 hill.div(otu.table,qvalue=2)
 hill.div(otu.table,1,tree)
-hill.div(otu.table,qvalue=2,tree=phylo.tree)
+hill.div(otu.table,1,tree,type="incidence")
+hill.div(otu.table,qvalue=2,tree=tree)
+#EXAMPLES#
 hill.div(otu.table[,1],qvalue=1)
 9.145646
 hill.div(otu.table[,c(1:3)],qvalue=1)

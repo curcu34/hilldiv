@@ -1,4 +1,7 @@
-**hilldiv** is an R package for the analysis of diversity based on Hill numbers. Note that hilldiv is still in **beta** development phase.
+**hilldiv** is an R package that provides a set of functions to assist analysis of diversity based on Hill numbers, using OTU tables and associated phylogenetic trees as inputs. The package includes functions for (phylo)diversity measurement, (phylo)diversity profile plotting, (phylo)diversity comparison between samples and groups, sample completeness assessment, (phylo)diversity partitioning and (dis)similarity measurement. All of these grounded in abundance-based and incidence-based Hill numbers.
+
+Note that hilldiv is still in **beta** development phase.
+
 * Installation
 * Applications and functions
 # Installation

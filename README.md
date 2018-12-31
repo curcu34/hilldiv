@@ -36,14 +36,14 @@ tree <- bat.diet.tree
 ````
 ## Diversity measurement and visualisation
 ### hill.div()
-Neutral or phylogenetic Hill number computation of individual samples from a vector (one sample) or an OTU table (multiple samples). Including the tree argument yields phylodiversity values. Note that if using a tree the tip labels and the 'names' (vectors) or 'rownames' (matrices) need to be identical. Note that if the number of OTUs and samples is high, computing phylodiversities might require considerable time. If the vector or the OTU table columns do not sum to 1, the data is TSS-normalised.
+Neutral or phylogenetic Hill number computation from a vector object (one sample) or an OTU table (matrix or data.frame object; multiple samples). Providing the tree argument yields phylodiversity values. Note that if using a tree the tip labels and the 'names' (vectors) or 'rownames' (matrices) need to be identical. Note that if the number of OTUs and samples is high, computing phylodiversities might require considerable time. If the vector or the OTU table columns do not sum to 1, the data is TSS-normalised.
 
 |Argument|Feature|Type|Notes|
 | ------------- | ------------- | ------------- |------------- |
 | **abund**  | Mandatory  |vector,matrix,data.frame| A vector or a matrix (rows as OTUs)|
 | **q.value**  | Mandatory |>0 |Possitive number, can contain decimals   |
 | **tree**   | Optional  |phylo   |Phylogenetic tree of class phylo   |
-    
+*M=mandatory; O=optional*
 ````R
 #EXAMPLES#
 hill.div(otu.vector,0)

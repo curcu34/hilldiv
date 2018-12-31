@@ -43,6 +43,7 @@ Neutral or phylogenetic Hill number computation from a vector object (one sample
 | **abund**  | Mandatory  |vector,matrix,data.frame| A vector or a matrix (rows as OTUs)|
 | **q.value**  | Mandatory |>0 |Possitive number, can contain decimals   |
 | **tree**   | Optional  |phylo   |Phylogenetic tree of class phylo   |
+
 *M=mandatory; O=optional*
 ````R
 #EXAMPLES#

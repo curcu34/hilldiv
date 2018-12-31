@@ -81,11 +81,9 @@ div.profile(otu.table[,1])
 div.profile(otu.table[,c(1:5)])
 div.profile(otu.table[,c(1:5)],tree=tree)
 div.profile(otu.table,tree=tree,hierarchy=hierarchy.table,level="alpha")
-
-#EXAMPLES
+````
 <img align=left src="https://github.com/anttonalberdi/DiverHill/blob/master/figures/div.profile.one.png" width="350" title="One sample">
 <img src="https://github.com/anttonalberdi/DiverHill/blob/master/figures/div.profile.multiple.png" width="350" title="Multiple samples">
-````
 
 
 ## Diversity comparison

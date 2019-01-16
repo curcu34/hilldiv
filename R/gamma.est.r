@@ -71,6 +71,7 @@ Modelled <- unique(preds$Model)
 if(max(Modelled) > (asymp.est*0.99)){
 est.sample.size <- min(which(Modelled > (asymp.est*0.99)))
 completeness <- nrow(raref.obs)/est.sample.size
+if(completeness > 1){completeness = 1}
 }else{
 est.sample.size <- "The sample size specified for gamma diversity prediction was too low to estimate a sample size. Choose a larger value."
 completeness <- "The sample size specified for gamma diversity prediction was too low to estimate sampling completeness. Choose a larger value."
@@ -221,6 +222,7 @@ Modelled <- unique(preds$Model)
 if(max(Modelled) > (asymp.est*0.99)){
 est.sample.size <- min(which(Modelled > (asymp.est*0.99)))
 completeness <- nrow(raref.obs)/est.sample.size
+if(completeness > 1){completeness = 1}
 }else{
 est.sample.size <- "The sample size specified for gamma diversity prediction was too low to estimate a sample size. Choose a larger value."
 completeness <- "The sample size specified for gamma diversity prediction was too low to estimate sampling completeness. Choose a larger value."

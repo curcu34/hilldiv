@@ -60,6 +60,7 @@ mod <- nls(Value ~ SSasymp(Step, Asym, resp0, lrc), data = matrix.melted)
 max.obs <- tail(matrix.melted$Value,1)
 asymp.est <- mod$m$getPars()[1]
 coverage <- max.obs/asymp.est
+if(coverage > 1){coverage = 1}
 correlation <- cor(matrix.group$Value,predict(mod))
 
 #Predict
@@ -211,6 +212,7 @@ mod <- nls(Value ~ SSasymp(Step, Asym, resp0, lrc), data = matrix.group)
 max.obs <- tail(matrix.group$Value,1)
 asymp.est <- mod$m$getPars()[1]
 coverage <- max.obs/asymp.est
+if(coverage > 1){coverage = 1}
 correlation <- cor(matrix.group$Value,predict(mod))
 
 #Predict

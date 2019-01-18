@@ -32,10 +32,9 @@ matrix <- rbind(matrix,vector)
 }#close iteration
 
 #Melt matrix (MODIFY!!!!!)
-rownames(matrix) <- matrix[,1]
-matrix <- matrix[,-1]
 colnames(matrix) <- step.vector
 matrix.melted <- melt(matrix)
+matrix.melted <- matrix.melted[,-1]
 colnames(matrix.melted) <- c("Step","Value")
 matrix.melted[,c(1,2)] <- apply(matrix.melted[,c(1,2)], 2, function(x) as.numeric(as.character(x))) #change to numeric
 
@@ -61,7 +60,7 @@ max.obs <- tail(matrix.melted$Value,1)
 asymp.est <- mod$m$getPars()[1]
 coverage <- max.obs/asymp.est
 if(coverage > 1){coverage = 1}
-correlation <- cor(matrix.group$Value,predict(mod))
+correlation <- cor(matrix.melted$Value,predict(mod))
 
 #Predict
 preds = data.frame(Step = sort(rep(c(1:pred.size), times = iter)))
@@ -101,8 +100,8 @@ colnames(CI) <- c("Mod.lwr","Mod.upr")
 result <- cbind(raref.obs.NA,Modelled, unique(CI))
 }else{
 result <- cbind(raref.obs.NA[,c(1:2)],Modelled,coverage.vector,completeness.vector)
-colnames(group.result)[4] <- c("Coverage")
-colnames(group.result)[5] <- c("Completeness")
+colnames(result)[4] <- c("Coverage")
+colnames(result)[5] <- c("Completeness")
 
 }
 

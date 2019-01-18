@@ -95,7 +95,7 @@ theme_minimal()
 print(plot)
 }
   
-}else{
+}else if (type == "abundance_alpha"){
  
 ####################################
 # PHYLOGENETIC DIVERSITY (iNextPD) #
@@ -167,7 +167,7 @@ print(plot)
   
 #############################  
 #############################
-       # ABUNDANCE  #
+     # ABUNDANCE ALPHA #
 #############################
 #############################
 if(type == "abundance"){
@@ -206,6 +206,45 @@ return(sp.inextpd)
   
   
 }
+  
+  
+}else{
+#############################  
+#############################
+     # ABUNDANCE GAMMA #
+#############################
+#############################
+
+#############################
+# NEUTRAL DIVERSITY (gamma.est) #
+#############################
+                   
+if(missing(tree)){  
+
+#Run Gamma.est
+gamma.est <- gamma.est(otutable=otutable,qvalue=qvalue,hierarchy=hierarchy,steps=100,iter=30,pred.size=40,summary=TRUE,conf=FALSE)
+                  
+#Return Gamma.est object
+if(output == "report"){
+return(gamma.est)
+}
+}else{
+  
+####################################
+# PHYLOGENETIC DIVERSITY (gamma.est) #
+####################################
+  
+#Run Gamma.est
+gamma.est <- gamma.est(otutable=otutable,qvalue=qvalue,hierarchy=hierarchy,tree=tree,steps=100,iter=30,pred.size=40,summary=TRUE,conf=FALSE)
+#Return Gamma.est object
+if(output == "report"){
+return(gamma.est)
+} 
+}
+
+#Plot (to be added)
+  
+  
   
   
 }

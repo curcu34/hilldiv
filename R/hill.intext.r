@@ -242,7 +242,69 @@ return(gamma.est)
 } 
 }
 
-#Plot (to be added)
+#Plot
+  
+#Declare depth check function
+depth <- function(this,thisdepth=0){
+  if(!is.list(this)){
+    return(thisdepth)
+  }else{
+    return(max(unlist(lapply(this,depth,thisdepth=thisdepth+1))))    
+  }
+}
+
+if(depth(gamma.est) = 2){
+#####
+# Single group
+#####
+
+steps.table <- gamma.est$Steps
+steps.table$Type <- c(rep("interpolated",length(steps.table$Observed[!is.na(steps.table$Observed)])-1),"observed",rep("extrapolated",length(steps.table$Observed[is.na(steps.table$Observed)])))
+
+
+ggplot() +
+geom_line(data = steps.table[which(steps.table$Type %in% c("interpolated","observed")),], aes(x = Step, y = Modelled)) +
+geom_line(data = steps.table[which(steps.table$Type %in% c("extrapolated","observed")),], aes(x = Step, y = Modelled), linetype=2) + 
+geom_point(data = steps.table[which(steps.table$Type == "observed"),],aes(x = Step, y = Modelled)) +
+#geom_ribbon(data = steps.table,aes(x = Step, ymin = Com_min, ymax = Com_max, group=Subsystem, fill=Subsystem), alpha = 0.05) +
+xlab("Sample size") + 
+ylab("Diversity") +
+scale_colour_manual(values = colour) + 
+scale_fill_manual(values = colour) + 
+theme_minimal()
+
+}else if(depth(gamma.est) = 3){
+#####
+# Multiple groups
+#####
+
+if(missing(colour)){
+getPalette <- colorRampPalette(brewer.pal(length(gamma.est), "Paired"))
+colour <- getPalette(length(gamma.est))
+}
+
+steps.table <- c()
+for(g in c(1:length(gamma.est))){
+group.table <- gamma.est[[g]]$Steps
+group.table$Subsystem <- rep(names(gamma.est)[g],nrow(group.table))
+group.table$Type <- c(rep("interpolated",length(group.table$Observed[!is.na(group.table$Observed)])-1),"observed",rep("extrapolated",length(group.table$Observed[is.na(group.table$Observed)])))
+steps.table <- rbind(steps.table,group.table)
+}
+
+ggplot() +
+geom_line(data = steps.table[which(steps.table$Type %in% c("interpolated","observed")),], aes(x = Step, y = Modelled, colour=Subsystem)) +
+geom_line(data = steps.table[which(steps.table$Type  %in% c("extrapolated","observed")),], aes(x = Step, y = Modelled, colour=Subsystem), linetype=2) + 
+geom_point(data = steps.table[which(steps.table$Type == "observed"),],aes(x = Step, y = Modelled, colour=Subsystem)) +
+#geom_ribbon(data = steps.table,aes(x = Step, ymin = Com_min, ymax = Com_max, group=Subsystem, fill=Subsystem), alpha = 0.05) +
+xlab("Sample size") + 
+ylab("Diversity") +
+scale_colour_manual(values = colour) + 
+scale_fill_manual(values = colour) + 
+theme_minimal()
+
+}else{
+warning("The provided gamma estimation object is not correct")
+}
   
   
   

@@ -86,7 +86,7 @@ if(is.null(dim(abund)) == FALSE){
                  }    
           }
                                                              
-    profile <- as.data.frame(cbind(profile,rep(order,length(groups))))
+    profile <- as.data.frame(cbind(profile,rep(qvalues,length(groups))))
     profile[,2] <- as.numeric(as.character(profile[,2]))
     profile[,3] <- as.numeric(as.character(profile[,3]))
     colnames(profile) <- c("Group","Value","Order")

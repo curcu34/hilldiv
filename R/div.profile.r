@@ -1,4 +1,4 @@
-div.profile <- function(abund,qvalues,tree,values,hierarchy,level,log){
+div.profile <- function(abund,qvalues,tree,values,hierarchy,level,colour,log){
     
 #Quality-check and warnings
 if(missing(abund)) stop("The abundance data is missing")
@@ -52,12 +52,19 @@ if(is.null(dim(abund)) == FALSE){
         profile.melted[,1] <- as.numeric(as.character(profile.melted[,1]))
         profile.melted[,3] <- as.numeric(as.character(profile.melted[,3]))
         if(log == "TRUE"){profile.melted[,3] <- log(profile.melted[,3])}
-        getPalette = colorRampPalette(brewer.pal(ncol(abund), "Paired"))
+        
+        #Declare colours
+	    if(missing(colour) || (length(colour) != length(unique(hierarchy[,2])))){
+        getPalette <- colorRampPalette(brewer.pal(ncol(abund), "Paired"))
+        colour <- getPalette(ncol(abund)))
+        }
+        
+        #Plot
         plot <- ggplot(profile.melted , aes(x = Order, y = Value, group=Sample, colour=Sample)) +
         geom_line() + 
         xlab("Order of diversity") + 
         ylab(if(log == "TRUE"){"Effective number of OTUs (log-transformed)" }else{"Effective number of OTUs"}) +
-        scale_colour_manual(values = getPalette(ncol(abund))) + 
+        scale_colour_manual(values = colour + 
         theme_minimal()
         print(plot)
         
@@ -91,12 +98,19 @@ if(is.null(dim(abund)) == FALSE){
     profile[,3] <- as.numeric(as.character(profile[,3]))
     colnames(profile) <- c("Group","Value","Order")
     if(log == "TRUE"){profile[,2] <- log(profile[,2])}
-    getPalette = colorRampPalette(brewer.pal(length(groups), "Paired"))
+        
+    #Declare colours
+	if(missing(colour) || (length(colour) != length(groups))){
+    getPalette <- colorRampPalette(brewer.pal(length(groups), "Paired"))
+    colour <- getPalette(length(groups)))
+    }                                                             
+    
+    #Plot                                                         
     plot <- ggplot(profile , aes(x = Order, y = Value, group=Group, colour=Group)) +
     geom_line() + 
     xlab("Order of diversity") + 
     ylab(if((log == "TRUE") & missing(tree)){"Effective number of OTUs (log-transformed)"}else if((log == "TRUE") & !missing(tree)){"Effective number of lineages (log-transformed)"}else if((log == "FALSE") & !missing(tree)){"Effective number of lineages"}else{"Effective number of OTUs"}) +
-    scale_colour_manual(values = getPalette(length(groups))) + 
+    scale_colour_manual(values = colour + 
     theme_minimal()
     print(plot)
                                                                                                                      

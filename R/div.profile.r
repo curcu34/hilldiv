@@ -110,7 +110,7 @@ if(is.null(dim(abund)) == FALSE){
     geom_line() + 
     xlab("Order of diversity") + 
     ylab(if((log == "TRUE") & missing(tree)){"Effective number of OTUs (log-transformed)"}else if((log == "TRUE") & !missing(tree)){"Effective number of lineages (log-transformed)"}else if((log == "FALSE") & !missing(tree)){"Effective number of lineages"}else{"Effective number of OTUs"}) +
-    scale_colour_manual(values = colour + 
+    scale_colour_manual(values = colour) + 
     theme_minimal()
     print(plot)
                                                                                                                      

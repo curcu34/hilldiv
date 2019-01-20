@@ -253,7 +253,7 @@ depth <- function(this,thisdepth=0){
   }
 }
 
-if(depth(gamma.est) = 2){
+if(depth(gamma.est) == 2){
 #####
 # Single group
 #####
@@ -273,7 +273,7 @@ scale_colour_manual(values = colour) +
 scale_fill_manual(values = colour) + 
 theme_minimal()
 
-}else if(depth(gamma.est) = 3){
+}else if(depth(gamma.est) == 3){
 #####
 # Multiple groups
 #####

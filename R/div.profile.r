@@ -54,9 +54,9 @@ if(is.null(dim(abund)) == FALSE){
         if(log == "TRUE"){profile.melted[,3] <- log(profile.melted[,3])}
         
         #Declare colours
-	    if(missing(colour) || (length(colour) != length(unique(hierarchy[,2])))){
+	if(missing(colour) || (length(colour) != ncol(abund))){
         getPalette <- colorRampPalette(brewer.pal(ncol(abund), "Paired"))
-        colour <- getPalette(ncol(abund)))
+        colour <- getPalette(ncol(abund))
         }
         
         #Plot

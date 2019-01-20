@@ -100,7 +100,7 @@ if(is.null(dim(abund)) == FALSE){
     if(log == "TRUE"){profile[,2] <- log(profile[,2])}
         
     #Declare colours
-	if(missing(colour) || (length(colour) != length(groups))){
+    if(missing(colour) || (length(colour) != length(groups))){
     getPalette <- colorRampPalette(brewer.pal(length(groups), "Paired"))
     colour <- getPalette(length(groups))
     }                                                             

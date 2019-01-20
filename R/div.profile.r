@@ -64,7 +64,7 @@ if(is.null(dim(abund)) == FALSE){
         geom_line() + 
         xlab("Order of diversity") + 
         ylab(if(log == "TRUE"){"Effective number of OTUs (log-transformed)" }else{"Effective number of OTUs"}) +
-        scale_colour_manual(values = colour + 
+        scale_colour_manual(values = colour) + 
         theme_minimal()
         print(plot)
         

@@ -102,7 +102,7 @@ if(is.null(dim(abund)) == FALSE){
     #Declare colours
 	if(missing(colour) || (length(colour) != length(groups))){
     getPalette <- colorRampPalette(brewer.pal(length(groups), "Paired"))
-    colour <- getPalette(length(groups)))
+    colour <- getPalette(length(groups))
     }                                                             
     
     #Plot                                                         

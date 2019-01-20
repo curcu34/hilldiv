@@ -72,7 +72,7 @@ if(is.null(dim(abund)) == FALSE){
             missing.otus <- setdiff(tree$tip.label,rownames(abund.subset))
             tree.subset <- drop.tip(tree,missing.otus)
             }
-                 for (o in order){
+                 for (o in qvalues){
                         if(missing(tree)){ 
                             if(level == "gamma"){div.value <- hilldiv::gamma.div(abund.subset,o)}
                             if(level == "alpha"){div.value <- hilldiv::alpha.div(abund.subset,o)}

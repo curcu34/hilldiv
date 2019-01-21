@@ -16,12 +16,41 @@ div.values <- hill.div(otutable,qvalue,tree)
 }
 div.values.groups <- merge(t(t(div.values)),hierarchy,by.x="row.names",by.y="Sample")
 colnames(div.values.groups) <- c("Sample","Value","Group")
-
+  
+#Data distribution (normality and homogeneity) assessment
+shapiro <- shapiro.test(div.values.groups$Value)
+barlett <- bartlett.test(Value ~ Group, data= div.values.groups)
+if((shapiro$p.value >= 0.05) & (barlett$p.value >= 0.05)){
+norm.homo=TRUE
+}else{
+norm.homo=FALSE
+}
+  
 #Statistical test
 if(length(unique(div.values.groups$Group)) == 2){
-test <- wilcox.test(Value ~ Group, data = div.values.groups)
+    if(norm.homo=TRUE){
+    method <- "Student's t-Test"
+    test <- t.test(Value ~ Group, data = div.values.groups)  
+    results <- list(normality.pvalue=shapiro$p.value,homogeneity.pvalue=barlett$p.value,method = "Student's t-Test",results=c(t=unname(test$statistic),df=unname(test$parameter),p.value=unname(test$p.value)))
+    }else{
+    method <- "Wilcoxon Rank Sum Test"
+    test <- wilcox.test(Value ~ Group, data = div.values.groups)
+    results <- list(normality.pvalue=shapiro$p.value,homogeneity.pvalue=barlett$p.value,method = "Student's t-Test",results=c(t=unname(test$statistic),df=unname(test$parameter),p.value=unname(test$p.value)))
+    }
 }else{
-test <- kruskal.test(Value ~ Group, data = div.values.groups)
+    if(norm.homo=TRUE){
+    method <- "ANOVA Test"
+    test <- summary(aov(Value ~ Group, data = div.values.groups))
+    }else{
+    method <- "Kruskal-Wallis Test"
+    test <- kruskal.test(Value ~ Group, data = div.values.groups)
+    }
 }
+ 
+  
+  result = c(t = res[1]), p.value = res[2], m, data.name = DNAME)
+  
+  groups <- length(unique(div.values.groups$Group))
+  
 return(test)
 }

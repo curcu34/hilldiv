@@ -1,6 +1,6 @@
 div.test.plot <- function(divtest,chart,colour){ 
 
-if((names(divtest)[1] != "data") % (names(divtest)[2] != "normality.pvalue")) stop("The input object does not seem to be a div.test output.")
+if((names(divtest)[1] != "data") & (names(divtest)[2] != "normality.pvalue")) stop("The input object does not seem to be a div.test output.")
 
 #Get data table  
 divtestdata <- divtest$data  

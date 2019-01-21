@@ -15,7 +15,7 @@ colour <- getPalette(divtest$groups)
 if(chart == "boxplot"){
 plot <- ggplot(divtestdata, aes(x=Group, y=Value, colour=Group, fill=Group)) + 
   geom_boxplot() +
-  xlab("Effective number of OTUs") + ylab("Groups") +
+  ylab("Effective number of OTUs") + xlab("Groups") +
   scale_colour_manual(values=colour) +
   scale_fill_manual(values=alpha(colour, 0.3)) +
   theme_minimal() +
@@ -25,7 +25,7 @@ print(plot)
 if(chart == "jitter"){
 plot <- ggplot(divtestdata, aes(x=Group, y=Value, colour=Group)) + 
   geom_jitter(width = 0.1) +
-  xlab("Effective number of OTUs") + ylab("Groups") +
+  ylab("Effective number of OTUs") + xlab("Groups") +
   scale_colour_manual(values=alpha(colour, 0.6)) +
   theme_minimal() +
   coord_flip()

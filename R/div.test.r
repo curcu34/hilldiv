@@ -28,28 +28,22 @@ norm.homo=FALSE
   
 #Statistical test
 if(length(unique(div.values.groups$Group)) == 2){
-    if(norm.homo=TRUE){
+    if(norm.homo == TRUE){
     method <- "Student's t-Test"
     test <- t.test(Value ~ Group, data = div.values.groups)  
-    results <- list(data=div.values.groups,normality.pvalue=shapiro$p.value,homogeneity.pvalue=barlett$p.value,groups=length(unique(div.values.groups$Group)),method = "Student's t-Test",result=c(t=unname(test$statistic),df=unname(test$parameter),p.value=unname(test$p.value)))
+    results <- list(data=div.values.groups,normality.pvalue=shapiro$p.value,homogeneity.pvalue=barlett$p.value,groups=length(unique(div.values.groups$Group)),method = "Student's t-Test",test=c(t=unname(test$statistic),df=unname(test$parameter),p.value=unname(test$p.value)))
     }else{
     test <- wilcox.test(Value ~ Group, data = div.values.groups)
-    results <- list(data=div.values.groups,normality.pvalue=shapiro$p.value,homogeneity.pvalue=barlett$p.value,groups=length(unique(div.values.groups$Group)),method = "Wilcoxon Rank Sum Test",result=c(W=unname(test$statistic),df=unname(test$parameter),p.value=unname(test$p.value)))
+    results <- list(data=div.values.groups,normality.pvalue=shapiro$p.value,homogeneity.pvalue=barlett$p.value,groups=length(unique(div.values.groups$Group)),method = "Wilcoxon Rank Sum Test",test=c(W=unname(test$statistic),df=unname(test$parameter),p.value=unname(test$p.value)))
     }
 }else{
-    if(norm.homo=TRUE){
+    if(norm.homo == TRUE){
     test <- summary(aov(Value ~ Group, data = div.values.groups))
-    results <- list(data=div.values.groups,normality.pvalue=shapiro$p.value,homogeneity.pvalue=barlett$p.value,groups=length(unique(div.values.groups$Group)),method = "ANOVA",result=test)
+    results <- list(data=div.values.groups,normality.pvalue=shapiro$p.value,homogeneity.pvalue=barlett$p.value,groups=length(unique(div.values.groups$Group)),method = "ANOVA",test=test)
     }else{
     test <- kruskal.test(Value ~ Group, data = div.values.groups)
-    results <- list(data=div.values.groups,normality.pvalue=shapiro$p.value,homogeneity.pvalue=barlett$p.value,groups=length(unique(div.values.groups$Group)),method = "Kruskal-Wallis Test",result=c(chi.squared=unname(test$statistic),df=unname(test$parameter),p.value=unname(test$p.value)))
+    results <- list(data=div.values.groups,normality.pvalue=shapiro$p.value,homogeneity.pvalue=barlett$p.value,groups=length(unique(div.values.groups$Group)),method = "Kruskal-Wallis Test",test=c(chi.squared=unname(test$statistic),df=unname(test$parameter),p.value=unname(test$p.value)))
     }
 }
- 
-  
-  result = c(t = res[1]), p.value = res[2], m, data.name = DNAME)
-  
-  groups <- 
-  
-return(test)
+return(results)
 }

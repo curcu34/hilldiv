@@ -31,26 +31,25 @@ if(length(unique(div.values.groups$Group)) == 2){
     if(norm.homo=TRUE){
     method <- "Student's t-Test"
     test <- t.test(Value ~ Group, data = div.values.groups)  
-    results <- list(normality.pvalue=shapiro$p.value,homogeneity.pvalue=barlett$p.value,method = "Student's t-Test",results=c(t=unname(test$statistic),df=unname(test$parameter),p.value=unname(test$p.value)))
+    results <- list(normality.pvalue=shapiro$p.value,homogeneity.pvalue=barlett$p.value,groups=length(unique(div.values.groups$Group)),method = "Student's t-Test",result=c(t=unname(test$statistic),df=unname(test$parameter),p.value=unname(test$p.value)))
     }else{
-    method <- "Wilcoxon Rank Sum Test"
     test <- wilcox.test(Value ~ Group, data = div.values.groups)
-    results <- list(normality.pvalue=shapiro$p.value,homogeneity.pvalue=barlett$p.value,method = "Student's t-Test",results=c(t=unname(test$statistic),df=unname(test$parameter),p.value=unname(test$p.value)))
+    results <- list(normality.pvalue=shapiro$p.value,homogeneity.pvalue=barlett$p.value,groups=length(unique(div.values.groups$Group)),method = "Wilcoxon Rank Sum Test",result=c(W=unname(test$statistic),df=unname(test$parameter),p.value=unname(test$p.value)))
     }
 }else{
     if(norm.homo=TRUE){
-    method <- "ANOVA Test"
     test <- summary(aov(Value ~ Group, data = div.values.groups))
+    results <- list(normality.pvalue=shapiro$p.value,homogeneity.pvalue=barlett$p.value,groups=length(unique(div.values.groups$Group)),method = "ANOVA",result=test)
     }else{
-    method <- "Kruskal-Wallis Test"
     test <- kruskal.test(Value ~ Group, data = div.values.groups)
+    results <- list(normality.pvalue=shapiro$p.value,homogeneity.pvalue=barlett$p.value,groups=length(unique(div.values.groups$Group)),method = "Kruskal-Wallis Test",result=c(chi.squared=unname(test$statistic),df=unname(test$parameter),p.value=unname(test$p.value)))
     }
 }
  
   
   result = c(t = res[1]), p.value = res[2], m, data.name = DNAME)
   
-  groups <- length(unique(div.values.groups$Group))
+  groups <- 
   
 return(test)
 }

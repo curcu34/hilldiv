@@ -1,5 +1,5 @@
 div.test.plot <- function(divtest,chart,colour){ 
-if(missing(chart)){chart="boxplot"}
+if(missing(chart)){chart="box"}
 if((names(divtest)[1] != "data") & (names(divtest)[2] != "normality.pvalue")) stop("The input object does not seem to be a div.test output.")
 
 #Get data table  
@@ -12,7 +12,7 @@ colour <- getPalette(divtest$groups)
 }
   
 #Plot
-if(chart == "boxplot"){
+if(chart == "box"){
 plot <- ggplot(divtestdata, aes(x=Group, y=Value, colour=Group, fill=Group)) + 
   geom_boxplot() +
   ylab("Effective number of OTUs") + xlab("Groups") +

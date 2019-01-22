@@ -1,5 +1,5 @@
 div.test.plot <- function(divtest,chart,colour){ 
-
+if(missing(chart)){chart="boxplot"}
 if((names(divtest)[1] != "data") & (names(divtest)[2] != "normality.pvalue")) stop("The input object does not seem to be a div.test output.")
 
 #Get data table  
@@ -27,6 +27,15 @@ plot <- ggplot(divtestdata, aes(x=Group, y=Value, colour=Group)) +
   geom_jitter(width = 0.1) +
   ylab("Effective number of OTUs") + xlab("Groups") +
   scale_colour_manual(values=alpha(colour, 0.6)) +
+  theme_minimal() +
+  coord_flip()
+print(plot)
+}  
+if(chart == "violin"){
+plot <- ggplot(divtestdata, aes(x=Group, y=Value, colour=Group)) + 
+  geom_violin() +
+  ylab("Effective number of OTUs") + xlab("Groups") +
+  scale_colour_manual(values=alpha(colour, 0.3)) +
   theme_minimal() +
   coord_flip()
 print(plot)

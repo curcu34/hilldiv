@@ -32,7 +32,7 @@ plot <- ggplot(divtestdata, aes(x=Group, y=Value, colour=Group)) +
 print(plot)
 }  
 if(chart == "violin"){
-plot <- ggplot(divtestdata, aes(x=Group, y=Value, colour=Group)) + 
+plot <- ggplot(divtestdata, aes(x=Group, y=Value, colour=Group, fill=Group)) + 
   geom_violin() +
   ylab("Effective number of OTUs") + xlab("Groups") +
   scale_colour_manual(values=colour) +

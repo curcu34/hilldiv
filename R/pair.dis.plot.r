@@ -17,6 +17,7 @@ values.NMDS<-metaMDS(as.dist(distance), k = 2, trymax = 400)
 if(level == 1){
 NMDS=data.frame(x=values.NMDS$point[,1],y=values.NMDS$point[,2],Sample=as.factor(rownames(values.NMDS$point)))
 NMDS=merge(NMDS,hierarchy,by="Sample")
+colnames(NMDS) <- c("Sample","x","y","Group")
 }
 if(level == 2){	
 NMDS=data.frame(x=values.NMDS$point[,1],y=values.NMDS$point[,2],Group=as.factor(unique(hierarchy[,2])))

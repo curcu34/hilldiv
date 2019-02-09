@@ -124,7 +124,7 @@ pair.dis(otu.table,qvalue=0,hierarchy=hierarchy.table)
 pair.dis(otu.table,qvalue=0,hierarchy=hierarchy.table,level="2")
 ````
 
-###  pair.dis.plot()
+###  pair.dis.plot() - chart
 The related function pair.dis.plot() uses any of the dissimilarity matrices yielded by pair.dis() (e.g. 1-UqN) to visualize it either as a NMDS chart, a qgraph plot or a heatmap/correlogram.
 
 ````R

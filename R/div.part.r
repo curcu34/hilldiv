@@ -9,7 +9,7 @@ if(sum(colSums(otutable)) != ncol(otutable)) {otutable <- tss(otutable)}
 if(missing(qvalue)) stop("q value is missing")
 if(qvalue < 0) stop("q value needs to be possitive (equal or higher than zero)")
 if(qvalue==1) {qvalue=0.99999}
-if(missing(type)){type == "abundance"}
+if(missing(type)){type = "abundance"}
 if(type == "incidence"){
   if(missing(hierarchy)) stop("Diversity partitioning based on incidence data requires a hierarchy table")
 }  

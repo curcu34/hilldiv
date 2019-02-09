@@ -1,4 +1,4 @@
-**hilldiv** is an R package that provides a set of functions to assist analysis of diversity for diet reconstruction, microbial community profiling or more general ecosystem characterisation analyses based on Hill numbers, using OTU tables and associated phylogenetic trees as inputs. The package includes functions for (phylo)diversity measurement, (phylo)diversity profile plotting, (phylo)diversity comparison between samples and groups, sample completeness assessment, (phylo)diversity partitioning and (dis)similarity measurement. All of these grounded in abundance-based and incidence-based Hill numbers.
+**hilldiv** is an R package that provides a set of functions to assist analysis of diversity for diet reconstruction, microbial community profiling or more general ecosystem characterisation analyses based on Hill numbers, using OTU tables and associated phylogenetic trees as inputs. The package includes functions for (phylo)diversity measurement, (phylo)diversity profile plotting, (phylo)diversity comparison between samples and groups,  (phylo)diversity partitioning and (dis)similarity measurement. All of these grounded in abundance-based and incidence-based Hill numbers.
 
 The statistical framework developed around Hill numbers encompasses many of the most broadly employed diversity (e.g. richness, Shannon index, Simpson index), phylogenetic diversity (e.g. Faith’s PD, Allen’s H, Rao’s quadratic entropy) and dissimilarity (e.g. Sørensen index, Unifrac distances) metrics. This enables the most common analyses of diversity to be performed while grounded in a single statistical framework. 
 
@@ -25,9 +25,11 @@ If not installed, it will automatically install the following dependencies: ggpl
 ## Data
 All the different applications and functions are reproduced with the data included in this package. 
 ````R
+#Load data
 data(bat.diet.otutable)
 data(bat.diet.hierarchy)
 data(bat.diet.tree)
+
 #Create simple objects
 otu.table <- bat.diet.otutable
 otu.vector <- bat.diet.otutable[,1]
@@ -37,132 +39,108 @@ tree <- bat.diet.tree
 ## Diversity measurement and visualisation
 ### hill.div()
 Neutral or phylogenetic Hill number computation from a vector object (one sample) or an OTU table (matrix or data.frame object; multiple samples). Providing the tree argument yields phylodiversity values. Note that if using a tree the tip labels and the 'names' (vectors) or 'rownames' (matrices) need to be identical. Note that if the number of OTUs and samples is high, computing phylodiversities might require considerable time. If the vector or the OTU table columns do not sum to 1, the data is TSS-normalised.
-
-|Argument| |Notes|
-| ------------- | ------------- | ------------- |
-| **abund**  | M |A vector or a matrix/data.frame indicating the relative abundances of one or multiple samples, respectively. If a matrix/data.frame is provided, columns refer to samples and rows to OTUs.|
-| **qvalue**  | M |A positive number (>=0). It can be an integer or contain decimals.|
-| **tree**   | O  |An ultrametic tree of class 'phylo'. The tip labels must match the names of the vector values (if one sample) or matrix rows (if multiple samples).|
-| **type**   | O  |Either "abundance" for abundance-based Hill number computation or "incidence" for incidence-based Hill number computation. In the latter case, the abund object needs to be a matrix/data.frame, as incidence-based Hill number computation requires multiple samples. Default: type="abundance".|
-
-*M=mandatory; O=optional*
 ````R
-#USAGE#
 hill.div(otu.vector,0)
 hill.div(otu.table,1)
 hill.div(otu.table,qvalue=2)
 hill.div(otu.table,1,tree)
 hill.div(otu.table,1,tree,type="incidence")
 hill.div(otu.table,qvalue=2,tree=tree)
-
-#EXAMPLES#
-hill.div(otu.table[,1],qvalue=1)
-9.145646
-hill.div(otu.table[,c(1:3)],qvalue=1)
-    TUL1     TUL2     TUL3 
-9.145646 8.686439 7.884177 
 ````
 ### div.profile() - chart
 (Phylo)Diversity profiles of individual samples or groups of samples. Diversity profiles show the relation between the order of diversity (q-value) and the respective Hill numbers, thus providing information about the richness and evenness of a sample at a glance.
 
-|Argument| |Notes|
-| ------------- | ------------- | ------------- |
-| **abund**  | M |A vector or a matrix/data.frame indicating the relative abundances of one or multiple samples, respectively. If a matrix/data.frame is provided, columns refer to samples and rows to OTUs.|
-| **qvalues**  | O |A vector of sequential orders of diversity (usually from 0 to 5). Default: order=seq(from = 0, to = 5, by = (0.1))|
-| **tree**   | O  |An ultrametic tree of class 'phylo'. The tip labels must match the names of the vector values (if one sample) or matrix rows (if multiple samples).|
-| **hierarchy**   | O  |A 2-column matrix in which the first column lists the sample names while the second lists the groups. Including an hierarchy table enables outputting the sample Hill numbers averaged per group (level="alpha") or the overall Hill numbers of the groups (level="gamma").|
-| **level**   | O  |Only meaningful if a hierachy table is provided. If 'alpha', alpha diversity (*averaged* per-sample diversity) of the groups is plotted instead of gamma (overall) diversity. Default: level="gamma"|
-| **log**   | O  |Logical: whether Hill numbers are transformed to the logarithmic scale, which is useful when there are large differences between q values (e.g. sharp drop from q=0 to q=1), which might complicate visualization. Default: log="FALSE"|
-| **values**   | O  | Logical: whether the diversity profiles values are outputted as a table object. Default: type="FALSE".|
-
 ````R
-#USAGE#
-div.profile(otu.table[,1])
+# One sample
+div.profile(otu.vector)
+
+# Multiple individual samples (first 5 samples of the OTU table)
 div.profile(otu.table[,c(1:5)])
-div.profile(otu.table[,c(1:5)],tree=tree)
-div.profile(otu.table,tree=tree,hierarchy=hierarchy.table,level="alpha")
+
+# Multiple groups (aggregated samples)
+div.profile(otu.table,hierarchy=hierarchy.table,colour=c("#35a849","#9d1923","#f7ab1b","#ed7125","#cc4323","#b6d134","#fcee21","#085ba7"))
 ````
 <img align=left src="https://github.com/anttonalberdi/DiverHill/blob/master/figures/div.profile.one.png" width="350" title="One sample">
 <img src="https://github.com/anttonalberdi/DiverHill/blob/master/figures/div.profile.multiple.png" width="350" title="Multiple samples">
 
-
 ## Diversity comparison
-### div.comp.test()
+### div.test()
 Diversity comparison between two or multiple groups of samples. If the tree argument is used the test compares phylodiversity values. Note that if the number of OTUs and samples is high, computing phylodiversities might require considerable time. 
 
-|Argument|Feature|Type|Notes|
-| ------------- | ------------- | ------------- |------------- |
-| **abund**  | Mandatory  |vector,matrix,data.frame| A vector or a matrix (rows as OTUs) |
-| **q.value**  | Mandatory |>0 |Possitive number, can contain decimals   |
-| **hierarchy.table**  | Mandatory |matrix,data.frame |First column containing sample names, second group names  |
-| **tree**   | Optional  |phylo   |Phylogenetic tree of class phylo   |
 ````R
-#EXAMPLES#
-div.contrast(otu.table,1,hierarchy.table)
-div.contrast(otu.table,1,hierarchy.table,tree)
+#USAGE#
+#Contrast based on Hill numbers
+div.test(otu.table,qvalue=0,hierarchy=hierarchy.table)
+#Contrast based on phylogenetic Hill numbers
+div.test(otu.table,qvalue=1,hierarchy=hierarchy.table,tree=tree)
 ````
-### div.comp.plot() - chart
+### div.test.plot() - chart
 Visual comparison between the diversity levels of two or multiple groups of samples. The chart argument enables selecting between boxplot and jitter plot.
-
-|Argument|Feature|Type|Notes|
-| ------------- | ------------- | ------------- |------------- |
-| **abund**  | Mandatory  |vector,matrix,data.frame| A vector or a matrix (rows as OTUs) |
-| **q.value**  | Mandatory |>0 |Possitive number, can contain decimals   |
-| **hierarchy.table**  | Mandatory |matrix,data.frame |First column containing sample names, second group names  |
-| **tree**   | Optional  |phylo   |Phylogenetic tree of class phylo   |
-| **chart**   | Optional  |character   |Either "boxplot" or "jitter"   |
-
 ````R
-#EXAMPLES#
-div.comp.plot(otu.table,1,hierarchy.table)
-div.comp.plot(otu.table,1,hierarchy.table,chart="boxplot")
-div.comp.plot(otu.table,2,hierarchy.table,tree,chart="jitter") 
+contrast.div.q0 <- div.test(otu.table,qvalue=0,hierarchy=hierarchy.table)
+colours <- c("#35a849","#9d1923","#f7ab1b","#ed7125","#cc4323","#b6d134","#fcee21","#085ba7")
+
+#Box plot
+div.test.plot(contrast.div.q0)
+div.test.plot(contrast.div.q0,chart="box")
+
+#Jitter plot
+div.test.plot(contrast.div.q0,chart="jitter",colour=colours)
+
+#Violin plot
+div.test.plot(contrast.div.q0,chart="violin",colour=c("#35a849","#9d1923","#f7ab1b","#ed7125","#cc4323","#b6d134","#fcee21","#085ba7"))
 ````
-## Diversity estimation from incomplete data sets
-### hill.intext()
-Interpolation and extrapolation of OTU table diversities based on Hill numbers. Wrapper of iNEXT and iNextPD. 
 
 ## Diversity partitioning
-### alpha.div()
-Alpha (phylo)diversity of a dataset (OTU table) with multiple samples.
-
-### gamma.div()
-Gamma (phylo)diversity of a dataset (OTU table) with multiple samples.
-
-### div.part()
-(Phylo)Diversity partitioning of a dataset (OTU table) with multiple samples and hierarchical levels (2, 3 or 4 levels; e.g. sample > population > species > overall).
+### div.part
+The function assumes a 2-level hierarchy and yields alpha, gamma and beta values based on abundance data. If a hierarchy table is provided, the function yields alpha, gamma and beta values based on incidence data, i.e. alpha diversity reflects the incidence-based diversity of groups.
 ````R
-#EXAMPLES#
-div.part(otu.table,0)
-div.part(otu.table,0,hierarchy.table)
-div.part(otu.table,qvalue=0,hierarchy=hierarchy.table)
+#Abundance-based
+div.part(otu.table,qvalue=1)
+div.part(otu.table,qvalue=1,type="abundance")
+div.part(otu.table,qvalue=0,tree=tree)
+
+#Incidence-based
+div.part(otu.table,qvalue=0,type="incidence",hierarchy=hierarchy.table)
 ````
 
 ## Dissimilarity measurement and visualisation
-###  pair.dis()
-Pairwise dissimilarity measurement yielding true beta diversity, homogeneity, overlap and turnover values.
+###  beta.dis()
+The function beta.dis() performs similarity or dissimilarity measurement based on Hill numbers beta diversity, sample size and order of diversity. The function can be run by inputting those values manually, or by using the list object outputted by the div.part() function, which contains all the mentioned information. As specified by the argument “metric”: the function can compute the following similarity measures: the Sørensen-type overlap (CqN), the Jaccard-type overlap (UqN), the Sørensen-type turnover-complement (VqN), and the Jaccard-type turnover-complement (SqN). The argument ‘type’ enables either similarities or dissimilarities (one-complements of the similarity values) to be outputted.
 ````R
-#EXAMPLES#
-pair.dis(otu.table,0)
-pair.dis(otu.table,qvalue=1)
-pair.dis(otu.table,1,measure="C")
-pair.dis(otu.table,1,hierarchy=hierarchy.table,measure=c("C","S"))
-pair.dis(otu.table,1,measure="C",tree=tree,hierarchy.table)
+#Using custom, beta-diversity, q-value and samples sizes
+beta.dis(beta=4.5,qvalue=1,N=8)
+beta.dis(beta=4.5,qvalue=1,N=8,metric="C",type="similarity")
+
+#Computing from an div.part() derived object
+div.part.object  <- div.part(otu.table,qvalue=0,tree=tree)
+beta.dis(div.part.object)
+beta.dis(div.part.object,metric="S",type="similarity")
 ````
+###  pair.dis()
+The function pair.dis() performs pairwise diversity partitioning and yields matrices containing pairwise beta diversity and (dis)similarity measures. If a hierarchy table is provided, pairwise calculations can be carried out at some or all the specified hierarchical levels. The results are outputted as a list of matrices.
+````R
+pair.dis(otu.table,qvalue=0,hierarchy=hierarchy.table)
+pair.dis(otu.table,qvalue=0,hierarchy=hierarchy.table,level="2")
+````
+
+###  pair.dis.plot()
+The related function pair.dis.plot() uses any of the dissimilarity matrices yielded by pair.dis() (e.g. 1-UqN) to visualize it either as a NMDS chart, a qgraph plot or a heatmap/correlogram.
+
+````R
+pair.div.q0.L2 <- pair.dis(otu.table[,sort(colnames(otu.table))],qvalue=0,hierarchy=hierarchy.table,level="2")
+#Plot NMDS
+pair.dis.plot(pair.div.q0.L2$L2_CqN,hierarchy=hierarchy.table,type="NMDS",level=2)
+#Plot qgraph
+pair.dis.plot(pair.div.q0.L2$L2_CqN,hierarchy=hierarchy.table,type="qgraph",level=2,magnify=TRUE)
+````
+
 ## Auxiliary functions
 ###  tss()
+Performs total sum scaling.
 ````R
-#EXAMPLES#
 tss(otu.table)
 tss(otu.vector)
-````
-###  to.inext()
-````R
-to.inext(otu.table)
-````
-###  phylo.to.phylog()
-````R
-phylo.to.phylog(tree)
 ````
 
 # Input data formats
@@ -182,18 +160,19 @@ The sum of relative abundances of all samples must be 1. Check that by using col
 ## Hierarchy table
 For functions div.part and phylodiv.part
 
-| Sample | Group |Supergroup  |
-| ------------- | ------------- |------------- |
-| Sample1  | Group1   |Supergroup1  |
-| Sample2  | Group1   |Supergroup1  |
-| Sample3  | Group2   |Supergroup2  |
-| Sample4  | Group2   |Supergroup2  |
-| Sample5  | Group3   |Supergroup2  |
-| ...  | ...   |...  |
-| SampleN  | GroupN   |SpergroupN  |
+| Sample | Group |
+| ------------- | ------------- |
+| Sample1  | Group1   |
+| Sample2  | Group1   |
+| Sample3  | Group2   |
+| Sample4  | Group2   |
+| Sample5  | Group3   |
+| ...  | ...   |
+| SampleN  | GroupN   |
 
 * Sample names and OTU table row names must match
 * Groups and supergroups must be nested (all samples in a group must be included in the same supergroup)
+
 # References
 * Chao, A., Chiu, C.-H., & Hsieh, T. C. (2012). Proposing a resolution to debates on diversity partitioning. Ecology, 93(9), 2037–2051.
 * Chao, A., Chiu, C.-H., & Jost, L. (2010). Phylogenetic diversity measures based on Hill numbers. Philosophical Transactions of the Royal Society of London. Series B, Biological Sciences, 365(1558), 3599–3609.

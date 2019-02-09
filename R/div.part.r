@@ -1,4 +1,4 @@
-div.part <- function(otutable,qvalue,hierarchy,tree,type) {
+div.part <- function(otutable,qvalue,tree,type,hierarchy) {
   
 #Quality-check and warnings
 if(missing(otutable)) stop("OTU table is missing")
@@ -20,7 +20,6 @@ if(type == "incidence"){
 #L1 and L2 diversities
 if(missing(hierarchy)){
 if(type == "incidence") stop("Diversity partitioning based on incidence data requires a hierarchy table")
-if(type == "estimate") stop("Estimated diversity partitioning based on incidence data requires a hierarchy table")
 if(missing(tree)){
   L1_div <- hilldiv::alpha.div(otutable,qvalue)
   L2_div <- hilldiv::gamma.div(otutable,qvalue)
@@ -45,7 +44,6 @@ hierarchy[,1] <- as.character(hierarchy[,1])
 hierarchy[,2] <- as.character(hierarchy[,2])
 if(identical(sort(colnames(otutable)),sort(hierarchy[,1])) == FALSE) stop("OTU names in the OTU table and the hierarchy table do not match")
 colnames(hierarchy) <- c("L1","L2")
-
 
 if(type == "abundance"){
 #####  
@@ -127,64 +125,6 @@ if(type == "abundance"){
   if (qvalue==0.99999) {qvalue=1}
   results <- list("Hierarchical_levels" = 2,"Type" = type,"Order_diversity" = qvalue,"Sample_size" = N, "L2_diversity" = L2_div, "L3_diversity" = L3_div, "Beta_diversity" = beta)
   return(results)
-                           
-}else if(type == "estimate"){
-#####  
-# Incidence-estimation
-#####
-if(qvalue==0.99999) {qvalue=1}
-if((qvalue != 0) & (qvalue != 1) & (qvalue != 2))  stop("For estimated diversity partitioning the order of diversity (q) must to be 0, 1 or 2.")
-
-#Transform to iNEXT/iNextPD format  
-otutable.inext.L2 <- to.inext(otutable,hierarchy=sample.species,type="incidence_raw")
-otutable.inext.L3 <- to.inext(otutable,type="incidence_raw")
-
-if(missing(tree)){  
-  #Alpha diversity
-  if(qvalue == 0){L2_div <- mean(iNEXT::ChaoSpecies(otutable.inext.L2,datatype="incidence_raw", conf=0.95)[,2])}
-  if(qvalue == 1){L2_div <- exp(mean(iNEXT::ChaoEntropy(otutable.inext.L2,datatype="incidence_raw", transform=FALSE, conf=0.95)[,2]))}
-  if(qvalue == 2){L2_div <- 1/(1-mean(iNEXT::EstSimpson(otutable.inext.L2,datatype="incidence_raw", transform=FALSE, conf=0.95)[,2]))}
-  #Gamma diversity  
-  if(qvalue == 0){L3_div <- iNEXT::ChaoSpecies(otutable.inext.L3,datatype="incidence_raw", conf=0.95)[,2]}
-  if(qvalue == 1){L3_div <- iNEXT::ChaoEntropy(otutable.inext.L3,datatype="incidence_raw", transform=TRUE, conf=0.95)[,2]}
-  if(qvalue == 2){L3_div <- iNEXT::EstSimpson(otutable.inext.L3,datatype="incidence_raw", transform=TRUE, conf=0.95)[,2]}
-  }else{
-  stop("Incidence-estimation cannot be used with phylogenetic data")
-  #if(class(tree) == "phylo"){tree.phylog <- phylo.to.phylog(tree)}
-  #if(class(tree) == "phylog"){tree.phylog <- tree}
-  #Alpha diversity !!!!!(need to divide by T to obtain effective number of lineages)!!!!
-  #if(qvalue == 0){L2_div <- mean(iNextPD::estPD(otutable.inext.L2,labels=rownames(otutable),phy=tree.phylog,q=0,datatype="incidence_raw", se=FALSE, conf=0.95)[,2])}
-  #if(qvalue == 1){L2_div <- exp(mean(log(iNextPD::estPD(otutable.inext.L2,labels=rownames(otutable),phy=tree.phylog,q=1,datatype="incidence_raw", se=FALSE, conf=0.95)[,2])))}
-  #if(qvalue == 2){
-  #  L2_div.raw <- iNextPD::estPD(otutable.inext.L2,labels=rownames(otutable),phy=tree.phylog,q=2,datatype="incidence_raw", se=FALSE, conf=0.95)[,2]
-  #  L2_div.raw2 <- mean(-(1-L2_div.raw)/L2_div.raw)
-  #  L2_div <- 1/(1-L2_div.raw2)}
-  #Gamma diversity  
-  #  L3_div <- iNextPD::estPD(otutable.inext.L3,labels=rownames(otutable),phy=tree.phylog,q=qvalue,datatype="incidence_raw", se=FALSE, conf=0.95)[,2]
-  }
-  #L2-L3, beta and sample size
-  beta <- L3_div/L2_div
-  N <- length(otutable.inext.L2)
-  
-  #Return values
-  results <- list("Hierarchical_levels" = 2,"Type" = type,"Order_diversity" = qvalue,"Sample_size" = N, "L2_diversity" = L2_div, "L3_diversity" = L3_div, "Beta_diversity" = beta)
-  return(results)
-                                             
-}else{
-stop("The type of diversity partition provided is incorrect.")
 }
 }
-###########
-#Function for 4-level hierarchy
-###########
-  
-if(ncol(hierarchy) == 3){
-stop("The maximum number of hierarchical levels allowed is 3")
-} 
-  
-#Error if more hierarchical levels
-if(ncol(hierarchy) > 3){
-stop("The maximum number of hierarchical levels allowed is 3")
-} 
-
 }

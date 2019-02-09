@@ -6,6 +6,7 @@ if(missing(qvalue)) stop("q value is missing")
 if(qvalue==1){qvalue=0.99999} 
 if(qvalue < 0) stop("q value needs to be possitive (equal or higher than zero)")
 if(missing(type)){type="abundance"}
+if((type=="incidence") & (length(dim(abund)) != 2)) stop("Incidence-based Hill number computation requires multiple samples")
   
 #Diversity
 if(missing(tree)){
@@ -101,10 +102,6 @@ if(missing(tree)){
     }else{
     stop("The provided type of analysis is incorrect")
     }
-    
-                              
     }
-                       
 }
-  
 }

@@ -12,4 +12,5 @@
 \examples{
 contrast.div.q0 <- div.test(otu.table,qvalue=0,hierarchy=hierarchy.table)
 div.test.plot(contrast.div.q0,chart="jitter")
+div.test.plot(contrast.div.q0,chart="violin")
 }

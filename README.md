@@ -17,6 +17,11 @@ library(hilldiv)
 ````
 If not installed, it will automatically install the following dependencies: ggplot2, RColorBrewer, data.table, ape, ade4, iNEXT, iNextPD.
 
+# Changelog
+
+### v1.1
+- Dependent "geiger" package added to the Description document.
+
 # Applications and functions
 ## Data
 All the different applications and functions are reproduced with the data included in this package. 
@@ -29,6 +34,7 @@ data(bat.diet.tree)
 #Create simple objects
 otu.table <- bat.diet.otutable
 otu.vector <- bat.diet.otutable[,1]
+names(otu.vector) <- rownames(otu.table)
 hierarchy.table <- bat.diet.hierarchy
 tree <- bat.diet.tree
 ````

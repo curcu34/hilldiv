@@ -20,6 +20,7 @@ Depends:
     ape,
     ade4,
     vegan,
+    geiger,
     qgraph
 Suggests:
 Imports:
@@ -29,6 +30,7 @@ Imports:
     ape,
     ade4,
     vegan,
+    geiger,
     qgraph
 Encoding: UTF-8
 RoxygenNote: 6.1.0.9000

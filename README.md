@@ -29,6 +29,7 @@ data(bat.diet.tree)
 #Create simple objects
 otu.table <- bat.diet.otutable
 otu.vector <- bat.diet.otutable[,1]
+names(otu.vector) <- rownames(otu.table)
 hierarchy.table <- bat.diet.hierarchy
 tree <- bat.diet.tree
 ````

@@ -6,7 +6,7 @@ if((names(divtest)[1] != "data") & (names(divtest)[2] != "normality.pvalue")) st
 divtestdata <- divtest$data  
   
 #Declare colours
-if(missing(colour) || (length(colour) != divtest$groups)){
+if(missing(colour) || (length(colour) < divtest$groups)){
 getPalette <- colorRampPalette(brewer.pal(divtest$groups, "Paired"))
 colour <- getPalette(divtest$groups)
 }

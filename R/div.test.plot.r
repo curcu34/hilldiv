@@ -17,7 +17,7 @@ plot <- ggplot(divtestdata, aes(x=Group, y=Value, colour=Group, fill=Group)) +
   geom_boxplot() +
   ylab("Effective number of OTUs") + xlab("Groups") +
   scale_colour_manual(values=colour) +
-  scale_fill_manual(values=alpha(colour, 0.3)) +
+  scale_fill_manual(values=scales::alpha(colour, 0.3)) +
   theme_minimal() +
   coord_flip()
 print(plot)
@@ -26,7 +26,7 @@ if(chart == "jitter"){
 plot <- ggplot(divtestdata, aes(x=Group, y=Value, colour=Group)) + 
   geom_jitter(width = 0.1) +
   ylab("Effective number of OTUs") + xlab("Groups") +
-  scale_colour_manual(values=alpha(colour, 0.6)) +
+  scale_colour_manual(values=scales::alpha(colour, 0.6)) +
   theme_minimal() +
   coord_flip()
 print(plot)
@@ -36,7 +36,7 @@ plot <- ggplot(divtestdata, aes(x=Group, y=Value, colour=Group, fill=Group)) +
   geom_violin() +
   ylab("Effective number of OTUs") + xlab("Groups") +
   scale_colour_manual(values=colour) +
-  scale_fill_manual(values=alpha(colour, 0.3)) +
+  scale_fill_manual(values=scales::alpha(colour, 0.3)) +
   theme_minimal() +
   coord_flip()
 print(plot)

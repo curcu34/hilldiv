@@ -1,6 +1,6 @@
 **hilldiv** is an R package that provides a set of functions to assist analysis of diversity for diet reconstruction, microbial community profiling or more general ecosystem characterisation analyses based on Hill numbers, using OTU tables and associated phylogenetic trees as inputs. The package includes functions for (phylo)diversity measurement, (phylo)diversity profile plotting, (phylo)diversity comparison between samples and groups,  (phylo)diversity partitioning and (dis)similarity measurement. All of these grounded in abundance-based and incidence-based Hill numbers.
 
-The statistical framework developed around Hill numbers encompasses many of the most broadly employed diversity (e.g. richness, Shannon index, Simpson index), phylogenetic diversity (e.g. Faith’s PD, Allen’s H, Rao’s quadratic entropy) and dissimilarity (e.g. Sørensen index, Unifrac distances) metrics. This enables the most common analyses of diversity to be performed while grounded in a single statistical framework. 
+The statistical framework developed around Hill numbers encompasses many of the most broadly employed diversity (e.g. richness, Shannon index, Simpson index), phylogenetic diversity (e.g. Faith’s PD, Allen’s H, Rao’s quadratic entropy) and dissimilarity (e.g. Sørensen index, Unifrac distances) metrics. This enables the most common analyses of diversity to be performed while grounded in a single statistical framework.
 
 * Installation
 * Applications and functions
@@ -21,10 +21,11 @@ If not installed, it will automatically install the following dependencies: ggpl
 
 ### v1.1
 - Dependent "geiger" package added to the Description document.
+- Magnify issue corrected in pair.dis.plot.r
 
 # Applications and functions
 ## Data
-All the different applications and functions are reproduced with the data included in this package. 
+All the different applications and functions are reproduced with the data included in this package.
 ````R
 #Load data
 data(bat.diet.otutable)
@@ -67,7 +68,7 @@ div.profile(otu.table,hierarchy=hierarchy.table,colour=c("#35a849","#9d1923","#f
 
 ## Diversity comparison
 ### div.test()
-Diversity comparison between two or multiple groups of samples. If the tree argument is used the test compares phylodiversity values. Note that if the number of OTUs and samples is high, computing phylodiversities might require considerable time. 
+Diversity comparison between two or multiple groups of samples. If the tree argument is used the test compares phylodiversity values. Note that if the number of OTUs and samples is high, computing phylodiversities might require considerable time.
 
 ````R
 #USAGE#

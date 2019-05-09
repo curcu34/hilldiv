@@ -17,7 +17,16 @@ library(devtools)
 install_github("anttonalberdi/hilldiv")
 library(hilldiv)
 ````
-If not installed, it will automatically install the following dependencies: ggplot2, RColorBrewer, data.table, ape, ade4, iNEXT, iNextPD.
+If not installed, it will automatically install the following dependencies: ggplot2, ggpubr, RColorBrewer, data.table, ape, ade4, iNEXT, iNextPD.
+
+If the console returns the following error:
+````R
+"tar: Failed to set default locale"
+````
+Type the following in the console and restart R
+````R
+system('defaults write org.R-project.R force.LANG en_US.UTF-8')
+````
 
 # Changelog
 

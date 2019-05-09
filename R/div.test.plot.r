@@ -48,7 +48,11 @@ plot <- ggplot(divtestdata, aes(x=Group, y=Value, colour=Group, fill=Group)) +
   scale_fill_manual(values=scales::alpha(colour, 0.3)) +
   theme_minimal()
   if(stat == TRUE){
-  plot <- plot + stat_compare_means(comparisons = comb, method = pw.method, if(symbol == TRUE){label = "p.signif"})
+    if(symbol == TRUE){
+    plot <- plot + stat_compare_means(comparisons = comb, method = pw.method, label = "p.signif")
+    }else{
+    plot <- plot + stat_compare_means(comparisons = comb, method = pw.method)
+    }
   }
   if(flip == TRUE){
   plot <- plot + coord_flip()
@@ -61,10 +65,19 @@ plot <- ggplot(divtestdata, aes(x=Group, y=Value, colour=Group)) +
   geom_jitter(width = 0.1) +
   ylab("Effective number of OTUs") + xlab("Groups") +
   scale_colour_manual(values=scales::alpha(colour, 0.6)) +
-  theme_minimal() +
-  coord_flip()
-print(plot)
-}
+  theme_minimal()
+  if(stat == TRUE){
+    if(symbol == TRUE){
+    plot <- plot + stat_compare_means(comparisons = comb, method = pw.method, label = "p.signif")
+    }else{
+    plot <- plot + stat_compare_means(comparisons = comb, method = pw.method)
+    }
+  }
+  if(flip == TRUE){
+  plot <- plot + coord_flip()
+  }
+  print(plot)
+  }
 
 if(chart == "violin"){
 plot <- ggplot(divtestdata, aes(x=Group, y=Value, colour=Group, fill=Group)) +
@@ -72,9 +85,18 @@ plot <- ggplot(divtestdata, aes(x=Group, y=Value, colour=Group, fill=Group)) +
   ylab("Effective number of OTUs") + xlab("Groups") +
   scale_colour_manual(values=colour) +
   scale_fill_manual(values=scales::alpha(colour, 0.3)) +
-  theme_minimal() +
-  coord_flip()
-print(plot)
-}
+  theme_minimal()
+  if(stat == TRUE){
+    if(symbol == TRUE){
+    plot <- plot + stat_compare_means(comparisons = comb, method = pw.method, label = "p.signif")
+    }else{
+    plot <- plot + stat_compare_means(comparisons = comb, method = pw.method)
+    }
+  }
+  if(flip == TRUE){
+  plot <- plot + coord_flip()
+  }
+  print(plot)
+  }
 
 }

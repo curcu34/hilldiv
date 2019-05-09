@@ -43,10 +43,10 @@ plot <- ggplot(divtestdata, aes(x=Group, y=Value, colour=Group, fill=Group)) +
   scale_colour_manual(values=colour) +
   scale_fill_manual(values=scales::alpha(colour, 0.3)) +
   theme_minimal()
-  if(stat = TRUE){
-  plot <- plot + stat_compare_means(comparisons = comb, method = pw.method, if(symbol = TRUE){label = "p.signif"})
+  if(stat == TRUE){
+  plot <- plot + stat_compare_means(comparisons = comb, method = pw.method, if(symbol == TRUE){label = "p.signif"})
   }
-  if(flip = TRUE){
+  if(flip == TRUE){
   plot <- plot + coord_flip()
   }
 print(plot)

@@ -111,6 +111,7 @@ div.test.plot(contrast.div.q0,chart="violin",colour=c("#35a849","#9d1923","#f7ab
 div.test.plot(div.test.result,chart="jitter",stat=TRUE,flip=TRUE)
 div.test.plot(div.test.result,stat=TRUE,comb=list(c("Myotis myotis","Myotis capaccinii")),symbol=TRUE)
 ````
+<img align=left src="https://github.com/anttonalberdi/DiverHill/blob/master/figures/div.test.plot.png" width="500" title="div.test.plot() with pairwise comparisons">
 
 ## Diversity partitioning
 ### div.part

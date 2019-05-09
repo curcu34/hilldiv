@@ -34,6 +34,7 @@ comb.each <- combn(unique(div.test.result$data$Group),m=2)
 for (i in c(1:ncol(comb.each))){
 comb[[i]] <- as.character(comb.each[,i])
 }
+}
 
 #Plot
 if(chart == "box"){
@@ -44,7 +45,7 @@ plot <- ggplot(divtestdata, aes(x=Group, y=Value, colour=Group, fill=Group)) +
   scale_fill_manual(values=scales::alpha(colour, 0.3)) +
   theme_minimal()
   if(stat == TRUE){
-  plot <- plot + stat_compare_means(comparisons = comb, method = pw.method)
+  plot <- plot + stat_compare_means(comparisons = comb, method = pw.method, if(symbol == TRUE){label = "p.signif"})
   }
   if(flip == TRUE){
   plot <- plot + coord_flip()

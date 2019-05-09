@@ -1,4 +1,4 @@
-div.test.plot <- function(divtest,chart,colour,stat,symbol,flip){
+div.test.plot <- function(divtest,chart,colour,stat,comb,symbol,flip){
 if(missing(chart)){chart="box"}
 if((names(divtest)[1] != "data") & (names(divtest)[2] != "normality.pvalue")) stop("The input object does not seem to be a div.test output.")
 

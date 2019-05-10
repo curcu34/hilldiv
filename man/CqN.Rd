@@ -2,7 +2,6 @@
 \alias{CqN}
 \title{CqN - Sørensen-type overlap}
 \usage{CqN(beta,qvalue,N)}
-\usage{div.part(otutable,qvalue,hierarchy,tree,type)}
 \arguments{
   \item{beta}{A beta diversity value based on Hill numbers.}
   \item{qvalue}{A positive number (>=0). It can be an integer or contain decimals.}

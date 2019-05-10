@@ -19,3 +19,8 @@ hill.div(otu.table,1,tree)
 hill.div(otu.table,1,tree,type="incidence")
 hill.div(otu.table,qvalue=2,tree=tree)
 }
+\references{
+Alberdi, A., Gilbert, M.T.P. (2019). A guide to the application of Hill numbers to DNA-based diversity analyses. Molecular Ecology Resources. Early view.\cr\cr
+Jost, L. (2006). Entropy and diversity. Oikos, 113, 363–375.\cr\cr
+Hill, M. O. (1973). Diversity and evenness: a unifying notation and its con‐ sequences. Ecology, 54, 427–432.
+}

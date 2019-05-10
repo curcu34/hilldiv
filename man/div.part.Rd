@@ -17,3 +17,8 @@ div.part(otu.table,qvalue=1,type="abundance")
 div.part(otu.table,qvalue=0,tree=tree)
 div.part(otu.table,qvalue=0,type="incidence",hierarchy=hierarchy.table)
 }
+\references{
+Alberdi, A., Gilbert, M.T.P. (2019). A guide to the application of Hill numbers to DNA-based diversity analyses. Molecular Ecology Resources. Early view.\cr\cr
+Chao, A., Chiu, C.‐H., & Hsieh, T. C. (2012). Proposing a resolution to de‐ bates on diversity partitioning. Ecology, 93, 2037–2051\cr\cr
+Jost, L. (2007). Partitioning diversity into independent alpha and beta components. Ecology, 88, 2427–2439.
+}

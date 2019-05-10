@@ -18,3 +18,7 @@ div.profile(abund=otu.table[,1],qvalues=seq(from = 0, to = 5, by = (0.1)),tree=t
 div.profile(vector)
 div.profile(otu.table,hierarchy=hierarchy.table)
 }
+\references{
+Alberdi, A., Gilbert, M.T.P. (2019). A guide to the application of Hill numbers to DNA-based diversity analyses. Molecular Ecology Resources. Early view.\cr\cr
+Chao, A., Chiu, C.‐H., & Jost, L. (2014a). Unifying species diversity, phylo‐ genetic diversity, functional diversity, and related similarity and dif‐ ferentiation measures through hill numbers. Annual Review of Ecology Evolution and Systematics, 45, 297–324.
+}

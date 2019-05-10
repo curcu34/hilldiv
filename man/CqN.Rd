@@ -14,7 +14,7 @@ CqN(beta=1.24,qvalue=1,N=2)
 CqN(1.24,1,2)
 }
 \references{
-Alberdi, A., Gilbert, M.T.P. (2019). A guide to the application of Hill numbers to DNA-based diversity analyses. Molecular Ecology Resources. Early view.
-Chao, A., Chiu, C.‐H., & Hsieh, T.C. (2012). Proposing a resolution to de‐ bates on diversity partitioning. Ecology, 93, 2037–2051.
+Alberdi, A., Gilbert, M.T.P. (2019). A guide to the application of Hill numbers to DNA-based diversity analyses. Molecular Ecology Resources. Early view.\cr\cr
+Chao, A., Chiu, C.‐H., & Hsieh, T.C. (2012). Proposing a resolution to de‐ bates on diversity partitioning. Ecology, 93, 2037–2051.\cr\cr
 Chao, A., Jost, L., Chiang, S.C., Jiang, Y.‐H., & Chazdon, R.L. (2008). A two‐stage probabilistic approach to multiple‐commu‐ nity similarity indices. Biometrics, 64, 1178–1186.
 }

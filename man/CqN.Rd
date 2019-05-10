@@ -1,7 +1,11 @@
 \name{CqN}
 \alias{CqN}
 \title{CqN - Sørensen-type overlap}
+<<<<<<< HEAD
 \usage{CqN(beta,qvalue,N)}
+=======
+\usage{div.part(otutable,qvalue,hierarchy,tree,type)}
+>>>>>>> e2c061b8baa131918fd9f5719692d98b030abff4
 \arguments{
   \item{beta}{A beta diversity value based on Hill numbers.}
   \item{qvalue}{A positive number (>=0). It can be an integer or contain decimals.}
@@ -12,8 +16,11 @@
 CqN(beta=1.24,qvalue=1,N=2)
 CqN(1.24,1,2)
 }
+<<<<<<< HEAD
 \references{
 Alberdi, A., Gilbert, M.T.P. (2019). A guide to the application of Hill numbers to DNA-based diversity analyses. Molecular Ecology Resources. Early view.
 Chao, A., Chiu, C.‐H., & Hsieh, T.C. (2012). Proposing a resolution to de‐ bates on diversity partitioning. Ecology, 93, 2037–2051.
 Chao, A., Jost, L., Chiang, S.C., Jiang, Y.‐H., & Chazdon, R.L. (2008). A two‐stage probabilistic approach to multiple‐commu‐ nity similarity indices. Biometrics, 64, 1178–1186.
 }
+=======
+>>>>>>> e2c061b8baa131918fd9f5719692d98b030abff4

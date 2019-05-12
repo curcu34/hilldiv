@@ -36,6 +36,7 @@ system('defaults write org.R-project.R force.LANG en_US.UTF-8')
 
 ### v1.2 | May 2019
 - Option to plot pairwise mean comparison statistical significance values added to pair.dist.plot().
+- Added depth.cov() function for assessment of the sequencing depth per sample based on observed and estimated Hill numbers.
 
 ### v1.1 | March 2019
 - Dependent "geiger" package added to the Description document.
@@ -117,6 +118,16 @@ div.test.plot(contrast.div.q0,stat=TRUE,comb=list(c("Myotis myotis","Myotis capa
 ````
 <img align=left src="https://github.com/anttonalberdi/DiverHill/blob/master/figures/div.test.plot.png" width="400" title="div.test.plot() with pairwise comparisons">
 <img src="https://github.com/anttonalberdi/DiverHill/blob/master/figures/div.test.plot.violin.png" width="400" title="Violin div.test.plot() with pairwise comparisons">
+
+## Sequencing depth assessment
+### depth.cov()
+Assessment of the sequencing depth per sample. Computes both observed and estimated (based on Chao & Jost 2015) Hill numbers, and calculates the percentage of estimated diversity coverage per sample. The function requires absolute abundances (rather than relative) to be inputed, and estimations are most accurate in the range of 0<q<3.
+
+````R
+depth.cov(otu.table,0)
+depth.cov(otu.vector,2)
+depth.cov(otu.table,qvalue=1)
+````
 
 ## Diversity partitioning
 ### div.part
@@ -202,6 +213,7 @@ For functions div.part and phylodiv.part
 
 # References
 * Alberdi A., Gilbert M.T.P. (2019). A guide to the application of Hill numbers to DNA-based diversity analyses. Molecular Ecology Resources. Early view. DOI:doi.org/10.1111/1755-0998.13014.
+* Chao, A. & Jost, L. (2015) Estimating diversity and entropy profiles via discovery rates of new species. Methods in Ecology and Evolution, 6, 873-882.
 * Chao, A., Chiu, C.-H., & Hsieh, T. C. (2012). Proposing a resolution to debates on diversity partitioning. Ecology, 93(9), 2037–2051.
 * Chao, A., Chiu, C.-H., & Jost, L. (2010). Phylogenetic diversity measures based on Hill numbers. Philosophical Transactions of the Royal Society of London. Series B, Biological Sciences, 365(1558), 3599–3609.
 * Hill, M. O. (1973). Diversity and Evenness: A Unifying Notation and Its Consequences. Ecology, 54(2), 427–432.

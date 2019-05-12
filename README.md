@@ -8,8 +8,7 @@ Alberdi A, Gilbert MTP. (2019). A guide to the application of Hill numbers to DN
 
 Some recent papers that used hilldiv:
 
-| ------------- |
-| Siren et al. (2019) Taxonomic and Functional Characterization of the Microbial Community During Spontaneous in vitro Fermentation of Riesling Must. *Frontiers in Microbiology*. https://doi.org/10.3389/fmicb.2019.00697 | 
+* Siren et al. (2019) Taxonomic and Functional Characterization of the Microbial Community During Spontaneous in vitro Fermentation of Riesling Must. *Frontiers in Microbiology*. https://doi.org/10.3389/fmicb.2019.00697
 
 * Chang et al. (2019) The roles of morphological traits, resource variation and resource partitioning associated with the dietary niche expansion in the fish‐eating bat *Myotis pilosus*. *Molecular Ecology*. https://doi.org/10.1111/mec.15127
 

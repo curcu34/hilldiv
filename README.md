@@ -12,6 +12,26 @@ Some recent papers that used hilldiv:
 
 * Chang et al. (2019) The roles of morphological traits, resource variation and resource partitioning associated with the dietary niche expansion in the fish‐eating bat *Myotis pilosus*. *Molecular Ecology*. https://doi.org/10.1111/mec.15127
 
+# List of functions
+| Function | Short explanation |
+| ------------- | ------------- |
+| hill.div()  | Explanation   |
+| div.profile()  | Explanation   |
+| div.test()  | Explanation   |
+| div.test.plot()  | Explanation   |
+| depth.cov()  | Explanation   |
+| div.part()  | Explanation   |
+| alpha.div()  | Explanation   |
+| gamma.div()  | Explanation   |
+| beta.dis()  | Explanation   |
+| pair.dis()  | Explanation   |
+| pair.dis.plot()  | Explanation   |
+| UqN()  | Explanation   |
+| CqN()  | Explanation   |
+| VqN()  | Explanation   |
+| SqN()  | Explanation   |
+| tss()  | Explanation   |
+
 # Installation
 To install **hilldiv** in your R environment, you need to 1) install devtools, 2) load devtools library, 3) install **hilldiv** using devtools and 4) finally load **hilldiv** library to your environment.
 

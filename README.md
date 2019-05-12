@@ -25,12 +25,12 @@ Some recent papers that used hilldiv:
 | gamma.div()  | Gamma diversity computation   |
 | beta.dis()  | (Dis)similarity computation based on beta diversities   |
 | pair.dis()  | Pairwise (dis)similarity computation based on beta diversities   |
-| pair.dis.plot()  | Explanation   |
-| UqN()  | Explanation   |
-| CqN()  | Explanation   |
-| VqN()  | Explanation   |
-| SqN()  | Explanation   |
-| tss()  | Explanation   |
+| pair.dis.plot()  | Visual representation of pair.dis()   |
+| UqN()  | Jaccard-type overlap computation from beta diversities |
+| CqN()  | Sørensen-type overlap from beta diversities   |
+| SqN()  | Jaccard-type turnover-complement from beta diversities   |
+| VqN()  | Sørensen-type turnover-complement from beta diversities   |
+| tss()  | Total sum scaling per sample   |
 
 # Installation
 To install **hilldiv** in your R environment, you need to 1) install devtools, 2) load devtools library, 3) install **hilldiv** using devtools and 4) finally load **hilldiv** library to your environment.

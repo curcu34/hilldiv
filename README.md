@@ -208,12 +208,10 @@ For functions true.div, true.phylodiv, alpha.div, alpha.phylodiv, gamma.div, gam
 
 |       | Sample1 | Sample2 |Sample3  |SampleN  |
 | ------------- | ------------- | ------------- | ------------- |------------- |
-| OTU1  | 0.604   |0.543    |0.204    |...    |
-| OTU2  | 0.050   |0.210    |0.450    |...  |
-| OTU3  | 0.153   |0.105    |0.314    |...  |
+| OTU1  | 604   |543    |204    |...    |
+| OTU2  | 50   |210    |450    |...  |
+| OTU3  | 153   |105    |314    |...  |
 | OTUN  | ...   |...    |...    |...  |
-
-The sum of relative abundances of all samples must be 1. Check that by using colSums(otutable)
 
 ## Hierarchy table
 For functions div.part and phylodiv.part

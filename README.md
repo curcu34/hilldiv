@@ -15,16 +15,16 @@ Some recent papers that used hilldiv:
 # List of functions
 | Function | Short explanation |
 | ------------- | ------------- |
-| hill.div()  | Explanation   |
-| div.profile()  | Explanation   |
-| div.test()  | Explanation   |
-| div.test.plot()  | Explanation   |
-| depth.cov()  | Explanation   |
-| div.part()  | Explanation   |
-| alpha.div()  | Explanation   |
-| gamma.div()  | Explanation   |
-| beta.dis()  | Explanation   |
-| pair.dis()  | Explanation   |
+| hill.div()  | Neutral or phylogenetic Hill number computation   |
+| div.profile()  | (Phylo)Diversity profiles of individual samples or groups of samples   |
+| div.test()  | Diversity comparison between two or multiple groups of samples   |
+| div.test.plot()  | Visual representation of div.test() |
+| depth.cov()  | Assessment of the sequencing depth per sample   |
+| div.part()  | Hierarchical diversity partitioning   |
+| alpha.div()  | Alpha diversity computation   |
+| gamma.div()  | Gamma diversity computation   |
+| beta.dis()  | (Dis)similarity computation based on beta diversities   |
+| pair.dis()  | Pairwise (dis)similarity computation based on beta diversities   |
 | pair.dis.plot()  | Explanation   |
 | UqN()  | Explanation   |
 | CqN()  | Explanation   |
@@ -151,7 +151,7 @@ depth.cov(otu.table,qvalue=1)
 
 ## Diversity partitioning
 ### div.part
-The function assumes a 2-level hierarchy and yields alpha, gamma and beta values based on abundance data. If a hierarchy table is provided, the function yields alpha, gamma and beta values based on incidence data, i.e. alpha diversity reflects the incidence-based diversity of groups.
+Hierarchical diversity partitioning. The function assumes a 2-level hierarchy and yields alpha, gamma and beta values based on abundance data. If a hierarchy table is provided, the function yields alpha, gamma and beta values based on incidence data, i.e. alpha diversity reflects the incidence-based diversity of groups.
 ````R
 #Abundance-based
 div.part(otu.table,qvalue=1)

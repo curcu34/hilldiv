@@ -33,7 +33,7 @@ g.method="wilcox.test"
 #Create combination list for ggpubr
 if(missing(comb)){
 comb <- list()
-comb.each <- combn(unique(divtestdata$data$Group),m=2)
+comb.each <- combn(unique(divtestdata$Group),m=2)
 for (i in c(1:ncol(comb.each))){
 comb[[i]] <- as.character(comb.each[,i])
 }

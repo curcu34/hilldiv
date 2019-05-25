@@ -7,6 +7,7 @@ if((names(divtest)[1] != "data") & (names(divtest)[2] != "normality.pvalue")) st
 
 #Get data table
 divtestdata <- divtest$data
+divtestdata$Group <- as.factor(divtestdata$Group)
 
 #Declare colours
 if(missing(colour) || (length(colour) < divtest$groups)){

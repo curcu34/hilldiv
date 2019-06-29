@@ -16,6 +16,7 @@ div.values <- hill.div(otutable,qvalue,tree)
 }
 div.values.groups <- merge(t(t(div.values)),hierarchy,by.x="row.names",by.y="Sample")
 colnames(div.values.groups) <- c("Sample","Value","Group")
+div.values.groups$Group <- as.factor(div.values.groups$Group)
   
 #Data distribution (normality and homogeneity) assessment
 shapiro <- shapiro.test(div.values.groups$Value)

@@ -7,6 +7,7 @@ if((names(divtest)[1] != "data") & (names(divtest)[2] != "normality.pvalue")) st
 
 #Get data table
 divtestdata <- divtest$data
+divtestdata$Group <- as.factor(divtestdata$Group)
 
 #Declare colours
 if(missing(colour) || (length(colour) < divtest$groups)){
@@ -33,7 +34,7 @@ g.method="wilcox.test"
 #Create combination list for ggpubr
 if(missing(comb)){
 comb <- list()
-comb.each <- combn(unique(div.test.result$data$Group),m=2)
+comb.each <- combn(unique(divtestdata$Group),m=2)
 for (i in c(1:ncol(comb.each))){
 comb[[i]] <- as.character(comb.each[,i])
 }

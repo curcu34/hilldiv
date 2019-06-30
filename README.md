@@ -84,6 +84,22 @@ names(otu.vector) <- rownames(otu.table)
 hierarchy.table <- bat.diet.hierarchy
 tree <- bat.diet.tree
 ````
+## Preliminary analyses and filtering
+Before begining the diversity analyses it is recommendable to assess the reliability and representativeness of the data and filter OTUs to get rid of potentially artifactual sequences. **hilldiv** includes a few functions to with that purpose.
+### copy.filt()
+It is highly probable that OTUs with very low representation (number of DNA sequence copies) are artifactual, rather than real biological sequences. Therefore, it is recommendable to remove OTUs represented by a number of sequences below a certain threshold. Although the use of absolute thresholds (e.g. remove all sequences with less than 10 copies) is the most commonly employed strategy, ideally thresholds relative to the sequencing depth should be employed (Alberdi et al. 2018) in order to apply a comparable treatment to samples characterised with a different sequencing depth. The function copy.filt() enables applying both absolute (if threshold value is an integer) and relative (if threshold value is a decimal number) copy number thresholds
+
+````R
+#Remove singletons from one sample (absolute threshold)
+copy.filt(otu.vector,2)
+#Remove singletons from an OTU table (absolute threshold)
+copy.filt(otu.table,1)
+#Remove OTUs with less than 0.1% of the total number of sequences (sequencing depth) per sample (relative threshold)
+copy.filt(otu.table,0.001)
+````
+### depth.cov()
+Explanation to be added.
+
 ## Diversity measurement and visualisation
 ### hill.div()
 Neutral or phylogenetic Hill number computation from a vector object (one sample) or an OTU table (matrix or data.frame object; multiple samples). Providing the tree argument yields phylodiversity values. Note that if using a tree the tip labels and the 'names' (vectors) or 'rownames' (matrices) need to be identical. Note that if the number of OTUs and samples is high, computing phylodiversities might require considerable time. If the vector or the OTU table columns do not sum to 1, the data is TSS-normalised.

@@ -1,3 +1,5 @@
+# hilldiv 1.2.2 (Last update: June 2019)
+
 **hilldiv** is an R package that provides a set of functions to assist analysis of diversity for diet reconstruction, microbial community profiling or more general ecosystem characterisation analyses based on Hill numbers, using OTU tables and associated phylogenetic trees as inputs. The package includes functions for (phylo)diversity measurement, (phylo)diversity profile plotting, (phylo)diversity comparison between samples and groups,  (phylo)diversity partitioning and (dis)similarity measurement. All of these grounded in abundance-based and incidence-based Hill numbers.
 
 The statistical framework developed around Hill numbers encompasses many of the most broadly employed diversity (e.g. richness, Shannon index, Simpson index), phylogenetic diversity (e.g. Faith’s PD, Allen’s H, Rao’s quadratic entropy) and dissimilarity (e.g. Sørensen index, Unifrac distances) metrics. This enables the most common analyses of diversity to be performed while grounded in a single statistical framework. For details about the use of Hill numbers in molecularly characterised biological systems, read the following article.
@@ -30,6 +32,7 @@ Some recent papers that used hilldiv:
 | CqN()  | Sørensen-type overlap from beta diversities   |
 | SqN()  | Jaccard-type turnover-complement from beta diversities   |
 | VqN()  | Sørensen-type turnover-complement from beta diversities   |
+| copy.filt()  | Filter OTUs according to a minimum copy number threshold   |
 | tss()  | Total sum scaling per sample   |
 
 # Installation

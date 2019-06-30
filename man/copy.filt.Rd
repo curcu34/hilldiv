@@ -1,11 +1,18 @@
 \name{copy.filt}
 \alias{copy.filt}
 \title{Copy number threshold filtering}
-\usage{beta.dis(otutabe,threshold)}
+\usage{beta.dis(abund,threshold)}
 \arguments{
-  \item{otutable}{A matrix indicating the relative abundances of multiple samples. Columns should be samples and rows OTUs.}
-  \item{threshold}{}
+  \item{abund}{A vector or a matrix/data.frame indicating the relative abundances of one or multiple samples, respectively. If a matrix/data.frame is provided, columns must refer to samples and rows to OTUs.}
+  \item{threshold}{An integer or a decimal number indicating the cut-off threshold. If an integer is provided, an absolute threshold is used (same threshold for all samples). If a decimal number is provided a relative copy number threshold is applied (dependent on the sequencing depth of each sample).}
 }
-\details{}
-\examples{}
-\references{}
+\details{As DNA sequencing data include PCR and sequencing errors, copy number thresholds are commonly applied to discard the OTUs with low number of sequence copies. This threshold can be absolute or (ideally) relative to the sequencing depth of each sample.}
+\examples{
+#Remove singletons from all samples
+copy.filt(otu.table,2)
+#Remove OTUs represented by less than 0.01% of the total reads per sample.
+copy.filt(otu.table,0.0001)
+}
+\references{
+Alberdi A, Aizpurua O, Bohmann K, Gopalakrishnan S, Lynggaard C, Nielsen M, Gilbert MTP. 2019. Promises and pitfalls of using high-throughput sequencing for diet analysis. Molecular Ecology Resources, 19(2), 327-348.
+}

@@ -226,7 +226,7 @@ tss(otu.vector)
 # Input data formats
 
 ## OTU table
-For functions true.div, true.phylodiv, alpha.div, alpha.phylodiv, gamma.div, gamma.phylodiv, div.part, phylodiv.part...
+For functions hill.div, alpha.div, gamma.div, div.part...
 
 |       | Sample1 | Sample2 |Sample3  |SampleN  |
 | ------------- | ------------- | ------------- | ------------- |------------- |

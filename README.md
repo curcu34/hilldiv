@@ -54,7 +54,10 @@ system('defaults write org.R-project.R force.LANG en_US.UTF-8')
 
 # Changelog
 
-### v1.2 | May 2019
+### v1.2.2 | June 2019
+- Added copy.filt() function to filter OTUs according to absolute or relative copy number thresholds.
+
+### v1.2.1 | May 2019
 - Option to plot pairwise mean comparison statistical significance values added to pair.dist.plot().
 - Added depth.cov() function for assessment of the sequencing depth per sample based on observed and estimated Hill numbers.
 

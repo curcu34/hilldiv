@@ -91,11 +91,11 @@ It is highly probable that OTUs with very low representation (number of DNA sequ
 
 ````R
 #Remove singletons from one sample (absolute threshold)
-copy.filt(otu.vector,2)
+otu.vector.filtered <- copy.filt(otu.vector,2)
 #Remove singletons from an OTU table (absolute threshold)
-copy.filt(otu.table,2)
+otu.table.filtered <- copy.filt(otu.table,2)
 #Remove OTUs with less than 0.1% of the total number of sequences (sequencing depth) per sample (relative threshold)
-copy.filt(otu.table,0.001)
+otu.table.filtered <- copy.filt(otu.table,0.001)
 ````
 ### depth.cov()
 Explanation to be added.

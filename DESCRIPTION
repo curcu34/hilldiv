@@ -7,7 +7,7 @@ Authors@R:
              role = c("aut", "cre"),
              email = "antton.alberdi@bio.ku.dk",
              comment = c(ORCID = "0000-0002-2875-6446")))
-Maintainer: Antton Alberdi <antton.alberdi@snm.ku.dk>
+Maintainer: Antton Alberdi <antton.alberdi@bio.ku.dk>
 Description: Tools for diversity analyses based on Hill numbers.
 License: CC-by-sa
 LazyData: true

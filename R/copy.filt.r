@@ -14,10 +14,10 @@ copy.filt <- function(abund,threshold){
   #It is a vector (single sample)
     if(threshold == round(threshold)){
     #Absolute
-    abund[abund < threshold] <- 0
+    abund[abund < threshold] <<- 0
     }else{
     #Relative
-    abund[abund < sum(abund)*threshold] <- 0
+    abund[abund < sum(abund)*threshold] <<- 0
     }
   }
   return(abund)

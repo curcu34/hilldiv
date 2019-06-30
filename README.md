@@ -93,7 +93,7 @@ It is highly probable that OTUs with very low representation (number of DNA sequ
 #Remove singletons from one sample (absolute threshold)
 copy.filt(otu.vector,2)
 #Remove singletons from an OTU table (absolute threshold)
-copy.filt(otu.table,1)
+copy.filt(otu.table,2)
 #Remove OTUs with less than 0.1% of the total number of sequences (sequencing depth) per sample (relative threshold)
 copy.filt(otu.table,0.001)
 ````
@@ -252,7 +252,7 @@ For functions div.part and phylodiv.part
 * Groups and supergroups must be nested (all samples in a group must be included in the same supergroup)
 
 # References
-* Alberdi A., Gilbert M.T.P. (2019). A guide to the application of Hill numbers to DNA-based diversity analyses. Molecular Ecology Resources. Early view. DOI:doi.org/10.1111/1755-0998.13014.
+* Alberdi A., Gilbert M.T.P. (2019). A guide to the application of Hill numbers to DNA-based diversity analyses. Molecular Ecology Resources, 19(4), 804-817.
 * Chao, A. & Jost, L. (2015) Estimating diversity and entropy profiles via discovery rates of new species. Methods in Ecology and Evolution, 6, 873-882.
 * Chao, A., Chiu, C.-H., & Hsieh, T. C. (2012). Proposing a resolution to debates on diversity partitioning. Ecology, 93(9), 2037–2051.
 * Chao, A., Chiu, C.-H., & Jost, L. (2010). Phylogenetic diversity measures based on Hill numbers. Philosophical Transactions of the Royal Society of London. Series B, Biological Sciences, 365(1558), 3599–3609.

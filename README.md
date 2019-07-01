@@ -98,7 +98,14 @@ otu.table.filtered <- copy.filt(otu.table,2)
 otu.table.filtered <- copy.filt(otu.table,0.001)
 ````
 ### depth.cov()
-Explanation to be added.
+Assessing whether the sequencing depth of each sample is enough to recover the entire diversity of a sample is an important step to ensure reliable and unbiased comparisons across samples. The function depth.cov() relies on diversity estimations based on Hill numbers (Chao & Jost 2015) to calculate the percentage of estimated diversity covered in each sample.
+
+````R
+#Depth coverage assessment of multiple samples based on the order of diversity 0
+depth.cov(otu.table,0)
+#Depth coverage assessment of a single sample based on the order of diversity 1
+depth.cov(otu.vector,1)
+````
 
 ## Diversity measurement and visualisation
 ### hill.div()

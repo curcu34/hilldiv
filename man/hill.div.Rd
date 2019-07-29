@@ -1,9 +1,9 @@
 
 \name{hill.div}
 \alias{hill.div}
-\title{True diversity}
+\title{Hill numbers}
 \description{Computes Hill numbers from a vector or a matrix containing relative abundances. If the input is a vector, the function computes the Hill numbers of a single sample, while if the input is a matrix (OTU table), the function computes individual Hill numbers for each sample (column). If an ultrametic OTU tree is provided, phylogenetic Hill numbers are computed. If the relative abundances of each sample (vector or each column of the matrix) do not sum to 1, TSS-normalisation is conducted.}
-\usage{true.div(abund,qvalue,tree,type)}
+\usage{hill.div(abund,qvalue,tree,type)}
 \arguments{
   \item{abund}{A vector or a matrix/data.frame indicating the relative abundances of one or multiple samples, respectively. If a matrix/data.frame is provided, columns must refer to samples and rows to OTUs.}
   \item{qvalue}{A positive integer or decimal number (>=0), usually between 0 and 3.}

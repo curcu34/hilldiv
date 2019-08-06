@@ -1,4 +1,4 @@
-pair.dis <- function(otutable,qvalue,tree,weight,hierarchy,level,measure){
+pair.dis <- function(otutable,qvalue,tree,weight,hierarchy,level,metric){
 
 #Quality-check and warnings
 if(missing(otutable)) stop("OTU table is missing")
@@ -16,7 +16,7 @@ if(!missing(hierarchy)) {
 if(missing(level)) {level= c(1:ncol(hierarchy))}
 }
 if(missing(hierarchy)) {level=1}
-if(missing(measure)) { measure= c("C","U","V","S")}
+if(missing(metric)) { metric= c("C","U","V","S")}
 
 #Declare fast alpha and gamma phylodiversities (without ltips, as it is the same for all combinations)
 
@@ -89,25 +89,25 @@ L1_beta <- matrix(rep(NA,length(L1)^2), nrow = length(L1), ncol = length(L1))
 colnames(L1_beta) <- L1
 rownames(L1_beta) <- L1
 
-if('C' %in% measure){
+if('C' %in% metric){
 L1_CqN <- matrix(rep(NA,length(L1)^2), nrow = length(L1), ncol = length(L1))
 colnames(L1_CqN) <- L1
 rownames(L1_CqN) <- L1
 }
 
-if('U' %in% measure){
+if('U' %in% metric){
 L1_UqN <- matrix(rep(NA,length(L1)^2), nrow = length(L1), ncol = length(L1))
 colnames(L1_UqN) <- L1
 rownames(L1_UqN) <- L1
 }
 
-if('V' %in% measure){
+if('V' %in% metric){
 L1_VqN <- matrix(rep(NA,length(L1)^2), nrow = length(L1), ncol = length(L1))
 colnames(L1_VqN) <- L1
 rownames(L1_VqN) <- L1
 }
 
-if('S' %in% measure){
+if('S' %in% metric){
 L1_SqN <- matrix(rep(NA,length(L1)^2), nrow = length(L1), ncol = length(L1))
 colnames(L1_SqN) <- L1
 rownames(L1_SqN) <- L1
@@ -138,22 +138,22 @@ if(identical(combination[,1],combination[,2]) == TRUE){
 L1_beta[y,x] <- beta
 results <- list("L1_Beta" = L1_beta)
 
-if('C' %in% measure){
+if('C' %in% metric){
 disC <- hilldiv::beta.dis(beta=beta,qvalue=qvalue,N=2,metric="C",type="dissimilarity")
 L1_CqN[y,x] <- disC
 results[["L1_CqN"]] <- L1_CqN}
 
-if('U' %in% measure){
+if('U' %in% metric){
 disU <- hilldiv::beta.dis(beta=beta,qvalue=qvalue,N=2,metric="U",type="dissimilarity")
 L1_UqN[y,x] <- disU
 results[["L1_UqN"]] <- L1_UqN}
 
-if('V' %in% measure){
+if('V' %in% metric){
 disV <- hilldiv::beta.dis(beta=beta,qvalue=qvalue,N=2,metric="V",type="dissimilarity")
 L1_VqN[y,x] <- disV
 results[["L1_VqN"]] <- L1_VqN}
 
-if('S' %in% measure){
+if('S' %in% metric){
 disS <- hilldiv::beta.dis(beta=beta,qvalue=qvalue,N=2,metric="S",type="dissimilarity")
 L1_SqN[y,x] <- disS
 results[["L1_SqN"]] <- L1_SqN}
@@ -194,25 +194,25 @@ L2_beta <- matrix(rep(NA,length(L2)^2), nrow = length(L2), ncol = length(L2))
 colnames(L2_beta) <- L2
 rownames(L2_beta) <- L2
 
-if('C' %in% measure){
+if('C' %in% metric){
 L2_CqN <- matrix(rep(NA,length(L2)^2), nrow = length(L2), ncol = length(L2))
 colnames(L2_CqN) <- L2
 rownames(L2_CqN) <- L2
 }
 
-if('U' %in% measure){
+if('U' %in% metric){
 L2_UqN <- matrix(rep(NA,length(L2)^2), nrow = length(L2), ncol = length(L2))
 colnames(L2_UqN) <- L2
 rownames(L2_UqN) <- L2
 }
 
-if('V' %in% measure){
+if('V' %in% metric){
 L2_VqN <- matrix(rep(NA,length(L2)^2), nrow = length(L2), ncol = length(L2))
 colnames(L2_VqN) <- L2
 rownames(L2_VqN) <- L2
 }
 
-if('S' %in% measure){
+if('S' %in% metric){
 L2_SqN <- matrix(rep(NA,length(L2)^2), nrow = length(L2), ncol = length(L2))
 colnames(L2_SqN) <- L2
 rownames(L2_SqN) <- L2
@@ -247,22 +247,22 @@ results[["L2_Beta"]] <- L2_beta
 results <- list("L2_Beta" = L2_beta)
 }
 
-if('C' %in% measure){
+if('C' %in% metric){
 disC <- hilldiv::beta.dis(beta=beta,qvalue=qvalue,N=2,metric="C",type="dissimilarity")
 L2_CqN[y,x] <- disC
 results[["L2_CqN"]] <- L2_CqN}
 
-if('U' %in% measure){
+if('U' %in% metric){
 disU <- hilldiv::beta.dis(beta=beta,qvalue=qvalue,N=2,metric="U",type="dissimilarity")
 L2_UqN[y,x] <- disU
 results[["L2_UqN"]] <- L2_UqN}
 
-if('V' %in% measure){
+if('V' %in% metric){
 disV <- hilldiv::beta.dis(beta=beta,qvalue=qvalue,N=2,metric="V",type="dissimilarity")
 L2_VqN[y,x] <- disV
 results[["L2_VqN"]] <- L2_VqN}
 
-if('S' %in% measure){
+if('S' %in% metric){
 disS <- hilldiv::beta.dis(beta=beta,qvalue=qvalue,N=2,metric="S",type="dissimilarity")
 L2_SqN[y,x] <- disS
 results[["L2_SqN"]] <- L2_SqN}

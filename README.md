@@ -1,4 +1,4 @@
-# hilldiv 1.2.2 (Last update: June 2019)
+# hilldiv 1.2.3 (Last update: July 2019)
 
 **hilldiv** is an R package that provides a set of functions to assist analysis of diversity for diet reconstruction, microbial community profiling or more general ecosystem characterisation analyses based on Hill numbers, using OTU tables and associated phylogenetic trees as inputs. The package includes functions for (phylo)diversity measurement, (phylo)diversity profile plotting, (phylo)diversity comparison between samples and groups,  (phylo)diversity partitioning and (dis)similarity measurement. All of these grounded in abundance-based and incidence-based Hill numbers.
 
@@ -58,6 +58,10 @@ system('defaults write org.R-project.R force.LANG en_US.UTF-8')
 ````
 
 # Changelog
+
+### v1.2.3 | July 2019
+- Added sample weighting option to pair.dis() function.
+- Added automatic tss normalisation to alpha.div() and gamma.div() functions.
 
 ### v1.2.2 | June 2019
 - Added copy.filt() function to filter OTUs according to absolute or relative copy number thresholds.

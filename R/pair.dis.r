@@ -1,4 +1,4 @@
-pair.dis <- function(otutable,qvalue,tree,weight,hierarchy,level,measure){
+pair.dis <- function(otutable,qvalue,tree,hierarchy,level,measure){
 
 #Quality-check and warnings
 if(missing(otutable)) stop("OTU table is missing")
@@ -9,7 +9,6 @@ if(sum(colSums(otutable)) != ncol(otutable)) {otutable <- tss(otutable)}
 if(missing(qvalue)) stop("q value is missing")
 if(qvalue < 0) stop("q value needs to be possitive (equal or higher than zero)")
 if (qvalue==1) {qvalue=0.99999}
-if(missing(weight)) { weight= rep(1/ncol(otutable),ncol(otutable))}
 if(!missing(hierarchy)) {
 if(missing(level)) {level= c(1:ncol(hierarchy))}
 }
@@ -25,6 +24,7 @@ if(dim(otutable)[1] < 2) stop("The OTU table only less than 2 OTUs")
 if(dim(otutable)[2] < 2) stop("The OTU table contains less than 2 samples")
 if(missing(qvalue)) stop("q value is missing")
 if(qvalue < 0) stop("q value needs to be possitive (equal or higher than zero)")
+if(missing(weight)) { weight= rep(1/ncol(otutable),ncol(otutable))}
 
 if(identical(sort(rownames(otutable)),sort(tree$tip.label)) == FALSE) stop("OTU names in the OTU table and tree do not match")
 if(ape::is.ultrametric(tree) == FALSE) stop("Tree needs to be ultrametric")  
@@ -52,6 +52,7 @@ if(sum(colSums(otutable)) != ncol(otutable)) {otutable <- tss(otutable)}
 if(missing(qvalue)) stop("q value is missing")
 if(qvalue < 0) stop("q value needs to be possitive (equal or higher than zero)")
 if (qvalue==1) {qvalue=0.99999} # change q to the limit of the unity (0.99999) if q=1
+if(missing(weight)) { weight= rep(1/ncol(otutable),ncol(otutable))}
 if(ape::is.ultrametric(tree) == FALSE) stop("Tree needs to be ultrametric")  
 if(identical(sort(rownames(otutable)),sort(tree$tip.label)) == FALSE) stop("OTU names in the OTU table and tree do not match")
 otutable <- as.data.frame(otutable)

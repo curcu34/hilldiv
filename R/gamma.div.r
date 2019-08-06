@@ -14,13 +14,13 @@ if(missing(weight)) warning("Assuming equal weights")
 
 if(missing(tree)){
     #Neutral
-    pi <- as.data.frame(otutable[apply(otutable, 1, function(z) !all(z==0)),]) #remove OTUs without abundances (=all-zero rows) 
-    pi.w <- sweep(pi,2,weight,"*") #apply weights 
+    pi <- as.data.frame(otutable[apply(otutable, 1, function(z) !all(z==0)),]) #remove OTUs without abundances (=all-zero rows)
+    pi.w <- sweep(pi,2,weight,"*") #apply weights
     div <- sum(rowSums(pi.w)^qvalue)^(1/(1-qvalue)) #apply gamma diversity formula
     return(div) #print the result
 }else{
     #Non-neutral
-    if(ape::is.ultrametric(tree) == FALSE) stop("Tree needs to be ultrametric")  
+    if(ape::is.ultrametric(tree) == FALSE) stop("Tree needs to be ultrametric")
     if(identical(sort(rownames(otutable)),sort(tree$tip.label)) == FALSE) stop("OTU names in the OTU table and tree do not match")
     otutable <- as.data.frame(otutable)
     wj <- weight

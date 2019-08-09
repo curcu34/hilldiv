@@ -1,6 +1,7 @@
 index.div <- function(abund,tree,index){
 
 #index.div(bat.diet.otutable)
+#index.div(bat.diet.otutable,index="shannon")
 #index.div(bat.diet.otutable,tree=bat.diet.tree,index="faith")
 
 #Data input control

@@ -13,6 +13,7 @@
 \examples{
 index.div(otu.vector)
 index.div(otu.table,index="shannon")
+index.div(otu.table,tree=bat.diet.tree)
 index.div(bat.diet.otutable,tree=bat.diet.tree,index="allen")
 index.div(bat.diet.otutable,bat.diet.tree,"rao")
 }

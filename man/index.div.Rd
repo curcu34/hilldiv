@@ -13,9 +13,9 @@
 \examples{
 index.div(otu.vector)
 index.div(otu.table,index="shannon")
-index.div(otu.table,tree=bat.diet.tree)
-index.div(bat.diet.otutable,tree=bat.diet.tree,index="allen")
-index.div(bat.diet.otutable,bat.diet.tree,"rao")
+index.div(otu.table,tree=tree)
+index.div(otu.table,tree=tree,index="allen")
+index.div(otu.table,tree,"rao")
 }
 \references{
 Alberdi, A., Gilbert, M.T.P. (2019). A guide to the application of Hill numbers to DNA-based diversity analyses. Molecular Ecology Resources. Early view.\cr\cr

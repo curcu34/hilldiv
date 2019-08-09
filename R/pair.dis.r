@@ -8,7 +8,7 @@ if(dim(otutable)[2] < 2) stop("The OTU table contains less than 2 samples")
 if(sum(colSums(otutable)) != ncol(otutable)) {otutable <- tss(otutable)}
 if(missing(qvalue)) stop("q value is missing")
 if(qvalue < 0) stop("q value needs to be possitive (equal or higher than zero)")
-if (qvalue==1) {qvalue=0.99999}\
+if (qvalue==1) {qvalue=0.99999}
 if(missing(weight)) { weight= rep(1/ncol(otutable),ncol(otutable))}
 if(length(weight) != ncol(otutable)) stop("The length of the weight vector does not match the number of sequences")
 names(weight) = colnames(otutable)

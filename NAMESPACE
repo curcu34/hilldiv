@@ -1,4 +1,5 @@
 export(hill.div)
+export(index.div)
 export(div.profile)
 export(div.test)
 export(div.test.plot)

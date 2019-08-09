@@ -38,6 +38,7 @@ Encoding: UTF-8
 RoxygenNote: 6.1.0.9000
 Collate:
     'hill.div.r'
+    'index.div.r'
     'div.profile.r'
     'div.test.r'
     'div.test.plot.r'

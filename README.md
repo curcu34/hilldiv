@@ -20,6 +20,7 @@ Some recent papers that used hilldiv:
 | Function | Short explanation |
 | ------------- | ------------- |
 | hill.div()  | Neutral or phylogenetic Hill number computation   |
+| index.div()  | Neutral or phylogenetic diversity index computation   |
 | div.profile()  | (Phylo)Diversity profiles of individual samples or groups of samples   |
 | div.test()  | Diversity comparison between two or multiple groups of samples   |
 | div.test.plot()  | Visual representation of div.test() |
@@ -36,6 +37,7 @@ Some recent papers that used hilldiv:
 | VqN()  | Sørensen-type turnover-complement from beta diversities   |
 | copy.filt()  | Filter OTUs according to a minimum copy number threshold   |
 | tss()  | Total sum scaling per sample   |
+| tree.depth()  | Tree depth computation   |
 
 # Installation
 To install **hilldiv** in your R environment, you need to 1) install devtools, 2) load devtools library, 3) install **hilldiv** using devtools and 4) finally load **hilldiv** library to your environment.
@@ -61,6 +63,7 @@ system('defaults write org.R-project.R force.LANG en_US.UTF-8')
 
 ### v1.2.3 | July 2019
 - Added the function index.div() to compute diversity indices related to Hill numbers.
+- Added the auxiliary tree.depth() function.
 - Added sample weighting option to pair.dis() function.
 - Added automatic tss normalisation to alpha.div() and gamma.div() functions.
 
@@ -76,6 +79,7 @@ system('defaults write org.R-project.R force.LANG en_US.UTF-8')
 - Magnify issue corrected in pair.dis.plot.r
 
 # Applications and functions
+Note that detailed information about the use of *hilldiv* can be found in the [Hilldiv WIKI](https://github.com/anttonalberdi/hilldiv/wiki)
 ## Data
 All the different applications and functions are reproduced with the data included in this package.
 ````R

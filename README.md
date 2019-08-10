@@ -35,6 +35,7 @@ Some recent papers that used hilldiv:
 | CqN()  | Sørensen-type overlap from beta diversities   |
 | SqN()  | Jaccard-type turnover-complement from beta diversities   |
 | VqN()  | Sørensen-type turnover-complement from beta diversities   |
+| depth.filt()  | Filter samples according to a minimum sequencing depth threshold   |
 | copy.filt()  | Filter OTUs according to a minimum copy number threshold   |
 | tss()  | Total sum scaling per sample   |
 | tree.depth()  | Tree depth computation   |

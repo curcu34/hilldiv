@@ -36,25 +36,3 @@ Imports:
     qgraph
 Encoding: UTF-8
 RoxygenNote: 6.1.0.9000
-Collate:
-    'index.div.R'
-    'hill.div.R'
-    'div.profile.R'
-    'div.test.R'
-    'div.test.plot.R'
-    'depth.cov.R'
-    'div.part.R'
-    'alpha.div.R'
-    'gamma.div.R'
-    'beta.dis.R'
-    'pair.dis.R'
-    'pair.dis.plot.R'
-    'UqN.R'
-    'CqN.R'
-    'VqN.R'
-    'SqN.R'
-    'match.data.R'
-    'depth.filt.R'
-    'copy.filt.R'
-    'tss.R'
-    'tree.depth.R'

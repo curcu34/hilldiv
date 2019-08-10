@@ -53,6 +53,7 @@ Collate:
     'CqN.r'
     'VqN.r'
     'SqN.r'
+    'match.data.r'
     'depth.filt.r'
     'copy.filt.r'
     'tss.r'

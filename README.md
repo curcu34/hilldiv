@@ -79,7 +79,7 @@ system('defaults write org.R-project.R force.LANG en_US.UTF-8')
 - Magnify issue corrected in pair.dis.plot.r
 
 # Applications and functions
-Note that detailed information about the use of *hilldiv* can be found in the [Hilldiv WIKI](https://github.com/anttonalberdi/hilldiv)
+Note that detailed information about the use of *hilldiv* can be found in the [Hilldiv WIKI](https://github.com/anttonalberdi/hilldiv/wiki)
 ## Data
 All the different applications and functions are reproduced with the data included in this package.
 ````R

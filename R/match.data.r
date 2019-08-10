@@ -8,6 +8,13 @@ match.data <- function(otutable,tree,output){
   #OTUs in tree
   tree.otus <- tree$tip.label
 
+if(missing(otutable)){
+  if((length(setdiff(tree.otus,otutable.otus)) == 0) & (length(setdiff(otutable.otus,tree.otus)) == 0)){stop("OTUs in the OTU table and OTU tree match perfectly.")}\
+  if((length(setdiff(tree.otus,otutable.otus)) > 0) & (length(setdiff(otutable.otus,tree.otus)) == 0)){stop("The OTU tree contains OTUs absent in the OTU table. Filter the OTU tree")}
+  if((length(setdiff(tree.otus,otutable.otus)) == 0) & (length(setdiff(otutable.otus,tree.otus)) > 0)){stop("The OTU tree contains OTUs absent in the OTU table. Filter the OTU tree")}
+  if((length(setdiff(tree.otus,otutable.otus)) > 0) & (length(setdiff(otutable.otus,tree.otus)) > 0)){stop("The OTU table contains OTUs absent in the OTU tree and the OTU tree contains OTUs absent in the OTU table. Filter both files.")}
+}
+
 #Output OTU table
 if(output == "otutable"){
   if(length(setdiff(tree.otus,otutable.otus)) > 0){

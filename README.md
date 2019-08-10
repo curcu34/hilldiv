@@ -63,6 +63,7 @@ system('defaults write org.R-project.R force.LANG en_US.UTF-8')
 
 ### v1.2.3 | July 2019
 - Added the function index.div() to compute diversity indices related to Hill numbers.
+- Added the depth.filt() function.
 - Added the auxiliary tree.depth() function.
 - Added sample weighting option to pair.dis() function.
 - Added automatic tss normalisation to alpha.div() and gamma.div() functions.

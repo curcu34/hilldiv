@@ -84,6 +84,7 @@ system('defaults write org.R-project.R force.LANG en_US.UTF-8')
 
 # Workflow
 <img src="https://github.com/anttonalberdi/DiverHill/blob/master/figures/hilldiv_workflow.png" title="Hilldiv workflow">
+
 # Applications and functions
 Note that detailed information about the use of *hilldiv* can be found in the [Hilldiv WIKI](https://github.com/anttonalberdi/hilldiv/wiki)
 ## Data

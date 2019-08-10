@@ -35,6 +35,7 @@ Some recent papers that used hilldiv:
 | CqN()  | Sørensen-type overlap from beta diversities   |
 | SqN()  | Jaccard-type turnover-complement from beta diversities   |
 | VqN()  | Sørensen-type turnover-complement from beta diversities   |
+| match.data()  | Filter OTU tables and trees to match OTUs in both data files   |
 | depth.filt()  | Filter samples according to a minimum sequencing depth threshold   |
 | copy.filt()  | Filter OTUs according to a minimum copy number threshold   |
 | tss()  | Total sum scaling per sample   |
@@ -64,6 +65,7 @@ system('defaults write org.R-project.R force.LANG en_US.UTF-8')
 
 ### v1.2.3 | July 2019
 - Added the function index.div() to compute diversity indices related to Hill numbers.
+- Added the match.data() function.
 - Added the depth.filt() function.
 - Added the auxiliary tree.depth() function.
 - Added sample weighting option to pair.dis() function.

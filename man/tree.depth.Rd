@@ -3,7 +3,7 @@
 \alias{tree.depth}
 \title{Tree depth}
 \description{Computes phylogenetic tree depth based from a phylogenetic tree and a vector of (relative) abundances.}
-\usage{hill.div(tree,vector)}
+\usage{hill.div(tree,abund)}
 \arguments{
   \item{tree}{An ultrametic tree of class 'phylo'. The tip labels must match the names of the vector values (if one sample) or matrix rows (if multiple samples).}
   \item{abund}{A vector of abundances (relative or absolute) of one samples.}

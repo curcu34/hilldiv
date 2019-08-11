@@ -1,4 +1,6 @@
-tree.depth <- function(tree,vector){
+tree.depth <- function(tree,abund){
+if(is.null(dim(abund)) == TRUE){vector <- abund}  
+if(is.null(dim(abund)) == FALSE){vector <- abund[,1]}  
 vector <- tss(vector)
 Li <- tree$edge.length
 ltips <- sapply(tree$edge[, 2], function(node) geiger::tips(tree, node))

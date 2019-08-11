@@ -183,7 +183,7 @@ otutable.L2 <- t(sweep(otutable.L2, 1, rowSums(otutable.L2), FUN="/"))
 
 #Prepare L2 weights
 weight.L2pre <- merge(t(t(weight)),hierarchy, by.x="row.names",by.y="L1")
-weight.L2pre <- aggregate(weight.L2[,2], by=list(weight.L2[,3]), FUN=sum)
+weight.L2pre <- aggregate(weight.L2pre[,2], by=list(weight.L2pre[,3]), FUN=sum)
 weight.L2 <- weight.L2pre[,2]
 names(weight.L2) <- weight.L2pre[,1]
 

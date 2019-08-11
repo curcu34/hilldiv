@@ -20,6 +20,7 @@ if(missing(tree)){
     return(div) #print the result
 }else{
     #Non-neutral
+    if(class(tree) != "phylo") stop("Tree needs to be an object of class Phylo")  
     if(ape::is.ultrametric(tree) == FALSE) stop("Tree needs to be ultrametric")
     if(identical(sort(rownames(otutable)),sort(tree$tip.label)) == FALSE) stop("OTU names in the OTU table and tree do not match")
     otutable <- as.data.frame(otutable)

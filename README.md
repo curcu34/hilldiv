@@ -68,7 +68,7 @@ system('defaults write org.R-project.R force.LANG en_US.UTF-8')
 - Added the match.data() function.
 - Added the depth.filt() function.
 - Added the auxiliary tree.depth() function.
-- Added sample weighting option to pair.dis() function.
+- Added sample weighting option and corrected "object 'weight.L2' not found" error in pair.dis() function.
 - Added automatic tss normalisation to alpha.div() and gamma.div() functions.
 
 ### v1.2.2 | June 2019

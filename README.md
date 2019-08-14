@@ -90,6 +90,7 @@ I am creating extensive documentation about Hill numbers and implementation of *
 # Functions' overview
 ### alpa.div()
 | Argument | Short explanation |
+| ------------- | ------------- |
 | **otutable** | An OTU table (matrix/data.frame) indicating the absolute or relative OTU abundances of multiple samples. Columns must refer to samples and rows to OTUs. |
 | **value** | A positive number, usually between 0 and 5, but most commonly 0, 1 or 2. It can be an integer or contain decimals. |
 | **tree** | A phylogenetic tree of class 'phylo'. The tip labels must match the row names in the OTU table. Use the function match.data() if the OTU names do not match. |

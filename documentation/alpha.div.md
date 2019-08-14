@@ -1,4 +1,5 @@
 Alpha diversity
+
 | Arguments | Description |
 | ------------- | ------------- |
 | otutable | A count table (matrix/data.frame) indicating the absolute or relative OTU abundances of multiple samples. Columns must refer to samples and rows to OTUs. |

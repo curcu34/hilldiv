@@ -37,7 +37,7 @@ Some recent papers that used hilldiv:
 | VqN()  | Sørensen-type turnover-complement from beta diversities   | Soon |
 | match.data()  | Filter OTU tables and trees to match OTUs in both data files   | Soon |
 | depth.filt()  | Filter samples according to a minimum sequencing depth threshold   | Soon |
-| copy.filt()  | Filter OTUs according to a minimum copy number threshold   | Soon |
+| copy.filt()  | Filter OTUs according to a minimum copy number threshold   | [LINK](documentation/copy.filt.md) |
 | tss()  | Total sum scaling per sample   | Soon |
 | tree.depth()  | Tree depth computation   | Soon |
 

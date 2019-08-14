@@ -88,8 +88,8 @@ system('defaults write org.R-project.R force.LANG en_US.UTF-8')
 # Documentation
 I am creating extensive documentation about Hill numbers and implementation of *hilldiv* in the [Hilldiv WIKI](https://github.com/anttonalberdi/hilldiv/wiki)
 # Functions' overview
-### alpa.div()
-| Argument | Short explanation |
+ 
+| ### alpa.div() |
 | ------------- | ------------- |
 | **otutable** | An OTU table (matrix/data.frame) indicating the absolute or relative OTU abundances of multiple samples. Columns must refer to samples and rows to OTUs. |
 | **value** | A positive number, usually between 0 and 5, but most commonly 0, 1 or 2. It can be an integer or contain decimals. |

@@ -20,7 +20,7 @@ Some recent papers that used hilldiv:
 | Function | Short explanation | Documentation |
 | ------------- | ------------- | ------------- |
 | hill.div()  | Neutral or phylogenetic Hill number computation   | Soon |
-| index.div()  | Neutral or phylogenetic diversity index computation   | Soon |
+| index.div()  | Neutral or phylogenetic diversity index computation   | [LINK](documentation/index.div.md) |
 | div.profile()  | (Phylo)Diversity profiles of individual samples or groups of samples   | Soon |
 | div.test()  | Diversity comparison between two or multiple groups of samples   | Soon |
 | div.test.plot()  | Visual representation of div.test() | Soon |

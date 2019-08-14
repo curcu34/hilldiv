@@ -1,5 +1,6 @@
-Alpha diversity
+Alpha diversity introduction
 
+## Arguments
 | Arguments | Description |
 | ------------- | ------------- |
 | otutable | A count table (matrix/data.frame) indicating the absolute or relative OTU abundances of multiple samples. Columns must refer to samples and rows to OTUs. |
@@ -7,6 +8,7 @@ Alpha diversity
 | tree | A phylogenetic tree of class 'phylo'. The tip labels must match the row names in the OTU table. Use the function match.data() if the OTU names do not match. |
 | weight | A vector indicating the relative weight of each sample. The order needs to be identical to the order of the samples in the OTU table. The values need to sum up to 1. If empty, all samples are weighed the same.  |
 
+## Examples
 ````R
 alpha.div(otutable=otu.table,qvalue=1,weight=weight.vector)
 alpha.div(otutable=otu.table,qvalue=1,tree=tree)

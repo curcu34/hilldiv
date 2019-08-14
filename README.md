@@ -17,29 +17,29 @@ Some recent papers that used hilldiv:
 * Chang et al. (2019) The roles of morphological traits, resource variation and resource partitioning associated with the dietary niche expansion in the fish‐eating bat *Myotis pilosus*. *Molecular Ecology*. https://doi.org/10.1111/mec.15127
 
 # List of functions
-| Function | Short explanation |
-| ------------- | ------------- |
-| hill.div()  | Neutral or phylogenetic Hill number computation   |
-| index.div()  | Neutral or phylogenetic diversity index computation   |
-| div.profile()  | (Phylo)Diversity profiles of individual samples or groups of samples   |
-| div.test()  | Diversity comparison between two or multiple groups of samples   |
-| div.test.plot()  | Visual representation of div.test() |
-| depth.cov()  | Assessment of the sequencing depth per sample   |
-| div.part()  | Hierarchical diversity partitioning   |
-| alpha.div()  | Alpha diversity computation   |
-| gamma.div()  | Gamma diversity computation   |
-| beta.dis()  | (Dis)similarity computation based on beta diversities   |
-| pair.dis()  | Pairwise (dis)similarity computation based on beta diversities   |
-| pair.dis.plot()  | Visual representation of pair.dis()   |
-| UqN()  | Jaccard-type overlap computation from beta diversities |
-| CqN()  | Sørensen-type overlap from beta diversities   |
-| SqN()  | Jaccard-type turnover-complement from beta diversities   |
-| VqN()  | Sørensen-type turnover-complement from beta diversities   |
-| match.data()  | Filter OTU tables and trees to match OTUs in both data files   |
-| depth.filt()  | Filter samples according to a minimum sequencing depth threshold   |
-| copy.filt()  | Filter OTUs according to a minimum copy number threshold   |
-| tss()  | Total sum scaling per sample   |
-| tree.depth()  | Tree depth computation   |
+| Function | Short explanation | Documentation |
+| ------------- | ------------- | ------------- |
+| hill.div()  | Neutral or phylogenetic Hill number computation   | Soon |
+| index.div()  | Neutral or phylogenetic diversity index computation   | Soon |
+| div.profile()  | (Phylo)Diversity profiles of individual samples or groups of samples   | Soon |
+| div.test()  | Diversity comparison between two or multiple groups of samples   | Soon |
+| div.test.plot()  | Visual representation of div.test() | Soon |
+| depth.cov()  | Assessment of the sequencing depth per sample   | Soon |
+| div.part()  | Hierarchical diversity partitioning   | Soon |
+| alpha.div()  | Alpha diversity computation   | Soon |
+| gamma.div()  | Gamma diversity computation   | Soon |
+| beta.dis()  | (Dis)similarity computation based on beta diversities   | Soon |
+| pair.dis()  | Pairwise (dis)similarity computation based on beta diversities   | Soon |
+| pair.dis.plot()  | Visual representation of pair.dis()   | Soon |
+| UqN()  | Jaccard-type overlap computation from beta diversities | Soon |
+| CqN()  | Sørensen-type overlap from beta diversities   | Soon |
+| SqN()  | Jaccard-type turnover-complement from beta diversities   | Soon |
+| VqN()  | Sørensen-type turnover-complement from beta diversities   | Soon |
+| match.data()  | Filter OTU tables and trees to match OTUs in both data files   | Soon |
+| depth.filt()  | Filter samples according to a minimum sequencing depth threshold   | Soon |
+| copy.filt()  | Filter OTUs according to a minimum copy number threshold   | Soon |
+| tss()  | Total sum scaling per sample   | Soon |
+| tree.depth()  | Tree depth computation   | Soon |
 
 # Installation
 To install **hilldiv** in your R environment, you need to 1) install devtools, 2) load devtools library, 3) install **hilldiv** using devtools and 4) finally load **hilldiv** library to your environment.
@@ -87,21 +87,6 @@ system('defaults write org.R-project.R force.LANG en_US.UTF-8')
 
 # Documentation
 I am creating extensive documentation about Hill numbers and implementation of *hilldiv* in the [Hilldiv WIKI](https://github.com/anttonalberdi/hilldiv/wiki)
-# Functions' overview
- 
-| **alpha.div()**|alpha.div(otutable,qvalue,tree,weight)|
-| ------------- | ------------- |
-| **otutable** | An OTU table (matrix/data.frame) indicating the absolute or relative OTU abundances of multiple samples. Columns must refer to samples and rows to OTUs. |
-| **qvalue** | A positive number, usually between 0 and 5, but most commonly 0, 1 or 2. It can be an integer or contain decimals. |
-| **tree** | A phylogenetic tree of class 'phylo'. The tip labels must match the row names in the OTU table. Use the function match.data() if the OTU names do not match. |
-| **weight** | A vector indicating the relative weight of each sample. The order needs to be identical to the order of the samples in the OTU table. The values need to sum up to 1. If empty, all samples are weighed the same. |
- 
-| gamma.div()|gamma.div(otutable,qvalue,tree,weight)|
-| ------------- | ------------- |
-| **otutable** | An OTU table (matrix/data.frame) indicating the absolute or relative OTU abundances of multiple samples. Columns must refer to samples and rows to OTUs. |
-| **qvalue** | A positive number, usually between 0 and 5, but most commonly 0, 1 or 2. It can be an integer or contain decimals. |
-| **tree** | A phylogenetic tree of class 'phylo'. The tip labels must match the row names in the OTU table. Use the function match.data() if the OTU names do not match. |
-| **weight** | A vector indicating the relative weight of each sample. The order needs to be identical to the order of the samples in the OTU table. The values need to sum up to 1. If empty, all samples are weighed the same. |
 
 # Applications and functions
 ## Data

@@ -1,6 +1,6 @@
 It is highly probable that OTUs with very low representation (number of DNA sequence copies) are artifactual, rather than real biological sequences. Therefore, it is recommendable to remove OTUs represented by a number of sequences below a certain threshold. Although the use of absolute thresholds (e.g. remove all sequences with less than 10 copies) is the most commonly employed strategy, ideally thresholds relative to the sequencing depth should be employed (Alberdi et al. 2018) in order to apply a comparable treatment to samples characterised with a different sequencing depth. The function copy.filt() enables applying both absolute (if threshold value is an integer) and relative (if threshold value is a decimal number) copy number thresholds
 
-##Arguments
+## Arguments
 
 | Arguments | Description |
 | ------------- | ------------- |

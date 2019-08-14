@@ -89,14 +89,12 @@ system('defaults write org.R-project.R force.LANG en_US.UTF-8')
 I am creating extensive documentation about Hill numbers and implementation of *hilldiv* in the [Hilldiv WIKI](https://github.com/anttonalberdi/hilldiv/wiki)
 # Functions' overview
 ### alpa.div()
-**otutable** An OTU table (matrix/data.frame) indicating the absolute or relative OTU abundances of multiple samples. Columns must refer to samples and rows to OTUs.
-
-**value** A positive number, usually between 0 and 5, but most commonly 0, 1 or 2. It can be an integer or contain decimals.
-
-**tree** A phylogenetic tree of class 'phylo'. The tip labels must match the row names in the OTU table. Use the function match.data() if the OTU names do not match.
-
-**weight** A vector indicating the relative weight of each sample. The order needs to be identical to the order of the samples in the OTU table. The values need to sum up to 1. If empty, all samples are weighed the same.
-
+| Argument | Short explanation |
+| **otutable** | An OTU table (matrix/data.frame) indicating the absolute or relative OTU abundances of multiple samples. Columns must refer to samples and rows to OTUs. |
+| **value** | A positive number, usually between 0 and 5, but most commonly 0, 1 or 2. It can be an integer or contain decimals. |
+| **tree** | A phylogenetic tree of class 'phylo'. The tip labels must match the row names in the OTU table. Use the function match.data() if the OTU names do not match. |
+| **weight** | A vector indicating the relative weight of each sample. The order needs to be identical to the order of the samples in the OTU table. The values need to sum up to 1. If empty, all samples are weighed the same. |
+ 
 ### gamma.div()
 
 # Applications and functions

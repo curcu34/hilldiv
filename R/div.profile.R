@@ -35,7 +35,7 @@ if(missing(log)) {log= "FALSE"}
 if(is.null(dim(abund)) == TRUE){
     profile <- c()
     for (o in qvalues){
-    if(missing(tree)){
+    if(missing(tree)){ 
         div.value <- hilldiv::hill.div(abund,o)
         }else{
         div.value <- hilldiv::hill.div(abund,o,tree)
@@ -45,7 +45,7 @@ if(is.null(dim(abund)) == TRUE){
     profile.melted <- as.data.frame(cbind(qvalues,profile))
     colnames(profile.melted) <- c("Order","Profile")
     plot <- ggplot(profile.melted , aes(x = Order, y = Profile)) +
-           geom_line() +
+           geom_line() + 
            xlab("Order of diversity") + ylab("Effective number of OTUs") +
            theme_minimal()
     print(plot)
@@ -95,16 +95,18 @@ if(is.null(dim(abund)) == FALSE){
     }else{
     colnames(hierarchy) <- c("Sample","Group")
     groups <- sort(unique(hierarchy$Group))
+
         for (g in groups){
             samples <- as.character(hierarchy[which(hierarchy$Group == g),1])
             abund.subset <- abund[,samples]
             abund.subset <- as.data.frame(abund.subset[apply(abund.subset, 1, function(z) !all(z==0)),])
-            if(!missing(tree)){
+
+            if(!missing(tree)){                                       
             missing.otus <- setdiff(tree$tip.label,rownames(abund.subset))
             tree.subset <- drop.tip(tree,missing.otus)
             }
                  for (o in qvalues){
-                        if(missing(tree)){
+                        if(missing(tree)){ 
                             if(level == "gamma"){div.value <- hilldiv::gamma.div(abund.subset,o)}
                             if(level == "alpha"){div.value <- hilldiv::alpha.div(abund.subset,o)}
                             if(level == "incidence"){div.value <- hilldiv::hill.div(rowSums(abund.subset != 0)/sum(rowSums(abund.subset != 0)),o)}
@@ -114,9 +116,10 @@ if(is.null(dim(abund)) == FALSE){
                             if(level == "incidence"){div.value <- hilldiv::hill.div(rowSums(abund.subset != 0)/sum(rowSums(abund.subset != 0)),o,tree.subset)}
                         }
                  profile <- rbind(profile,cbind(g,div.value))
-                 }
-          }
 
+                 }    
+          }
+                                                             
     profile <- as.data.frame(cbind(profile,rep(qvalues,length(groups))))
     profile[,2] <- as.numeric(as.character(profile[,2]))
     profile[,3] <- as.numeric(as.character(profile[,3]))
@@ -127,27 +130,25 @@ if(is.null(dim(abund)) == FALSE){
     if(missing(colour) || (length(colour) != length(groups))){
     getPalette <- colorRampPalette(brewer.pal(length(groups), "Paired"))
     colour <- getPalette(length(groups))
-    }
-
-    #Plot
+    }                                                             
+    
+    #Plot                                                         
     plot <- ggplot(profile , aes(x = Order, y = Value, group=Group, colour=Group)) +
-    geom_line() +
-    xlab("Order of diversity") +
+    geom_line() + 
+    xlab("Order of diversity") + 
     ylab(if((log == "TRUE") & missing(tree)){"Effective number of OTUs (log-transformed)"}else if((log == "TRUE") & !missing(tree)){"Effective number of lineages (log-transformed)"}else if((log == "FALSE") & !missing(tree)){"Effective number of lineages"}else{"Effective number of OTUs"}) +
-    scale_colour_manual(values = colour) +
+    scale_colour_manual(values = colour) + 
     theme_minimal()
     print(plot)
-
+                                                                                                                     
     }
-
-
-
-
+                                                   
+    
     if(values == "TRUE"){
     return(profile)
     }
-
-
+                                     
+    
 }
 
 }

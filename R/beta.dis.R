@@ -21,9 +21,9 @@
 #' Jost, L. (2007). Partitioning diversity into independent alpha and beta components. Ecology, 88, 2427–2439.
 #' @export
 
-beta.dis <- function(beta,qvalue,N,metric,type){
-
-#Identify input type
+beta.dis <- function(beta,qvalue,N,metric,type){ 
+  
+#Identify input type  
 if(missing(beta)) stop("Beta diversity value or div.part output object is missing")
 if(class(beta) == "numeric"){input="beta"}
 if(class(beta) == "list"){
@@ -51,7 +51,6 @@ if (missing(metric)) {metric="U"}
 if (missing(type)) {type="dissimilarity"}
 
 ###### MULTIPLE HIERARCHIES NEED TO BE ADDED, and similarity functions updated
-
 #Sørensen-type overlap (CqN, 1-CqN)
 if (metric == "C"){
   if(exists("N1")){
@@ -65,6 +64,7 @@ if (metric == "C"){
     return(mrCqN)
   }
   return(mCqN)
+
   }else{
   CqN <- CqN(beta,qvalue,N)
   if (type == "dissimilarity"){
@@ -73,7 +73,6 @@ if (metric == "C"){
   }
   return(CqN)
 }
-
 }
 
 #Jaccard-type overlap (UqN, 1-UqN)
@@ -88,7 +87,8 @@ if (metric == "U"){
     mrUqN <- list(rUqN1,rUqN2)
     return(mrUqN)
   }
-  return(mUqN)
+  return(mUqN)  
+
   }else{
   UqN <- UqN(beta,qvalue,N)
   if (type == "dissimilarity"){
@@ -97,7 +97,6 @@ if (metric == "U"){
   }
   return(UqN)
 }
-
 }
 
 #Sørensen-type turnover-complement (VqN, 1-VqN)
@@ -112,7 +111,8 @@ if (metric == "V"){
     mrVqN <- list(rVqN1,rVqN2)
     return(mrVqN)
   }
-  return(mVqN)
+  return(mVqN)  
+
   }else{
   VqN <- VqN(beta,N)
   if (type == "dissimilarity"){
@@ -120,8 +120,6 @@ if (metric == "V"){
   return(rVqN)
   }
   return(VqN)
-}
-
 }
 
 #Jaccard-type turnover-complement (SqN, 1-SqN)
@@ -136,7 +134,8 @@ if (metric == "S"){
     mrSqN <- list(rSqN1,rSqN2)
     return(mrSqN)
   }
-  return(mSqN)
+  return(mSqN)  
+
   }else{
   SqN <- SqN(beta,N)
   if (type == "dissimilarity"){
@@ -145,6 +144,5 @@ if (metric == "S"){
   }
   return(SqN)
 }
-
 }
 }

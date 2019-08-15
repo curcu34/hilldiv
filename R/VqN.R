@@ -16,7 +16,7 @@
 #' Jost, L. (2007). Partitioning diversity into independent alpha and beta components. Ecology, 88, 2427–2439.
 #' @export
 
-VqN <- function(beta,N){
+VqN <- function(beta,N){ 
 value = (N - beta)/(N-1)
 return(value)
 }

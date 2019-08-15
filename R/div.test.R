@@ -18,7 +18,7 @@
 #' Chao, A., Chiu, C.‐H., & Jost, L. (2014). Unifying species diversity, phylo‐ genetic diversity, functional diversity, and related similarity and dif‐ ferentiation measures through hill numbers. Annual Review of Ecology Evolution and Systematics, 45, 297–324.
 #' @export
 
-div.test <- function(otutable,qvalue,hierarchy,tree){
+div.test <- function(otutable,qvalue,hierarchy,tree){ 
 if(missing(otutable)) stop("OTU table is missing")
 if(is.null(dim(otutable)) == TRUE) stop("The OTU table is not a matrix")
 if(dim(otutable)[1] < 2) stop("The OTU table only less than 2 OTUs")
@@ -30,7 +30,7 @@ if(missing(hierarchy)) stop("Hierarchy table is necessary to contrast groups of 
 if(missing(tree)){
 div.values <- hill.div(otutable,qvalue)
 }else{
-if(class(tree) != "phylo") stop("Tree needs to be an object of class Phylo")
+if(class(tree) != "phylo") stop("Tree needs to be an object of class Phylo")  
 if(identical(sort(rownames(otutable)),sort(tree$tip.label)) == FALSE) stop("OTU names in the OTU table and tree do not match")
 div.values <- hill.div(otutable,qvalue,tree)
 }
@@ -51,7 +51,8 @@ norm.homo=FALSE
 if(length(unique(div.values.groups$Group)) == 2){
     if(norm.homo == TRUE){
     method <- "Student's t-Test"
-    test <- t.test(Value ~ Group, data = div.values.groups)
+
+    test <- t.test(Value ~ Group, data = div.values.groups)  
     results <- list(data=div.values.groups,normality.pvalue=shapiro$p.value,homogeneity.pvalue=barlett$p.value,groups=length(unique(div.values.groups$Group)),method = "Student's t-Test",test=c(t=unname(test$statistic),df=unname(test$parameter),p.value=unname(test$p.value)))
     }else{
     test <- wilcox.test(Value ~ Group, data = div.values.groups)

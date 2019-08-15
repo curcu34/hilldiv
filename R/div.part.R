@@ -35,10 +35,7 @@ if(qvalue==1) {qvalue=0.99999}
 if(missing(type)){type = "abundance"}
 if(type == "incidence"){
   if(missing(hierarchy)) stop("Diversity partitioning based on incidence data requires a hierarchy table")
-}
-###########
-#Function for 2-level hierarchy
-###########
+}  
 
 #L1 and L2 diversities
 if(missing(hierarchy)){
@@ -69,9 +66,6 @@ if(identical(sort(colnames(otutable)),sort(hierarchy[,1])) == FALSE) stop("OTU n
 colnames(hierarchy) <- c("L1","L2")
 
 if(type == "abundance"){
-#####
-# Abundance-based
-#####
 
   #L2 data processing
   otutable.L2 <- merge(t(otutable),hierarchy, by.x="row.names",by.y="L1")
@@ -95,7 +89,8 @@ if(type == "abundance"){
   }
 
   #L2 diversity
-  if(missing(tree)){
+
+  if(missing(tree)){ 
     L2_div <- hilldiv::alpha.div(otutable.L2,qvalue,weight=weights.L2)
     }else{
     L2_div <- hilldiv::alpha.div(otutable.L2,qvalue,tree,weight=weights.L2)
@@ -115,7 +110,7 @@ if(type == "abundance"){
   return(results)
 
 }else if(type == "incidence"){
-#####
+
 # Incidence-based
 #####
 
@@ -130,9 +125,9 @@ if(type == "abundance"){
 
   #Get L2 weights
   weights.L2 <- table(hierarchy[,2])/sum(table(hierarchy[,2]))
-
+                           
   #L2 and L3 diversities
-  if(missing(tree)){
+  if(missing(tree)){  
     L2_div <- hilldiv::alpha.div(otutable.L2,qvalue,weight=weights.L2)
     L3_div <- hilldiv::gamma.div(otutable.L2,qvalue)
     }else{

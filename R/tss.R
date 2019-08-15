@@ -13,7 +13,7 @@
 
 tss <- function(abund){
   #If input data is a vector
-  if(is.null(dim(abund)) == "TRUE"){
+  if(is.null(dim(abund)) == "TRUE"){ 
   abund.norm <- abund/sum(abund)}
   #If input data is an OTU table
   if(is.null(dim(abund)) == "FALSE"){

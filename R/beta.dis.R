@@ -121,6 +121,7 @@ if (metric == "V"){
   }
   return(VqN)
 }
+}
 
 #Jaccard-type turnover-complement (SqN, 1-SqN)
 if (metric == "S"){
@@ -143,5 +144,6 @@ if (metric == "S"){
   return(rSqN)
   }
   return(SqN)
+}
 }
 }

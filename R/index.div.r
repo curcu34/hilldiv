@@ -1,3 +1,25 @@
+#' Diversity index computation
+#' @title Diversity index computation
+#' @author Antton Alberdi, \email{anttonalberdi@gmail.com}
+#' @keywords OTU ASV diversity Hill
+#' @description Computes common diversity indices related to Hill numbers. If the input is a vector, the function computes the indices of a single sample, while if the input is a matrix (OTU table), the function computes individual diversity indices for each sample (column). An ultrametic OTU tree is required for computing phylogenetic diversity indices (Faith's PD, Allen's H and Rao's Q). If the relative abundances of each sample (vector or each column of the matrix) do not sum to 1, TSS normalisation is applied.
+#' @param abund A vector or a matrix/data.frame indicating the relative abundances of one or multiple samples, respectively. If a matrix/data.frame is provided, columns must refer to samples and rows to OTUs.
+#' @param tree An ultrametic tree of class 'phylo'. The tip labels must match the names of the vector values (if one sample) or matrix rows (if multiple samples).
+#' @param index Diversity index to be computed ("richness", "shannon", "simpson", "faith", "allen", "rao"). Default without tree argument: index="richness". Default with tree argument: index="faith".
+#' @seealso \code{\link{hill.div}}, \code{\link{div.part}}
+#' @examples
+#' index.div(otu.vector,0)
+#' index.div(otu.table,1)
+#' index.div(otu.table,1,tree)
+#' index.div(otu.table,1,tree,type="incidence")
+#' index.div(otu.table,qvalue=2,tree=tree)
+#' @references
+#' Alberdi, A., Gilbert, M.T.P. (2019). A guide to the application of Hill numbers to DNA-based diversity analyses. Molecular Ecology Resources. Early view.\cr\cr
+#' Jost, L. (2006). Entropy and diversity. Oikos, 113, 363–375.\cr\cr
+#' Rao, C. R. (1982). Diversity and dissimilarity coefficients: A unified approach. Theoretical Population Biology, 21, 24–43.\cr\cr
+#' Shannon, C. E. (1948). A mathematical theory of communication. The Bell System Technical Journal, 27, 379–423.\cr\cr
+#' @export
+
 index.div <- function(abund,tree,index){
 
 #index.div(bat.diet.otutable)

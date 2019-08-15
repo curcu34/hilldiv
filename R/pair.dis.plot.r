@@ -1,3 +1,26 @@
+#' Pairwise dissimilarity plot
+#' @title Pairwise dissimilarity plot
+#' @author Antton Alberdi, \email{anttonalberdi@gmail.com}
+#' @keywords hill numbers diversity partitioning pairwise
+#' @description Visualisation of pairwise dissimilarities
+#' @param distance Matrix of pairwise dissimilarities, usually one of the matrices listed in the output object of the pair.dis() function.
+#' @param hierarchy The first column lists the sample names while the second lists the groups. If provided, group profiles are plotted instead of individual profiles.
+#' @param type Whether to plot a NMDS or qgraph chart. type="NMDS".
+#' @param level If '1', samples are not grouped (each sample is a different colour), while if '2', samples are coloured by groups. level=1.
+#' @param colour he number of vector items (colours, e.g. '#34k235'), must equal the number of samples or groups that are intended to plot.
+#' @param magnify Only relevant for qgraph. Whether the pairwise dissimilarity values are transformed to 0-1 scale, 0 corresponding to the minimum dissimilarity and 1 to the maximum dissimilarity value. magnify=FALSE.
+#' @return An NMDS or network plot.
+#' @seealso \code{\link{pair.dis}}, \code{\link{beta.dis}}
+#' @examples
+#' pair.div.q0.L2 <- pair.dis(otu.table,qvalue=0,hierarchy=hierarchy.table,level="2")
+#' pair.dis.plot(pair.div.q0.L2$L2_CqN,hierarchy=hierarchy.table,type="NMDS",level=2)
+#' pair.dis.plot(pair.div.q0.L2$L2_CqN,hierarchy=hierarchy.table,type="qgraph",level=2,magnify=TRUE)
+#' @references
+#' Alberdi, A., Gilbert, M.T.P. (2019). A guide to the application of Hill numbers to DNA-based diversity analyses. Molecular Ecology Resources, 19, 804-817.
+#' Chao, A., Chiu, C.‐H., & Hsieh, T. C. (2012). Proposing a resolution to de‐ bates on diversity partitioning. Ecology, 93, 2037–2051
+#' Jost, L. (2007). Partitioning diversity into independent alpha and beta components. Ecology, 88, 2427–2439.
+#' @export
+
 pair.dis.plot <- function(distance,hierarchy,type,level,colour,magnify){
 
 if(missing(type)){type = "NMDS"}

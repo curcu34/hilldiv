@@ -23,8 +23,8 @@ The Sørensen-type overlap quantifies the effective average proportion of a sub�
 Sørensen‐type overlap
 }
 \examples{
-CqN(beta=1.24,qvalue=1,N=2)
-CqN(1.24,1,2)
+CqN(beta=1.24,qvalue=1,N=3)
+CqN(1.24,1,3)
 }
 \references{
 Alberdi, A., Gilbert, M.T.P. (2019). A guide to the application of Hill numbers to DNA-based diversity analyses. Molecular Ecology Resources, 19, 804-817.

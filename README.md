@@ -119,9 +119,9 @@ tree <- bat.diet.tree
 - div.test.plot()
 
 ## Diversity partitioning
-- div.part
-- alpha.div
-- gamma.div
+- div.part()
+- alpha.div()
+- gamma.div()
 
 ## Dissimilarity measurement and visualisation
 - beta.dis()

@@ -21,9 +21,9 @@
 #' Jost, L. (2007). Partitioning diversity into independent alpha and beta components. Ecology, 88, 2427–2439.
 #' @export
 
-beta.dis <- function(beta,qvalue,N,metric,type){ 
-  
-#Identify input type  
+beta.dis <- function(beta,qvalue,N,metric,type){
+
+#Identify input type
 if(missing(beta)) stop("Beta diversity value or div.part output object is missing")
 if(class(beta) == "numeric"){input="beta"}
 if(class(beta) == "list"){
@@ -87,7 +87,7 @@ if (metric == "U"){
     mrUqN <- list(rUqN1,rUqN2)
     return(mrUqN)
   }
-  return(mUqN)  
+  return(mUqN)
 
   }else{
   UqN <- UqN(beta,qvalue,N)
@@ -111,7 +111,7 @@ if (metric == "V"){
     mrVqN <- list(rVqN1,rVqN2)
     return(mrVqN)
   }
-  return(mVqN)  
+  return(mVqN)
 
   }else{
   VqN <- VqN(beta,N)
@@ -134,7 +134,7 @@ if (metric == "S"){
     mrSqN <- list(rSqN1,rSqN2)
     return(mrSqN)
   }
-  return(mSqN)  
+  return(mSqN)
 
   }else{
   SqN <- SqN(beta,N)
@@ -143,6 +143,5 @@ if (metric == "S"){
   return(rSqN)
   }
   return(SqN)
-}
 }
 }

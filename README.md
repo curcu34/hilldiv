@@ -23,14 +23,14 @@ Some recent papers that used hilldiv:
 | index.div()  | Neutral or phylogenetic diversity index computation   | [LINK](documentation/index.div.md) |
 | div.profile()  | (Phylo)Diversity profiles of individual samples or groups of samples | [LINK](documentation/div.profile.md) |
 | div.test()  | Diversity comparison between two or multiple groups of samples   | [LINK](documentation/div.test.md) |
-| div.test.plot()  | Visual representation of div.test() | Soon |
+| div.test.plot()  | Visual representation of div.test() | [LINK](documentation/div.test.md) |
 | depth.cov()  | Assessment of the sequencing depth per sample   | [LINK](documentation/depth.cov.md) |
 | div.part()  | Hierarchical diversity partitioning   | [LINK](documentation/div.part.md) |
 | alpha.div()  | Alpha diversity computation   | [LINK](documentation/alpha.div.md) |
 | gamma.div()  | Gamma diversity computation   | [LINK](documentation/gamma.div.md) |
 | beta.dis()  | (Dis)similarity computation based on beta diversities   | [LINK](documentation/beta.dis.md) |
-| pair.dis()  | Pairwise (dis)similarity computation based on beta diversities   | Soon |
-| pair.dis.plot()  | Visual representation of pair.dis()   | Soon |
+| pair.dis()  | Pairwise (dis)similarity computation based on beta diversities   | [LINK](documentation/pair.dis.md) |
+| pair.dis.plot()  | Visual representation of pair.dis()   | [LINK](documentation/pair.dis.plot.md) |
 | UqN()  | Jaccard-type overlap computation from beta diversities | [LINK](documentation/UqN.md) |
 | CqN()  | Sørensen-type overlap from beta diversities   | [LINK](documentation/CqN.md) |
 | SqN()  | Jaccard-type turnover-complement from beta diversities   | [LINK](documentation/SqN.md) |
@@ -105,160 +105,36 @@ hierarchy.table <- bat.diet.hierarchy
 tree <- bat.diet.tree
 ````
 ## Preliminary analyses and filtering
-Before begining the diversity analyses it is recommendable to assess the reliability and representativeness of the data and filter OTUs to get rid of potentially artifactual sequences. **hilldiv** includes a few functions to with that purpose.
-### copy.filt()
-It is highly probable that OTUs with very low representation (number of DNA sequence copies) are artifactual, rather than real biological sequences. Therefore, it is recommendable to remove OTUs represented by a number of sequences below a certain threshold. Although the use of absolute thresholds (e.g. remove all sequences with less than 10 copies) is the most commonly employed strategy, ideally thresholds relative to the sequencing depth should be employed (Alberdi et al. 2018) in order to apply a comparable treatment to samples characterised with a different sequencing depth. The function copy.filt() enables applying both absolute (if threshold value is an integer) and relative (if threshold value is a decimal number) copy number thresholds
-
-````R
-#Remove singletons from one sample (absolute threshold)
-otu.vector.filtered <- copy.filt(otu.vector,2)
-#Remove singletons from an OTU table (absolute threshold)
-otu.table.filtered <- copy.filt(otu.table,2)
-#Remove OTUs with less than 0.1% of the total number of sequences (sequencing depth) per sample (relative threshold)
-otu.table.filtered <- copy.filt(otu.table,0.001)
-````
-### depth.cov()
-Assessing whether the sequencing depth of each sample is enough to recover the entire diversity of a sample is an important step to ensure reliable and unbiased comparisons across samples. The function depth.cov() relies on diversity estimations based on Hill numbers (Chao & Jost 2015) to calculate the percentage of estimated diversity covered in each sample.
-
-````R
-#Depth coverage assessment of multiple samples based on the order of diversity 0
-depth.cov(otu.table,0)
-#Depth coverage assessment of a single sample based on the order of diversity 1
-depth.cov(otu.vector,1)
-````
+- copy.filt()
+- depth.cov()
+- match.data()
 
 ## Diversity measurement and visualisation
-### index.div()
-Neutral (richness, Shannon index, Simpson index) or phylogenetic (Faith's PD, Allen's H, Rao's Q) diversity indices related to Hill numbers from a vector object (one sample) or an OTU table (matrix or data.frame object; multiple samples). A ultrametric tree object (phylo) is necessary to compute phylogenetic diversity indices. Note that if using a tree the tip labels and the 'names' (vectors) or 'rownames' (matrices) need to be identical. Note that if the number of OTUs and samples is high, computing phylodiversities might require considerable time. If the vector or the OTU table columns do not sum to 1, the data is TSS-normalised.
-````R
-index.div(otu.vector)
-index.div(otu.table,index="shannon")
-index.div(otu.table,tree=tree)
-index.div(otu.table,tree=tree,index="allen")
-index.div(otu.table,tree,"rao")
-````
-
-### hill.div()
-Neutral or phylogenetic Hill numbers computation from a vector object (one sample) or an OTU table (matrix or data.frame object; multiple samples). Providing the tree argument yields phylodiversity values. Note that if using a tree the tip labels and the 'names' (vectors) or 'rownames' (matrices) need to be identical. Note that if the number of OTUs and samples is high, computing phylodiversities might require considerable time. If the vector or the OTU table columns do not sum to 1, the data is TSS-normalised.
-````R
-hill.div(otu.vector,0)
-hill.div(otu.table,1)
-hill.div(otu.table,qvalue=2)
-hill.div(otu.table,1,tree)
-hill.div(otu.table,1,tree,type="incidence")
-hill.div(otu.table,qvalue=2,tree=tree)
-````
-### div.profile() - chart
-(Phylo)Diversity profiles of individual samples or groups of samples. Diversity profiles show the relation between the order of diversity (q-value) and the respective Hill numbers, thus providing information about the richness and evenness of a sample at a glance.
-
-````R
-# One sample
-div.profile(otu.vector)
-
-# Multiple individual samples (first 5 samples of the OTU table)
-div.profile(otu.table[,c(1:5)])
-
-# Multiple groups (aggregated samples)
-div.profile(otu.table,hierarchy=hierarchy.table,colour=c("#35a849","#9d1923","#f7ab1b","#ed7125","#cc4323","#b6d134","#fcee21","#085ba7"))
-````
-<img align=left src="https://github.com/anttonalberdi/DiverHill/blob/master/figures/div.profile.one.png" width="350" title="One sample">
-<img src="https://github.com/anttonalberdi/DiverHill/blob/master/figures/div.profile.multiple.png" width="350" title="Multiple samples">
+- hill.div()
+- index.div()
+- div.profile()
 
 ## Diversity comparison
-### div.test()
-Diversity comparison between two or multiple groups of samples. If the tree argument is used the test compares phylodiversity values. Note that if the number of OTUs and samples is high, computing phylodiversities might require considerable time.
-
-````R
-#USAGE#
-#Contrast based on Hill numbers
-div.test(otu.table,qvalue=0,hierarchy=hierarchy.table)
-#Contrast based on phylogenetic Hill numbers
-div.test(otu.table,qvalue=1,hierarchy=hierarchy.table,tree=tree)
-````
-### div.test.plot() - chart
-Visual comparison between the diversity levels of two or multiple groups of samples. The 'chart' argument enables selecting between boxplot, violin plot and jitter plot. The 'stat' argument enables plotting pairwise mean comparisons across groups.
-````R
-contrast.div.q0 <- div.test(otu.table,qvalue=0,hierarchy=hierarchy.table)
-colours <- c("#35a849","#9d1923","#f7ab1b","#ed7125","#cc4323","#b6d134","#fcee21","#085ba7")
-
-#Box plot
-div.test.plot(contrast.div.q0)
-div.test.plot(contrast.div.q0,chart="box")
-
-#Jitter plot
-div.test.plot(contrast.div.q0,chart="jitter",colour=colours)
-
-#Violin plot
-div.test.plot(contrast.div.q0,chart="violin",colour=c("#35a849","#9d1923","#f7ab1b","#ed7125","#cc4323","#b6d134","#fcee21","#085ba7"))
-
-#Pairwise mean comparison statistical significances
-div.test.plot(contrast.div.q0,chart="jitter",stat=TRUE,flip=TRUE)
-div.test.plot(contrast.div.q0,stat=TRUE,comb=list(c("Myotis myotis","Myotis capaccinii")),symbol=TRUE)
-````
-<img align=left src="https://github.com/anttonalberdi/DiverHill/blob/master/figures/div.test.plot.png" width="400" title="div.test.plot() with pairwise comparisons">
-<img src="https://github.com/anttonalberdi/DiverHill/blob/master/figures/div.test.plot.violin.png" width="400" title="Violin div.test.plot() with pairwise comparisons">
-
-## Sequencing depth assessment
-### depth.cov()
-Assessment of the sequencing depth per sample. Computes both observed and estimated (based on Chao & Jost 2015) Hill numbers, and calculates the percentage of estimated diversity coverage per sample. The function requires absolute abundances (rather than relative) to be inputed, and estimations are most accurate in the range of 0<q<3.
-
-````R
-depth.cov(otu.table,0)
-depth.cov(otu.vector,2)
-depth.cov(otu.table,qvalue=1)
-````
+- div.test()
+- div.test.plot()
 
 ## Diversity partitioning
-### div.part
-Hierarchical diversity partitioning. The function assumes a 2-level hierarchy and yields alpha, gamma and beta values based on abundance data. If a hierarchy table is provided, the function yields alpha, gamma and beta values based on incidence data, i.e. alpha diversity reflects the incidence-based diversity of groups.
-````R
-#Abundance-based
-div.part(otu.table,qvalue=1)
-div.part(otu.table,qvalue=1,type="abundance")
-div.part(otu.table,qvalue=0,tree=tree)
-
-#Incidence-based
-div.part(otu.table,qvalue=0,type="incidence",hierarchy=hierarchy.table)
-````
+- div.part
+- alpha.div
+- gamma.div
 
 ## Dissimilarity measurement and visualisation
-###  beta.dis()
-The function beta.dis() performs similarity or dissimilarity measurement based on Hill numbers beta diversity, sample size and order of diversity. The function can be run by inputting those values manually, or by using the list object outputted by the div.part() function, which contains all the mentioned information. As specified by the argument “metric”: the function can compute the following similarity measures: the Sørensen-type overlap (CqN), the Jaccard-type overlap (UqN), the Sørensen-type turnover-complement (VqN), and the Jaccard-type turnover-complement (SqN). The argument ‘type’ enables either similarities or dissimilarities (one-complements of the similarity values) to be outputted.
-````R
-#Using custom, beta-diversity, q-value and samples sizes
-beta.dis(beta=4.5,qvalue=1,N=8)
-beta.dis(beta=4.5,qvalue=1,N=8,metric="C",type="similarity")
-
-#Computing from an div.part() derived object
-div.part.object  <- div.part(otu.table,qvalue=0,tree=tree)
-beta.dis(div.part.object)
-beta.dis(div.part.object,metric="S",type="similarity")
-````
-###  pair.dis()
-The function pair.dis() performs pairwise diversity partitioning and yields matrices containing pairwise beta diversity and (dis)similarity measures. If a hierarchy table is provided, pairwise calculations can be carried out at some or all the specified hierarchical levels. The results are outputted as a list of matrices.
-````R
-pair.dis(otu.table,qvalue=0,hierarchy=hierarchy.table)
-pair.dis(otu.table,qvalue=0,hierarchy=hierarchy.table,level="2")
-````
-
-###  pair.dis.plot() - chart
-The related function pair.dis.plot() uses any of the dissimilarity matrices yielded by pair.dis() (e.g. 1-UqN) to visualize it either as a NMDS chart, a qgraph plot or a heatmap/correlogram.
-
-````R
-pair.div.q0.L2 <- pair.dis(otu.table[,sort(colnames(otu.table))],qvalue=0,hierarchy=hierarchy.table,level="2")
-#Plot NMDS
-pair.dis.plot(pair.div.q0.L2$L2_CqN,hierarchy=hierarchy.table,type="NMDS",level=2)
-#Plot qgraph
-pair.dis.plot(pair.div.q0.L2$L2_CqN,hierarchy=hierarchy.table,type="qgraph",level=2,magnify=TRUE)
-````
+- beta.dis()
+- pair.dis()
+- pair.dis.plot()
+- CqN()
+- UqN()
+- SqN()
+- VqN()
 
 ## Auxiliary functions
-###  tss()
-Performs total sum scaling.
-````R
-tss(otu.table)
-tss(otu.vector)
-````
+- tss()
+- tree.depth()
 
 # Input data formats
 

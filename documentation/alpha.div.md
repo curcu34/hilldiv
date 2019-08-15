@@ -1,4 +1,4 @@
-# Alpha diversity
+# alpha.div()
 
 Broadly speaking, α‐diversity refers to the average diversity of subsystems or samples. It must be highlighted though that the alpha diversity is not obtained by averaging the Hill numbers of the subsystems, but computing the Hill numbers from the averaged basic sums of the subsystems (Chao et al., 2012).
 

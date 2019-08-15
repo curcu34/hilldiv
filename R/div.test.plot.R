@@ -1,3 +1,25 @@
+#' Diversity test plotting
+#' @title Diversity test plotting
+#' @author Antton Alberdi, \email{anttonalberdi@gmail.com}
+#' @keywords hill numbers comparison chart
+#' @description Plot of diversity comparison between groups of samples
+#' @param divtest Object outputed by the div.test() function
+#' @param chart Chart type, either 'box' for boxplot, 'jitter' for jitter plot or 'violin' for violin plot. chart="box"
+#' @param colour The number of vector items (colours, e.g. '#34k235'), must equal the number of groups that are intended to plot.
+#' @param stat If 'TRUE' pairwise mean comparison significance values will be ploted.
+#' @param comb List of pairwise combinations. If missing all combinations will be plotted. e.g. list(c("Myotis myotis","Myotis capaccinii"),c("Myotis myotis","Myotis daubentonii")).
+#' @param symbol If 'TRUE' symbols rather than p-values will be shown. ns: p > 0.05; *: p <= 0.05; **: p <= 0.01; ***: p <= 0.001; ****: p <= 0.0001.
+#' @param flip If 'TRUE' the chart will be flipped 90 degrees.
+#' @return Chart of (mean) diversities of contrasting groups.
+#' @seealso \code{\link{div.test}}, \code{\link{hill.div}}, \code{\link{div.part}}
+#' @examples
+#' contrast.div.q0 <- div.test(otu.table,qvalue=0,hierarchy=hierarchy.table)
+#' div.test.plot(contrast.div.q0,chart="jitter")
+#' div.test.plot(contrast.div.q0,chart="violin")
+#' div.test.plot(div.test.result,chart="jitter",stat=TRUE,flip=TRUE)
+#' div.test.plot(div.test.result,stat=TRUE,comb=list(c("Myotis myotis","Myotis capaccinii")),symbol=TRUE)
+#' @export
+
 div.test.plot <- function(divtest,chart,colour,stat,comb,symbol,flip){
 if(missing(chart)){chart="box"}
 if(missing(stat)){stat=FALSE}

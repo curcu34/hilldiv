@@ -1,3 +1,27 @@
+#' Pairwise dissimilarity
+#' @title Pairwise dissimilarity
+#' @author Antton Alberdi, \email{anttonalberdi@gmail.com}
+#' @keywords hill numbers diversity partitioning beta
+#' @description Computation of pairwise dissimilarities based on Hill numbers diversity partitioning
+#' @param otutable A matrix indicating the relative abundances of multiple samples. Columns should be samples and rows OTUs.
+#' @param qvalue A positive integer or decimal number (>=0), usually between 0 and 3.
+#' @param tree A phylogenetic tree of class 'phylo'. The tip labels must match the row names in the OTU table. Use the function match.data() if the OTU names do not match.
+#' @param weight A vector indicating the relative weight of each sample. The values need to sum up to 1. If not provided, all samples are weighed equally.
+#' @param hierarchy A two-column matrix indicating the relation between samples (first column) and groups (second column).
+#' @param level If '1' dissimilarities are computed across samples, while if '2' dissimilarities are computed across groups, as specified by the hierarchy table. level=1.
+#' @param metric A vector containing any combination of "C", "U", "V" or "S". If not provided, all metrics will be computed. metric="U", metric=c("U","S").
+#' @return A list of matrices containing pairwise beta diversities and dissimilarity metrics.
+#' @seealso \code{\link{hill.div}}, \code{\link{div.part}}, \code{\link{beta.dis}}
+#' @examples
+#' pair.dis(otu.table,qvalue=1)
+#' pair.dis(otu.table,qvalue=1,tree=tree)
+#' pair.dis(otu.table,qvalue=0,hierarchy=hierarchy.table,level="2")
+#' @references
+#' Alberdi, A., Gilbert, M.T.P. (2019). A guide to the application of Hill numbers to DNA-based diversity analyses. Molecular Ecology Resources, 19, 804-817.
+#' Chao, A., Chiu, C.‐H., & Hsieh, T. C. (2012). Proposing a resolution to de‐ bates on diversity partitioning. Ecology, 93, 2037–2051
+#' Jost, L. (2007). Partitioning diversity into independent alpha and beta components. Ecology, 88, 2427–2439.
+#' @export
+
 pair.dis <- function(otutable,qvalue,tree,weight,hierarchy,level,metric){
 
 #Quality-check and warnings

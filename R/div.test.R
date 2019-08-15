@@ -1,3 +1,23 @@
+#' Diversity test
+#' @title Diversity test
+#' @author Antton Alberdi, \email{anttonalberdi@gmail.com}
+#' @keywords hill numbers comparison
+#' @description Diversity comparison test between groups of samples
+#' @param otutable A matrix indicating the relative abundances of multiple samples. Columns should be samples and rows OTUs.
+#' @param qvalue A positive integer or decimal number (>=0), usually between 0 and 3.
+#' @param hierarchy A two-column matrix indicating the relation between samples (first column) and groups (second column).
+#' @param tree A phylogenetic tree of class 'phylo'. The tip labels must match the row names in the OTU table. Use the function match.data() if the OTU names do not match.
+#' @return A statistical test output.
+#' @seealso \code{\link{hill.div}}, \code{\link{div.part}}
+#' @examples
+#' div.test(otu.table,qvalue=0,hierarchy=hierarchy.table)
+#' div.test(otu.table,qvalue=1,hierarchy=hierarchy.table,tree=tree)
+#' div.test(otu.table,2,hierarchy.table,tree)
+#' @references
+#' Alberdi, A., Gilbert, M.T.P. (2019). A guide to the application of Hill numbers to DNA-based diversity analyses. Molecular Ecology Resources. Early view.\cr\cr
+#' Chao, A., Chiu, C.‐H., & Jost, L. (2014). Unifying species diversity, phylo‐ genetic diversity, functional diversity, and related similarity and dif‐ ferentiation measures through hill numbers. Annual Review of Ecology Evolution and Systematics, 45, 297–324.
+#' @export
+
 div.test <- function(otutable,qvalue,hierarchy,tree){ 
 if(missing(otutable)) stop("OTU table is missing")
 if(is.null(dim(otutable)) == TRUE) stop("The OTU table is not a matrix")
@@ -17,7 +37,7 @@ div.values <- hill.div(otutable,qvalue,tree)
 div.values.groups <- merge(t(t(div.values)),hierarchy,by.x="row.names",by.y="Sample")
 colnames(div.values.groups) <- c("Sample","Value","Group")
 div.values.groups$Group <- as.factor(div.values.groups$Group)
-  
+
 #Data distribution (normality and homogeneity) assessment
 shapiro <- shapiro.test(div.values.groups$Value)
 barlett <- bartlett.test(Value ~ Group, data= div.values.groups)
@@ -26,11 +46,12 @@ norm.homo=TRUE
 }else{
 norm.homo=FALSE
 }
-  
+
 #Statistical test
 if(length(unique(div.values.groups$Group)) == 2){
     if(norm.homo == TRUE){
     method <- "Student's t-Test"
+
     test <- t.test(Value ~ Group, data = div.values.groups)  
     results <- list(data=div.values.groups,normality.pvalue=shapiro$p.value,homogeneity.pvalue=barlett$p.value,groups=length(unique(div.values.groups$Group)),method = "Student's t-Test",test=c(t=unname(test$statistic),df=unname(test$parameter),p.value=unname(test$p.value)))
     }else{

@@ -35,7 +35,7 @@ Imports:
     geiger,
     qgraph
 Encoding: UTF-8
-RoxygenNote: 6.1.0.9000
+RoxygenNote: 6.1.1
 Collate:
     'index.div.R'
     'hill.div.R'

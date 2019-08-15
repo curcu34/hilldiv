@@ -1,4 +1,4 @@
-# Gamma diversity
+# gamma.div()
 
 Gamma‐diversity refers to the entire diversity of the system.
 

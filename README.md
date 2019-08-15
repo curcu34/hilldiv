@@ -28,7 +28,7 @@ Some recent papers that used hilldiv:
 | div.part()  | Hierarchical diversity partitioning   | [LINK](documentation/div.part.md) |
 | alpha.div()  | Alpha diversity computation   | [LINK](documentation/alpha.div.md) |
 | gamma.div()  | Gamma diversity computation   | [LINK](documentation/gamma.div.md) |
-| beta.dis()  | (Dis)similarity computation based on beta diversities   | Soon |
+| beta.dis()  | (Dis)similarity computation based on beta diversities   | [LINK](documentation/beta.dis.md) |
 | pair.dis()  | Pairwise (dis)similarity computation based on beta diversities   | Soon |
 | pair.dis.plot()  | Visual representation of pair.dis()   | Soon |
 | UqN()  | Jaccard-type overlap computation from beta diversities | [LINK](documentation/UqN.md) |

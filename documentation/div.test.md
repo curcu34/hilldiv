@@ -8,7 +8,7 @@ Diversity comparison test between groups of samples.
 | otutable | A beta diversity value based on Hill numbers. |
 | qvalue |  A positive integer or decimal number (>=0), usually between 0 and 3. |
 | hierarchy | A two-column matrix indicating the relation between samples (first column) and groups (second column). |
-| tree | A phylogenetic tree of class 'phylo'. The tip labels must match the row names in the OTU table. Use the function [match.data()](documentation/match.data.md) if the OTU names do not match.  |
+| tree | A phylogenetic tree of class 'phylo'. The tip labels must match the row names in the OTU table. Use the function [match.data()](match.data.md) if the OTU names do not match.  |
 
 ## Examples
 ````R

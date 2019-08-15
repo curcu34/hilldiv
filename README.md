@@ -21,7 +21,7 @@ Some recent papers that used hilldiv:
 | ------------- | ------------- | ------------- |
 | hill.div()  | Neutral or phylogenetic Hill number computation   | [LINK](documentation/hill.div.md) |
 | index.div()  | Neutral or phylogenetic diversity index computation   | [LINK](documentation/index.div.md) |
-| div.profile()  | (Phylo)Diversity profiles of individual samples or groups of samples   | Soon |
+| div.profile()  | (Phylo)Diversity profiles of individual samples or groups of samples | [LINK](documentation/div.profile.md) |
 | div.test()  | Diversity comparison between two or multiple groups of samples   | Soon |
 | div.test.plot()  | Visual representation of div.test() | Soon |
 | depth.cov()  | Assessment of the sequencing depth per sample   | [LINK](documentation/depth.cov.md) |

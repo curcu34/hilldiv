@@ -25,7 +25,7 @@ Some recent papers that used hilldiv:
 | div.test()  | Diversity comparison between two or multiple groups of samples   | Soon |
 | div.test.plot()  | Visual representation of div.test() | Soon |
 | depth.cov()  | Assessment of the sequencing depth per sample   | [LINK](documentation/depth.cov.md) |
-| div.part()  | Hierarchical diversity partitioning   | Soon |
+| div.part()  | Hierarchical diversity partitioning   | [LINK](documentation/div.part.md) |
 | alpha.div()  | Alpha diversity computation   | [LINK](documentation/alpha.div.md) |
 | gamma.div()  | Gamma diversity computation   | [LINK](documentation/gamma.div.md) |
 | beta.dis()  | (Dis)similarity computation based on beta diversities   | Soon |

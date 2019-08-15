@@ -24,7 +24,7 @@ Some recent papers that used hilldiv:
 | div.profile()  | (Phylo)Diversity profiles of individual samples or groups of samples   | Soon |
 | div.test()  | Diversity comparison between two or multiple groups of samples   | Soon |
 | div.test.plot()  | Visual representation of div.test() | Soon |
-| depth.cov()  | Assessment of the sequencing depth per sample   | Soon |
+| depth.cov()  | Assessment of the sequencing depth per sample   | [LINK](documentation/depth.cov.md) |
 | div.part()  | Hierarchical diversity partitioning   | Soon |
 | alpha.div()  | Alpha diversity computation   | [LINK](documentation/alpha.div.md) |
 | gamma.div()  | Gamma diversity computation   | [LINK](documentation/gamma.div.md) |
@@ -36,7 +36,7 @@ Some recent papers that used hilldiv:
 | SqN()  | Jaccard-type turnover-complement from beta diversities   | Soon |
 | VqN()  | Sørensen-type turnover-complement from beta diversities   | Soon |
 | match.data()  | Filter OTU tables and trees to match OTUs in both data files   | [LINK](documentation/match.data.md) |
-| depth.filt()  | Filter samples according to a minimum sequencing depth threshold   | Soon |
+| depth.filt()  | Filter samples according to a minimum sequencing depth threshold   | [LINK](documentation/depth.filt.md) |
 | copy.filt()  | Filter OTUs according to a minimum copy number threshold   | [LINK](documentation/copy.filt.md) |
 | tss()  | Total sum scaling per sample   | Soon |
 | tree.depth()  | Tree depth computation   | Soon |

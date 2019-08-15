@@ -38,8 +38,8 @@ Some recent papers that used hilldiv:
 | match.data()  | Filter OTU tables and trees to match OTUs in both data files   | [LINK](documentation/match.data.md) |
 | depth.filt()  | Filter samples according to a minimum sequencing depth threshold   | [LINK](documentation/depth.filt.md) |
 | copy.filt()  | Filter OTUs according to a minimum copy number threshold   | [LINK](documentation/copy.filt.md) |
-| tss()  | Total sum scaling per sample   | Soon |
-| tree.depth()  | Tree depth computation   | Soon |
+| tss()  | Total sum scaling per sample   | [LINK](documentation/tss.md) |
+| tree.depth()  | Tree depth computation   | [LINK](documentation/tree.depth.md) |
 
 # Installation
 To install **hilldiv** in your R environment, you need to 1) install devtools, 2) load devtools library, 3) install **hilldiv** using devtools and 4) finally load **hilldiv** library to your environment.

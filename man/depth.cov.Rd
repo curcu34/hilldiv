@@ -4,7 +4,7 @@
 \usage{depth.cov(abund,qvalue)}
 \arguments{
   \item{abund}{A vector or a matrix/data.frame indicating the relative abundances of one or multiple samples, respectively. If a matrix/data.frame is provided, columns must refer to samples and rows to OTUs.}
-  \item{qvalue}{A positive number (>=0). It can be an integer or contain decimals.}
+  \item{qvalue}{A positive integer or decimal number (>=0), usually between 0 and 3.}
 }
 \details{Assessment of the sequencing depth per sample. Computes both observed and estimated (based on Chao & Jost 2015) Hill numbers, and calculates the percentage of estimated diversity coverage per sample.}
 \examples{

@@ -31,10 +31,10 @@ Some recent papers that used hilldiv:
 | beta.dis()  | (Dis)similarity computation based on beta diversities   | Soon |
 | pair.dis()  | Pairwise (dis)similarity computation based on beta diversities   | Soon |
 | pair.dis.plot()  | Visual representation of pair.dis()   | Soon |
-| UqN()  | Jaccard-type overlap computation from beta diversities | Soon |
-| CqN()  | Sørensen-type overlap from beta diversities   | Soon |
-| SqN()  | Jaccard-type turnover-complement from beta diversities   | Soon |
-| VqN()  | Sørensen-type turnover-complement from beta diversities   | Soon |
+| UqN()  | Jaccard-type overlap computation from beta diversities | [LINK](documentation/UqN.md) |
+| CqN()  | Sørensen-type overlap from beta diversities   | [LINK](documentation/CqN.md) |
+| SqN()  | Jaccard-type turnover-complement from beta diversities   | [LINK](documentation/SqN.md) |
+| VqN()  | Sørensen-type turnover-complement from beta diversities   | [LINK](documentation/VqN.md) |
 | match.data()  | Filter OTU tables and trees to match OTUs in both data files   | [LINK](documentation/match.data.md) |
 | depth.filt()  | Filter samples according to a minimum sequencing depth threshold   | [LINK](documentation/depth.filt.md) |
 | copy.filt()  | Filter OTUs according to a minimum copy number threshold   | [LINK](documentation/copy.filt.md) |

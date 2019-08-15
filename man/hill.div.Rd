@@ -4,7 +4,7 @@
 \alias{hill.div}
 \title{Hill numbers computation}
 \usage{
-hill.div(abund, qvalue, tree, traits, type)
+hill.div(abund, qvalue, tree, type)
 }
 \arguments{
 \item{abund}{A vector or a matrix/data.frame indicating the relative abundances of one or multiple samples, respectively. If a matrix/data.frame is provided, columns must refer to samples and rows to OTUs.}

@@ -19,7 +19,7 @@ Some recent papers that used hilldiv:
 # List of functions
 | Function | Short explanation | Documentation |
 | ------------- | ------------- | ------------- |
-| hill.div()  | Neutral or phylogenetic Hill number computation   | Soon |
+| hill.div()  | Neutral or phylogenetic Hill number computation   | [LINK](documentation/hill.div.md) |
 | index.div()  | Neutral or phylogenetic diversity index computation   | [LINK](documentation/index.div.md) |
 | div.profile()  | (Phylo)Diversity profiles of individual samples or groups of samples   | Soon |
 | div.test()  | Diversity comparison between two or multiple groups of samples   | Soon |
@@ -35,7 +35,7 @@ Some recent papers that used hilldiv:
 | CqN()  | Sørensen-type overlap from beta diversities   | Soon |
 | SqN()  | Jaccard-type turnover-complement from beta diversities   | Soon |
 | VqN()  | Sørensen-type turnover-complement from beta diversities   | Soon |
-| match.data()  | Filter OTU tables and trees to match OTUs in both data files   | Soon |
+| match.data()  | Filter OTU tables and trees to match OTUs in both data files   | [LINK](documentation/match.data.md) |
 | depth.filt()  | Filter samples according to a minimum sequencing depth threshold   | Soon |
 | copy.filt()  | Filter OTUs according to a minimum copy number threshold   | [LINK](documentation/copy.filt.md) |
 | tss()  | Total sum scaling per sample   | Soon |

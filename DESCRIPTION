@@ -56,5 +56,6 @@ Collate:
     'match.data.R'
     'depth.filt.R'
     'copy.filt.R'
+    'to.indicende.R'
     'tss.R'
     'tree.depth.R'

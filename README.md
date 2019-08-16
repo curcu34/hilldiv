@@ -35,6 +35,7 @@ Some recent papers that used hilldiv:
 | CqN()  | Sørensen-type overlap from beta diversities   | [LINK](documentation/CqN.md) |
 | SqN()  | Jaccard-type turnover-complement from beta diversities   | [LINK](documentation/SqN.md) |
 | VqN()  | Sørensen-type turnover-complement from beta diversities   | [LINK](documentation/VqN.md) |
+| to.incidence()  | Convert an abundance-based count (OTU/ASV) table into an incidence-based object | [LINK](documentation/to.incidence.md) |
 | match.data()  | Filter OTU tables and trees to match OTUs in both data files   | [LINK](documentation/match.data.md) |
 | depth.filt()  | Filter samples according to a minimum sequencing depth threshold   | [LINK](documentation/depth.filt.md) |
 | copy.filt()  | Filter OTUs according to a minimum copy number threshold   | [LINK](documentation/copy.filt.md) |
@@ -108,10 +109,11 @@ names(otu.vector) <- rownames(otu.table)
 hierarchy.table <- bat.diet.hierarchy
 tree <- bat.diet.tree
 ````
-## Preliminary analyses and filtering
+## Preliminary data processing and filtering
 - copy.filt()
 - depth.cov()
 - match.data()
+- to.incidence()
 
 ## Diversity measurement and visualisation
 - hill.div()

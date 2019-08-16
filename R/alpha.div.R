@@ -7,6 +7,7 @@
 #' @param qvalue A positive number, usually between 0 and 5, but most commonly 0, 1 or 2. It can be an integer or contain decimals.
 #' @param tree A phylogenetic tree of class 'phylo'. The tip labels must match the row names in the OTU table. Use the function match.data() if the OTU names do not match.
 #' @param weight A vector indicating the relative weight of each sample. The order needs to be identical to the order of the samples in the OTU table. The values need to sum up to 1. If empty, all samples are weighed the same.
+#' @usage alpha.div(otutable,qvalue,tree,weight)
 #' @return An alpha diversity value.
 #' @seealso \code{\link{div.part}}, \code{\link{gamma.div}}, \code{\link{match.data}}
 #' @examples

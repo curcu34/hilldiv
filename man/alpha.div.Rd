@@ -4,7 +4,7 @@
 \alias{alpha.div}
 \title{Alpha diversity}
 \usage{
-alpha.div(otutable, qvalue, tree, weight)
+alpha.div(otutable,qvalue,tree,weight)
 }
 \arguments{
 \item{otutable}{An OTU table (matrix/data.frame) indicating the absolute or relative OTU abundances of multiple samples. Columns must refer to samples and rows to OTUs.}

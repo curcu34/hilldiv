@@ -4,7 +4,7 @@
 \alias{gamma.div}
 \title{Gamma diversity}
 \usage{
-gamma.div(otutable, qvalue, tree, weight)
+gamma.div(otutable,qvalue,tree,weight)
 }
 \arguments{
 \item{otutable}{An OTU table (matrix/data.frame) indicating the absolute or relative OTU abundances of multiple samples. Columns must refer to samples and rows to OTUs.}

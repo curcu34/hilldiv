@@ -25,9 +25,9 @@ Hill numbers computation
 hill.div(otu.vector,0)
 hill.div(otu.table,1)
 hill.div(otu.table,1,tree)
-hill.div(otu.table,1,tree,type="incidence")
-hill.div(otu.table,qvalue=2,tree=tree)
 hill.div(otu.table,qvalue=2,traits=dist) #To be implemented soon
+#For incidence-based analysis
+hill.div(to.incidence(otu.table,hierarchy.table),1)
 }
 \references{
 Alberdi, A., Gilbert, M.T.P. (2019). A guide to the application of Hill numbers to DNA-based diversity analyses. Molecular Ecology Resources. Early view.\cr\cr

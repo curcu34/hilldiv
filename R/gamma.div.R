@@ -31,7 +31,6 @@ if(missing(qvalue)) stop("q value is missing")
 if(qvalue < 0) stop("q value needs to be possitive (equal or higher than zero)")
 if (qvalue==1) {qvalue=0.99999} # change q to the limit of the unity (0.99999) if q=1
 if(missing(weight)) { weight= rep(1/ncol(otutable),ncol(otutable))}
-if(missing(weight)) warning("Assuming equal weights")
 
 if(missing(tree)){
     #Neutral
@@ -40,8 +39,8 @@ if(missing(tree)){
     div <- sum(rowSums(pi.w)^qvalue)^(1/(1-qvalue)) #apply gamma diversity formula
     return(div) #print the result
 }else{
-    #Non-neutral
-    if(class(tree) != "phylo") stop("Tree needs to be an object of class Phylo")  
+    #Phylogenetic
+    if(class(tree) != "phylo") stop("Tree needs to be an object of class Phylo")
     if(ape::is.ultrametric(tree) == FALSE) stop("Tree needs to be ultrametric")
     if(identical(sort(rownames(otutable)),sort(tree$tip.label)) == FALSE) stop("OTU names in the OTU table and tree do not match")
     otutable <- as.data.frame(otutable)

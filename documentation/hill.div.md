@@ -11,10 +11,10 @@ Compute neutral or phylogenetic Hill numbers from a single sample (vector) or co
 | dist | A dist object indicating the pairwise distances between samples. THIS FUNCTIONALITY IS NOT IMPLEMENTED YET.  |
 
 ## Examples
-
+````R
 hill.div(otu.vector,0)
 hill.div(otu.table,1)
 hill.div(otu.table,qvalue=2)
 hill.div(otu.table,1,tree)
-hill.div(otu.table,1,tree,type="incidence")
 hill.div(otu.table,qvalue=2,tree=tree)
+````

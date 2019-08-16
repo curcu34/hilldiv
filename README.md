@@ -63,10 +63,11 @@ system('defaults write org.R-project.R force.LANG en_US.UTF-8')
 
 # Changelog
 
-### v1.4 | August 2019
-- Implementation of roxygen2 
+### v1.4.1 | August 2019
+- Implementation of roxygen2.
+- Added the to.incidence() function.
 
-### v1.2.3 | July 2019
+### v1.3 | July 2019
 - Added the function index.div() to compute diversity indices related to Hill numbers.
 - Added the match.data() function.
 - Added the depth.filt() function.

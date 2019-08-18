@@ -21,7 +21,7 @@ div.test(otutable, qvalue, hierarchy, tree, posthoc)
 A statistical test output.
 }
 \description{
-Diversity comparison test between groups of samples
+Diversity comparison test between groups of samples. The function automatically assesses whether the data meets the properties for parametric statistics and performs the appropriate test accordingly: Students' T, ANOVA, Wilcoxon or Kruskal-Wallis. If the posthoc argument is set as TRUE, multiple group comparisons are complemented with post hoc pairwise tests, either Tukey test (parametric) or Dunn test with Benjamini-Hochberg correction (non-parametric).
 }
 \details{
 Diversity test

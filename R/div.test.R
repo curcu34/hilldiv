@@ -2,7 +2,7 @@
 #' @title Diversity test
 #' @author Antton Alberdi, \email{anttonalberdi@gmail.com}
 #' @keywords hill numbers comparison
-#' @description Diversity comparison test between groups of samples
+#' @description Diversity comparison test between groups of samples. The function automatically assesses whether the data meets the properties for parametric statistics and performs the appropriate test accordingly: Students' T, ANOVA, Wilcoxon or Kruskal-Wallis. If the posthoc argument is set as TRUE, multiple group comparisons are complemented with post hoc pairwise tests, either Tukey test (parametric) or Dunn test with Benjamini-Hochberg correction (non-parametric). 
 #' @param otutable A matrix indicating the relative abundances of multiple samples. Columns should be samples and rows OTUs.
 #' @param qvalue A positive integer or decimal number (>=0), usually between 0 and 3.
 #' @param hierarchy A two-column matrix indicating the relation between samples (first column) and groups (second column).

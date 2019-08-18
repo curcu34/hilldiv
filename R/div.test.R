@@ -28,7 +28,7 @@ if(dim(otutable)[2] < 2) stop("The OTU table contains less than 2 samples")
 if(missing(qvalue)) stop("q value is missing")
 if(qvalue < 0) stop("q value needs to be possitive (equal or higher than zero)")
 if(missing(hierarchy)) stop("Hierarchy table is necessary to contrast groups of samples")
-if(min(table(bat.diet.hierarchy[,2])) == 1) stop("All contrasting groups need to have at least 2 samples")
+if(min(table(hierarchy[,2])) == 1) stop("All contrasting groups need to have at least 2 samples")
 if(missing(posthoc)){posthoc=FALSE}
 
 #Compute diversity values

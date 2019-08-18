@@ -4,7 +4,7 @@
 \alias{div.test}
 \title{Diversity test}
 \usage{
-div.test(otutable, qvalue, hierarchy, tree)
+div.test(otutable, qvalue, hierarchy, tree, posthoc)
 }
 \arguments{
 \item{otutable}{A matrix indicating the relative abundances of multiple samples. Columns should be samples and rows OTUs.}
@@ -14,6 +14,8 @@ div.test(otutable, qvalue, hierarchy, tree)
 \item{hierarchy}{A two-column matrix indicating the relation between samples (first column) and groups (second column).}
 
 \item{tree}{A phylogenetic tree of class 'phylo'. The tip labels must match the row names in the OTU table. Use the function match.data() if the OTU names do not match.}
+
+\item{posthoc}{Whether to run post hoc pairwise analyses or not. If TRUE, an ANOVA will be complemented with a Tukey test and a Kruskal-Wallis test will be complemented with a Dunn test.}
 }
 \value{
 A statistical test output.
@@ -28,6 +30,7 @@ Diversity test
 div.test(otu.table,qvalue=0,hierarchy=hierarchy.table)
 div.test(otu.table,qvalue=1,hierarchy=hierarchy.table,tree=tree)
 div.test(otu.table,2,hierarchy.table,tree)
+div.test(otu.table,qvalue=1,hierarchy=hierarchy.table,posthoc=TRUE)
 }
 \references{
 Alberdi, A., Gilbert, M.T.P. (2019). A guide to the application of Hill numbers to DNA-based diversity analyses. Molecular Ecology Resources. Early view.\cr\cr

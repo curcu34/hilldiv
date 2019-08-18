@@ -7,18 +7,20 @@
 #' @param qvalue A positive integer or decimal number (>=0), usually between 0 and 3.
 #' @param hierarchy A two-column matrix indicating the relation between samples (first column) and groups (second column).
 #' @param tree A phylogenetic tree of class 'phylo'. The tip labels must match the row names in the OTU table. Use the function match.data() if the OTU names do not match.
+#' @param posthoc Whether to run post hoc pairwise analyses or not. If TRUE, an ANOVA will be complemented with a Tukey test and a Kruskal-Wallis test will be complemented with a Dunn test.
 #' @return A statistical test output.
 #' @seealso \code{\link{hill.div}}, \code{\link{div.part}}
 #' @examples
 #' div.test(otu.table,qvalue=0,hierarchy=hierarchy.table)
 #' div.test(otu.table,qvalue=1,hierarchy=hierarchy.table,tree=tree)
 #' div.test(otu.table,2,hierarchy.table,tree)
+#' div.test(otu.table,qvalue=1,hierarchy=hierarchy.table,posthoc=TRUE)
 #' @references
 #' Alberdi, A., Gilbert, M.T.P. (2019). A guide to the application of Hill numbers to DNA-based diversity analyses. Molecular Ecology Resources. Early view.\cr\cr
 #' Chao, A., Chiu, C.‐H., & Jost, L. (2014). Unifying species diversity, phylo‐ genetic diversity, functional diversity, and related similarity and dif‐ ferentiation measures through hill numbers. Annual Review of Ecology Evolution and Systematics, 45, 297–324.
 #' @export
 
-div.test <- function(otutable,qvalue,hierarchy,tree){ 
+div.test <- function(otutable,qvalue,hierarchy,tree,posthoc){
 if(missing(otutable)) stop("OTU table is missing")
 if(is.null(dim(otutable)) == TRUE) stop("The OTU table is not a matrix")
 if(dim(otutable)[1] < 2) stop("The OTU table only less than 2 OTUs")
@@ -26,11 +28,13 @@ if(dim(otutable)[2] < 2) stop("The OTU table contains less than 2 samples")
 if(missing(qvalue)) stop("q value is missing")
 if(qvalue < 0) stop("q value needs to be possitive (equal or higher than zero)")
 if(missing(hierarchy)) stop("Hierarchy table is necessary to contrast groups of samples")
+if(missing(posthoc)){posthoc=FALSE}
 
+#Compute diversity values
 if(missing(tree)){
 div.values <- hill.div(otutable,qvalue)
 }else{
-if(class(tree) != "phylo") stop("Tree needs to be an object of class Phylo")  
+if(class(tree) != "phylo") stop("Tree needs to be an object of class Phylo")
 if(identical(sort(rownames(otutable)),sort(tree$tip.label)) == FALSE) stop("OTU names in the OTU table and tree do not match")
 div.values <- hill.div(otutable,qvalue,tree)
 }
@@ -47,12 +51,12 @@ norm.homo=TRUE
 norm.homo=FALSE
 }
 
-#Statistical test
+#Run statistical tests and output
 if(length(unique(div.values.groups$Group)) == 2){
     if(norm.homo == TRUE){
     method <- "Student's t-Test"
 
-    test <- t.test(Value ~ Group, data = div.values.groups)  
+    test <- t.test(Value ~ Group, data = div.values.groups)
     results <- list(data=div.values.groups,normality.pvalue=shapiro$p.value,homogeneity.pvalue=barlett$p.value,groups=length(unique(div.values.groups$Group)),method = "Student's t-Test",test=c(t=unname(test$statistic),df=unname(test$parameter),p.value=unname(test$p.value)))
     }else{
     test <- wilcox.test(Value ~ Group, data = div.values.groups)
@@ -60,11 +64,22 @@ if(length(unique(div.values.groups$Group)) == 2){
     }
 }else{
     if(norm.homo == TRUE){
-    test <- summary(aov(Value ~ Group, data = div.values.groups))
-    results <- list(data=div.values.groups,normality.pvalue=shapiro$p.value,homogeneity.pvalue=barlett$p.value,groups=length(unique(div.values.groups$Group)),method = "ANOVA",test=test)
+    anova <- aov(Value ~ Group, data = div.values.groups)
+    test <- summary(anova)
+      if(posthoc == FALSE){
+      results <- list(data=div.values.groups,normality.pvalue=shapiro$p.value,homogeneity.pvalue=barlett$p.value,groups=length(unique(div.values.groups$Group)),method = "ANOVA",test=test)
+      }else{
+      test.ph <- TukeyHSD(anova)$Group
+      results <- list(data=div.values.groups,normality.pvalue=shapiro$p.value,homogeneity.pvalue=barlett$p.value,groups=length(unique(div.values.groups$Group)),method = "ANOVA",test=test, posthoc.method = "Tukey post-hoc test", posthoc=test.ph)
+      }
     }else{
     test <- kruskal.test(Value ~ Group, data = div.values.groups)
-    results <- list(data=div.values.groups,normality.pvalue=shapiro$p.value,homogeneity.pvalue=barlett$p.value,groups=length(unique(div.values.groups$Group)),method = "Kruskal-Wallis Test",test=c(chi.squared=unname(test$statistic),df=unname(test$parameter),p.value=unname(test$p.value)))
+      if(posthoc == FALSE){
+      results <- list(data=div.values.groups,normality.pvalue=shapiro$p.value,homogeneity.pvalue=barlett$p.value,groups=length(unique(div.values.groups$Group)),method = "Kruskal-Wallis Test",test=c(chi.squared=unname(test$statistic),df=unname(test$parameter),p.value=unname(test$p.value)))
+      }else{
+      test.ph <- FSA::dunnTest(Value ~ Group, data= div.values.groups, method="bh")$res
+      results <- list(data=div.values.groups,normality.pvalue=shapiro$p.value,homogeneity.pvalue=barlett$p.value,groups=length(unique(div.values.groups$Group)),method = "Kruskal-Wallis Test",test=c(chi.squared=unname(test$statistic),df=unname(test$parameter),p.value=unname(test$p.value)),posthoc.method = "Dunn test with Benjamini-Hochberg correction",posthoc.result=test.ph)
+      }
     }
 }
 return(results)

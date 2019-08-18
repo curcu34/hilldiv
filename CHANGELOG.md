@@ -3,7 +3,7 @@
 ### v1.4.1 | August 2019
 - Implementation of roxygen2.
 - Added the to.incidence() function.
-- Added post hoc test the div.test() function.
+- Added post hoc tests to the div.test() function.
 
 ### v1.3 | July 2019
 - Added the function index.div() to compute diversity indices related to Hill numbers.

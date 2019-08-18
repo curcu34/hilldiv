@@ -22,7 +22,8 @@ Depends:
     ade4,
     vegan,
     geiger,
-    qgraph
+    qgraph,
+    FSA
 Suggests:
 Imports:
     ggplot2,
@@ -33,7 +34,8 @@ Imports:
     ade4,
     vegan,
     geiger,
-    qgraph
+    qgraph,
+    FSA
 Encoding: UTF-8
 RoxygenNote: 6.1.1
 Collate:

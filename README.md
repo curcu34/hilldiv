@@ -49,7 +49,7 @@ To install **hilldiv** in your R environment, you need to 1) install devtools, 2
 install.packages("devtools")
 library(devtools)
 install_github("anttonalberdi/hilldiv")
-library(hilldiv)
+library(hilldiv,quietly=TRUE)
 ````
 If not installed, it will automatically install the following dependencies: ggplot2, ggpubr, RColorBrewer, data.table, ape, ade4, iNEXT, iNextPD.
 

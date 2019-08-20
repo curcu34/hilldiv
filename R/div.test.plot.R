@@ -21,7 +21,9 @@ div.test.plot <- function(divtest,chart,colour,posthoc,threshold){
 if(missing(chart)){chart="box"}
 if(missing(posthoc)){posthoc=FALSE}
 if((names(divtest)[1] != "data") & (names(divtest)[2] != "normality.pvalue")) stop("The input object does not seem to be a div.test output.")
+if(posthoc == TRUE){
 if(is.na(names(divtest)[7])) stop("The input div.test object does not seem to contain pairwise posthoc data. Re-run div.test() using 'posthoc=TRUE' argument.")
+}
 
 #Get data table
 divtestdata <- divtest$data

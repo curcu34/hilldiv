@@ -4,7 +4,7 @@
 \alias{div.test.plot}
 \title{Diversity test plotting}
 \usage{
-div.test.plot(divtest, chart, colour, stat, comb, symbol, flip)
+div.test.plot(divtest, chart, colour, posthoc, threshold)
 }
 \arguments{
 \item{divtest}{Object outputed by the div.test() function}
@@ -13,16 +13,12 @@ div.test.plot(divtest, chart, colour, stat, comb, symbol, flip)
 
 \item{colour}{The number of vector items (colours, e.g. '#34k235'), must equal the number of groups that are intended to plot.}
 
-\item{stat}{If 'TRUE' pairwise mean comparison significance values will be ploted.}
+\item{posthoc}{If 'TRUE' pairwise p-values of the posthoc analyses will be ploted. It requires the div.test() object to contain posthoc results.}
 
-\item{comb}{List of pairwise combinations. If missing all combinations will be plotted. e.g. list(c("Myotis myotis","Myotis capaccinii"),c("Myotis myotis","Myotis daubentonii")).}
-
-\item{symbol}{If 'TRUE' symbols rather than p-values will be shown. ns: p > 0.05; *: p <= 0.05; **: p <= 0.01; ***: p <= 0.001; ****: p <= 0.0001.}
-
-\item{flip}{If 'TRUE' the chart will be flipped 90 degrees.}
+\item{threshold}{Maximum p-value to show in pairwise posthoc results (usually 0.05, but could be any other number between 0 an 1). P-values above the threshold will not be showed.}
 }
 \value{
-Chart of (mean) diversities of contrasting groups.
+Chart of (mean) diversities of contrasting groups with optional posthoc results.
 }
 \description{
 Plot of diversity comparison between groups of samples
@@ -34,8 +30,7 @@ Diversity test plotting
 contrast.div.q0 <- div.test(otu.table,qvalue=0,hierarchy=hierarchy.table)
 div.test.plot(contrast.div.q0,chart="jitter")
 div.test.plot(contrast.div.q0,chart="violin")
-div.test.plot(div.test.result,chart="jitter",stat=TRUE,flip=TRUE)
-div.test.plot(div.test.result,stat=TRUE,comb=list(c("Myotis myotis","Myotis capaccinii")),symbol=TRUE)
+div.test.plot(div.test.result,chart="jitter",posthoc=TRUE,threshold=0.5)
 }
 \seealso{
 \code{\link{div.test}}, \code{\link{hill.div}}, \code{\link{div.part}}

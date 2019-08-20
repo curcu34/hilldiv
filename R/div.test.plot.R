@@ -55,8 +55,8 @@ if(posthoc == TRUE){
 
   #Set y values
   sortedgroups <- unique(sort(c(pairwisetable$group1,pairwisetable$group2)))
-  datamax <- round(max(divtest$data[which(divtest$data$Group %in% sortedgroups),2]))
-  datamin <- round(min(divtest$data[which(divtest$data$Group %in% sortedgroups),2]))
+  datamax <- round(max(divtest$data[which(divtest$data$Group %in% sortedgroups),3]))
+  datamin <- round(min(divtest$data[which(divtest$data$Group %in% sortedgroups),3]))
   datarange <- datamax - datamin
   by <- datarange * 0.1
   min <- datamax

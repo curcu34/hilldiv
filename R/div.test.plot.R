@@ -21,9 +21,6 @@ div.test.plot <- function(divtest,chart,colour,posthoc,threshold){
 if(missing(chart)){chart="box"}
 if(missing(posthoc)){posthoc=FALSE}
 if((names(divtest)[1] != "data") & (names(divtest)[2] != "normality.pvalue")) stop("The input object does not seem to be a div.test output.")
-if(posthoc == TRUE){
-if(is.na(names(divtest)[7])) stop("The input div.test object does not seem to contain pairwise posthoc data. Re-run div.test() using 'posthoc=TRUE' argument.")
-}
 
 #Get data table
 divtestdata <- divtest$data
@@ -37,48 +34,36 @@ getPalette <- colorRampPalette(brewer.pal(divtest$groups, "Paired"))
 colour <- getPalette(divtest$groups)
 }
 
-#Prepare tests for ggpubr
-if(divtest$method == "Kruskal-Wallis Test"){
-g.method="kruskal.test"
-pw.method="wilcox.test"
-}
-if(divtest$method == "ANOVA"){
-g.method="anova"
-pw.method="t.test"
-}
-if(divtest$method == "Student's t-Test"){
-g.method="t.test"
-}
-if(divtest$method == "Wilcoxon Rank Sum Test"){
-g.method="wilcox.test"
-}
+if(posthoc == TRUE){
+  if(is.na(names(divtest)[7])) stop("The input div.test object does not seem to contain pairwise posthoc data. Re-run div.test() using 'posthoc=TRUE' argument.")
 
-#Prepare pairwisetable from posthoc data
-if(names(divtest)[7] == "posthoc.method"){
-combinations <- matrix(gsub(" $","",gsub("^ ","",unlist(strsplit(as.character(divtest$posthoc.result[,1]), "-", fixed = TRUE)))),ncol=2,byrow=TRUE)
-pvalue <- round(divtest$posthoc.result[,4],3)
-pairwisetable <- as.data.frame(cbind(combinations,pvalue))
-colnames(pairwisetable) <- c("group1","group2","p")
-}
-pairwisetable[,1] <- as.character(pairwisetable[,1])
-pairwisetable[,2] <- as.character(pairwisetable[,2])
-pairwisetable[,3] <- as.numeric(as.character(pairwisetable[,3]))
+  #Prepare pairwisetable from posthoc data
+  if(names(divtest)[7] == "posthoc.method"){
+  combinations <- matrix(gsub(" $","",gsub("^ ","",unlist(strsplit(as.character(divtest$posthoc.result[,1]), "-", fixed = TRUE)))),ncol=2,byrow=TRUE)
+  pvalue <- round(divtest$posthoc.result[,4],3)
+  pairwisetable <- as.data.frame(cbind(combinations,pvalue))
+  colnames(pairwisetable) <- c("group1","group2","p")
+  }
+  pairwisetable[,1] <- as.character(pairwisetable[,1])
+  pairwisetable[,2] <- as.character(pairwisetable[,2])
+  pairwisetable[,3] <- as.numeric(as.character(pairwisetable[,3]))
 
-#Filter pairwisetable
-if(!missing(threshold)){
-pairwisetable <- pairwisetable[which(pairwisetable$p < threshold),]
-}
+  #Filter pairwisetable
+  if(!missing(threshold)){
+  pairwisetable <- pairwisetable[which(pairwisetable$p < threshold),]
+  }
 
-#Set y values
-sortedgroups <- unique(sort(c(pairwisetable$group1,pairwisetable$group2)))
-datamax <- round(max(divtest$data[which(divtest$data[,3] %in% sortedgroups),2]))
-datamin <- round(min(divtest$data[which(divtest$data[,3] %in% sortedgroups),2]))
-datarange <- datamax - datamin
-by <- datarange * 0.1
-min <- datamax
-max <- min + (by*nrow(pairwisetable))
-ypos <- seq(min,max,by)[-1]
-pairwisetable$ypos <- ypos
+  #Set y values
+  sortedgroups <- unique(sort(c(pairwisetable$group1,pairwisetable$group2)))
+  datamax <- round(max(divtest$data[which(divtest$data[,3] %in% sortedgroups),2]))
+  datamin <- round(min(divtest$data[which(divtest$data[,3] %in% sortedgroups),2]))
+  datarange <- datamax - datamin
+  by <- datarange * 0.1
+  min <- datamax
+  max <- min + (by*nrow(pairwisetable))
+  ypos <- seq(min,max,by)[-1]
+  pairwisetable$ypos <- ypos
+}
 
 #Plot
 if(chart == "box"){

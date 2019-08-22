@@ -25,8 +25,8 @@ if(is.null(dim(profile)) == TRUE){
 }else{
   inputtype="multiplesamples"
   }
-if(missing(log)){log == "FALSE"}
-if(missing(legend)){legend == "TRUE"}
+if(missing(log)){log="FALSE"}
+if(missing(legend)){legend="TRUE"}
 
 #Declare colours
 if(missing(colour) || (length(colour) != ncol(profile))){

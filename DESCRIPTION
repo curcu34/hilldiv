@@ -42,6 +42,7 @@ Collate:
     'index.div.R'
     'hill.div.R'
     'div.profile.R'
+    'div.profile.plot.R'
     'div.test.R'
     'div.test.plot.R'
     'depth.cov.R'

@@ -11,7 +11,7 @@ hill.div(count, qvalue, tree, dist)
 
 \item{qvalue}{A positive integer or decimal number (>=0), usually between 0 and 3.}
 
-\item{tree}{An ultrametic tree of class 'phylo'. The tip labels must match the names of the vector values (if one sample) or matrix rows (if multiple samples).}
+\item{tree}{An ultrametic tree of class 'phylo'. The tip labels must match the names of the vector values (if one sample) or matrix rows (if multiple samples). Use the function match.data() if the OTU names do not match.}
 
 \item{dist}{A dist object indicating the pairwise distances between samples. NOT implemented yet}
 }

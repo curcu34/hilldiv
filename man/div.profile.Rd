@@ -4,10 +4,10 @@
 \alias{div.profile}
 \title{Diversity profile}
 \usage{
-div.profile(abund, qvalues, tree, hierarchy, level)
+div.profile(count, qvalues, tree, hierarchy, level)
 }
 \arguments{
-\item{abund}{A vector or a matrix/data.frame indicating the relative abundances of one or multiple samples, respectively. If a matrix/data.frame is provided, columns must refer to samples and rows to OTUs.}
+\item{count}{A vector or a matrix indicating the (relative) OTU/ASV counts of one or multiple samples. If a matrix is provided, columns must refer to samples and rows to OTUs.}
 
 \item{qvalues}{A vector of sequential orders of diversity (default from 0 to 5). order=seq(from = 0, to = 5, by = (0.1))}
 
@@ -21,13 +21,13 @@ div.profile(abund, qvalues, tree, hierarchy, level)
 A vector or matrix containing diversity values at different orders of diversity (as specified in qvalues).
 }
 \description{
-Create diversity profiles of a single or multiple samples displayed independently or aggregated in groups.
+Create diversity profile vector (single sample or system) or tables (multiple samples or groups) from count tables.
 }
 \details{
 Diversity profile
 }
 \examples{
-div.profile(abund=otu.table[,1],qvalues=seq(from = 0, to = 5, by = (0.1)),tree=tree)
+div.profile(count=otu.table[,1],qvalues=seq(from = 0, to = 5, by = (0.1)),tree=tree)
 div.profile(vector)
 div.profile(otu.table,hierarchy=hierarchy.table,level="gamma")
 }

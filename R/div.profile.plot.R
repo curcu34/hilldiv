@@ -2,10 +2,10 @@
 #' @title Diversity profile plot
 #' @author Antton Alberdi, \email{anttonalberdi@gmail.com}
 #' @keywords alpha gamma beta hill
-#' @description Plot diversity profiles of a single or multiple samples displayed independently or aggregated in groups.
+#' @description Plot diversity profiles from objects generated with the function div.profile().
 #' @param profile A div.profile() object or a vector/matrix containg diversity profile(s), with columns indicating samples/groups and rows indicating orders of diversity (q-values).
-#' @param colour The number of vector items (colours, e.g. '#34k235'), must equal the number of samples or groups that are intended to plot.
-#' @param log If 'TRUE' the Hill numbers are transformed to the logarithmic scale. This is useful when there are large differences between q values (e.g. sharp drop from q=0 to q=1), which might complicate visualization. log="FALSE"
+#' @param colour A vector of RGB colours e.g. c("#34k235","#99cc00"). The number of vector items, must equal the number of samples or groups that are intended to plot.
+#' @param log Whether to transform Hill numbers to logarithmic scale (TRUE) or not (FALSE). This is useful when there are large differences between q values (e.g. sharp drop from q=0 to q=1), which might complicate visualization. Default: log="FALSE"
 #' @param legend Whether to display the legend (TRUE) or not (FALSE) in diversity profiles containing multiple samples/groups. Default TRUE in multi-sample charts.
 #' @return A diversity profile plot.
 #' @seealso \code{\link{div.profile}}, \code{\link{hill.div}}

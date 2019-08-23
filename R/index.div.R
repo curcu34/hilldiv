@@ -4,7 +4,7 @@
 #' @keywords OTU ASV diversity Hill
 #' @description Computes common diversity indices related to Hill numbers. If the input is a vector, the function computes the indices of a single sample, while if the input is a matrix (OTU table), the function computes individual diversity indices for each sample (column). An ultrametic OTU tree is required for computing phylogenetic diversity indices (Faith's PD, Allen's H and Rao's Q). If the relative abundances of each sample (vector or each column of the matrix) do not sum to 1, TSS normalisation is applied.
 #' @param abund A vector or a matrix/data.frame indicating the relative abundances of one or multiple samples, respectively. If a matrix/data.frame is provided, columns must refer to samples and rows to OTUs.
-#' @param tree An ultrametic tree of class 'phylo'. The tip labels must match the names of the vector values (if one sample) or matrix rows (if multiple samples).
+#' @param tree An ultrametic tree of class 'phylo'. The tip labels must match the names of the vector values (if one sample) or matrix rows (if multiple samples). Use the function match.data() if the OTU names do not match.
 #' @param index Diversity index to be computed ("richness", "shannon", "simpson", "faith", "allen", "rao"). Default without tree argument: index="richness". Default with tree argument: index="faith".
 #' @seealso \code{\link{hill.div}}, \code{\link{div.part}}
 #' @examples

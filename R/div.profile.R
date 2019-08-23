@@ -2,8 +2,8 @@
 #' @title Diversity profile
 #' @author Antton Alberdi, \email{anttonalberdi@gmail.com}
 #' @keywords alpha gamma beta hill
-#' @description Create diversity profiles of a single or multiple samples displayed independently or aggregated in groups.
-#' @param abund A vector or a matrix/data.frame indicating the relative abundances of one or multiple samples, respectively. If a matrix/data.frame is provided, columns must refer to samples and rows to OTUs.
+#' @description Create diversity profile vector (single sample or system) or tables (multiple samples or groups) from count tables.
+#' @param count A vector or a matrix indicating the (relative) OTU/ASV counts of one or multiple samples. If a matrix is provided, columns must refer to samples and rows to OTUs.
 #' @param qvalues A vector of sequential orders of diversity (default from 0 to 5). order=seq(from = 0, to = 5, by = (0.1))
 #' @param tree A tree of class 'phylo'. The tip labels must match the names of the vector values (if one sample) or matrix rows (if multiple samples).
 #' @param hierarchy A two-column matrix indicating the relation between samples (first column) and groups (second column).
@@ -11,7 +11,7 @@
 #' @return A vector or matrix containing diversity values at different orders of diversity (as specified in qvalues).
 #' @seealso \code{\link{div.profile.plot}}, \code{\link{hill.div}}
 #' @examples
-#' div.profile(abund=otu.table[,1],qvalues=seq(from = 0, to = 5, by = (0.1)),tree=tree)
+#' div.profile(count=otu.table[,1],qvalues=seq(from = 0, to = 5, by = (0.1)),tree=tree)
 #' div.profile(vector)
 #' div.profile(otu.table,hierarchy=hierarchy.table,level="gamma")
 #' @references
@@ -19,21 +19,21 @@
 #' Chao, A., Chiu, C.‐H., & Jost, L. (2014). Unifying species diversity, phylo‐ genetic diversity, functional diversity, and related similarity and dif‐ ferentiation measures through hill numbers. Annual Review of Ecology Evolution and Systematics, 45, 297–324.
 #' @export
 
-div.profile <- function(abund,qvalues,tree,hierarchy,level){
+div.profile <- function(count,qvalues,tree,hierarchy,level){
 
 #Quality-check and warnings
-if(missing(abund)) stop("The abundance data is missing")
+if(missing(count)) stop("The countance data is missing")
 if(missing(qvalues)) {qvalues= seq(from = 0, to = 5, by = (0.1))}
 if(missing(level)) {level= "NA"}
 
 #If input data is a single sample (vector)
-if(is.null(dim(abund)) == TRUE){
+if(is.null(dim(count)) == TRUE){
     profile <- c()
     for (o in qvalues){
     if(missing(tree)){
-        div.value <- hilldiv::hill.div(abund,o)
+        div.value <- hilldiv::hill.div(count,o)
         }else{
-        div.value <- hilldiv::hill.div(abund,o,tree)
+        div.value <- hilldiv::hill.div(count,o,tree)
     }
     profile <- c(profile,div.value)
     }
@@ -114,24 +114,24 @@ return(phylodiv)
 }
 
 #If input data is a count table (matrix)
-if(is.null(dim(abund)) == FALSE){
+if(is.null(dim(count)) == FALSE){
 
-    if(dim(abund)[1] < 2) stop("The OTU table only less than 2 OTUs")
-    if(dim(abund)[2] < 2) stop("The OTU table contains less than 2 samples")
+    if(dim(count)[1] < 2) stop("The OTU table only less than 2 OTUs")
+    if(dim(count)[2] < 2) stop("The OTU table contains less than 2 samples")
 
     #Without hierarchy
     if(missing(hierarchy)){
     profile <- c()
         for (o in qvalues){
             if(missing(tree)){
-            if(level == "NA"){div.values <- hilldiv::hill.div(abund,o)}
-            if(level == "gamma"){div.values <- hilldiv::gamma.div(abund,o)}
-            if(level == "alpha"){div.values <- hilldiv::alpha.div(abund,o)}
+            if(level == "NA"){div.values <- hilldiv::hill.div(count,o)}
+            if(level == "gamma"){div.values <- hilldiv::gamma.div(count,o)}
+            if(level == "alpha"){div.values <- hilldiv::alpha.div(count,o)}
             }else{
             ltips <- sapply(tree$edge[, 2], function(node) geiger::tips(tree, node))
-            if(level == "NA"){div.values <- hill.div.fast(abund,o,tree)}
-            if(level == "gamma"){div.values <- gamma.div(abund,o,tree)}
-            if(level == "alpha"){div.values <- alpha.div(abund,o,tree)}
+            if(level == "NA"){div.values <- hill.div.fast(count,o,tree)}
+            if(level == "gamma"){div.values <- gamma.div(count,o,tree)}
+            if(level == "alpha"){div.values <- alpha.div(count,o,tree)}
             }
         profile <- rbind(profile,div.values)
         }
@@ -157,25 +157,25 @@ if(is.null(dim(abund)) == FALSE){
     profile <- c()
         for (g in groups){
             samples <- as.character(hierarchy[which(hierarchy$Group == g),1])
-            abund.subset <- abund[,samples]
-            abund.subset <- as.data.frame(abund.subset[apply(abund.subset, 1, function(z) !all(z==0)),])
+            count.subset <- count[,samples]
+            count.subset <- as.data.frame(count.subset[apply(count.subset, 1, function(z) !all(z==0)),])
 
             #Subset tree
             if(!missing(tree)){
-            missing.otus <- setdiff(tree$tip.label,rownames(abund.subset))
+            missing.otus <- setdiff(tree$tip.label,rownames(count.subset))
             tree.subset <- drop.tip(tree,missing.otus)
             }
 
             for (o in qvalues){
                   if(missing(tree)){
-                        if(level == "NA"){div.value <- hilldiv::gamma.div(abund.subset,o)}
-                        if(level == "gamma"){div.value <- hilldiv::gamma.div(abund.subset,o)}
-                        if(level == "alpha"){div.value <- hilldiv::alpha.div(abund.subset,o)}
+                        if(level == "NA"){div.value <- hilldiv::gamma.div(count.subset,o)}
+                        if(level == "gamma"){div.value <- hilldiv::gamma.div(count.subset,o)}
+                        if(level == "alpha"){div.value <- hilldiv::alpha.div(count.subset,o)}
                   }else{
                         ltips <- sapply(tree.subset$edge[, 2], function(node) geiger::tips(tree.subset, node))
-                        if(level == "NA"){div.value <- gamma.div.fast(abund.subset,o,tree.subset)}
-                        if(level == "gamma"){div.value <- gamma.div.fast(abund.subset,o,tree.subset)}
-                        if(level == "alpha"){div.value <- alpha.div.fast(abund.subset,o,tree.subset)}
+                        if(level == "NA"){div.value <- gamma.div.fast(count.subset,o,tree.subset)}
+                        if(level == "gamma"){div.value <- gamma.div.fast(count.subset,o,tree.subset)}
+                        if(level == "alpha"){div.value <- alpha.div.fast(count.subset,o,tree.subset)}
                         }
             profile <- rbind(profile,as.numeric(div.value))
             }

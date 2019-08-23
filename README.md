@@ -66,7 +66,8 @@ system('defaults write org.R-project.R force.LANG en_US.UTF-8')
 <img src="https://github.com/anttonalberdi/DiverHill/blob/master/figures/hilldiv_workflow.png" title="Hilldiv workflow">
 
 # Documentation
-I am creating extensive documentation about Hill numbers and implementation of *hilldiv* in the [Hilldiv WIKI](https://github.com/anttonalberdi/hilldiv/wiki)
+I am creating extensive documentation about Hill numbers and implementation of *hilldiv* in the [Hilldiv WIKI](https://github.com/anttonalberdi/hilldiv/wiki).
+
 **[0 - Introduction to Hill numbers](0.-Hill-numbers)**: an introduction to Hill numbers. If you don't know the basics about Hill numbers, you should first read this page.
 
 **[1 - Data files](1.-Data-files)**: basic information about the data types implemented in the package hilldiv.

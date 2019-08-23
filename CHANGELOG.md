@@ -2,6 +2,7 @@
 
 ### v1.4.1 | August 2019
 - Implementation of roxygen2.
+- Modification of div.profile() and addition of div.profile.plot() function.
 - Added the to.incidence() function.
 - Added post hoc tests to the div.test() function.
 

@@ -67,17 +67,13 @@ system('defaults write org.R-project.R force.LANG en_US.UTF-8')
 
 # Documentation
 I am creating extensive documentation about Hill numbers and implementation of *hilldiv* in the [Hilldiv WIKI](https://github.com/anttonalberdi/hilldiv/wiki)
-**[0 - Introduction to Hill numbers](0.-Hill-numbers)**
-An introduction to Hill numbers. If you don't know the basics about Hill numbers, you should first read this page.
+**[0 - Introduction to Hill numbers](0.-Hill-numbers)**: an introduction to Hill numbers. If you don't know the basics about Hill numbers, you should first read this page.
 
-**[1 - Data files](1.-Data-files)**
-Basic information about the data types implemented in the package hilldiv.
+**[1 - Data files](1.-Data-files)**: basic information about the data types implemented in the package hilldiv.
 
-**[2 - Data preprocessing](2.-Data-preprocessing)**
-OTU table, phylogenetic tree and metadata processing for the optimal use of hilldiv.
+**[2 - Data preprocessing](2.-Data-preprocessing)**: count table, phylogenetic tree and metadata processing for the optimal use of hilldiv.
 
-**[3.1 - Diversity computation of a single system](3.1-Diversity-computation-of-a-single-system)**
-Diversity computation of a single system using the package hilldiv.
+**[3.1 - Diversity computation of a single system](3.1-Diversity-computation-of-a-single-system)**: diversity computation of a single system using the [hill.div](documentation/hill.div.md) and [index.div()](documentation/index.div.md).
 
 **[3.2 - Diversity computation and comparison of multiple systems](3.2-Diversity-computation-and-comparison-of-multiple-systems)**
 Diversity computation and comparison of multiple systems or contrasting groups using the package hilldiv.

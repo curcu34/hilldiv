@@ -73,10 +73,9 @@ I am creating extensive documentation about Hill numbers and implementation of *
 
 **[2 - Data preprocessing](2.-Data-preprocessing)**: count table, phylogenetic tree and metadata processing for the optimal use of hilldiv.
 
-**[3.1 - Diversity computation of a single system](3.1-Diversity-computation-of-a-single-system)**: diversity computation of a single system using the [hill.div](documentation/hill.div.md) and [index.div()](documentation/index.div.md).
+**[3.1 - Diversity computation of a single system](3.1-Diversity-computation-of-a-single-system)**: diversity computation of a single system using the functions [hill.div](documentation/hill.div.md) and [index.div()](documentation/index.div.md).
 
-**[3.2 - Diversity computation and comparison of multiple systems](3.2-Diversity-computation-and-comparison-of-multiple-systems)**
-Diversity computation and comparison of multiple systems or contrasting groups using the package hilldiv.
+**[3.2 - Diversity computation and comparison of multiple systems](3.2-Diversity-computation-and-comparison-of-multiple-systems)**: diversity computation and comparison of multiple systems or contrasting groups using the functions [hill.div](documentation/hill.div.md), [div.test](documentation/div.test.md) and [div.test.plot()](documentation/div.test.plot.md).
 
 **[3.3 - Diversity profiles](3.3-Diversity-profiles)**
 Generation of diversity profile tables and plots using hilldiv.

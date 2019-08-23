@@ -66,7 +66,21 @@ system('defaults write org.R-project.R force.LANG en_US.UTF-8')
 <img src="https://github.com/anttonalberdi/DiverHill/blob/master/figures/hilldiv_workflow.png" title="Hilldiv workflow">
 
 # Documentation
-I am creating extensive documentation about Hill numbers and implementation of *hilldiv* in the [Hilldiv WIKI](https://github.com/anttonalberdi/hilldiv/wiki)
+I am creating extensive documentation about Hill numbers and implementation of *hilldiv* in the [Hilldiv WIKI](https://github.com/anttonalberdi/hilldiv/wiki).
+
+**[0 - Introduction to Hill numbers](https://github.com/anttonalberdi/hilldiv/wiki/0.-Hill-numbers)**: an introduction to Hill numbers. If you don't know the basics about Hill numbers, you should first read this page.
+
+**[1 - Data files](https://github.com/anttonalberdi/hilldiv/wiki/1.-Data-files)**: basic information about the data types implemented in the package hilldiv.
+
+**[2 - Data preprocessing](https://github.com/anttonalberdi/hilldiv/wiki/2.-Data-preprocessing)**: count table, phylogenetic tree and metadata processing for the optimal using the functions [copy.filt()](documentation/copy.filt.md), [depth.cov()](documentation/depth.cov.md), [match.data()](documentation/match.data.md) and [to.incidence()](documentation/to.incidence.md)
+
+**[3.1 - Diversity computation of a single system](https://github.com/anttonalberdi/hilldiv/wiki/3.1-Diversity-computation-of-a-single-system)**: diversity computation of a single system using the functions [hill.div()](documentation/hill.div.md) and [index.div()](documentation/index.div.md).
+
+**[3.2 - Diversity computation and comparison of multiple systems](https://github.com/anttonalberdi/hilldiv/wiki/3.2-Diversity-computation-and-comparison-of-multiple-systems)**: diversity computation and comparison of multiple systems or contrasting groups using the functions [hill.div()](documentation/hill.div.md), [div.test()](documentation/div.test.md) and [div.test.plot()](documentation/div.test.plot.md).
+
+**[3.3 - Diversity profiles](https://github.com/anttonalberdi/hilldiv/wiki/3.3-Diversity-profiles)**: generation of diversity profile tables and plots using functions [div.profile()](documentation/div.profile.md) and [div.profile.plot()](documentation/div.profile.plot.md).
+
+**[4 - Diversity partitioning](https://github.com/anttonalberdi/hilldiv/wiki/4.-Diversity-partitioning)**: hierarchical diversity partitioning using the function [div.part()](documentation/div.part.md).
 
 # Applications and functions
 ## Data

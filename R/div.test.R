@@ -40,7 +40,7 @@ if(class(tree) != "phylo") stop("Tree needs to be an object of class Phylo")
 if(identical(sort(rownames(otutable)),sort(tree$tip.label)) == FALSE) stop("OTU names in the OTU table and tree do not match")
 div.values <- hill.div(otutable,qvalue,tree)
 }
-colnames(hierarchy) <- c("Samples","Groups")
+colnames(hierarchy) <- c("Sample","Groups")
 div.values.groups <- merge(hierarchy,t(t(div.values)),by.y="row.names",by.x="Sample", sort = FALSE)
 colnames(div.values.groups) <- c("Sample","Group","Value")
 div.values.groups$Group <- as.factor(div.values.groups$Group)
